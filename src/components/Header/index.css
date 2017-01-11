@@ -1,0 +1,22 @@
+.menuList {
+    position: fixed;
+    top: 0;
+    left:0 ;
+    bottom: 0;
+    width:300px;
+    background: rgba(0, 0, 0, 0.41);;
+}
+.menuList ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.menuList ul li {
+    text-align: center;
+    height: 98px;
+    line-height: 98px;
+}
+.menuList ul li a {
+    color: #fff;
+}

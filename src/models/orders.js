@@ -1,8 +1,8 @@
-import {query, create, modify, del} from '../services/order';
-
+import {query, create, modify, del} from '../services/orders';
+import {parse} from 'qs';
 export default {
 
-    namespace: 'order',
+    namespace: 'orders',
 
     state: {
         list:[],
@@ -12,21 +12,21 @@ export default {
         loading: false,
         current: null,
         currentItem: {},
-        maskVisible: false,
-        maskType: 'create'
+        editorVisible: false,
+        editorType: 'create'
     },
 
     subscriptions: {
-        setup({dispatch, history}) {
+        /*setup({dispatch, history}) {
             history.listen(location=>{
-                if(location.pathname == '/order'){
+                if(location.pathname == '/orders'){
                     dispatch({
                         type:'query',
                         payload: location.query
                     });
                 }
             });
-        },
+        },*/
     },
 
     effects: {
@@ -54,7 +54,7 @@ export default {
             }
         },
         *create({payload}, {call, put}){
-            yield put({type:'hideMask'});
+            yield put({type:'hideEditor'});
             yield put({type:'showLoading'});
             const {data} = call(create, payload);
             if(data && data.success){
@@ -71,7 +71,7 @@ export default {
             }
         },
         *modify({payload}, {select, call, put}){
-            yield put({type:'hideMask'});
+            yield put({type:'hideEditor'});
             yield put({type:'showLoading'});
             const id = yield select(({order})=>order.currentItem.id);
             const newOrder = {...payload, id};
@@ -104,11 +104,11 @@ export default {
         showLoading(state, action){
             return {...state, loading: true};
         },
-        showMask(state, action){
-            return {...state, ...action.payload, maskVisible:true};
+        showEditor(state, action){
+            return {...state, ...action.payload, editorVisible:true};
         },
-        hideMask(state, action){
-            return {...state, maskVisible:false};
+        hideEditor(state, action){
+            return {...state, editorVisible:false};
         },
         querySuccess(state, action){
             return {...state, ...action.payload, loading:false};
