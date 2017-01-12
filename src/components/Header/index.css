@@ -1,22 +1,27 @@
-.menuList {
+.header {
     position: fixed;
     top: 0;
     left:0 ;
     bottom: 0;
     width:300px;
-    background: rgba(0, 0, 0, 0.41);;
+    background: #656565;
 }
-.menuList ul {
+.menuList  {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.menuList ul li {
+.menuItem {
     text-align: center;
     height: 98px;
     line-height: 98px;
 }
-.menuList ul li a {
+.menuItem a,
+.menuItem a:hover {
     color: #fff;
+}
+.activeItem {
+    composes: menuItem;
+    background-color: rgba(215, 215, 215, 0.24);
 }

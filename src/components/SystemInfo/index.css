@@ -1,0 +1,20 @@
+.systemInfo {
+    margin-left: 300px;
+    height: 64px;
+    line-height: 64px;
+    padding:0 25px;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.systemName {
+    color: #4a4a4a;
+    font-size: 18px;
+}
+.userName {
+    margin-right: 10px;
+}
+.loginButton {
+    cursor: pointer;
+}
