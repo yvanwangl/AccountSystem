@@ -6,13 +6,13 @@ import {normal, title, welcome, list} from './index.css';
 function IndexPage() {
     return (
         <div className={normal}>
-            <h1 className={title}>Yay! Welcome to dva!</h1>
+            <h1 className={title}>欢迎光临铭帝系统门窗管理系统</h1>
             <div className={welcome}/>
-            <ul className={list}>
+            {/*<ul className={list}>
                 <li>To get started, edit <code>src/index.js</code> and save to reload.</li>
                 <li><a href="https://github.com/dvajs/dva-docs/blob/master/v1/en-us/getting-started.md" target="_blank">Getting
                     Started</a></li>
-            </ul>
+            </ul>*/}
         </div>
     );
 }

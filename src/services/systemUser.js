@@ -1,9 +1,12 @@
 import request from '../utils/request';
-import qs from 'qs';
+import HTTP_SERVER from './serviceConfig';
+
+const LOGIN_API = `${HTTP_SERVER}/api/login`;
 
 export async function doLogin(params) {
-    return request('http:localhost:3000/api/login',{
-        method: 'post',
-        body: qs.stringify(params)
+    console.log(params);
+    return request( LOGIN_API,{
+        method: 'POST',
+        body: JSON.stringify(params)
     });
 }

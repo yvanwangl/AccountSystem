@@ -26,7 +26,7 @@
     "redbox-react": "^1.3.2"
   },
   "scripts": {
-    "start": "dora --plugins \"webpack,webpack-hmr\"",
+    "start": "dora --plugins \"proxy?watchDirs=./mock,webpack,webpack-hmr\"",
     "build": "atool-build",
     "test": "atool-test-mocha ./src/**/*-test.js"
   }

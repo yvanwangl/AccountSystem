@@ -2,7 +2,7 @@
 
 module.exports = {
 
-  'GET /api/example': function (req, res) {
+  'GET /api/login': function (req, res) {
     setTimeout(function () {
       res.json({
         success: true,

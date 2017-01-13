@@ -26,12 +26,11 @@ export default {
     effects: {
         *doLogin({payload}, {call, put}){
             yield put({type:'showLoading'});
-            console.log(payload);
             const {data} = yield call(doLogin, payload);
             if(data && data.success){
                 yield put({
-                    type: 'modifySuccess',
-                    payload: newOrder
+                    type: 'loginSuccess',
+                    payload: data.userInfo
                 });
             }
         }

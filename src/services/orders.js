@@ -1,27 +1,29 @@
 import request from '../utils/request';
-import qs from 'qs';
+import HTTP_SERVER from './serviceConfig';
+
+const ORDER_API = `${HTTP_SERVER}/api/orders`;
 
 export async function query(params) {
-    return request(`/api/orders?${qs.stringify(params)}`);
+    return request(`${ORDER_API}?${qs.stringify(params)}`);
 }
 
 export async function create(params) {
-    return request('/api/orders',{
+    return request( ORDER_API,{
         method: 'post',
-        body: qs.stringify(params)
+        body: JSON.stringify(params)
     });
 }
 
 export async function modify(params) {
-    return request('/api/orders',{
+    return request( ORDER_API,{
         method: 'put',
-        body: qs.stringify(params)
+        body: JSON.stringify(params)
     });
 }
 
 export async function del(params) {
-    return request('/api/orders',{
+    return request( ORDER_API,{
         method: 'delete',
-        body: qs.stringify(params)
+        body: JSON.stringify(params)
     });
 }

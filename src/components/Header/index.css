@@ -14,8 +14,8 @@
 }
 .menuItem {
     text-align: center;
-    height: 98px;
-    line-height: 98px;
+    height: 64px;
+    line-height: 64px;
 }
 .menuItem a,
 .menuItem a:hover {

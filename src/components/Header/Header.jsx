@@ -35,7 +35,8 @@ export default class Header extends Component {
                             (
                                 <li key={key} className={this.state.activeIndex==index? activeItem : menuItem} onClick={()=>this.itemClick(index)}>
                                     <NavLink target={path} linkText={text}/>
-                                </li>)
+                                </li>
+                            )
                         )
                     }
                 </ul>
