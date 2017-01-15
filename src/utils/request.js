@@ -23,10 +23,11 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 const defaultOptions = {
-    mode: 'no-cors',
-    headers: {                              // headers: fetch事实标准中可以通过Header相关api进行设置
-        'Content-Type': 'application/json'  // default: 'application/json'
+    mode:'no-cors',
+    headers:{
+        'Content-Type':'application/json'
     },
+    credentials: 'include'
 };
 export default function request(url, options) {
   return fetch(url, {...defaultOptions, ...options})

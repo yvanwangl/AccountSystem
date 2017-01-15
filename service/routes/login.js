@@ -4,8 +4,8 @@ var User = require('../models/user');
 var utils = require('../utils/utils');
 
 /* GET users listing. */
-router.route('/')
-    .post(function (req, res, next) {
+// router.route('/')
+router.post('/',function (req, res, next) {
         var userInfo = req.body;
         /*var user = new User({
             username:'lihuan',
