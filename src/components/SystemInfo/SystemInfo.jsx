@@ -5,7 +5,7 @@ import LoginModal from '../LoginModal/LoginModal';
 import {systemInfo, systemName, userName, loginButton} from './index.css';
 
 const SystemInfo = ({systemUser, dispatch})=>{
-    const {isLogin, user, modalVisible} = systemUser;
+    const {isLogin, username, modalVisible} = systemUser;
 
     const logClick = ()=>{
         dispatch({
@@ -34,7 +34,7 @@ const SystemInfo = ({systemUser, dispatch})=>{
         <div className={systemInfo}>
             <span className={systemName}>铭帝系统门窗管理系统</span>
             <span>
-                <span className={userName}>{isLogin?user:'请登录'}</span>
+                <span className={userName}>{isLogin?`欢迎您，${username}`:'请登录'}</span>
                 <span className={loginButton} onClick={logClick}>{isLogin?"退出":"登录"}</span>
             </span>
             <LoginModalGen />

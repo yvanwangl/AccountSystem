@@ -23,11 +23,10 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 const defaultOptions = {
-    mode:'no-cors',
+    mode:'cors',
     headers:{
         'Content-Type':'application/json'
     },
-    credentials: 'include'
 };
 export default function request(url, options) {
   return fetch(url, {...defaultOptions, ...options})
