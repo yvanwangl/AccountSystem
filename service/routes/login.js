@@ -18,8 +18,6 @@ router.post('/',function (req, res, next) {
                 });
             }
         });*/
-        console.log(req.params);
-        console.log(userInfo);
         User.findByUserName(userInfo['username'], function(err, userList){
             if(err){
                 res.send({
@@ -28,22 +26,27 @@ router.post('/',function (req, res, next) {
             }
             //console.log(userList);
             if(userList.length==0){
+                //用户不存在
                 res.send({
                     success: false,
-                    code: 1     //用户不存在
+                    code: 1
                 });
             }else {
                 if(userInfo['password']==userList[0]['password']){
                     var authToken = utils.getAuthToken(10);
                     res.send({
                         success: true,
-                        authToken:authToken
+                        userInfo:{
+                            username: userInfo['username'],
+                            authToken:authToken,
+                        }
                     });
                     global[Symbol.for('authToken')] = authToken;
                 }else {
+                    //密码错误
                     res.send({
                         success: false,
-                        code: 2         //密码错误
+                        code: 2
                     });
                 }
             }

@@ -4,7 +4,7 @@ import HTTP_SERVER from './serviceConfig';
 const ORDER_API = `${HTTP_SERVER}/api/orders`;
 
 export async function query(params) {
-    return request(`${ORDER_API}?${qs.stringify(params)}`);
+    return request(`${ORDER_API}?${JSON.stringify(params)}`);
 }
 
 export async function create(params) {

@@ -1,10 +1,11 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
-import {routerRedux} from 'dva/router';
+import {routerRedux, browserHistory} from 'dva/router';
 import {Search} from '../../components/Search/Search';
+import {getCurrentUser} from '../../utils/webSessionUtils';
 require('./index.css');
 
-/*function Orders({location, dispatch, orders}){
+function genOrders({location, dispatch, orders}){
     const {
         list,
         total,
@@ -77,19 +78,42 @@ require('./index.css');
             });
         }
     };
+
     return (
-        <div className='orders'>
+        <div className='orders' style={{textAlign:'center'}}>
             订单页面
         </div>
     );
-}*/
-const Orders = ()=>{
+}
+/*const Orders = ()=>{
     return (
         <div style={{textAlign:'center'}}>
             orders页面
         </div>
     );
-};
+};*/
+
+class Orders extends Component{
+    constructor(props) {
+        super(props);
+    }
+
+    componentWillMount() {
+        let currentUser = getCurrentUser();
+        if (!currentUser['authToken']) {
+            alert('请登录');
+            browserHistory.push('/');
+        }
+    }
+
+    render(){
+        return (
+            <div className='orders' style={{textAlign:'center'}}>
+                订单页面
+            </div>
+        );
+    }
+}
 
 Orders.propTypes = {
     orders:PropTypes.object,
@@ -99,6 +123,4 @@ function mapStateToProps({orders}) {
     return {orders};
 }
 
-
-//export default connect(mapStateToProps)(Orders);
-export default Orders;
+export default connect(mapStateToProps)(Orders);
