@@ -26,6 +26,13 @@ export default class Header extends Component {
             activeIndex: index
         });
     }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            activeIndex: nextProps.activeIndex
+        });
+    }
+
     render(){
         return (
             <div className={header}>
