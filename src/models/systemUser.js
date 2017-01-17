@@ -1,5 +1,5 @@
 import {doLogin} from '../services/systemUser';
-import {parse} from 'qs';
+import {getCurrentUser, fetchIsAuth} from '../utils/webSessionUtils';
 export default {
 
     namespace: 'systemUser',
@@ -9,19 +9,26 @@ export default {
         isLogin: false,
         modalVisible: false,
         authToken:'',
+        pathname:'/',
     },
 
     subscriptions: {
-        /*setup({dispatch, history}) {
+        setup({dispatch, history}) {
             history.listen(location=>{
-                if(location.pathname == '/orders'){
-                    dispatch({
-                        type:'query',
-                        payload: location.query
+                if(location.pathname == '/'){
+                    //权限验证通过
+                    fetchIsAuth(function(isAuth){
+                        if(isAuth){
+                            dispatch({
+                                type:'loginSuccess',
+                                payload: getCurrentUser()
+                            });
+                        }
                     });
+
                 }
             });
-        },*/
+        },
     },
 
     effects: {
@@ -29,6 +36,7 @@ export default {
             yield put({type:'showLoading'});
             const {data} = yield call(doLogin, payload);
             if(data && data.success){
+                //登录成功
                 yield put({
                     type: 'loginSuccess',
                     payload: data.userInfo
@@ -44,7 +52,7 @@ export default {
             return {...state, user:null, isLogin:false};
         },
         login(state, action){
-            return {...state, modalVisible:true};
+            return {...state, ...action.payload, modalVisible:true};
         },
         loginSuccess(state, action){
             let userInfo = action.payload;

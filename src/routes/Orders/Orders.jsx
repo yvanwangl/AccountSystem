@@ -1,11 +1,10 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
-import {routerRedux, browserHistory} from 'dva/router';
 import {Search} from '../../components/Search/Search';
-import {getCurrentUser} from '../../utils/webSessionUtils';
+import {redirect} from '../../utils/webSessionUtils';
 require('./index.css');
 
-function genOrders({location, dispatch, orders}){
+function genOrders({dispatch, orders}){
     const {
         list,
         total,
@@ -98,18 +97,17 @@ class Orders extends Component{
         super(props);
     }
 
-    componentWillMount() {
-        let currentUser = getCurrentUser();
-        if (!currentUser['authToken']) {
-            alert('请登录');
-            browserHistory.push('/');
+    componentWillMount(){
+        const {isLogin} = this.props.systemUser;
+        if(!isLogin){
+            redirect();
         }
     }
 
     render(){
         return (
             <div className='orders' style={{textAlign:'center'}}>
-                订单页面
+                {genOrders(this.props)}
             </div>
         );
     }
@@ -119,8 +117,8 @@ Orders.propTypes = {
     orders:PropTypes.object,
 };
 
-function mapStateToProps({orders}) {
-    return {orders};
+function mapStateToProps({orders, systemUser}) {
+    return {orders, systemUser};
 }
 
 export default connect(mapStateToProps)(Orders);
