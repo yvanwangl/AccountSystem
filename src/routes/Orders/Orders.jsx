@@ -1,8 +1,12 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
-import {Search} from '../../components/Search/Search';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import SearchForm from '../../components/SearchForm/SearchForm';
+import OrderList from '../../components/OrderList/OrderList';
+import {routerRedux} from 'dva/router';
+import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import {redirect} from '../../utils/webSessionUtils';
-require('./index.css');
+import {orders, orderContainer} from './index.css';
 
 function genOrders({dispatch, orders}){
     const {
@@ -15,6 +19,7 @@ function genOrders({dispatch, orders}){
         currentItem,
         editorVisible,
         editorType,
+        beadcrumbItems
     } = orders;
     const orderSearch = {
         field,
@@ -34,7 +39,7 @@ function genOrders({dispatch, orders}){
             });
         }
     };
-    const orderList ={
+    const orderListProps ={
         current,
         total,
         dataSource: list,
@@ -78,19 +83,25 @@ function genOrders({dispatch, orders}){
         }
     };
 
+    const onSearch = (fieldValues) => {
+        dispatch(routerRedux.push({
+            pathname:'/orders',
+            query:{...fieldValues, page:1}
+        }));
+    };
+
     return (
-        <div className='orders' style={{textAlign:'center'}}>
-            订单页面
+        <div className={orders}>
+            <BreadcrumbList beadcrumbItems={beadcrumbItems} />
+            <div className={orderContainer}>
+                <SearchBar>
+                    <SearchForm onSearch={onSearch}/>
+                </SearchBar>
+                <OrderList {...orderListProps} />
+            </div>
         </div>
     );
 }
-/*const Orders = ()=>{
-    return (
-        <div style={{textAlign:'center'}}>
-            orders页面
-        </div>
-    );
-};*/
 
 class Orders extends Component{
     constructor(props) {
@@ -98,18 +109,14 @@ class Orders extends Component{
     }
 
     componentWillMount(){
-        const {isLogin} = this.props.systemUser;
+        let {isLogin} = this.props.systemUser;
         if(!isLogin){
             redirect();
         }
     }
 
     render(){
-        return (
-            <div className='orders' style={{textAlign:'center'}}>
-                {genOrders(this.props)}
-            </div>
-        );
+        return genOrders(this.props);
     }
 }
 

@@ -1,10 +1,11 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
-import {Search} from '../../components/Search/Search';
+import {Search} from '../../components/SearchBar/SearchBar';
+import {redirect} from '../../utils/webSessionUtils';
 require('./index.css');
 
-/*function Orders({location, dispatch, orders}){
+/*function getManage({location, dispatch, orders}){
     const {
         list,
         total,
@@ -83,17 +84,34 @@ require('./index.css');
         </div>
     );
 }*/
-const Manage = ()=>{
-    return (
-        <div style={{textAlign:'center'}}>
-            manage页面
-        </div>
-    );
-};
+
+class Manage extends Component{
+    constructor(props) {
+        super(props);
+    }
+
+    componentWillMount(){
+        let {isLogin} = this.props.systemUser;
+        if(!isLogin){
+            redirect();
+        }
+    }
+
+    render(){
+        return (
+            <div className='manage' style={{textAlign:'center'}}>
+                manage页面
+            </div>
+        );
+    }
+}
 
 Manage.propTypes = {
     orders:PropTypes.object,
 };
 
-//export default connect(mapStateToProps)(Orders);
-export default Manage;
+function mapStateToProps({manage, systemUser}) {
+    return {manage, systemUser};
+}
+
+export default connect(mapStateToProps)(Manage);

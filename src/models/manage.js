@@ -2,37 +2,31 @@ import {query, create, modify, del} from '../services/orders';
 import {parse} from 'qs';
 export default {
 
-    namespace: 'orders',
+    namespace: 'manage',
 
     state: {
         list:[],
         total:null,
-        timeRange:[],
         field: '',
         keyword: '',
         loading: false,
         current: null,
         currentItem: {},
         editorVisible: false,
-        editorType: 'create',
-        beadcrumbItems:[
-            ['/','首页'],
-            ['/orders','订单'],
-        ]
+        editorType: 'create'
     },
 
     subscriptions: {
-        setup({dispatch, history}) {
+        /*setup({dispatch, history}) {
             history.listen(location=>{
                 if(location.pathname == '/orders'){
-                    console.log(parse(location.query));
                     dispatch({
                         type:'query',
                         payload: location.query
                     });
                 }
             });
-        },
+        },*/
     },
 
     effects: {
@@ -42,7 +36,6 @@ export default {
                 type: 'updateQueryKey',
                 payload: {
                     page:1,
-                    timeRange:[],
                     field: '',
                     keyword: '',
                     ...payload
@@ -53,7 +46,7 @@ export default {
                 yield put({
                     type:'querySuccess',
                     payload: {
-                        list: data.orders,
+                        list: data.data,
                         total: data.page.total,
                         current: data.page.current
                     }
@@ -71,7 +64,6 @@ export default {
                         list: data.data,
                         total: data.page.total,
                         current: data.page.current,
-                        timeRange:[],
                         field: '',
                         keyword: '',
                     }
@@ -135,18 +127,6 @@ export default {
         },
         updateQueryKey(state, action){
             return {...state, ...action.payload};
-        },
-        addBeadcrumbItem(state, action){
-            let breadcrumbItems = state['beadcrumbItems'];
-            let newItems = [...breadcrumbItems, action.payload.item];
-            return {...state, breadcrumbItems:newItems};
-        },
-        resetBeadcrumbItem(state, action){
-            let newItems = [
-                ['/','首页'],
-                ['/orders','订单'],
-            ];
-            return {...state, breadcrumbItems:newItems};
         }
     },
 

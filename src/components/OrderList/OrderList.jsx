@@ -1,0 +1,118 @@
+import React, {Component, PropTypes} from 'react';
+import {Table, Pagination, Popconfirm, Button} from 'antd';
+import dateFormat from '../../utils/dateFormat';
+import {PAGE_SIZE} from '../../constants/constants';
+import Spliter from '../Spliter/Spliter';
+import {orderList} from './index.css';
+
+const OrderList = ({
+    total,
+    current,
+    loading,
+    dataSource,
+    onPageChange,
+    onModify,
+    onDel
+}) => {
+    const columns = [
+        {
+            title:'序号',
+            dataIndex: 'serialNumber',
+            key:'serialNumber',
+            render: (text, record, index)=><span>{index+1}</span>
+        },
+        {
+            title:'下单日期',
+            dataIndex: 'createInstance',
+            key:'createInstance',
+            render: (text)=><span>{dateFormat(text)}</span>
+        },
+        {
+            title:'单据编号',
+            dataIndex:'orderNumber',
+            key:'orderNumber'
+        },
+        {
+            title:'客户名称',
+            dataIndex:'customerName',
+            key:'customerName'
+        },
+        {
+            title:'应付金额',
+            dataIndex:'totalAmount',
+            key:'totalAmount',
+        },
+        {
+            title:'已付金额',
+            dataIndex:'paymentAmount',
+            key:'paymentAmount',
+        },
+        {
+            title:'订单信息',
+            dataIndex:'orderInfo',
+            key:'orderInfo',
+        },
+        {
+            title: '操作',
+            key: 'operation',
+            render: (text, record)=>(
+                <p>
+                    <a onClick={()=> onModify(record)}>编辑</a>
+                    <Spliter spliterText="|"/>
+                    <Popconfirm title="确定删除该条记录？" onConfirm={()=> onDel(record.id)}>
+                        <a type='ghost'>删除</a>
+                    </Popconfirm>
+                    <Spliter spliterText="|"/>
+                    <a onClick={()=> onModify(record)}>详情</a>
+                </p>
+            )
+        }
+    ];
+
+    const rowSelection = {
+        onChange: (selectedRowKeys, selectedRows) => {
+            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        onSelect: (record, selected, selectedRows) => {
+            console.log(record, selected, selectedRows);
+        },
+        onSelectAll: (selected, selectedRows, changeRows) => {
+            console.log(selected, selectedRows, changeRows);
+        },
+        getCheckboxProps: record => ({
+            disabled: record.name === 'Disabled User',    // Column configuration not to be checked
+        }),
+    };
+
+    return (
+        <div className={orderList}>
+            <Table
+                columns={columns}
+                dataSource={dataSource}
+                loading={loading}
+                rowKey={record=>record.id}
+                pagination = {false}
+                rowSelection = {rowSelection}
+            />
+            <Pagination
+                className="ant-table-pagination"
+                total={total}
+                current={current}
+                pageSize={PAGE_SIZE}
+                onChange={onPageChange}
+            />
+        </div>
+    );
+};
+
+OrderList.propTypes = {
+    onPageChange: PropTypes.func,
+    onModify: PropTypes.func,
+    onDel: PropTypes.func,
+    dataSource: PropTypes.array,
+    loading: PropTypes.any,
+    total: PropTypes.any,
+    current: PropTypes.any
+};
+
+export default OrderList;
