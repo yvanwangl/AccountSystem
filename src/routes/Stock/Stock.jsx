@@ -1,10 +1,11 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
-import {Search} from '../../components/Search/Search';
+import {Search} from '../../components/SearchBar/SearchBar';
+import {redirect} from '../../utils/webSessionUtils';
 require('./index.css');
 
-/*function Orders({location, dispatch, orders}){
+/*function genStock({location, dispatch, orders}){
     const {
         list,
         total,
@@ -83,22 +84,34 @@ require('./index.css');
         </div>
     );
 }*/
-const Stock = ()=>{
-    return (
-        <div style={{textAlign:'center'}}>
-            stocks页面
-        </div>
-    );
-};
+class Stock extends Component {
+    constructor(props){
+        super(props);
+    }
+
+    componentWillMount(){
+        let {isLogin} = this.props.systemUser;
+        if(!isLogin){
+            redirect();
+        }
+    }
+
+    render(){
+        return (
+            <div style={{textAlign:'center'}}>
+                stocks页面
+            </div>
+        );
+    }
+}
 
 Stock.propTypes = {
     orders:PropTypes.object,
 };
 
-function mapStateToProps({stocks}) {
-    return {stocks};
+function mapStateToProps({stocks, systemUser}) {
+    return {stocks, systemUser};
 }
 
 
-//export default connect(mapStateToProps)(Orders);
-export default Stock;
+export default connect(mapStateToProps)(Stock);

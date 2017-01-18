@@ -7,6 +7,7 @@
     "antd": "^2.6.1",
     "babel-plugin-import": "^1.1.0",
     "dva": "^1.2.1",
+    "moment": "^2.17.1",
     "qs": "^6.3.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
@@ -29,5 +30,8 @@
     "start": "dora --plugins \"proxy?watchDirs=./mock,webpack,webpack-hmr\"",
     "build": "atool-build",
     "test": "atool-test-mocha ./src/**/*-test.js"
+  },
+  "theme": {
+    "primary-color": "#1DA57A"
   }
 }
