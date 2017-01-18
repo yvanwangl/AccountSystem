@@ -20,6 +20,7 @@
 .menuItem a,
 .menuItem a:hover {
     color: #fff;
+    display: block;
 }
 .activeItem {
     composes: menuItem;
