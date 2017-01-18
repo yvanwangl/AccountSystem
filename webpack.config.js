@@ -13,6 +13,7 @@ module.exports = function (webpackConfig, env) {
         //webpackConfig.devtool = '#eval';
         webpackConfig.devtool = '#source-map';
         webpackConfig.babel.plugins.push('dva-hmr');
+        webpackConfig.babel.plugins.push('babel-plugin-dva-hmr');
     } else {
         webpackConfig.babel.plugins.push('dev-expression');
     }

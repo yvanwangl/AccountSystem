@@ -1,10 +1,11 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
-import {Search} from '../../components/Search/Search';
+import {Search} from '../../components/SearchBar/SearchBar';
+import {redirect} from '../../utils/webSessionUtils';
 require('./index.css');
 
-/*function Orders({location, dispatch, orders}){
+/*function genStorage({location, dispatch, orders}){
     const {
         list,
         total,
@@ -83,22 +84,35 @@ require('./index.css');
         </div>
     );
 }*/
-const Storage = ()=>{
-    return (
-        <div style={{textAlign:'center'}}>
-            storage页面
-        </div>
-    );
-};
+
+class Storage extends Component {
+    constructor(props){
+        super(props);
+    }
+
+    componentWillMount(){
+        let {isLogin} = this.props.systemUser;
+        if(!isLogin){
+            redirect();
+        }
+    }
+
+    render(){
+        return (
+            <div style={{textAlign:'center'}}>
+                storage页面
+            </div>
+        );
+    }
+}
 
 Storage.propTypes = {
     orders:PropTypes.object,
 };
 
-function mapStateToProps({storages}) {
-    return {storages};
+function mapStateToProps({storages, systemUser}) {
+    return {storages, systemUser};
 }
 
 
-//export default connect(mapStateToProps)(Orders);
-export default Storage;
+export default connect(mapStateToProps)(Storage);

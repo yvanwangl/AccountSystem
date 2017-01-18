@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from 'antd';
+import {browserHistory} from 'dva/router';
 import {connect} from 'dva';
 import LoginModal from '../LoginModal/LoginModal';
 import {systemInfo, systemName, userName, loginButton} from './index.css';
@@ -11,6 +11,7 @@ const SystemInfo = ({systemUser, dispatch})=>{
         dispatch({
             type:isLogin?'systemUser/logout':'systemUser/login'
         });
+        browserHistory.push('/');
     };
 
     const loginModalProps = {
