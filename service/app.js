@@ -12,6 +12,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
 var auth = require('./routes/auth');
+var orders = require('./routes/orders');
 
 var app = express();
 
@@ -67,6 +68,7 @@ app.use(function (req, res, next) {
 
 /*app.use('/', routes);*/
 app.use('/api/users', users);
+app.use('/api/orders', orders);
 app.use('/api/login', login);
 app.use('/api/auth', auth);
 //确保react-router刷新正确路由

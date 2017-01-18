@@ -1,10 +1,11 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
-import {Search} from '../../components/Search/Search';
+import {Search} from '../../components/SearchBar/SearchBar';
+import {redirect} from '../../utils/webSessionUtils';
 require('./index.css');
 
-/*function Orders({location, dispatch, orders}){
+/*function genFunds({location, dispatch, orders}){
     const {
         list,
         total,
@@ -83,22 +84,35 @@ require('./index.css');
         </div>
     );
 }*/
-const Funds = ()=>{
-    return (
-        <div style={{textAlign:'center'}}>
-            funds页面
-        </div>
-    );
-};
+
+class Funds extends Component{
+    constructor(props) {
+        super(props);
+    }
+
+    componentWillMount(){
+        let {isLogin} = this.props.systemUser;
+        if(!isLogin){
+            redirect();
+        }
+    }
+
+    render(){
+        return (
+            <div className='manage' style={{textAlign:'center'}}>
+                funds页面
+            </div>
+        );
+    }
+}
 
 Funds.propTypes = {
     orders:PropTypes.object,
 };
 
-function mapStateToProps({funds}) {
-    return {funds};
+function mapStateToProps({funds, systemUser}) {
+    return {funds, systemUser};
 }
 
 
-//export default connect(mapStateToProps)(Orders);
-export default Funds;
+export default connect(mapStateToProps)(Funds);

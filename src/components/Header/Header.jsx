@@ -18,13 +18,6 @@ export default class Header extends Component {
         this.state = {
             activeIndex: 0
         };
-        this.itemClick = this.itemClick.bind(this);
-    }
-
-    itemClick(index){
-        this.setState({
-            activeIndex: index
-        });
     }
 
     componentWillReceiveProps(nextProps){
@@ -40,7 +33,7 @@ export default class Header extends Component {
                     {
                         menus.map(([key, path, text],index)=>
                             (
-                                <li key={key} className={this.state.activeIndex==index? activeItem : menuItem} onClick={()=>this.itemClick(index)}>
+                                <li key={key} className={this.state.activeIndex==index? activeItem : menuItem}>
                                     <NavLink target={path} linkText={text}/>
                                 </li>
                             )

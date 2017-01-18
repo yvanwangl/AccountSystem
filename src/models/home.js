@@ -1,5 +1,4 @@
-import {doLogin} from '../services/systemUser';
-import {parse} from 'qs';
+
 export default {
 
     namespace: 'home',
