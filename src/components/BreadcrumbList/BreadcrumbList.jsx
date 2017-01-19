@@ -11,12 +11,12 @@ export default class BreadcrumbList extends Component {
     }
 
     render(){
-        let {beadcrumbItems} = this.props;
+        let {breadcrumbItems} = this.props;
         return (
             <div className={breadcrumb}>
                 <Breadcrumb>
                     {
-                        beadcrumbItems.map(([target, linkText], index)=>{
+                        breadcrumbItems.map(([target, linkText], index)=>{
                             return (
                                 <BreadcrumbItem key={index}>
                                     <NavLink target={target} linkText={linkText} />
