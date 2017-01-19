@@ -1,0 +1,38 @@
+.editableCell {
+    position: relative;
+}
+
+.inputWrapper,
+.textWrapper {
+    padding-right: 24px;
+}
+
+.textWrapper {
+    padding: 5px 24px 5px 5px;
+}
+
+.editIcon,
+.checkIcon {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    cursor: pointer;
+}
+
+.editIcon {
+    line-height: 18px;
+    display: none;
+}
+
+.checkIcon {
+    line-height: 28px;
+}
+
+.editableCell:hover .editIcon {
+    display: inline-block;
+}
+
+.editIcon:hover,
+.checkIcon:hover {
+    color:#2db7f5;
+}

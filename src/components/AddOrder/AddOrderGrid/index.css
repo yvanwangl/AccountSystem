@@ -1,0 +1,14 @@
+.addOrderGrid .ant-table {
+    font-size: 16px;
+}
+.rowClassName {
+    font-size: 14px;
+}
+.totalAmountClass p {
+    font-size: 14px;
+    margin:14px 50px;
+    font-weight: bold;
+}
+.remarkClass {
+    margin-top: 20px;
+}

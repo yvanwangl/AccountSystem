@@ -1,0 +1,16 @@
+.addOrder {
+    font-size: 16px;
+}
+.buttonGroup {
+
+}
+.confirmButton,
+.cancelButton {
+    width: 200px;
+    height:40px;
+    line-height: 30px;
+    font-size: 16px
+}
+.confirmButton {
+    margin-right: 20px;
+}

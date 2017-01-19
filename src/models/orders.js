@@ -15,20 +15,34 @@ export default {
         currentItem: {},
         editorVisible: false,
         editorType: 'create',
-        beadcrumbItems:[
+        breadcrumbItems:[
             ['/','首页'],
             ['/orders','订单'],
-        ]
+        ],
+        order:{
+            customerId:null,
+            products:[],
+            mem:''
+        }
     },
 
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(location=>{
                 if(location.pathname == '/orders'){
-                    console.log(parse(location.query));
                     dispatch({
                         type:'query',
                         payload: location.query
+                    });
+                    dispatch({
+                        type:'resetBreadcrumbItem'
+                    });
+                    dispatch({
+                        type:'hideEditor'
+                    });
+                }else if(location.pathname == '/orders/addorder'){
+                    dispatch({
+                        type:'showEditor'
                     });
                 }
             });
@@ -136,17 +150,34 @@ export default {
         updateQueryKey(state, action){
             return {...state, ...action.payload};
         },
-        addBeadcrumbItem(state, action){
-            let breadcrumbItems = state['beadcrumbItems'];
+        addBreadcrumbItem(state, action){
+            let breadcrumbItems = state['breadcrumbItems'];
             let newItems = [...breadcrumbItems, action.payload.item];
             return {...state, breadcrumbItems:newItems};
         },
-        resetBeadcrumbItem(state, action){
+        resetBreadcrumbItem(state, action){
             let newItems = [
                 ['/','首页'],
                 ['/orders','订单'],
             ];
             return {...state, breadcrumbItems:newItems};
+        },
+        setCustomer(state, action){
+            let order = state['order'];
+            let newOrder = {...order, customerId: action.payload.customerId};
+            console.log(newOrder);
+            return {...state, order:newOrder};
+        },
+        setProducts(state, action){
+            let order = state['order'];
+            let newOrder = {...order, products:action.payload.products};
+            return {...state, order:newOrder};
+        },
+        setMem(state, action){
+            let order = state['order'];
+            let newOrder = {...order, mem:action.payload.mem};
+            console.log(newOrder);
+            return {...state, order:newOrder};
         }
     },
 

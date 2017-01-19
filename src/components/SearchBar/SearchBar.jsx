@@ -3,6 +3,7 @@ import {Button} from 'antd';
 import {search, addButton} from './index.css';
 
 const SearchBar = ({onAdd, children}) => {
+
     return (
         <div className={search}>
             {children}
