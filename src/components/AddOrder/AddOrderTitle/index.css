@@ -5,7 +5,7 @@
     font-size: 18px;
     position: relative;
 }
-.orderNumber {
+.orderNumberClass {
     position: absolute;
     right: 0;
     top: 50%;

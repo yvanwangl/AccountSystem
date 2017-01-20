@@ -1,8 +1,12 @@
 .homePage {
     height: 100%;
-    /*background: #ececec;*/
+    background: #ececec;
+    padding-top: 64px;
+    box-sizing: border-box;
 }
 .container {
     margin-left: 300px;
     padding: 25px;
+    box-sizing: border-box;
+    position: relative;
 }

@@ -1,8 +1,14 @@
 
 .normal {
-    margin-top: 3em;
     text-align: center;
     padding-top: 150px;
+    background-color: #fff;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
 .title {
