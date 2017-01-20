@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var Order = require('../models/orders');
+var utils = require('../utils/utils');
 
 /* GET orders listing. */
 router.route('/')
@@ -28,6 +30,26 @@ router.route('/')
             page:{
                 total:100,
                 current:1
+            }
+        });
+    })
+    .post(function(req, res, next){
+
+    });
+
+router.route('/getOrderNumber')
+    .get(function(req, res, next){
+        Order.find(function(error, orders){
+            if(error){
+                res.send({
+                    success: false,
+                    error: error
+                });
+            }else {
+                res.send({
+                    success: true,
+                    orderNumber: utils.getOrderNumber(orders.length+1)
+                });
             }
         });
     });

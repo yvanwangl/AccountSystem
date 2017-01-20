@@ -1,5 +1,27 @@
-import {query, create, modify, del} from '../services/orders';
+import {query, create, modify, del, getOrderNumber} from '../services/orders';
 import {parse} from 'qs';
+
+const defaultProduct = {
+        key:'0',
+        productName:'铝合金',
+        quantity:10,
+        unit:'吨',
+        price:10,
+        amount:100,
+        remarks:''
+    };
+
+const defaultOrder = {
+    orderNumber:'',
+    customerId:null,
+    products:[
+        defaultProduct
+    ],
+    totalAmount:0,
+    paymentAmount:0,
+    mem:''
+};
+
 export default {
 
     namespace: 'orders',
@@ -19,11 +41,7 @@ export default {
             ['/','首页'],
             ['/orders','订单'],
         ],
-        order:{
-            customerId:null,
-            products:[],
-            mem:''
-        }
+        order:defaultOrder
     },
 
     subscriptions: {
@@ -75,7 +93,6 @@ export default {
             }
         },
         *create({payload}, {call, put}){
-            yield put({type:'hideEditor'});
             yield put({type:'showLoading'});
             const {data} = call(create, payload);
             if(data && data.success){
@@ -89,6 +106,9 @@ export default {
                         field: '',
                         keyword: '',
                     }
+                });
+                yield put({
+                    type: 'resetOrder'
                 });
             }
         },
@@ -116,6 +136,29 @@ export default {
             }
         },
         *fetchRemote({payload}, {call, put}) {
+        },
+        *getOrderNumber({payload}, {call, put}){
+            const {data} = yield call(getOrderNumber, {});
+            if(data && data.success){
+                yield put({
+                    type:'getOrderNumberSuccess',
+                    payload: {
+                        orderNumber: data.orderNumber
+                    }
+                });
+                yield put({
+                    type:'addBreadcrumbItem',
+                    payload: {
+                        item: ['/orders/addorder', '新增订单']
+                    }
+                });
+                yield put({
+                    type:'showEditor',
+                    payload: {
+                        editorType:'create'
+                    }
+                });
+            }
         },
     },
 
@@ -155,28 +198,40 @@ export default {
             let newItems = [...breadcrumbItems, action.payload.item];
             return {...state, breadcrumbItems:newItems};
         },
+        getOrderNumberSuccess(state, action){
+            let orderNumber = action.payload.orderNumber;
+            let order = state['order'];
+            let newOrder = {...order, orderNumber};
+            return {...state, order:newOrder};
+        },
+        setCustomer(state, action){
+            let order = state['order'];
+            let newOrder = {...order, customerId: action.payload.customerId};
+            return {...state, order:newOrder};
+        },
         resetBreadcrumbItem(state, action){
             let newItems = [
                 ['/','首页'],
                 ['/orders','订单'],
             ];
-            return {...state, breadcrumbItems:newItems};
+            return {...state, breadcrumbItems:newItems, editorVisible:false};
         },
-        setCustomer(state, action){
-            let order = state['order'];
-            let newOrder = {...order, customerId: action.payload.customerId};
-            console.log(newOrder);
-            return {...state, order:newOrder};
+        resetOrder(state, action){
+            let newItems = [
+                ['/','首页'],
+                ['/orders','订单'],
+            ];
+            return {...state, breadcrumbItems:newItems, order:defaultOrder, editorVisible:false};
         },
         setProducts(state, action){
             let order = state['order'];
-            let newOrder = {...order, products:action.payload.products};
+            let {products, totalAmount, paymentAmount} = action.payload;
+            let newOrder = {...order, products, totalAmount, paymentAmount};
             return {...state, order:newOrder};
         },
         setMem(state, action){
             let order = state['order'];
             let newOrder = {...order, mem:action.payload.mem};
-            console.log(newOrder);
             return {...state, order:newOrder};
         }
     },

@@ -7,7 +7,7 @@ import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import AddOrder from '../../components/AddOrder/AddOrder';
 import {redirect} from '../../utils/webSessionUtils';
-import {orders, orderContainer, addOrderContainer} from './index.css';
+import {orderClass, orderContainer, addOrderContainer} from './index.css';
 
 function genOrders({dispatch, orders}){
     const {
@@ -76,21 +76,12 @@ function genOrders({dispatch, orders}){
 
     const onAdd = ()=>{
         dispatch({
-            type:'orders/addBreadcrumbItem',
-            payload: {
-                item: ['/orders/addorder', '新增订单']
-            }
-        });
-        dispatch({
-            type:'orders/showEditor',
-            payload: {
-                editorType:'create'
-            }
+            type:'orders/getOrderNumber'
         });
     };
 
     return (
-        <div className={orders}>
+        <div className={orderClass}>
             <BreadcrumbList breadcrumbItems={breadcrumbItems} />
             {
                 editorVisible?

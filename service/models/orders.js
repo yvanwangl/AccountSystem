@@ -7,10 +7,11 @@ var Schema = mongoose.Schema;
 var orderSchema = new Schema({
     createInstance: Date,
     orderNumber: String,
-    customerName: String,
+    customerId: String,
     totalAmount: Number,
     paymentAmount: Number,
-    orderInfo: String,
+    mem: String,
+    products: Array,
 });
 
 /**
@@ -20,4 +21,4 @@ orderSchema.statics.findByUserId=function(userId, cb){
     return this.find({_id:userId}, cb);
 };
 
-module.exports = mongoose.model('User', orderSchema);
+module.exports = mongoose.model('Order', orderSchema);
