@@ -7,7 +7,7 @@ import AddOrderGrid from './AddOrderGrid/AddOrderGrid';
 import AddRemarkForm from './AddRemarkForm/AddRemarkForm';
 import {connect} from 'dva';
 import Spliter from '../Spliter/Spliter';
-import {addOrder, buttonGroup, confirmButton, cancelButton} from './index.css';
+import {addOrder, orderWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
 
 const AddOrder = ({
     dispatch,
@@ -44,15 +44,47 @@ const AddOrder = ({
         });
     };
 
+    const handleConfirm = ()=>{
+        console.log(order);
+        dispatch({
+            type:'orders/create',
+            payload:{
+                order
+            }
+        });
+    };
+
+    const handleCancel = ()=>{
+        dispatch({
+            type:'orders/resetOrder'
+        });
+    };
+
+    const addOrderGridProps = {
+        products: order.products,
+        editProducts(products, totalAmount, paymentAmount){
+            dispatch({
+                type:'orders/setProducts',
+                payload:{
+                    products,
+                    totalAmount,
+                    paymentAmount
+                }
+            });
+        }
+    };
+
     return (
         <div className={addOrder}>
-            <AddOrderTitle />
-            <AddOrderForm {...addOrderFormProps}/>
-            <AddOrderGrid />
-            <AddRemarkForm onSetMem={onSetMem}/>
+            <div className={orderWrapper}>
+                <AddOrderTitle orderNumber={order.orderNumber}/>
+                <AddOrderForm {...addOrderFormProps}/>
+                <AddOrderGrid {...addOrderGridProps}/>
+                <AddRemarkForm onSetMem={onSetMem}/>
+            </div>
             <div className={buttonGroup}>
-                <Button type="primary" className={confirmButton}>确定</Button>
-                <Button type="ghost" className={cancelButton}>取消</Button>
+                <Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
+                <Button type="ghost" className={cancelButton} onClick={handleCancel}>取消</Button>
             </div>
         </div>
     );

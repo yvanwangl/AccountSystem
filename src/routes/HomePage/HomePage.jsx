@@ -6,11 +6,12 @@ import {homePage, container} from './index.css';
 
 const HomePage = ({children, home})=>{
     const {activeIndex} = home;
+    const height = window.innerHeight-64;
     return (
         <div className={homePage}>
             <Header activeIndex={activeIndex}/>
             <SystemInfo/>
-            <div className={container}>
+            <div className={container} style={{height}}>
                 {children}
             </div>
         </div>

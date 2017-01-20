@@ -46,6 +46,7 @@ class EditableCell extends Component {
                                 value={value}
                                 onChange={this.handleChange}
                                 onPressEnter={this.check}
+                                onBlur={this.check}
                             />
                             <Icon
                                 type="check"
@@ -55,7 +56,7 @@ class EditableCell extends Component {
                         </div>
                     ):
                     (
-                        <div className={textWrapper}>
+                        <div className={textWrapper} onDoubleClick={this.edit}>
                             {value || ''}
                             <Icon
                                 type="edit"

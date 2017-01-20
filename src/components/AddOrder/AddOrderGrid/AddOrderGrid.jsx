@@ -18,7 +18,7 @@ class AddOrderGrid extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource:[
+            /*dataSource:[
                 {
                     key:'0',
                     productName:'铝合金',
@@ -37,8 +37,9 @@ class AddOrderGrid extends Component {
                     amount:100,
                     remarks:''
                 }
-            ],
-            count:2,
+            ],*/
+            dataSource: this.props.products,
+            count:1,
             totalAmount:0,
             paymentAmount:0,
             remarks:''
@@ -108,7 +109,7 @@ class AddOrderGrid extends Component {
                 )
             },
             {
-                title: '金额',
+                title: '金额 / 元',
                 dataIndex: 'amount',
                 key: 'amount'
             },
@@ -126,14 +127,19 @@ class AddOrderGrid extends Component {
         ];
     }
     onCellChange(index, key){
+        const {editProducts} = this.props;
+        const {totalAmount, paymentAmount} = this.state;
         return (value)=>{
             const dataSource = [...this.state.dataSource];
             dataSource[index][key] = value;
             this.setState({dataSource});
+            editProducts(dataSource, totalAmount, paymentAmount);
         }
     }
 
     onLinkCellChange(index, key){
+        const {editProducts} = this.props;
+        const {paymentAmount} = this.state;
         return (value)=>{
             let dataSource = [...this.state.dataSource];
             let record = dataSource[index];
@@ -152,6 +158,7 @@ class AddOrderGrid extends Component {
             this.setState({ dataSource });
             let totalAmount = this.getTotalAmount();
             this.setState({ totalAmount });
+            editProducts(dataSource, totalAmount, paymentAmount);
         }
     }
 
@@ -163,10 +170,13 @@ class AddOrderGrid extends Component {
     }
 
     onDelete(index){
+        const {editProducts} = this.props;
+        const {totalAmount, paymentAmount} = this.state;
         return ()=>{
             const dataSource = [...this.state.dataSource];
             dataSource.splice(index,1);
             this.setState({dataSource});
+            editProducts(dataSource, totalAmount, paymentAmount);
         }
     }
 
@@ -207,7 +217,6 @@ class AddOrderGrid extends Component {
                     size="small"
                     rowClassName={()=>rowClassName}
                 />
-
             </div>
         );
     }

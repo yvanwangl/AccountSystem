@@ -1,8 +1,4 @@
-.orders {
-    text-align: center;
-}
-.orderContainer,
-.addOrderContainer{
-    padding: 20px 25px;
+.orderContainer {
+    padding: 20px 25px 100px;
     background: #fff;
 }

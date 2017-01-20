@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react';
-import {addOrderTitle,orderNumber} from './index.css';
+import {addOrderTitle, orderNumberClass} from './index.css';
 
-const AddOrderTitle = () => {
+const AddOrderTitle = ({orderNumber}) => {
 
     return (
         <div className={addOrderTitle}>
             铭帝系统门窗出货单
-            <span className={orderNumber}>单据编号：{'MDC201701100001'}</span>
+            <span className={orderNumberClass}>单据编号：{orderNumber}</span>
         </div>
     );
 };
