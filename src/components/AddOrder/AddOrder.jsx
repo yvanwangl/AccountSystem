@@ -52,6 +52,9 @@ const AddOrder = ({
                 order
             }
         });
+        dispatch({
+            type:'orders/query'
+        });
     };
 
     const handleCancel = ()=>{

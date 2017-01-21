@@ -90,14 +90,14 @@ const OrderList = ({
                 columns={columns}
                 dataSource={dataSource}
                 loading={loading}
-                rowKey={record=>record.id}
+                rowKey={record=>record._id}
                 pagination = {false}
                 rowSelection = {rowSelection}
             />
             <Pagination
                 className="ant-table-pagination"
                 total={total}
-                current={current}
+                current={parseInt(current)}
                 pageSize={PAGE_SIZE}
                 onChange={onPageChange}
             />
