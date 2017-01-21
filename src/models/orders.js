@@ -68,7 +68,7 @@ export default {
     },
 
     effects: {
-        *query({payload}, {call,put}){
+        *query({payload}, {call,put,select}){
             yield put({type:'showLoading'});
             yield put({
                 type: 'updateQueryKey',
@@ -80,7 +80,8 @@ export default {
                     ...payload
                 }
             });
-            const {data} = yield call(query, parse(payload));
+            const {page, timeRange, field, keyword} = yield select(state=>state.orders);
+            const {data} = yield call(query, parse({page, timeRange, field, keyword}));
             if(data){
                 yield put({
                     type:'querySuccess',
@@ -94,17 +95,12 @@ export default {
         },
         *create({payload}, {call, put}){
             yield put({type:'showLoading'});
-            const {data} = call(create, payload);
+            const {data} = yield call(create, payload.order);
             if(data && data.success){
                 yield put({
                     type:'createSuccess',
                     payload: {
-                        list: data.data,
-                        total: data.page.total,
-                        current: data.page.current,
-                        timeRange:[],
-                        field: '',
-                        keyword: '',
+                        order: data.order
                     }
                 });
                 yield put({
@@ -179,7 +175,7 @@ export default {
             return {...state, ...action.payload, loading:false};
         },
         createSuccess(state, action){
-            return {...state, ...action.payload, loading:false};
+            return {...state, loading:false};
         },
         modifySuccess(state, action){
             const updateOrder = action.payload;
