@@ -2,17 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import {Table, Popconfirm, Icon, Form, Input} from 'antd';
 import EditableCell from '../../EditableCell/EditableCell';
 import Spliter from '../../Spliter/Spliter';
-import {addOrderGrid, rowClassName, totalAmountClass, remarkClass} from './index.css';
+import {addOrderGrid, rowClassName, totalAmountClass, remarkClass, paymentAmountClass} from './index.css';
 
-const FormItem = Form.Item;
-const formItemLayout = {
-    labelCol: {
-        span: 6
-    },
-    wrapperCol: {
-        span: 14
-    }
-};
 
 class AddOrderGrid extends Component {
     constructor(props) {
@@ -70,6 +61,7 @@ class AddOrderGrid extends Component {
                 key: 'productName',
                 render: (text, record, index)=>(
                     <EditableCell
+                        editType='editCell'
                         value={text}
                         onChange={this.onCellChange(index, 'productName')}
                     />
@@ -81,6 +73,7 @@ class AddOrderGrid extends Component {
                 key: 'quantity',
                 render: (text, record, index)=>(
                     <EditableCell
+                        editType='editCell'
                         value={text}
                         onChange={this.onLinkCellChange(index, 'quantity')}
                     />
@@ -92,6 +85,7 @@ class AddOrderGrid extends Component {
                 key: 'unit',
                 render: (text, record, index)=>(
                     <EditableCell
+                        editType='editCell'
                         value={text}
                         onChange={this.onCellChange(index, 'unit')}
                     />
@@ -103,6 +97,7 @@ class AddOrderGrid extends Component {
                 key: 'price',
                 render: (text, record, index)=>(
                     <EditableCell
+                        editType='editCell'
                         value={text}
                         onChange={this.onLinkCellChange(index, 'price')}
                     />
@@ -119,6 +114,7 @@ class AddOrderGrid extends Component {
                 key: 'remarks',
                 render: (text, record, index)=>(
                     <EditableCell
+                        editType='editCell'
                         value={text}
                         onChange={this.onCellChange(index, 'remarks')}
                     />
@@ -197,14 +193,17 @@ class AddOrderGrid extends Component {
         });
     }
 
-    setRemarks(e){
-        this.setState({
-            remarks: e.target.value
-        });
+    handlePaymentAmount() {
+        return (paymentValue)=> {
+            this.setState({
+                paymentAmount: paymentValue
+            });
+        };
     }
 
+
     render(){
-        let {dataSource, totalAmount,paymentAmount,remarks} = this.state;
+        let {dataSource, totalAmount, paymentAmount} = this.state;
         let columns = this.columns;
         return (
             <div className={addOrderGrid}>
@@ -213,7 +212,12 @@ class AddOrderGrid extends Component {
                     dataSource={dataSource}
                     columns={columns}
                     pagination = {false}
-                    footer={() => <div className={totalAmountClass}><p>合计金额：￥{totalAmount}</p><p>支付金额：￥{paymentAmount}</p></div>}
+                    footer={() =>
+                        <div className={totalAmountClass}>
+                            <div>合计金额：￥{totalAmount}</div>
+                            <div className={paymentAmountClass}>支付金额：￥<EditableCell editType='editLine' onChange={this.handlePaymentAmount()} value={paymentAmount}/></div>
+                        </div>
+                    }
                     size="small"
                     rowClassName={()=>rowClassName}
                 />

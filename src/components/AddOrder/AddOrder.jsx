@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Table, Pagination, Popconfirm, Button} from 'antd';
-import dateFormat from '../../utils/dateFormat';
+import { message } from 'antd';
 import AddOrderTitle from './AddOrderTitle/AddOrderTitle';
 import AddOrderForm from './AddOrderForm/AddOrderForm';
 import AddOrderGrid from './AddOrderGrid/AddOrderGrid';
@@ -45,7 +45,19 @@ const AddOrder = ({
     };
 
     const handleConfirm = ()=>{
-        console.log(order);
+        /**
+         * 数据保存前，做数据校验,
+         * 用户不允许为空，并且至少需要保存一条商品数据
+         */
+        const {customerId, products} = order;
+        if(customerId==null){
+            message.error('请选择一个客户！');
+            return null;
+        }
+        if(products.length == 0){
+            message.error('请至少添加一个商品条目！');
+            return null;
+        }
         dispatch({
             type:'orders/create',
             payload:{

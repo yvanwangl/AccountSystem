@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { Input, Icon} from 'antd';
-import {editableCell, inputWrapper, textWrapper, checkIcon, editIcon} from './index.css';
+import {editCell, editLine, inputWrapper, textWrapper, checkIcon, editIcon} from './index.css';
 
 class EditableCell extends Component {
     constructor(props){
@@ -36,8 +36,9 @@ class EditableCell extends Component {
 
     render(){
         let {value, editable} = this.state;
+        let {editType} = this.props;
         return (
-            <div className={editableCell}>
+            <div className={editType=='editCell'?editCell:editLine}>
                 {
                     editable?
                     (
@@ -57,7 +58,7 @@ class EditableCell extends Component {
                     ):
                     (
                         <div className={textWrapper} onDoubleClick={this.edit}>
-                            {value || ''}
+                            {value}
                             <Icon
                                 type="edit"
                                 className={editIcon}
