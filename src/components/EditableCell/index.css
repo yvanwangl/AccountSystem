@@ -1,5 +1,9 @@
-.editableCell {
+.editCell,
+.editLine {
     position: relative;
+}
+.editLine {
+    display: inline-block;
 }
 
 .inputWrapper,
@@ -9,6 +13,17 @@
 
 .textWrapper {
     padding: 5px 24px 5px 5px;
+}
+
+.editLine .inputWrapper {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+.editLine .textWrapper {
+    padding: 5px;
+    min-width: 20px;
+    border-bottom: 1px solid #ccc;
 }
 
 .editIcon,

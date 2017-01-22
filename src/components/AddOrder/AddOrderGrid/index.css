@@ -4,10 +4,14 @@
 .rowClassName {
     font-size: 14px;
 }
-.totalAmountClass p {
+.totalAmountClass>div {
     font-size: 14px;
     margin:14px 10px;
     font-weight: bold;
+}
+.paymentAmountClass {
+    display: inline-block;
+    min-width: 100px;
 }
 .remarkClass {
     margin-top: 20px;

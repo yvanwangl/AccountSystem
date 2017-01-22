@@ -223,6 +223,7 @@ export default {
             let order = state['order'];
             let {products, totalAmount, paymentAmount} = action.payload;
             let newOrder = {...order, products, totalAmount, paymentAmount};
+            console.log(newOrder);
             return {...state, order:newOrder};
         },
         setMem(state, action){
