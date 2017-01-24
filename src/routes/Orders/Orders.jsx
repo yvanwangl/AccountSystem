@@ -6,8 +6,9 @@ import OrderList from '../../components/OrderList/OrderList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import AddOrder from '../../components/AddOrder/AddOrder';
+import ModifyOrder from '../../components/ModifyOrder/ModifyOrder';
 import {redirect} from '../../utils/webSessionUtils';
-import {orderClass, orderContainer, addOrderContainer} from './index.css';
+import {orderClass, orderContainer, addOrderContainer, modifyOrderContainer} from './index.css';
 
 function genOrders({dispatch, orders}){
     const {
@@ -34,19 +35,19 @@ function genOrders({dispatch, orders}){
                 query: {field, keyword, page}
             }));
         },
-        onModify(item){
+        onModify(orderId){
+            console.log(orderId);
             dispatch({
-                type:'orders/showEditor',
-                payload:{
-                    editorType:'modify',
-                    currentItem: item
+                type:'orders/queryOrderById',
+                payload: {
+                    orderId: orderId
                 }
             });
         },
-        onDel(id){
+        onDel(orderId){
             dispatch({
                 type:'orders/del',
-                payload: id,
+                payload: orderId,
             });
         }
     };
@@ -86,9 +87,17 @@ function genOrders({dispatch, orders}){
             {
                 editorVisible?
                     (
-                        <div className={addOrderContainer}>
-                            <AddOrder />
-                        </div>
+                        editorType=='create'?
+                            (
+                                <div className={addOrderContainer}>
+                                    <AddOrder />
+                                </div>
+                            ):
+                            (
+                                <div className={modifyOrderContainer}>
+                                    <ModifyOrder />
+                                </div>
+                            )
                     ):
                     (
                         <div className={orderContainer}>

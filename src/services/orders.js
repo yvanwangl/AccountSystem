@@ -18,7 +18,7 @@ export async function create(params) {
 }
 
 export async function modify(params) {
-    return request( ORDER_API,{
+    return request( `${ORDER_API}/${params['id']}`,{
         method: 'put',
         body: JSON.stringify(params)
     });
@@ -33,4 +33,9 @@ export async function del(params) {
 
 export async function getOrderNumber() {
     return request(`${ORDER_API}/getOrderNumber`);
+}
+
+export async function queryOrderById(orderId){
+    console.log(orderId);
+    return request(`${ORDER_API}/${orderId}`);
 }

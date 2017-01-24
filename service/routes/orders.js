@@ -77,4 +77,38 @@ router.route('/getOrderNumber')
         });
     });
 
+router.route('/:orderId')
+    .get(function(req, res, next){
+        var orderId = req.params.orderId;
+        Order.findById(orderId, function(err, order){
+            if(err){
+                res.send({
+                    success: false,
+                    error: err
+                });
+            }
+            res.send({
+                success: true,
+                order: order
+            });
+        })
+    })
+    .put(function(req, res, next){
+        var orderId = req.params.orderId;
+        var order = req.body;
+        var newOrder = Object.assign({}, order, {modifyInstance: new Date()});
+        Order.findOneAndUpdate({_id:orderId}, newOrder, {new:true}, function(err, order){
+            if(err){
+                res.send({
+                    success: false,
+                    error: err
+                });
+            }
+            res.send({
+                success: true,
+                order: order
+            });
+        });
+    });
+
 module.exports = router;

@@ -1,14 +1,14 @@
 import React, {Component, PropTypes} from 'react';
-import {addOrderTitle, orderNumberClass} from './index.css';
+import {orderTitle, orderNumberClass} from './index.css';
 
-const AddOrderTitle = ({orderNumber}) => {
+const OrderTitle = ({orderNumber}) => {
 
     return (
-        <div className={addOrderTitle}>
+        <div className={orderTitle}>
             铭帝系统门窗出货单
             <span className={orderNumberClass}>单据编号：{orderNumber}</span>
         </div>
     );
 };
 
-export default AddOrderTitle;
+export default OrderTitle;
