@@ -1,4 +1,4 @@
-import {query, create, modify, del, getOrderNumber} from '../services/orders';
+import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/orders';
 import {parse} from 'qs';
 
 const defaultProduct = {
@@ -111,13 +111,18 @@ export default {
         *modify({payload}, {select, call, put}){
             yield put({type:'hideEditor'});
             yield put({type:'showLoading'});
-            const id = yield select(({order})=>order.currentItem.id);
-            const newOrder = {...payload, id};
+            const id = yield select(({orders})=>orders.currentItem['_id']);
+            const newOrder = {...payload.order, id};
             const {data} = yield call(modify, newOrder);
             if(data && data.success){
                 yield put({
                     type: 'modifySuccess',
-                    payload: newOrder
+                    payload: {
+                        order: data.order
+                    }
+                });
+                yield put({
+                    type: 'resetOrder'
                 });
             }
         },
@@ -131,7 +136,24 @@ export default {
                 });
             }
         },
-        *fetchRemote({payload}, {call, put}) {
+        *queryOrderById({payload}, {call, put}) {
+            const {data} = yield call(queryOrderById, payload.orderId);
+            if(data && data.success){
+                yield put({
+                    type:'queryOrderByIdSuccess',
+                    payload:{
+                        editorType: 'modify',
+                        currentItem: data.order,
+                        editorVisible: true
+                    }
+                });
+                yield put({
+                    type:'addBreadcrumbItem',
+                    payload: {
+                        item: ['/orders/modifyorder', '修改订单']
+                    }
+                });
+            }
         },
         *getOrderNumber({payload}, {call, put}){
             const {data} = yield call(getOrderNumber, {});
@@ -139,19 +161,15 @@ export default {
                 yield put({
                     type:'getOrderNumberSuccess',
                     payload: {
-                        orderNumber: data.orderNumber
+                        editorType:'create',
+                        orderNumber: data.orderNumber,
+                        editorVisible: true
                     }
                 });
                 yield put({
                     type:'addBreadcrumbItem',
                     payload: {
                         item: ['/orders/addorder', '新增订单']
-                    }
-                });
-                yield put({
-                    type:'showEditor',
-                    payload: {
-                        editorType:'create'
                     }
                 });
             }
@@ -174,13 +192,17 @@ export default {
         querySuccess(state, action){
             return {...state, ...action.payload, loading:false};
         },
+        queryOrderByIdSuccess(state, action){
+            return {...state, ...action.payload};
+        },
         createSuccess(state, action){
             return {...state, loading:false};
         },
         modifySuccess(state, action){
-            const updateOrder = action.payload;
+/*            const updateOrder = action.payload.order;
             const newList = state.list.map(order=>order.id == updateOrder.id? {...order, ...updateOrder}:order);
-            return {...state, list: newList, loading:false};
+            return {...state, list: newList, loading:false};*/
+            return {...state, loading:false};
         },
         delSuccess(state, action){
             const newList = state.list.filter(order=> order.id!=action.payload);
@@ -198,7 +220,7 @@ export default {
             let orderNumber = action.payload.orderNumber;
             let order = state['order'];
             let newOrder = {...order, orderNumber};
-            return {...state, order:newOrder};
+            return {...state, order:newOrder, ...action.payload};
         },
         setCustomer(state, action){
             let order = state['order'];

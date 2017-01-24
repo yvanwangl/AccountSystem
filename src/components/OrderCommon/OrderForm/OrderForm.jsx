@@ -1,34 +1,37 @@
 import React, {Component, PropTypes} from 'react';
 import {Form, Select} from 'antd';
-import {addOrderForm} from './index.css';
+import {orderForm} from './index.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-const AddOrderForm = ({
+const OrderForm = ({
     customers,
+    customerId,
     onSelect,
     form: {
         getFieldDecorator
     }
 }) => {
     const handleChange = (value)=>{
+        console.log('modify'+value);
         onSelect(value);
     };
 
     return (
-        <div className={addOrderForm}>
+        <div className={orderForm}>
             <Form inline >
                 <FormItem label="客户名称：">
                     {
                         getFieldDecorator('customerId', {
-                            initialValue: ''
+                            initialValue: customerId
                         })(
                             <Select
                                 showSearch
                                 style={{ width: 340 }}
                                 placeholder="选择一个客户"
                                 onChange={handleChange}
+                                onSelect={handleChange}
                             >
                                 {
                                     customers.map((customer, index)=>
@@ -45,10 +48,10 @@ const AddOrderForm = ({
     );
 };
 
-AddOrderForm.propTypes = {
+OrderForm.propTypes = {
     form: PropTypes.object.isRequired,
     onSelect: PropTypes.func,
     customers:PropTypes.any
 };
 
-export default Form.create()(AddOrderForm);
+export default Form.create()(OrderForm);

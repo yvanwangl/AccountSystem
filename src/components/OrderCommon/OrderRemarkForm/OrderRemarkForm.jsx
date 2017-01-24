@@ -1,11 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import {Form, Input} from 'antd';
-import {addRemarkForm} from './index.css';
+import {orderRemarkForm} from './index.css';
 
 const FormItem = Form.Item;
 
-const AddRemarkForm = ({
+const OrderRemarkForm = ({
     onSetMem,
+    mem,
     form: {
         getFieldDecorator
     }
@@ -15,12 +16,12 @@ const AddRemarkForm = ({
     };
 
     return (
-        <div className={addRemarkForm}>
+        <div className={orderRemarkForm}>
             <Form inline >
                 <FormItem label="填写备注：">
                     {
                         getFieldDecorator('mem', {
-                            initialValue: ''
+                            initialValue: mem
                         })(
                             <Input
                                 type='textarea'
@@ -36,9 +37,9 @@ const AddRemarkForm = ({
     );
 };
 
-AddRemarkForm.propTypes = {
+OrderRemarkForm.propTypes = {
     form: PropTypes.object.isRequired,
     onSetMem: PropTypes.func
 };
 
-export default Form.create()(AddRemarkForm);
+export default Form.create()(OrderRemarkForm);
