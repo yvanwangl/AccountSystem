@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Table, Popconfirm, Icon, Form, Input} from 'antd';
+import {Table, Popconfirm, Icon} from 'antd';
 import EditableCell from '../../EditableCell/EditableCell';
 import Spliter from '../../Spliter/Spliter';
 import {addOrderGrid, rowClassName, totalAmountClass, remarkClass, paymentAmountClass} from './index.css';
@@ -31,8 +31,8 @@ class AddOrderGrid extends Component {
             ],*/
             dataSource: this.props.products,
             count:1,
-            totalAmount:0,
-            paymentAmount:0,
+            totalAmount:this.props.totalAmount,
+            paymentAmount:this.props.paymentAmount,
             remarks:''
         };
         this.columns = [
@@ -194,10 +194,13 @@ class AddOrderGrid extends Component {
     }
 
     handlePaymentAmount() {
+        const {editProducts} = this.props;
+        const {dataSource, totalAmount} = this.state;
         return (paymentValue)=> {
             this.setState({
                 paymentAmount: paymentValue
             });
+            editProducts(dataSource, totalAmount, paymentValue);
         };
     }
 
