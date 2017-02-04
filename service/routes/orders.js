@@ -109,6 +109,21 @@ router.route('/:orderId')
                 order: order
             });
         });
+    })
+    .delete(function(req, res, next){
+        var orderId = req.params.orderId;
+        Order.remove({_id:orderId}, function(err){
+            if(err){
+                res.send({
+                    success:false,
+                    error: err
+                });
+            }else {
+                res.send({
+                    success: true
+                });
+            }
+        });
     });
 
 module.exports = router;

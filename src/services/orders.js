@@ -25,9 +25,8 @@ export async function modify(params) {
 }
 
 export async function del(params) {
-    return request( ORDER_API,{
-        method: 'delete',
-        body: JSON.stringify(params)
+    return request( `${ORDER_API}/${params['id']}`,{
+        method: 'delete'
     });
 }
 

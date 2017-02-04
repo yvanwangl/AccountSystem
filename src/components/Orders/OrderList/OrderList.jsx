@@ -12,6 +12,7 @@ const OrderList = ({
     dataSource,
     onPageChange,
     onModify,
+    onReadOnly,
     onDel
 }) => {
     const columns = [
@@ -63,7 +64,7 @@ const OrderList = ({
                         <a type='ghost'>删除</a>
                     </Popconfirm>
                     <Spliter spliterText="|"/>
-                    <a onClick={()=> onModify(record)}>详情</a>
+                    <a onClick={()=> onReadOnly(record['_id'])}>详情</a>
                 </p>
             )
         }

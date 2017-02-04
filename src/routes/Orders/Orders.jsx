@@ -2,11 +2,11 @@ import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SearchForm from '../../components/SearchForm/SearchForm';
-import OrderList from '../../components/OrderList/OrderList';
+import OrderList from '../../components/Orders/OrderList/OrderList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
-import AddOrder from '../../components/AddOrder/AddOrder';
-import ModifyOrder from '../../components/ModifyOrder/ModifyOrder';
+import AddOrder from '../../components/Orders/AddOrder/AddOrder';
+import ModifyOrder from '../../components/Orders/ModifyOrder/ModifyOrder';
 import {redirect} from '../../utils/webSessionUtils';
 import {orderClass, orderContainer, addOrderContainer, modifyOrderContainer} from './index.css';
 
@@ -36,11 +36,20 @@ function genOrders({dispatch, orders}){
             }));
         },
         onModify(orderId){
-            console.log(orderId);
             dispatch({
                 type:'orders/queryOrderById',
                 payload: {
-                    orderId: orderId
+                    orderId: orderId,
+                    editorType: 'modify'
+                }
+            });
+        },
+        onReadOnly(orderId){
+            dispatch({
+                type:'orders/queryOrderById',
+                payload: {
+                    orderId: orderId,
+                    editorType: 'detail'
                 }
             });
         },
@@ -95,7 +104,7 @@ function genOrders({dispatch, orders}){
                             ):
                             (
                                 <div className={modifyOrderContainer}>
-                                    <ModifyOrder />
+                                    <ModifyOrder editorType={editorType}/>
                                 </div>
                             )
                     ):

@@ -4,10 +4,10 @@ import {parse} from 'qs';
 const defaultProduct = {
         key:'0',
         productName:'铝合金',
-        quantity:10,
+        quantity:0,
         unit:'吨',
-        price:10,
-        amount:100,
+        price:0,
+        amount:0,
         remarks:''
     };
 
@@ -53,10 +53,10 @@ export default {
                         payload: location.query
                     });
                     dispatch({
-                        type:'resetBreadcrumbItem'
+                        type:'hideEditor'
                     });
                     dispatch({
-                        type:'hideEditor'
+                        type:'resetOrder'
                     });
                 }else if(location.pathname == '/orders/addorder'){
                     dispatch({
@@ -142,9 +142,10 @@ export default {
                 yield put({
                     type:'queryOrderByIdSuccess',
                     payload:{
-                        editorType: 'modify',
+                        editorType: payload.editorType,
                         currentItem: data.order,
-                        editorVisible: true
+                        editorVisible: true,
+                        order: data.order
                     }
                 });
                 yield put({
@@ -205,7 +206,7 @@ export default {
             return {...state, loading:false};
         },
         delSuccess(state, action){
-            const newList = state.list.filter(order=> order.id!=action.payload);
+            const newList = state.list.filter(order=> order._id != action.payload);
             return {...state, list:newList, loading:false};
         },
         updateQueryKey(state, action){
@@ -239,7 +240,16 @@ export default {
                 ['/','首页'],
                 ['/orders','订单'],
             ];
-            return {...state, breadcrumbItems:newItems, order:defaultOrder, editorVisible:false};
+            let newOrder = {...defaultOrder, products:[{
+                key:'0',
+                productName:'铝合金',
+                quantity:0,
+                unit:'吨',
+                price:0,
+                amount:0,
+                remarks:''
+            }]};
+            return {...state, breadcrumbItems:newItems, order:newOrder, editorVisible:false};
         },
         setProducts(state, action){
             let order = state['order'];

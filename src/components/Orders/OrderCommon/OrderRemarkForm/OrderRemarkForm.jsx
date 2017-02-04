@@ -7,6 +7,7 @@ const FormItem = Form.Item;
 const OrderRemarkForm = ({
     onSetMem,
     mem,
+    disabled,
     form: {
         getFieldDecorator
     }
@@ -28,7 +29,9 @@ const OrderRemarkForm = ({
                                 rows={4}
                                 style={{ width: 500, fontSize:14 }}
                                 onBlur={handleChange}
-                                placeholder="在此填写备注..."/>
+                                placeholder="在此填写备注..."
+                                disabled={disabled||false}
+                            />
                         )
                     }
                 </FormItem>

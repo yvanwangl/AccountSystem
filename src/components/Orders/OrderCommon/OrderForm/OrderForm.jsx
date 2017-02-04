@@ -9,6 +9,7 @@ const OrderForm = ({
     customers,
     customerId,
     onSelect,
+    disabled,
     form: {
         getFieldDecorator
     }
@@ -32,6 +33,7 @@ const OrderForm = ({
                                 placeholder="选择一个客户"
                                 onChange={handleChange}
                                 onSelect={handleChange}
+                                disabled={disabled||false}
                             >
                                 {
                                     customers.map((customer, index)=>
