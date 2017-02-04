@@ -35,6 +35,7 @@ class AddOrderGrid extends Component {
             paymentAmount:this.props.paymentAmount,
             remarks:''
         };
+        let disabled = this.props.disabled || false;
         this.columns = [
             {
                 title: '序号',
@@ -46,13 +47,15 @@ class AddOrderGrid extends Component {
                 title: '操作',
                 key: 'operation',
                 render: (text, record, index)=>(
-                    <p style={{textAlign:'center'}}>
-                        <a type='ghost' onClick={this.handleAdd.bind(this)}><Icon type="plus"/></a>
-                        <Spliter />
-                        <Popconfirm title="确定删除该条记录？" onConfirm={this.onDelete(index)}>
-                            <a type='ghost'><Icon type="minus"/></a>
-                        </Popconfirm>
-                    </p>
+                    !disabled?(
+                        <p style={{textAlign:'center'}}>
+                            <a type='ghost' onClick={this.handleAdd.bind(this)}><Icon type="plus"/></a>
+                            <Spliter />
+                            <Popconfirm title="确定删除该条记录？" onConfirm={this.onDelete(index)}>
+                                <a type='ghost'><Icon type="minus"/></a>
+                            </Popconfirm>
+                        </p>
+                    ):null
                 )
             },
             {
@@ -61,6 +64,7 @@ class AddOrderGrid extends Component {
                 key: 'productName',
                 render: (text, record, index)=>(
                     <EditableCell
+                        disabled={disabled}
                         editType='editCell'
                         value={text}
                         onChange={this.onCellChange(index, 'productName')}
@@ -73,6 +77,7 @@ class AddOrderGrid extends Component {
                 key: 'quantity',
                 render: (text, record, index)=>(
                     <EditableCell
+                        disabled={disabled}
                         editType='editCell'
                         value={text}
                         onChange={this.onLinkCellChange(index, 'quantity')}
@@ -85,6 +90,7 @@ class AddOrderGrid extends Component {
                 key: 'unit',
                 render: (text, record, index)=>(
                     <EditableCell
+                        disabled={disabled}
                         editType='editCell'
                         value={text}
                         onChange={this.onCellChange(index, 'unit')}
@@ -97,6 +103,7 @@ class AddOrderGrid extends Component {
                 key: 'price',
                 render: (text, record, index)=>(
                     <EditableCell
+                        disabled={disabled}
                         editType='editCell'
                         value={text}
                         onChange={this.onLinkCellChange(index, 'price')}
@@ -114,6 +121,7 @@ class AddOrderGrid extends Component {
                 key: 'remarks',
                 render: (text, record, index)=>(
                     <EditableCell
+                        disabled={disabled}
                         editType='editCell'
                         value={text}
                         onChange={this.onCellChange(index, 'remarks')}
@@ -181,10 +189,10 @@ class AddOrderGrid extends Component {
         let newData = {
             key:count,
             productName:'铝合金',
-            quantity:10,
+            quantity:0,
             unit:'吨',
-            price:10,
-            amount:100,
+            price:0,
+            amount:0,
             remarks:''
         };
         this.setState({
@@ -208,6 +216,7 @@ class AddOrderGrid extends Component {
     render(){
         let {dataSource, totalAmount, paymentAmount} = this.state;
         let columns = this.columns;
+        let {disabled} = this.props;
         return (
             <div className={addOrderGrid}>
                 <Table
@@ -218,7 +227,7 @@ class AddOrderGrid extends Component {
                     footer={() =>
                         <div className={totalAmountClass}>
                             <div>合计金额：￥{totalAmount}</div>
-                            <div className={paymentAmountClass}>支付金额：￥<EditableCell editType='editLine' onChange={this.handlePaymentAmount()} value={paymentAmount}/></div>
+                            <div className={paymentAmountClass}>支付金额：￥<EditableCell disabled={disabled} editType='editLine' onChange={this.handlePaymentAmount()} value={paymentAmount}/></div>
                         </div>
                     }
                     size="small"

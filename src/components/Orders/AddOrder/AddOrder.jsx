@@ -25,6 +25,7 @@ const AddOrder = ({
                 name:'lihuan'
             }
         ],
+        disabled: false,
         onSelect(customerId){
             dispatch({
                 type:'orders/setCustomer',
@@ -77,6 +78,9 @@ const AddOrder = ({
 
     const addOrderGridProps = {
         products: order.products,
+        totalAmount: order.totalAmount,
+        paymentAmount: order.paymentAmount,
+        disabled: false,
         editProducts(products, totalAmount, paymentAmount){
             dispatch({
                 type:'orders/setProducts',
@@ -95,7 +99,7 @@ const AddOrder = ({
                 <AddOrderTitle orderNumber={order.orderNumber}/>
                 <AddOrderForm {...addOrderFormProps}/>
                 <AddOrderGrid {...addOrderGridProps}/>
-                <AddRemarkForm onSetMem={onSetMem}/>
+                <AddRemarkForm disabled={false} onSetMem={onSetMem}/>
             </div>
             <div className={buttonGroup}>
                 <Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
