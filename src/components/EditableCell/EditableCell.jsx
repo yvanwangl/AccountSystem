@@ -29,6 +29,10 @@ class EditableCell extends Component {
     }
 
     edit(){
+        let {disabled} = this.props;
+        if(disabled){
+            return false;
+        }
         this.setState({
             editable: true
         });
@@ -36,7 +40,7 @@ class EditableCell extends Component {
 
     render(){
         let {value, editable} = this.state;
-        let {editType} = this.props;
+        let {editType, disabled} = this.props;
         return (
             <div className={editType=='editCell'?editCell:editLine}>
                 {
@@ -48,6 +52,7 @@ class EditableCell extends Component {
                                 onChange={this.handleChange}
                                 onPressEnter={this.check}
                                 onBlur={this.check}
+                                disabled={disabled || false}
                             />
                             <Icon
                                 type="check"
