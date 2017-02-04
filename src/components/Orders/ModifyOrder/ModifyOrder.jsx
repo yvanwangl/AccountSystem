@@ -11,9 +11,11 @@ import {modifyOrder, orderWrapper, buttonGroup, confirmButton, cancelButton} fro
 
 const ModifyOrder = ({
     dispatch,
+    editorType,
     orders
 }) => {
     const {order, currentItem} = orders;
+    const disabled = editorType!='modify';
     const modifyOrderFormProps = {
         customers:[
             {
@@ -26,6 +28,7 @@ const ModifyOrder = ({
             }
         ],
         customerId: currentItem.customerId ,
+        disabled: disabled,
         onSelect(customerId){
             dispatch({
                 type:'orders/setCustomer',
@@ -81,6 +84,7 @@ const ModifyOrder = ({
         products: currentItem.products,
         totalAmount: currentItem.totalAmount,
         paymentAmount: currentItem.paymentAmount,
+        disabled: disabled,
         editProducts(products, totalAmount, paymentAmount){
             console.log(totalAmount+'--'+paymentAmount);
             dispatch({
@@ -100,7 +104,7 @@ const ModifyOrder = ({
                 <ModifyOrderTitle orderNumber={currentItem.orderNumber}/>
                 <ModifyOrderForm {...modifyOrderFormProps}/>
                 <AddOrderGrid {...modifyOrderGridProps}/>
-                <OrderRemarkForm mem={currentItem.mem} onSetMem={onSetMem}/>
+                <OrderRemarkForm disabled={disabled} mem={currentItem.mem} onSetMem={onSetMem}/>
             </div>
             <div className={buttonGroup}>
                 <Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
