@@ -4,10 +4,10 @@ import {customerForm} from './index.css';
 
 const FormItem = Form.Item;
 const formItemLayout = {
-    labelCol:{
+    labelCol: {
         span: 6
     },
-    wrapperCol:{
+    wrapperCol: {
         span: 14
     }
 };
@@ -21,9 +21,9 @@ const CustomerForm = ({
         getFieldsValue
     }
 }) => {
-    const handleConfirm = ()=>{
-        validateFields((errors)=>{
-            if(!!errors){
+    const handleConfirm = ()=> {
+        validateFields((errors)=> {
+            if (!!errors) {
                 return;
             }
             let data = {...getFieldsValue()};
@@ -35,7 +35,7 @@ const CustomerForm = ({
 
     return (
         <div className={customerForm}>
-            <Form inline >
+            <Form inline>
                 <FormItem label="客户名称：" hasFeedback {...formItemLayout}>
                     {
                         getFieldDecorator('customerName', {
@@ -92,7 +92,7 @@ const CustomerForm = ({
                             <Input
                                 type='textarea'
                                 rows={4}
-                                style={{ width: 500, fontSize:14 }}
+                                style={{width: 500, fontSize: 14}}
                                 placeholder="在此填写备注..."
                             />
                         )
@@ -106,7 +106,7 @@ const CustomerForm = ({
 CustomerForm.propTypes = {
     form: PropTypes.object.isRequired,
     onSelect: PropTypes.func,
-    customer:PropTypes.any
+    customer: PropTypes.any
 };
 
 export default Form.create()(CustomerForm);

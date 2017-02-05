@@ -16,35 +16,35 @@ const CustomerList = ({
 }) => {
     const columns = [
         {
-            title:'序号',
+            title: '序号',
             dataIndex: 'serialNumber',
-            key:'serialNumber',
-            render: (text, record, index)=><span>{index+1}</span>
+            key: 'serialNumber',
+            render: (text, record, index)=><span>{index + 1}</span>
         },
         {
-            title:'客户名称',
+            title: '客户名称',
             dataIndex: 'customerName',
-            key:'customerName'
+            key: 'customerName'
         },
         {
-            title:'联系人',
-            dataIndex:'contactPeople',
-            key:'contactPeople'
+            title: '联系人',
+            dataIndex: 'contactPeople',
+            key: 'contactPeople'
         },
         {
-            title:'联系方式',
-            dataIndex:'contactPhone',
-            key:'contactPhone'
+            title: '联系方式',
+            dataIndex: 'contactPhone',
+            key: 'contactPhone'
         },
         {
-            title:'地址',
-            dataIndex:'address',
-            key:'address',
+            title: '地址',
+            dataIndex: 'address',
+            key: 'address',
         },
         {
-            title:'备注',
-            dataIndex:'mem',
-            key:'mem',
+            title: '备注',
+            dataIndex: 'mem',
+            key: 'mem',
         },
         {
             title: '操作',
@@ -83,8 +83,8 @@ const CustomerList = ({
                 dataSource={dataSource}
                 loading={loading}
                 rowKey={record=>record._id}
-                pagination = {false}
-                rowSelection = {rowSelection}
+                pagination={false}
+                rowSelection={rowSelection}
             />
             <Pagination
                 className="ant-table-pagination"

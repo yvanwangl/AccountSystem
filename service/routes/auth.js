@@ -5,16 +5,16 @@ var express = require('express');
 var router = express.Router();
 
 router.route('/')
-    .get(function(req, res, next){
+    .get(function (req, res, next) {
         var authToken = global[Symbol.for('authToken')];
         var requestAuthToken = req.query.authToken;
-        if(authToken && requestAuthToken && authToken==requestAuthToken){
+        if (authToken && requestAuthToken && authToken == requestAuthToken) {
             res.send({
-                isAuth:true
+                isAuth: true
             });
-        }else {
+        } else {
             res.send({
-                isAuth:false
+                isAuth: false
             });
         }
     });
