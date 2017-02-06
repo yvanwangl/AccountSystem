@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Table, Pagination, Popconfirm, Button} from 'antd';
-import { message } from 'antd';
+import {message} from 'antd';
 import ModifyOrderTitle from '../OrderCommon/OrderTitle/OrderTitle';
 import ModifyOrderForm from '../OrderCommon/OrderForm/OrderForm';
 import AddOrderGrid from '../OrderCommon/AddOrderGrid/AddOrderGrid';
@@ -15,68 +15,68 @@ const ModifyOrder = ({
     orders
 }) => {
     const {order, currentItem} = orders;
-    const disabled = editorType!='modify';
+    const disabled = editorType != 'modify';
     const modifyOrderFormProps = {
-        customers:[
+        customers: [
             {
-                _id:'111',
-                name:'wangyafei'
+                _id: '111',
+                name: 'wangyafei'
             },
             {
-                _id:'222',
-                name:'lihuan'
+                _id: '222',
+                name: 'lihuan'
             }
         ],
-        customerId: currentItem.customerId ,
+        customerId: currentItem.customerId,
         disabled: disabled,
         onSelect(customerId){
             dispatch({
-                type:'orders/setCustomer',
-                payload:{
+                type: 'orders/setCustomer',
+                payload: {
                     customerId
                 }
             })
         }
     };
 
-    const onSetMem = (mem)=>{
+    const onSetMem = (mem)=> {
         dispatch({
-            type:'orders/setMem',
-            payload:{
+            type: 'orders/setMem',
+            payload: {
                 mem: mem
             }
         });
     };
 
-    const handleConfirm = ()=>{
+    const handleConfirm = ()=> {
         /**
          * 数据保存前，做数据校验,
          * 用户不允许为空，并且至少需要保存一条商品数据
          */
         const {customerId, products} = order;
         order['orderNumber'] = currentItem['orderNumber'];
-        if(customerId==null){
+        if (customerId == null) {
             order['customerId'] = currentItem['customerId'];
         }
-        if(products.length == 0){
+        if (products.length == 0) {
             message.error('请至少添加一个商品条目！');
             return null;
         }
         console.log(order);
         dispatch({
-            type:'orders/modify',
-            payload:{
+            type: 'orders/modify',
+            payload: {
                 order
             }
         });
         dispatch({
-            type:'orders/query'
+            type: 'orders/query'
         });
     };
 
-    const handleCancel = ()=>{
+    const handleCancel = ()=> {
         dispatch({
-            type:'orders/resetOrder'
+            type: 'orders/resetOrder'
         });
     };
 
@@ -86,10 +86,10 @@ const ModifyOrder = ({
         paymentAmount: currentItem.paymentAmount,
         disabled: disabled,
         editProducts(products, totalAmount, paymentAmount){
-            console.log(totalAmount+'--'+paymentAmount);
+            console.log(totalAmount + '--' + paymentAmount);
             dispatch({
-                type:'orders/setProducts',
-                payload:{
+                type: 'orders/setProducts',
+                payload: {
                     products,
                     totalAmount,
                     paymentAmount
@@ -124,7 +124,7 @@ ModifyOrder.propTypes = {
     current: PropTypes.any
 };
 
-function mapStateToProps({orders}){
+function mapStateToProps({orders}) {
     return {orders};
 }
 

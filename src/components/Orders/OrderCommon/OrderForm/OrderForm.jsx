@@ -14,14 +14,14 @@ const OrderForm = ({
         getFieldDecorator
     }
 }) => {
-    const handleChange = (value)=>{
-        console.log('modify'+value);
+    const handleChange = (value)=> {
+        console.log('modify' + value);
         onSelect(value);
     };
 
     return (
         <div className={orderForm}>
-            <Form inline >
+            <Form inline>
                 <FormItem label="客户名称：">
                     {
                         getFieldDecorator('customerId', {
@@ -29,11 +29,11 @@ const OrderForm = ({
                         })(
                             <Select
                                 showSearch
-                                style={{ width: 340 }}
+                                style={{width: 340}}
                                 placeholder="选择一个客户"
                                 onChange={handleChange}
                                 onSelect={handleChange}
-                                disabled={disabled||false}
+                                disabled={disabled || false}
                             >
                                 {
                                     customers.map((customer, index)=>
@@ -53,7 +53,7 @@ const OrderForm = ({
 OrderForm.propTypes = {
     form: PropTypes.object.isRequired,
     onSelect: PropTypes.func,
-    customers:PropTypes.any
+    customers: PropTypes.any
 };
 
 export default Form.create()(OrderForm);
