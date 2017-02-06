@@ -10,30 +10,30 @@ class AddOrderGrid extends Component {
         super(props);
         this.state = {
             /*dataSource:[
-                {
-                    key:'0',
-                    productName:'铝合金',
-                    quantity:10,
-                    unit:'吨',
-                    price:10,
-                    amount:100,
-                    remarks:''
-                },
-                {
-                    key:'1',
-                    productName:'铝合金',
-                    quantity:10,
-                    unit:'吨',
-                    price:10,
-                    amount:100,
-                    remarks:''
-                }
-            ],*/
+             {
+             key:'0',
+             productName:'铝合金',
+             quantity:10,
+             unit:'吨',
+             price:10,
+             amount:100,
+             remarks:''
+             },
+             {
+             key:'1',
+             productName:'铝合金',
+             quantity:10,
+             unit:'吨',
+             price:10,
+             amount:100,
+             remarks:''
+             }
+             ],*/
             dataSource: this.props.products,
-            count:1,
-            totalAmount:this.props.totalAmount,
-            paymentAmount:this.props.paymentAmount,
-            remarks:''
+            count: 1,
+            totalAmount: this.props.totalAmount,
+            paymentAmount: this.props.paymentAmount,
+            remarks: ''
         };
         let disabled = this.props.disabled || false;
         this.columns = [
@@ -47,15 +47,15 @@ class AddOrderGrid extends Component {
                 title: '操作',
                 key: 'operation',
                 render: (text, record, index)=>(
-                    !disabled?(
-                        <p style={{textAlign:'center'}}>
+                    !disabled ? (
+                        <p style={{textAlign: 'center'}}>
                             <a type='ghost' onClick={this.handleAdd.bind(this)}><Icon type="plus"/></a>
                             <Spliter />
                             <Popconfirm title="确定删除该条记录？" onConfirm={this.onDelete(index)}>
                                 <a type='ghost'><Icon type="minus"/></a>
                             </Popconfirm>
                         </p>
-                    ):null
+                    ) : null
                 )
             },
             {
@@ -130,10 +130,11 @@ class AddOrderGrid extends Component {
             }
         ];
     }
-    onCellChange(index, key){
+
+    onCellChange(index, key) {
         const {editProducts} = this.props;
         const {totalAmount, paymentAmount} = this.state;
-        return (value)=>{
+        return (value)=> {
             const dataSource = [...this.state.dataSource];
             dataSource[index][key] = value;
             this.setState({dataSource});
@@ -141,63 +142,63 @@ class AddOrderGrid extends Component {
         }
     }
 
-    onLinkCellChange(index, key){
+    onLinkCellChange(index, key) {
         const {editProducts} = this.props;
         const {paymentAmount} = this.state;
-        return (value)=>{
+        return (value)=> {
             let dataSource = [...this.state.dataSource];
             let record = dataSource[index];
-            if(key=='quantity'){
+            if (key == 'quantity') {
                 let price = record.price;
-                if(price!=null){
-                    record.amount = parseInt(value)*parseInt(price);
+                if (price != null) {
+                    record.amount = parseInt(value) * parseInt(price);
                 }
-            }else if(key=='price'){
+            } else if (key == 'price') {
                 let quantity = record.quantity;
-                if(quantity!=null){
-                    record.amount = parseInt(value)*parseInt(quantity);
+                if (quantity != null) {
+                    record.amount = parseInt(value) * parseInt(quantity);
                 }
             }
             record[key] = value;
-            this.setState({ dataSource });
+            this.setState({dataSource});
             let totalAmount = this.getTotalAmount();
-            this.setState({ totalAmount });
+            this.setState({totalAmount});
             editProducts(dataSource, totalAmount, paymentAmount);
         }
     }
 
-    getTotalAmount(){
+    getTotalAmount() {
         const dataSource = [...this.state.dataSource];
         let totalAmount = 0;
-        dataSource.map((data, index)=> totalAmount+=data['amount']);
+        dataSource.map((data, index)=> totalAmount += data['amount']);
         return totalAmount;
     }
 
-    onDelete(index){
+    onDelete(index) {
         const {editProducts} = this.props;
         const {totalAmount, paymentAmount} = this.state;
-        return ()=>{
+        return ()=> {
             const dataSource = [...this.state.dataSource];
-            dataSource.splice(index,1);
+            dataSource.splice(index, 1);
             this.setState({dataSource});
             editProducts(dataSource, totalAmount, paymentAmount);
         }
     }
 
-    handleAdd(){
+    handleAdd() {
         let {dataSource, count} = this.state;
         let newData = {
-            key:count,
-            productName:'铝合金',
-            quantity:0,
-            unit:'吨',
-            price:0,
-            amount:0,
-            remarks:''
+            key: count,
+            productName: '铝合金',
+            quantity: 0,
+            unit: '吨',
+            price: 0,
+            amount: 0,
+            remarks: ''
         };
         this.setState({
-            dataSource:[...dataSource, newData],
-            count: count+1
+            dataSource: [...dataSource, newData],
+            count: count + 1
         });
     }
 
@@ -213,7 +214,7 @@ class AddOrderGrid extends Component {
     }
 
 
-    render(){
+    render() {
         let {dataSource, totalAmount, paymentAmount} = this.state;
         let columns = this.columns;
         let {disabled} = this.props;
@@ -223,11 +224,14 @@ class AddOrderGrid extends Component {
                     bordered
                     dataSource={dataSource}
                     columns={columns}
-                    pagination = {false}
+                    pagination={false}
                     footer={() =>
                         <div className={totalAmountClass}>
                             <div>合计金额：￥{totalAmount}</div>
-                            <div className={paymentAmountClass}>支付金额：￥<EditableCell disabled={disabled} editType='editLine' onChange={this.handlePaymentAmount()} value={paymentAmount}/></div>
+                            <div className={paymentAmountClass}>支付金额：￥<EditableCell disabled={disabled}
+                                                                                    editType='editLine'
+                                                                                    onChange={this.handlePaymentAmount()}
+                                                                                    value={paymentAmount}/></div>
                         </div>
                     }
                     size="small"
@@ -240,13 +244,13 @@ class AddOrderGrid extends Component {
 }
 
 /*AddOrderGrid.propTypes = {
-    onPageChange: PropTypes.func,
-    onModify: PropTypes.func,
-    onDel: PropTypes.func,
-    dataSource: PropTypes.array,
-    loading: PropTypes.any,
-    total: PropTypes.any,
-    current: PropTypes.any
-};*/
+ onPageChange: PropTypes.func,
+ onModify: PropTypes.func,
+ onDel: PropTypes.func,
+ dataSource: PropTypes.array,
+ loading: PropTypes.any,
+ total: PropTypes.any,
+ current: PropTypes.any
+ };*/
 
 export default AddOrderGrid;
