@@ -15,10 +15,10 @@ const SearchForm = ({
         validateFields
     }
 }) => {
-    const onSubmit = (e)=>{
+    const onSubmit = (e)=> {
         e.preventDefault();
-        validateFields((errors)=>{
-            if(!!errors){
+        validateFields((errors)=> {
+            if (!!errors) {
                 return false;
             }
             onSearch(getFieldsValue());
@@ -50,7 +50,7 @@ const SearchForm = ({
                 <FormItem>
                     {
                         getFieldDecorator('keyword', {
-                            initialValue:''
+                            initialValue: ''
                         })(
                             <Input type="text"/>
                         )
