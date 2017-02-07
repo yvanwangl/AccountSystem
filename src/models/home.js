@@ -1,17 +1,16 @@
-
 export default {
 
     namespace: 'home',
 
     state: {
-        activeIndex:0,
+        activeIndex: 0,
     },
 
     subscriptions: {
         setup({dispatch, history}) {
-            history.listen(location=>{
+            history.listen(location=> {
                 dispatch({
-                    type:'updateActiveIndex',
+                    type: 'updateActiveIndex',
                     payload: location.pathname
                 });
             });
@@ -22,20 +21,20 @@ export default {
         updateActiveIndex(state, action){
             let pathname = action.payload;
             let activeIndex = 0;
-            if(/orders/.test(pathname)){
-                activeIndex=1;
-            }else if(/storage/.test(pathname)){
-                activeIndex=2;
-            }else if(/stock/.test(pathname)){
-                activeIndex=3;
-            }else if(/funds/.test(pathname)){
-                activeIndex=4;
-            }else if(/manage/.test(pathname)){
-                activeIndex=5;
-            }else {
-                activeIndex=0;
+            if (/orders/.test(pathname)) {
+                activeIndex = 1;
+            } else if (/storage/.test(pathname)) {
+                activeIndex = 2;
+            } else if (/stock/.test(pathname)) {
+                activeIndex = 3;
+            } else if (/funds/.test(pathname)) {
+                activeIndex = 4;
+            } else if (/manage/.test(pathname)) {
+                activeIndex = 5;
+            } else {
+                activeIndex = 0;
             }
-            return {...state, activeIndex:activeIndex};
+            return {...state, activeIndex: activeIndex};
         }
     },
 
