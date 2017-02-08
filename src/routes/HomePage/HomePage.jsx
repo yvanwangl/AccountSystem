@@ -4,9 +4,9 @@ import {connect} from 'dva';
 import SystemInfo from '../../components/SystemInfo/SystemInfo';
 import {homePage, container} from './index.css';
 
-const HomePage = ({children, home})=>{
+const HomePage = ({children, home})=> {
     const {activeIndex} = home;
-    const height = window.innerHeight-64;
+    const height = window.innerHeight - 64;
     return (
         <div className={homePage}>
             <Header activeIndex={activeIndex}/>

@@ -1,4 +1,4 @@
-import React, {Component,PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SearchForm from '../../components/SearchForm/SearchForm';
@@ -10,7 +10,7 @@ import ModifyCustomer from '../../components/Orders/ModifyOrder/ModifyOrder';
 import {redirect} from '../../utils/webSessionUtils';
 import {customerClass, customerContainer, addCustomerContainer, modifyCustomerContainer} from './index.css';
 
-function genCustomers({dispatch, orders}){
+function genCustomers({dispatch, orders}) {
     const {
         list,
         total,
@@ -24,20 +24,20 @@ function genCustomers({dispatch, orders}){
         breadcrumbItems
     } = orders;
 
-    const customerListProps ={
+    const customerListProps = {
         current,
         total,
         dataSource: list,
         loading,
         onPageChange(page){
             dispatch(routerRedux.push({
-                pathname:'/customers',
+                pathname: '/customers',
                 query: {field, keyword, page}
             }));
         },
         onModify(customerId){
             dispatch({
-                type:'customers/queryCustomerById',
+                type: 'customers/queryCustomerById',
                 payload: {
                     customerId: customerId,
                     editorType: 'modify'
@@ -46,13 +46,13 @@ function genCustomers({dispatch, orders}){
         },
         onDel(customerId){
             dispatch({
-                type:'customers/del',
+                type: 'customers/del',
                 payload: customerId,
             });
         }
     };
     const customerEditor = {
-        item: editorType=='create'? {}:currentItem,
+        item: editorType == 'create' ? {} : currentItem,
         type: editorType,
         visible: editorVisible,
         onConfirm(data){
@@ -63,42 +63,42 @@ function genCustomers({dispatch, orders}){
         },
         onCancel(){
             dispatch({
-                type:'customers/hideEditor'
+                type: 'customers/hideEditor'
             });
         }
     };
 
-    const onSearch = (fieldValues)=>{
+    const onSearch = (fieldValues)=> {
         dispatch(routerRedux.push({
-            pathname:'/orders',
-            query:{...fieldValues, page:1}
+            pathname: '/orders',
+            query: {...fieldValues, page: 1}
         }));
     };
 
-    const onAdd = ()=>{
+    const onAdd = ()=> {
         dispatch({
-            type:'orders/getOrderNumber'
+            type: 'orders/getOrderNumber'
         });
     };
 
     return (
         <div className={customerClass}>
-            <BreadcrumbList breadcrumbItems={breadcrumbItems} />
+            <BreadcrumbList breadcrumbItems={breadcrumbItems}/>
             {
-                editorVisible?
+                editorVisible ?
                     (
-                        editorType=='create'?
+                        editorType == 'create' ?
                             (
                                 <div className={addCustomerContainer}>
                                     <AddCustomer />
                                 </div>
-                            ):
+                            ) :
                             (
                                 <div className={modifyCustomerContainer}>
                                     <ModifyCustomer/>
                                 </div>
                             )
-                    ):
+                    ) :
                     (
                         <div className={customerContainer}>
                             <SearchBar onAdd={onAdd}>
@@ -112,25 +112,25 @@ function genCustomers({dispatch, orders}){
     );
 }
 
-class Customers extends Component{
+class Customers extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentWillMount(){
+    componentWillMount() {
         let {isLogin} = this.props.systemUser;
-        if(!isLogin){
+        if (!isLogin) {
             redirect();
         }
     }
 
-    render(){
+    render() {
         return genCustomers(this.props);
     }
 }
 
 Customers.propTypes = {
-    customers:PropTypes.object,
+    customers: PropTypes.object,
 };
 
 function mapStateToProps({customers, systemUser}) {
