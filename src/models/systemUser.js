@@ -8,19 +8,19 @@ export default {
         username: '',
         isLogin: false,
         modalVisible: false,
-        authToken:'',
-        pathname:'/',
+        authToken: '',
+        pathname: '/',
     },
 
     subscriptions: {
         setup({dispatch, history}) {
-            history.listen(location=>{
-                if(location.pathname == '/'){
+            history.listen(location=> {
+                if (location.pathname == '/') {
                     //权限验证通过
-                    fetchIsAuth(function(isAuth){
-                        if(isAuth){
+                    fetchIsAuth(function (isAuth) {
+                        if (isAuth) {
                             dispatch({
-                                type:'loginSuccess',
+                                type: 'loginSuccess',
                                 payload: getCurrentUser()
                             });
                         }
@@ -33,9 +33,9 @@ export default {
 
     effects: {
         *doLogin({payload}, {call, put}){
-            yield put({type:'showLoading'});
+            yield put({type: 'showLoading'});
             const {data} = yield call(doLogin, payload);
-            if(data && data.success){
+            if (data && data.success) {
                 //登录成功
                 yield put({
                     type: 'loginSuccess',
@@ -48,20 +48,20 @@ export default {
     reducers: {
         logout(state, action){
             let localStorage = window.localStorage;
-            localStorage.setItem('userInfo',JSON.stringify({}));
-            return {...state, user:null, isLogin:false};
+            localStorage.setItem('userInfo', JSON.stringify({}));
+            return {...state, user: null, isLogin: false};
         },
         login(state, action){
-            return {...state, ...action.payload, modalVisible:true};
+            return {...state, ...action.payload, modalVisible: true};
         },
         loginSuccess(state, action){
             let userInfo = action.payload;
             let localStorage = window.localStorage;
-            localStorage.setItem('userInfo',JSON.stringify(userInfo));
-            return {...state, ...userInfo, isLogin:true, modalVisible:false};
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            return {...state, ...userInfo, isLogin: true, modalVisible: false};
         },
         hideModal(state){
-            return {...state, modalVisible:false};
+            return {...state, modalVisible: false};
         }
     },
 
