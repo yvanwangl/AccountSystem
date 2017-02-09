@@ -1,24 +1,23 @@
-
 export default {
 
-  namespace: 'example',
+    namespace: 'example',
 
-  state: {},
+    state: {},
 
-  subscriptions: {
-    setup({ dispatch, history }) {
+    subscriptions: {
+        setup({dispatch, history}) {
+        },
     },
-  },
 
-  effects: {
-    *fetchRemote({ payload }, { call, put }) {
+    effects: {
+        *fetchRemote({payload}, {call, put}) {
+        },
     },
-  },
 
-  reducers: {
-    fetch(state, action) {
-      return { ...state, ...action.payload };
+    reducers: {
+        fetch(state, action) {
+            return {...state, ...action.payload};
+        },
     },
-  },
 
 }
