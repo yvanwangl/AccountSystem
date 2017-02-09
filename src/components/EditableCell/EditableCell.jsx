@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import { Input, Icon} from 'antd';
+import {Input, Icon} from 'antd';
 import {editCell, editLine, inputWrapper, textWrapper, checkIcon, editIcon} from './index.css';
 
 class EditableCell extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             value: this.props.value,
@@ -14,23 +14,23 @@ class EditableCell extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(e){
+    handleChange(e) {
         let value = e.target.value;
         this.setState({value});
     }
 
-    check(){
+    check() {
         this.setState({
-            editable:false
+            editable: false
         });
-        if(this.props.onChange){
+        if (this.props.onChange) {
             this.props.onChange(this.state.value);
         }
     }
 
-    edit(){
+    edit() {
         let {disabled} = this.props;
-        if(disabled){
+        if (disabled) {
             return false;
         }
         this.setState({
@@ -38,39 +38,39 @@ class EditableCell extends Component {
         });
     }
 
-    render(){
+    render() {
         let {value, editable} = this.state;
         let {editType, disabled} = this.props;
         return (
-            <div className={editType=='editCell'?editCell:editLine}>
+            <div className={editType == 'editCell' ? editCell : editLine}>
                 {
-                    editable?
-                    (
-                        <div className={inputWrapper}>
-                            <Input
-                                value={value}
-                                onChange={this.handleChange}
-                                onPressEnter={this.check}
-                                onBlur={this.check}
-                                disabled={disabled || false}
-                            />
-                            <Icon
-                                type="check"
-                                className={checkIcon}
-                                onClick={this.check}
-                            />
-                        </div>
-                    ):
-                    (
-                        <div className={textWrapper} onDoubleClick={this.edit}>
-                            {value}
-                            <Icon
-                                type="edit"
-                                className={editIcon}
-                                onClick={this.edit}
-                            />
-                        </div>
-                    )
+                    editable ?
+                        (
+                            <div className={inputWrapper}>
+                                <Input
+                                    value={value}
+                                    onChange={this.handleChange}
+                                    onPressEnter={this.check}
+                                    onBlur={this.check}
+                                    disabled={disabled || false}
+                                />
+                                <Icon
+                                    type="check"
+                                    className={checkIcon}
+                                    onClick={this.check}
+                                />
+                            </div>
+                        ) :
+                        (
+                            <div className={textWrapper} onDoubleClick={this.edit}>
+                                {value}
+                                <Icon
+                                    type="edit"
+                                    className={editIcon}
+                                    onClick={this.edit}
+                                />
+                            </div>
+                        )
 
                 }
             </div>
