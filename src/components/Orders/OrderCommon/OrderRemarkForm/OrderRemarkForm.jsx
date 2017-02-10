@@ -12,13 +12,13 @@ const OrderRemarkForm = ({
         getFieldDecorator
     }
 }) => {
-    const handleChange = (e)=>{
+    const handleChange = (e)=> {
         onSetMem(e.target.value);
     };
 
     return (
         <div className={orderRemarkForm}>
-            <Form inline >
+            <Form inline>
                 <FormItem label="填写备注：">
                     {
                         getFieldDecorator('mem', {
@@ -27,10 +27,10 @@ const OrderRemarkForm = ({
                             <Input
                                 type='textarea'
                                 rows={4}
-                                style={{ width: 500, fontSize:14 }}
+                                style={{width: 500, fontSize: 14}}
                                 onBlur={handleChange}
                                 placeholder="在此填写备注..."
-                                disabled={disabled||false}
+                                disabled={disabled || false}
                             />
                         )
                     }

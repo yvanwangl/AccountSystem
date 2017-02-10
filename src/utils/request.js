@@ -1,18 +1,18 @@
 import fetch from 'dva/fetch';
 
 function parseJSON(response) {
-  console.log(response);
-  return response.json();
+    console.log(response);
+    return response.json();
 }
 
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    }
 
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
+    const error = new Error(response.statusText);
+    error.response = response;
+    throw error;
 }
 
 /**
@@ -23,15 +23,15 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 const defaultOptions = {
-    mode:'cors',
-    headers:{
-        'Content-Type':'application/json'
+    mode: 'cors',
+    headers: {
+        'Content-Type': 'application/json'
     },
 };
 export default function request(url, options) {
-  return fetch(url, {...defaultOptions, ...options})
-    .then(checkStatus)
-    .then(parseJSON)
-    .then((data) => ({ data }))
-    .catch((err) => ({ err }));
+    return fetch(url, {...defaultOptions, ...options})
+        .then(checkStatus)
+        .then(parseJSON)
+        .then((data) => ({data}))
+        .catch((err) => ({err}));
 }
