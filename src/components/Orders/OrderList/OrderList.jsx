@@ -17,41 +17,41 @@ const OrderList = ({
 }) => {
     const columns = [
         {
-            title:'序号',
+            title: '序号',
             dataIndex: 'serialNumber',
-            key:'serialNumber',
-            render: (text, record, index)=><span>{index+1}</span>
+            key: 'serialNumber',
+            render: (text, record, index)=><span>{index + 1}</span>
         },
         {
-            title:'下单日期',
+            title: '下单日期',
             dataIndex: 'createInstance',
-            key:'createInstance',
+            key: 'createInstance',
             render: (text)=><span>{dateFormat(text)}</span>
         },
         {
-            title:'单据编号',
-            dataIndex:'orderNumber',
-            key:'orderNumber'
+            title: '单据编号',
+            dataIndex: 'orderNumber',
+            key: 'orderNumber'
         },
         {
-            title:'客户名称',
-            dataIndex:'customerName',
-            key:'customerName'
+            title: '客户名称',
+            dataIndex: 'customerName',
+            key: 'customerName'
         },
         {
-            title:'应付金额',
-            dataIndex:'totalAmount',
-            key:'totalAmount',
+            title: '应付金额',
+            dataIndex: 'totalAmount',
+            key: 'totalAmount',
         },
         {
-            title:'已付金额',
-            dataIndex:'paymentAmount',
-            key:'paymentAmount',
+            title: '已付金额',
+            dataIndex: 'paymentAmount',
+            key: 'paymentAmount',
         },
         {
-            title:'订单信息',
-            dataIndex:'orderInfo',
-            key:'orderInfo',
+            title: '订单信息',
+            dataIndex: 'orderInfo',
+            key: 'orderInfo',
         },
         {
             title: '操作',
@@ -92,8 +92,8 @@ const OrderList = ({
                 dataSource={dataSource}
                 loading={loading}
                 rowKey={record=>record._id}
-                pagination = {false}
-                rowSelection = {rowSelection}
+                pagination={false}
+                rowSelection={rowSelection}
             />
             <Pagination
                 className="ant-table-pagination"

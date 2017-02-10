@@ -1,13 +1,13 @@
 /**
  * Created by wyf on 2017/1/18.
  */
-export default function dateFormat(text, formatType){
+export default function dateFormat(text, formatType) {
     let date = new Date(text);
     let year = date.getFullYear();
-    let month = preFixO(date.getMonth()+1);
-    let day = preFixO(date.getDate()+1);
+    let month = preFixO(date.getMonth() + 1);
+    let day = preFixO(date.getDate() + 1);
     let dateStr = `${year}-${month}-${day}`;
-    switch (formatType){
+    switch (formatType) {
         case 1:
             dateStr = `${year}年${month}月${day}日`;
             break;
@@ -20,7 +20,7 @@ export default function dateFormat(text, formatType){
     return dateStr;
 }
 
-function preFixO(number){
-    return ('0'+number).substr(-2);
+function preFixO(number) {
+    return ('0' + number).substr(-2);
 }
 
