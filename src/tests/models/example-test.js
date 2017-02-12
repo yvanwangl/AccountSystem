@@ -8,4 +8,5 @@ describe('example', () => {
             expect(example.reducers['example/save']({}, {payload: {a: 1}})).toEqual({a: 1});
         });
     })
+
 });
