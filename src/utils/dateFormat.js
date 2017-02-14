@@ -1,6 +1,7 @@
 /**
  * Created by wyf on 2017/1/18.
  */
+
 export default function dateFormat(text, formatType) {
     let date = new Date(text);
     let year = date.getFullYear();
