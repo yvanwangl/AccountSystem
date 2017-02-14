@@ -13,13 +13,19 @@ export default function ({history}) {
         <Router history={history}>
             <Route path="/" component={HomePage}>
                 <IndexRoute component={IndexPage}/>
+
                 <Route path="/orders" component={Orders}>
                     <Route path="/orders/*" component={Orders}/>
                 </Route>
+
                 <Route path="/storage" component={Storage}/>
+
                 <Route path="/stock" component={Stock}/>
+
                 <Route path="/funds" component={Funds}/>
+
                 <Route path="/manage" component={Manage}/>
+
             </Route>
         </Router>
     );
