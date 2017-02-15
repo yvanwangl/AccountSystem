@@ -1,6 +1,5 @@
 import {query, create, modify, del} from '../services/orders';
 import {parse} from 'qs';
-
 export default {
 
     namespace: 'stocks',
