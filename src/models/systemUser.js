@@ -1,5 +1,6 @@
 import {doLogin} from '../services/systemUser';
 import {getCurrentUser, fetchIsAuth} from '../utils/webSessionUtils';
+
 export default {
 
     namespace: 'systemUser',
