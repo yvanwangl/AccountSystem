@@ -1,6 +1,5 @@
 import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/orders';
 import {parse} from 'qs';
-
 const defaultProduct = {
     key: '0',
     productName: '铝合金',
