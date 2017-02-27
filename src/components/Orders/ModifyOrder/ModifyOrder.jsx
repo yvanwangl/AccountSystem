@@ -1,12 +1,11 @@
 import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
+import {Button} from 'antd';
 import {message} from 'antd';
 import ModifyOrderTitle from '../OrderCommon/OrderTitle/OrderTitle';
 import ModifyOrderForm from '../OrderCommon/OrderForm/OrderForm';
 import AddOrderGrid from '../OrderCommon/AddOrderGrid/AddOrderGrid';
 import OrderRemarkForm from '../OrderCommon/OrderRemarkForm/OrderRemarkForm';
 import {connect} from 'dva';
-import Spliter from '../Spliter/Spliter';
 import {modifyOrder, orderWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
 
 const ModifyOrder = ({

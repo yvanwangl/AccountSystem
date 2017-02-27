@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Table, Popconfirm, Icon} from 'antd';
-import EditableCell from '../../EditableCell/EditableCell';
-import Spliter from '../../Spliter/Spliter';
+import EditableCell from '../../../EditableCell/EditableCell';
+import Spliter from '../../../Spliter/Spliter';
 import {addOrderGrid, rowClassName, totalAmountClass, remarkClass, paymentAmountClass} from './index.css';
 
 

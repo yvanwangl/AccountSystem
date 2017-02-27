@@ -1,10 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
+import {Button} from 'antd';
 import {message} from 'antd';
 import AddCustomerTitle from '../CustomerCommon/CustomerTitle/CustomerTitle';
 import AddCustomerForm from '../CustomerCommon/CustomerForm/CustomerForm';
 import {connect} from 'dva';
-import Spliter from '../Spliter/Spliter';
 import {addCustomer, customerWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
 
 const AddCustomer = ({
