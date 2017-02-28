@@ -17,6 +17,7 @@ app.model(require('./models/storages'));
 app.model(require('./models/funds'));
 app.model(require('./models/manage'));
 app.model(require('./models/systemUser'));
+app.model(require('./models/customers'));
 
 // 4. Router
 app.router(require('./router'));

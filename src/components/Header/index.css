@@ -4,25 +4,9 @@
     left:0 ;
     bottom: 0;
     width:300px;
-    background: #656565;
+    background: #404040;
 }
 .menuList  {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.menuItem {
-    text-align: center;
-    height: 64px;
-    line-height: 64px;
-}
-.menuItem a,
-.menuItem a:hover {
-    color: #fff;
-    display: block;
-}
-.activeItem {
-    composes: menuItem;
-    background-color: rgba(215, 215, 215, 0.24);
+    margin-top: 60px;
+    border: none;
 }

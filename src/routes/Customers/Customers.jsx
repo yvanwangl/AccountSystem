@@ -6,11 +6,11 @@ import CustomerList from '../../components/Customers/CustomerList/CustomerList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import AddCustomer from '../../components/Customers/AddCustomer/AddCustomer';
-import ModifyCustomer from '../../components/Orders/ModifyOrder/ModifyOrder';
+import ModifyCustomer from '../../components/Customers/AddCustomer/AddCustomer';
 import {redirect} from '../../utils/webSessionUtils';
 import {customerClass, customerContainer, addCustomerContainer, modifyCustomerContainer} from './index.css';
 
-function genCustomers({dispatch, orders}) {
+function genCustomers({dispatch, customers}) {
     const {
         list,
         total,
@@ -22,7 +22,7 @@ function genCustomers({dispatch, orders}) {
         editorVisible,
         editorType,
         breadcrumbItems
-    } = orders;
+    } = customers;
 
     const customerListProps = {
         current,
@@ -52,7 +52,7 @@ function genCustomers({dispatch, orders}) {
         }
     };
     const customerEditor = {
-        item: editorType == 'create' ? {} : currentItem,
+        customer: editorType == 'create' ? {} : currentItem,
         type: editorType,
         visible: editorVisible,
         onConfirm(data){
@@ -77,7 +77,7 @@ function genCustomers({dispatch, orders}) {
 
     const onAdd = ()=> {
         dispatch({
-            type: 'orders/getOrderNumber'
+            type: 'customers/showEditor'
         });
     };
 
@@ -90,12 +90,12 @@ function genCustomers({dispatch, orders}) {
                         editorType == 'create' ?
                             (
                                 <div className={addCustomerContainer}>
-                                    <AddCustomer />
+                                    <AddCustomer {...customerEditor}/>
                                 </div>
                             ) :
                             (
                                 <div className={modifyCustomerContainer}>
-                                    <ModifyCustomer/>
+                                    <ModifyCustomer {...customerEditor}/>
                                 </div>
                             )
                     ) :

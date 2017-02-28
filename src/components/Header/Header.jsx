@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
-import {Menu} from 'antd';
+import {Menu, Icon} from 'antd';
 import NavLink from '../NavLink/NavLink';
 import {header, menuList, menuItem, activeItem} from './index.css';
 
+const MenuItem = Menu.Item;
+const SubMenu = Menu.SubMenu;
+
 const menus = [
-    ['index', '/', '首页'],
-    ['orders', '/orders', '订单'],
-    ['storage', '/storage', '入库'],
-    ['stock', '/stock', '仓库'],
-    ['funds', '/funds', '资金'],
-    ['manage', '/manage', '管理'],
+    ['index', '/', '首页','home'],
+    ['orders', '/orders', '订单','solution'],
+    ['storage', '/storage', '入库','upload'],
+    ['stock', '/stock', '仓库', 'folder'],
+    ['funds', '/funds', '资金', 'pay-circle-o'],
+    ['manage', '/manage', '管理', 'setting'],
 ];
 
 const manageChildMenus = [
-    ['customer', '/customer','客户'],
-    ['product', '/product','商品'],
-    ['supplier', '/supplier','供应商'],
+    ['customer', '/customer','客户', 'user'],
+    ['product', '/product','商品', 'inbox'],
+    ['supplier', '/supplier','供应商', 'team'],
 ];
 
 export default class Header extends Component {
@@ -35,41 +38,35 @@ export default class Header extends Component {
     render(){
         return (
             <div className={header}>
-                <ul className={menuList}>
+                <Menu
+                    defaultSelectedKeys={['index']}
+                    mode="inline"
+                    theme="dark"
+                    className={menuList}
+                >
                     {
-                        menus.map(([key, path, text],index)=>
-                            (
+                        menus.map(([key, path, text, icon],index)=>(
                                 key!=='manage'?
                                     (
-                                        <li key={key} className={this.state.activeIndex==index? activeItem : menuItem}>
-                                            <NavLink target={path} linkText={text}/>
-                                        </li>
+                                        <MenuItem key={key}>
+                                            <NavLink target={path} linkText={<span><Icon type={icon} /><span>{text}</span></span>}/>
+                                        </MenuItem>
                                     ):
                                     (
-
-                                        <li key={key} className={menuItem}>
-                                            <NavLink target={path} linkText={text}/>
+                                        <SubMenu key={key} title={<span><Icon type="setting" /><span>{text}</span></span>}>
                                             {
-                                                this.state.activeIndex===index?
-                                                    <ul>
-                                                        {
-                                                            manageChildMenus.map(([key, path, text],index)=>
-                                                                (
-                                                                    <li key={key} className={this.state.activeIndex==index? activeItem : menuItem}>
-                                                                        <NavLink target={path} linkText={text}/>
-                                                                    </li>
-                                                                )
-                                                            )
-                                                        }
-                                                    </ul>:
-                                                    null
+                                                manageChildMenus.map(([key, path, text, icon], index)=>(
+                                                    <MenuItem key={key}>
+                                                        <NavLink target={path} linkText={<span><Icon type={icon} /><span>{text}</span></span>}/>
+                                                    </MenuItem>
+                                                ))
                                             }
-                                        </li>
+                                        </SubMenu>
                                     )
                             )
                         )
                     }
-                </ul>
+                </Menu>
             </div>
         );
     }
