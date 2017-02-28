@@ -1,10 +1,10 @@
 /**
  * Created by wyf on 2017/1/13.
  */
-var mongoose =  require('mongoose');
-var Schema = mongoose.Schema;
+let mongoose =  require('mongoose');
+let Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+let userSchema = new Schema({
     username: String,
     password: String,
     salt: String,

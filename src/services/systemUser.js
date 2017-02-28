@@ -1,7 +1,6 @@
 import request from '../utils/request';
-import HTTP_SERVER from './serviceConfig';
 
-const LOGIN_API = `${HTTP_SERVER}/api/login`;
+const LOGIN_API = '/api/login';
 
 export async function doLogin(params) {
     console.log(params);
