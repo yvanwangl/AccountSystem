@@ -1,13 +1,13 @@
 /**
  * Created by wyf on 2017/1/16.
  */
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
 router.route('/')
     .get(function (req, res, next) {
-        var authToken = global[Symbol.for('authToken')];
-        var requestAuthToken = req.query.authToken;
+        let authToken = global[Symbol.for('authToken')];
+        let requestAuthToken = req.query.authToken;
         if (authToken && requestAuthToken && authToken == requestAuthToken) {
             res.send({
                 isAuth: true

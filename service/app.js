@@ -1,20 +1,21 @@
-var express = require('express');
-var compression = require('compression');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+let express = require('express');
+let compression = require('compression');
+let path = require('path');
+let favicon = require('serve-favicon');
+let logger = require('morgan');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
+let mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost:27017/accountSystem");
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var login = require('./routes/login');
-var auth = require('./routes/auth');
-var orders = require('./routes/orders');
+let routes = require('./routes/index');
+let users = require('./routes/users');
+let login = require('./routes/login');
+let auth = require('./routes/auth');
+let orders = require('./routes/orders');
+let customers = require('./routes/customers');
 
-var app = express();
+let app = express();
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../dist')));
@@ -51,9 +52,9 @@ app.use(function (req, res, next) {
 /*(function () {
 
  // Step 1: Create & configure a webpack compiler
- var webpack = require('webpack');
- var webpackConfig = require(process.env.WEBPACK_CONFIG ? process.env.WEBPACK_CONFIG : '../webpack.config');
- var compiler = webpack(webpackConfig);
+ let webpack = require('webpack');
+ let webpackConfig = require(process.env.WEBPACK_CONFIG ? process.env.WEBPACK_CONFIG : '../webpack.config');
+ let compiler = webpack(webpackConfig);
 
  // Step 2: Attach the dev middleware to the compiler & the server
  app.use(require("webpack-dev-middleware")(compiler, {
@@ -69,6 +70,7 @@ app.use(function (req, res, next) {
 /*app.use('/', routes);*/
 app.use('/api/users', users);
 app.use('/api/orders', orders);
+app.use('/api/customers', customers);
 app.use('/api/login', login);
 app.use('/api/auth', auth);
 //确保react-router刷新正确路由
@@ -78,7 +80,7 @@ app.get('*', function (request, response) {
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    var err = new Error('Not Found');
+    let err = new Error('Not Found');
     err.status = 404;
     next(err);
 });

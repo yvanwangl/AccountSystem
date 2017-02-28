@@ -1,4 +1,4 @@
-import {query, create, modify, del} from '../services/orders';
+import {query, create, modify, del} from '../services/customers';
 import {parse} from 'qs';
 export default {
 
@@ -12,12 +12,16 @@ export default {
         loading: false,
         current: null,
         currentItem: {},
+        breadcrumbItems:[
+            ['/customer', '首页'],
+            ['/customer', '客户管理'],
+        ],
         editorVisible: false,
         editorType: 'create'
     },
 
     subscriptions: {
-        /*setup({dispatch, history}) {
+        setup({dispatch, history}) {
          history.listen(location=>{
          if(location.pathname == '/orders'){
          dispatch({
@@ -26,7 +30,7 @@ export default {
          });
          }
          });
-         },*/
+         },
     },
 
     effects: {
@@ -56,16 +60,14 @@ export default {
         *create({payload}, {call, put}){
             yield put({type: 'hideEditor'});
             yield put({type: 'showLoading'});
-            const {data} = call(create, payload);
+            const {data} = yield call(create, payload);
             if (data && data.success) {
                 yield put({
-                    type: 'createSuccess',
+                    type: 'query',
                     payload: {
-                        list: data.data,
-                        total: data.page.total,
-                        current: data.page.current,
+                        page: 1,
                         field: '',
-                        keyword: '',
+                        keyword: ''
                     }
                 });
             }
@@ -127,6 +129,9 @@ export default {
         },
         updateQueryKey(state, action){
             return {...state, ...action.payload};
+        },
+        resetCustomer(state, action){
+            return {...state, currentItem:{}, editorVisible: false, editorType: 'create'};
         }
     },
 
