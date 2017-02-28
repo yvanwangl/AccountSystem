@@ -1,13 +1,13 @@
-var express = require('express');
-var router = express.Router();
-var User = require('../models/user');
-var utils = require('../utils/utils');
+let express = require('express');
+let router = express.Router();
+let User = require('../models/user');
+let utils = require('../utils/utils');
 
 /* GET users listing. */
 // router.route('/')
 router.post('/',function (req, res, next) {
-        var userInfo = req.body;
-        /*var user = new User({
+        let userInfo = req.body;
+        /*let user = new User({
             username:'lihuan',
             password:'lihuan0215',
         });
@@ -33,7 +33,7 @@ router.post('/',function (req, res, next) {
                 });
             }else {
                 if(userInfo['password']==userList[0]['password']){
-                    var authToken = utils.getAuthToken(10);
+                    let authToken = utils.getAuthToken(10);
                     res.send({
                         success: true,
                         userInfo:{

@@ -1,8 +1,7 @@
 import request from '../utils/request';
 import qs from 'qs';
-import HTTP_SERVER from './serviceConfig';
 
-const ORDER_API = `${HTTP_SERVER}/api/orders`;
+const ORDER_API = '/api/orders';
 
 export async function query(params) {
     console.log(params);

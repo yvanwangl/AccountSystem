@@ -1,4 +1,5 @@
 import fetch from 'dva/fetch';
+import {HTTP_SERVER} from '../constants/constants';
 
 function parseJSON(response) {
     console.log(response);
@@ -29,7 +30,7 @@ const defaultOptions = {
     },
 };
 export default function request(url, options) {
-    return fetch(url, {...defaultOptions, ...options})
+    return fetch(`${HTTP_SERVER}${url}`, {...defaultOptions, ...options})
         .then(checkStatus)
         .then(parseJSON)
         .then((data) => ({data}))

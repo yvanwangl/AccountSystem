@@ -19,7 +19,7 @@ class Manage extends Component{
 
     render(){
         return (
-            <div className='manage' style={{textAlign:'center'}}>
+            <div className='manage'>
                 {this.props.children}
             </div>
         );
