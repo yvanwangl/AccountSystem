@@ -8,60 +8,44 @@ import {addCustomer, customerWrapper, buttonGroup, confirmButton, cancelButton} 
 
 
 class AddCustomer extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.handleConfirm = this.handleConfirm.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
     }
 
-    handleConfirm(){
+    handleConfirm() {
         /**
          * 数据保存前，做数据校验,
          * 所有数据均为必填项，包括：客户名称，联系人，联系方式，地址
          */
-        let {dispatch} = this.props;
+        let {onConfirm} = this.props;
         this.refs.addCustomerForm.validateFields((err, values) => {
             if (!!err) {
                 return;
             }
-            dispatch({
-                type: 'customers/create',
-                payload: {
-                    ...values
-                }
-            });
+            onConfirm(values);
         });
     }
 
-    handleCancel(){
-        dispatch({
-            type: 'customers/resetCustomer'
-        });
+    handleCancel() {
+        let {onCancel} = this.props;
+        onCancel();
     }
 
-    render(){
-        let {customer, dispatch} = this.props;
-        const addCustomerFormProps = {
-            customer,
-            onAddCustomer(customer){
-                dispatch({
-                    type: 'customers/addCustomer',
-                    payload: {
-                        customer
-                    }
-                })
-            }
-        };
+    render() {
+        let {customer} = this.props;
         return (
             <div className={addCustomer}>
                 <div className={customerWrapper}>
                     <AddCustomerTitle titleText={'客户资料'}/>
-                    <AddCustomerForm {...addCustomerFormProps} ref="addCustomerForm"/>
+                    <AddCustomerForm customer={customer} ref="addCustomerForm"/>
                 </div>
                 <div className={buttonGroup}>
                     <Button type="primary" className={confirmButton} onClick={this.handleConfirm}>确定</Button>
                     <Button type="ghost" className={cancelButton} onClick={this.handleCancel}>取消</Button>
                 </div>
+
             </div>
         );
     }

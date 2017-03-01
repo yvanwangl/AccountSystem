@@ -14,29 +14,16 @@ const formItemLayout = {
 
 const CustomerForm = ({
     customer,
-    onAddCustomer,
-    onCancel,
     form: {
         getFieldDecorator,
-        validateFields,
-        getFieldsValue
     }
 }) => {
-    const handleConfirm = ()=> {
-        validateFields((errors)=> {
-            if (!!errors) {
-                return;
-            }
-            let data = {...getFieldsValue()};
-            onAddCustomer(data);
-        });
-    };
 
     let {customerName, contactPeople, contactPhone, address, mem, accountName, accountBank, accountNo} = customer;
 
     return (
         <div className={customerForm}>
-            <Form onSubmit={handleConfirm}>
+            <Form>
                 <span className={formColumn}>
                     <h2 className={formTitle}>基础资料</h2>
                     <FormItem label="客户名称：" hasFeedback {...formItemLayout}>
