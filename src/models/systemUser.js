@@ -14,7 +14,7 @@ export default {
 
     subscriptions: {
         setup({dispatch, history}) {
-            history.listen(location=> {
+            history.listen(location => {
                 if (location.pathname == '/') {
                     //权限验证通过
                     fetchIsAuth(function (isAuth) {
@@ -25,7 +25,6 @@ export default {
                             });
                         }
                     });
-
                 }
             });
         },

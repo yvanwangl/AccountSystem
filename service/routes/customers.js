@@ -55,4 +55,41 @@ router.route('/')
         });
     });
 
+router.route('/:customerId')
+    .put((req, res, next)=>{
+        let customerId = req.params.customerId;
+        let customer = req.body;
+        let newCustomer = Object.assign({},customer);
+        console.log(customerId);
+        Customer.findOneAndUpdate({_id:customerId}, newCustomer, {new: true}, (err, customer)=>{
+            console.log(customer['_id']);
+            if(err){
+                res.send({
+                    success: false,
+                    error: err
+                });
+            }else {
+                res.send({
+                    success: true,
+                    customer: customer
+                });
+            }
+        });
+    })
+    .delete((req, res, next)=>{
+        let customerId = req.params.customerId;
+        Customer.remove({_id: customerId}, (err)=>{
+            if (err) {
+                res.send({
+                    success: false,
+                    error: err
+                });
+            } else {
+                res.send({
+                    success: true
+                });
+            }
+        });
+    });
+
 module.exports = router;

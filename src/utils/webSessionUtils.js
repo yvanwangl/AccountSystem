@@ -4,9 +4,8 @@
 import request from '../utils/request';
 import {message} from 'antd';
 import {browserHistory} from 'dva/router';
-import HTTP_SERVER from '../services/serviceConfig';
 
-const AUTH_API = `${HTTP_SERVER}/api/auth`;
+const AUTH_API = `/api/auth`;
 
 export function getCurrentUser() {
     let localStorage = window.localStorage;
@@ -18,8 +17,8 @@ export function getCurrentUser() {
 
 export async function fetchIsAuth(callback) {
     return request(`${AUTH_API}?authToken=${getCurrentUser()['authToken']}`)
-        .then(data=>callback(data.data.isAuth))
-        .catch(e=>console.log(e));
+        .then(data => callback(data.data.isAuth))
+        .catch(e => console.log(e));
 }
 
 export function redirect() {

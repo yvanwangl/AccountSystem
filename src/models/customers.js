@@ -12,7 +12,7 @@ export default {
         loading: false,
         current: null,
         currentItem: {},
-        breadcrumbItems:[
+        breadcrumbItems: [
             ['/customer', '首页'],
             ['/customer', '客户管理'],
         ],
@@ -22,15 +22,15 @@ export default {
 
     subscriptions: {
         setup({dispatch, history}) {
-         history.listen(location=>{
-         if(location.pathname == '/orders'){
-         dispatch({
-         type:'query',
-         payload: location.query
-         });
-         }
-         });
-         },
+            history.listen(location => {
+                if (location.pathname == '/customer') {
+                    dispatch({
+                        type: 'query',
+                        payload: location.query
+                    });
+                }
+            });
+        },
     },
 
     effects: {
@@ -50,7 +50,7 @@ export default {
                 yield put({
                     type: 'querySuccess',
                     payload: {
-                        list: data.data,
+                        list: data.customers,
                         total: data.page.total,
                         current: data.page.current
                     }
@@ -75,13 +75,14 @@ export default {
         *modify({payload}, {select, call, put}){
             yield put({type: 'hideEditor'});
             yield put({type: 'showLoading'});
-            const id = yield select(({order})=>order.currentItem.id);
-            const newOrder = {...payload, id};
-            const {data} = yield call(modify, newOrder);
+            const state = yield select((state) => console.log(state));
+            const id = yield select(({customers}) => {console.log(customers);return customers.currentItem['_id'];});
+            const newCustomer = {...payload, id};
+            const {data} = yield call(modify, newCustomer);
             if (data && data.success) {
                 yield put({
                     type: 'modifySuccess',
-                    payload: newOrder
+                    payload: newCustomer
                 });
             }
         },
@@ -107,10 +108,12 @@ export default {
             return {...state, loading: true};
         },
         showEditor(state, action){
-            return {...state, ...action.payload, editorVisible: true};
+            let newState = {...state, ...action.payload, editorVisible: true};
+            console.log(newState);
+            return newState;
         },
         hideEditor(state, action){
-            return {...state, editorVisible: false};
+            return {...state, currentItem: {}, editorVisible: false, editorType: 'create'};
         },
         querySuccess(state, action){
             return {...state, ...action.payload, loading: false};
@@ -118,20 +121,25 @@ export default {
         createSuccess(state, action){
             return {...state, ...action.payload, loading: false};
         },
+        doModify(state, action){
+            const currentItem = {...action.payload.currentItem};
+            const editorType = action.payload.editorType;
+            return {...state, currentItem: currentItem, editorType, editorVisible: true};
+        },
         modifySuccess(state, action){
-            const updateOrder = action.payload;
-            const newList = state.list.map(order=>order.id == updateOrder.id ? {...order, ...updateOrder} : order);
+            const updateCustomer = action.payload;
+            const newList = state.list.map(customer => customer._id == updateCustomer.id ? {...customer, ...updateCustomer} : customer);
             return {...state, list: newList, loading: false};
         },
         delSuccess(state, action){
-            const newList = state.list.filter(order=> order.id != action.payload);
+            const newList = state.list.filter(customer => customer._id != action.payload);
             return {...state, list: newList, loading: false};
         },
         updateQueryKey(state, action){
             return {...state, ...action.payload};
         },
         resetCustomer(state, action){
-            return {...state, currentItem:{}, editorVisible: false, editorType: 'create'};
+            return {...state, currentItem: {}, editorVisible: false, editorType: 'create'};
         }
     },
 

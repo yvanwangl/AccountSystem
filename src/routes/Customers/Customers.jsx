@@ -31,15 +31,15 @@ function genCustomers({dispatch, customers}) {
         loading,
         onPageChange(page){
             dispatch(routerRedux.push({
-                pathname: '/customers',
+                pathname: '/customer',
                 query: {field, keyword, page}
             }));
         },
-        onModify(customerId){
+        onModify(customer){
             dispatch({
-                type: 'customers/queryCustomerById',
+                type: 'customers/showEditor',
                 payload: {
-                    customerId: customerId,
+                    currentItem: customer,
                     editorType: 'modify'
                 }
             });
@@ -56,6 +56,7 @@ function genCustomers({dispatch, customers}) {
         type: editorType,
         visible: editorVisible,
         onConfirm(data){
+            console.log(customers);
             dispatch({
                 type: `customers/${editorType}`,
                 payload: data,
@@ -70,7 +71,7 @@ function genCustomers({dispatch, customers}) {
 
     const onSearch = (fieldValues)=> {
         dispatch(routerRedux.push({
-            pathname: '/orders',
+            pathname: '/customer',
             query: {...fieldValues, page: 1}
         }));
     };
