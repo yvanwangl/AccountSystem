@@ -26,12 +26,3 @@ export async function del(params) {
         method: 'delete'
     });
 }
-
-export async function getOrderNumber() {
-    return request(`${CUSTOMER_API}/getOrderNumber`);
-}
-
-export async function queryOrderById(orderId) {
-    console.log(orderId);
-    return request(`${CUSTOMER_API}/${orderId}`);
-}

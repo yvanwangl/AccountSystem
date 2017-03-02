@@ -1,0 +1,29 @@
+.addSupplier {
+    font-size: 16px;
+}
+
+.supplierWrapper {
+    padding: 20px 25px;
+    background-color: #fff;
+}
+
+.buttonGroup {
+    margin: 30px 0 100px;
+
+}
+
+.confirmButton,
+.cancelButton {
+    width: 200px;
+    height: 40px;
+    line-height: 30px;
+    font-size: 16px
+}
+
+.confirmButton {
+    margin-right: 20px;
+}
+
+.cancelButton {
+    border: solid 1px #979797;
+}

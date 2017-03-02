@@ -1,0 +1,14 @@
+.supplierForm {
+    width: 100%;
+    margin: 28px 0 22px 0;
+}
+
+.formColumn {
+    display: inline-block;
+    width: 50%;
+}
+
+.formTitle {
+    font-size: 18px;
+    margin: 30px 20px 20px;
+}
