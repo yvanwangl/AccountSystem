@@ -8,6 +8,7 @@ import Stock from './routes/Stock/Stock';
 import Funds from './routes/Funds/Funds';
 import Manage from './routes/Manage/Manage';
 import Customers from './routes/Customers/Customers';
+import Suppliers from './routes/Suppliers/Suppliers';
 
 export default function ({history}) {
     return (
@@ -29,7 +30,7 @@ export default function ({history}) {
                 <Route component={Manage}>
                     <Route path="/customer" component={Customers}/>
                     <Route path="/product" component={Customers}/>
-                    <Route path="/supplier" component={Customers}/>
+                    <Route path="/supplier" component={Suppliers}/>
                 </Route>
 
             </Route>
