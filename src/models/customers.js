@@ -75,8 +75,7 @@ export default {
         *modify({payload}, {select, call, put}){
             yield put({type: 'hideEditor'});
             yield put({type: 'showLoading'});
-            const state = yield select((state) => console.log(state));
-            const id = yield select(({customers}) => {console.log(customers);return customers.currentItem['_id'];});
+            const id = yield select(({customers}) => customers.currentItem['_id']);
             const newCustomer = {...payload, id};
             const {data} = yield call(modify, newCustomer);
             if (data && data.success) {
@@ -84,6 +83,9 @@ export default {
                     type: 'modifySuccess',
                     payload: newCustomer
                 });
+                yield put({
+                	type: 'resetCustomer'
+				});
             }
         },
         *del({payload}, {call, put}){
@@ -108,12 +110,10 @@ export default {
             return {...state, loading: true};
         },
         showEditor(state, action){
-            let newState = {...state, ...action.payload, editorVisible: true};
-            console.log(newState);
-            return newState;
+            return {...state, ...action.payload, editorVisible: true};
         },
         hideEditor(state, action){
-            return {...state, currentItem: {}, editorVisible: false, editorType: 'create'};
+            return {...state, editorVisible: false};
         },
         querySuccess(state, action){
             return {...state, ...action.payload, loading: false};
