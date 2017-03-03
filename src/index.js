@@ -18,6 +18,7 @@ app.model(require('./models/funds'));
 app.model(require('./models/manage'));
 app.model(require('./models/systemUser'));
 app.model(require('./models/customers'));
+app.model(require('./models/products'));
 app.model(require('./models/suppliers'));
 
 // 4. Router
