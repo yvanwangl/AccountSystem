@@ -12,7 +12,8 @@ const SupplierList = ({
     dataSource,
     onPageChange,
     onModify,
-    onDel
+    onDel,
+	onDetail
 }) => {
     const columns = [
         {
@@ -22,7 +23,7 @@ const SupplierList = ({
             render: (text, record, index)=><span>{index + 1}</span>
         },
         {
-            title: '客户名称',
+            title: '供应商名称',
             dataIndex: 'supplierName',
             key: 'supplierName'
         },
@@ -41,6 +42,11 @@ const SupplierList = ({
             dataIndex: 'address',
             key: 'address',
         },
+		{
+			title: '应付金额',
+			dataIndex: 'payment',
+			key: 'payment',
+		},
         {
             title: '备注',
             dataIndex: 'mem',
@@ -56,6 +62,8 @@ const SupplierList = ({
                     <Popconfirm title="确定删除该条记录？" onConfirm={()=> onDel(record['_id'])}>
                         <a type='ghost'>删除</a>
                     </Popconfirm>
+					<Spliter spliterText="|"/>
+					<a onClick={()=> onDetail(record)}>详情</a>
                 </p>
             )
         }

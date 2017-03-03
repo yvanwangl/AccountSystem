@@ -5,8 +5,7 @@ import SearchForm from '../../components/SearchForm/SearchForm';
 import SupplierList from '../../components/Suppliers/SupplierList/SupplierList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
-import AddSupplier from '../../components/Suppliers/AddSupplier/AddSupplier';
-import ModifySupplier from '../../components/Suppliers/AddSupplier/AddSupplier';
+import Supplier from '../../components/Suppliers/AddSupplier/AddSupplier';
 import {redirect} from '../../utils/webSessionUtils';
 import {supplierClass, supplierContainer, addSupplierContainer, modifySupplierContainer} from './index.css';
 
@@ -49,10 +48,20 @@ function genSuppliers({dispatch, suppliers}) {
                 type: 'suppliers/del',
                 payload: supplierId,
             });
-        }
+        },
+		onDetail(supplier){
+			dispatch({
+				type: 'suppliers/showEditor',
+				payload: {
+					currentItem: supplier,
+					editorType: 'detail'
+				}
+			});
+		}
     };
     const supplierEditor = {
         supplier: editorType == 'create' ? {} : currentItem,
+		disabled: editorType == 'detail',
         type: editorType,
         visible: editorVisible,
         onConfirm(data){
@@ -63,7 +72,7 @@ function genSuppliers({dispatch, suppliers}) {
         },
         onCancel(){
             dispatch({
-                type: 'suppliers/hideEditor'
+                type: 'suppliers/resetSupplier'
             });
         }
     };
@@ -87,17 +96,9 @@ function genSuppliers({dispatch, suppliers}) {
             {
                 editorVisible ?
                     (
-                        editorType == 'create' ?
-                            (
-                                <div className={addSupplierContainer}>
-                                    <AddSupplier {...supplierEditor}/>
-                                </div>
-                            ) :
-                            (
-                                <div className={modifySupplierContainer}>
-                                    <ModifySupplier {...supplierEditor}/>
-                                </div>
-                            )
+						<div className={addSupplierContainer}>
+							<Supplier {...supplierEditor}/>
+						</div>
                     ) :
                     (
                         <div className={supplierContainer}>

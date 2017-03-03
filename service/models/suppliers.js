@@ -9,6 +9,7 @@ let supplierSchema = new Schema({
     contactPeople: String,
     contactPhone: String,
     address: String,
+	payment: Number,
     mem: String,
     accountName: String,
     accountBank: String,
