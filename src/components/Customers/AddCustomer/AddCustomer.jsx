@@ -34,15 +34,21 @@ class AddCustomer extends Component {
     }
 
     render() {
-        let {customer} = this.props;
+        let {customer, disabled} = this.props;
         return (
             <div className={addCustomer}>
                 <div className={customerWrapper}>
                     <AddCustomerTitle titleText={'客户资料'}/>
-                    <AddCustomerForm customer={customer} ref="addCustomerForm"/>
+                    <AddCustomerForm customer={customer} disabled={disabled} ref="addCustomerForm"/>
                 </div>
                 <div className={buttonGroup}>
-                    <Button type="primary" className={confirmButton} onClick={this.handleConfirm}>确定</Button>
+					{
+						disabled ?
+							null:
+							<Button type="primary" className={confirmButton} onClick={this.handleConfirm}>
+								确定
+							</Button>
+					}
                     <Button type="ghost" className={cancelButton} onClick={this.handleCancel}>取消</Button>
                 </div>
 

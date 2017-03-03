@@ -5,8 +5,7 @@ import SearchForm from '../../components/SearchForm/SearchForm';
 import CustomerList from '../../components/Customers/CustomerList/CustomerList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
-import AddCustomer from '../../components/Customers/AddCustomer/AddCustomer';
-import ModifyCustomer from '../../components/Customers/AddCustomer/AddCustomer';
+import Customer from '../../components/Customers/AddCustomer/AddCustomer';
 import {redirect} from '../../utils/webSessionUtils';
 import {customerClass, customerContainer, addCustomerContainer, modifyCustomerContainer} from './index.css';
 
@@ -49,11 +48,21 @@ function genCustomers({dispatch, customers}) {
                 type: 'customers/del',
                 payload: customerId,
             });
-        }
+        },
+		onDetail(customer){
+			dispatch({
+				type: 'customers/showEditor',
+				payload: {
+					currentItem: customer,
+					editorType: 'detail'
+				}
+			});
+		}
     };
     const customerEditor = {
         customer: editorType == 'create' ? {} : currentItem,
         type: editorType,
+		disabled: editorType == 'detail',
         visible: editorVisible,
         onConfirm(data){
             console.log(customers);
@@ -64,7 +73,7 @@ function genCustomers({dispatch, customers}) {
         },
         onCancel(){
             dispatch({
-                type: 'customers/hideEditor'
+                type: 'customers/resetCustomer'
             });
         }
     };
@@ -88,17 +97,11 @@ function genCustomers({dispatch, customers}) {
             {
                 editorVisible ?
                     (
-                        editorType == 'create' ?
-                            (
-                                <div className={addCustomerContainer}>
-                                    <AddCustomer {...customerEditor}/>
-                                </div>
-                            ) :
-                            (
-                                <div className={modifyCustomerContainer}>
-                                    <ModifyCustomer {...customerEditor}/>
-                                </div>
-                            )
+						(
+							<div className={addCustomerContainer}>
+								<Customer {...customerEditor}/>
+							</div>
+						)
                     ) :
                     (
                         <div className={customerContainer}>

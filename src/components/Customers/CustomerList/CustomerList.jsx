@@ -12,7 +12,8 @@ const CustomerList = ({
     dataSource,
     onPageChange,
     onModify,
-    onDel
+    onDel,
+	onDetail
 }) => {
     const columns = [
         {
@@ -56,6 +57,8 @@ const CustomerList = ({
                     <Popconfirm title="确定删除该条记录？" onConfirm={()=> onDel(record['_id'])}>
                         <a type='ghost'>删除</a>
                     </Popconfirm>
+					<Spliter spliterText="|"/>
+					<a onClick={()=> onDetail(record)}>详情</a>
                 </p>
             )
         }

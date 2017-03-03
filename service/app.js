@@ -14,6 +14,8 @@ let login = require('./routes/login');
 let auth = require('./routes/auth');
 let orders = require('./routes/orders');
 let customers = require('./routes/customers');
+let products = require('./routes/products');
+let uploadProductImg = require('./routes/uploadProductImg');
 let suppliers = require('./routes/suppliers');
 
 let app = express();
@@ -72,7 +74,9 @@ app.use(function (req, res, next) {
 app.use('/api/users', users);
 app.use('/api/orders', orders);
 app.use('/api/customers', customers);
+app.use('/api/products', products);
 app.use('/api/suppliers', suppliers);
+app.use('/api/uploadProductImg', uploadProductImg);
 app.use('/api/login', login);
 app.use('/api/auth', auth);
 //确保react-router刷新正确路由

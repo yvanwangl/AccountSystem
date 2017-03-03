@@ -1,13 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import {Button} from 'antd';
 import {message} from 'antd';
-import AddSupplierTitle from '../SupplierCommon/SupplierTitle/SupplierTitle';
-import AddSupplierForm from '../SupplierCommon/SupplierForm/SupplierForm';
+import AddProductTitle from '../ProductCommon/ProductTitle/ProductTitle';
+import AddProductForm from '../ProductCommon/ProductForm/ProductForm';
 import {connect} from 'dva';
-import {addSupplier, supplierWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
+import {addProduct, productWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
 
 
-class AddSupplier extends Component {
+class AddProduct extends Component {
     constructor(props) {
         super(props);
         this.handleConfirm = this.handleConfirm.bind(this);
@@ -20,7 +20,7 @@ class AddSupplier extends Component {
          * 所有数据均为必填项，包括：客户名称，联系人，联系方式，地址
          */
         let {onConfirm} = this.props;
-        this.refs.addSupplierForm.validateFields((err, values) => {
+        this.refs.addProductForm.validateFields((err, values) => {
             if (!!err) {
                 return;
             }
@@ -34,12 +34,12 @@ class AddSupplier extends Component {
     }
 
     render() {
-        let {supplier, disabled} = this.props;
+        let {product, disabled} = this.props;
         return (
-            <div className={addSupplier}>
-                <div className={supplierWrapper}>
-                    <AddSupplierTitle titleText={'供应商资料'}/>
-                    <AddSupplierForm supplier={supplier} disabled={disabled} ref="addSupplierForm"/>
+            <div className={addProduct}>
+                <div className={productWrapper}>
+                    <AddProductTitle titleText={'商品信息'}/>
+                    <AddProductForm product={product} disabled={disabled} ref="addProductForm"/>
                 </div>
                 <div className={buttonGroup}>
 					{
@@ -58,8 +58,8 @@ class AddSupplier extends Component {
     }
 }
 
-function mapStateToProps({suppliers}) {
-    return {suppliers};
+function mapStateToProps({products}) {
+    return {products};
 }
 
-export default connect(mapStateToProps)(AddSupplier);
+export default connect(mapStateToProps)(AddProduct);
