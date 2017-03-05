@@ -1,117 +1,68 @@
-import React, {Component,PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
-import {Search} from '../../components/SearchBar/SearchBar';
+import StockSearchForm from '../../components/Stocks/StockSearchForm/StockSearchForm';
+import SearchForm from '../../components/SearchForm/SearchForm';
 import {redirect} from '../../utils/webSessionUtils';
 require('./index.css');
 
-/*function genStock({location, dispatch, orders}){
-    const {
-        list,
-        total,
-        field,
-        keyword,
-        loading,
-        current,
-        currentItem,
-        editorVisible,
-        editorType,
-    } = orders;
-    const orderSearch = {
-        field,
-        keyword,
-        onSearch(fieldValues){
-            dispatch(routerRedux.push({
-                pathname:'/orders',
-                query:{...fieldValues, page:1}
-            }));
-        },
-        onAdd(){
-            dispatch({
-                type:'orders/showEditor',
-                payload: {
-                    editorType:'create'
-                }
-            });
-        }
-    };
-    const orderList ={
-        current,
-        total,
-        dataSource: list,
-        loading,
-        onPageChange(page){
-            dispatch(routerRedux.push({
-                pathname:'/orders',
-                query: {field, keyword, page}
-            }));
-        },
-        onModify(item){
-            dispatch({
-                type:'orders/showEditor',
-                payload:{
-                    editorType:'modify',
-                    currentItem: item
-                }
-            });
-        },
-        onDel(id){
-            dispatch({
-                type:'orders/del',
-                payload: id,
-            });
-        }
-    };
-    const orderEditor = {
-        item: editorType=='create'? {}:currentItem,
-        type: editorType,
-        visible: editorVisible,
-        onConfirm(data){
-            dispatch({
-                type: `orders/${editorType}`,
-                payload: data,
-            });
-        },
-        onCancel(){
-            dispatch({
-                type:'orders/hideEditor'
-            });
-        }
-    };
-    return (
-        <div className='orders'>
-            订单页面
-        </div>
-    );
-}*/
-class Stock extends Component {
-    constructor(props){
-        super(props);
-    }
-
-    componentWillMount(){
-        let {isLogin} = this.props.systemUser;
-        if(!isLogin){
-            redirect();
-        }
-    }
-
-    render(){
-        return (
-            <div style={{textAlign:'center'}}>
-                stocks页面
-            </div>
-        );
-    }
+function genStock({dispatch, stocks}) {
+	const {
+		list,
+		field,
+		keyword,
+		loading
+	} = stocks;
+	const stockSearch = {
+		field,
+		keyword,
+		onSearch(fieldValues){
+			dispatch(routerRedux.push({
+				pathname: '/stocks',
+				query: {...fieldValues, page: 1}
+			}));
+		}
+	};
+	const stockList = {
+		dataSource: list,
+		loading
+	};
+	return (
+		<div className='stocks'>
+			<h2>仓库明细表</h2>
+			<SearchForm {...stockSearch}/>
+		</div>
+	);
 }
+class Stock extends Component {
+	constructor(props) {
+		super(props);
+	}
 
-Stock.propTypes = {
-    orders:PropTypes.object,
-};
+	static propTypes = {
+		stocks: PropTypes.object,
+	}
+
+	componentWillMount() {
+		let {isLogin} = this.props.systemUser;
+		if (!isLogin) {
+			redirect();
+		}
+	}
+
+	render() {
+		return (
+			<div>
+				{
+					genStock(this.props)
+				}
+			</div>
+		);
+	}
+}
 
 function mapStateToProps({stocks, systemUser}) {
-    return {stocks, systemUser};
+	return {stocks, systemUser};
 }
-
 
 export default connect(mapStateToProps)(Stock);
