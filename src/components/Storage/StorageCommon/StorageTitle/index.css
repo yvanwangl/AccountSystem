@@ -1,0 +1,16 @@
+.storageTitle {
+    padding: 20px 0;
+    border-bottom: solid 2px #979797;
+    text-align: center;
+    font-size: 18px;
+    position: relative;
+}
+
+.storageNumberClass {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 14px;
+    color: #9b9b9b;
+}

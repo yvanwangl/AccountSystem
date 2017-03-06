@@ -2,9 +2,9 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
 import StockSearchForm from '../../components/Stocks/StockSearchForm/StockSearchForm';
-import SearchForm from '../../components/SearchForm/SearchForm';
+import StockList from '../../components/Stocks/StockList/StockList';
 import {redirect} from '../../utils/webSessionUtils';
-require('./index.css');
+import styles from './index.css';
 
 function genStock({dispatch, stocks}) {
 	const {
@@ -13,6 +13,7 @@ function genStock({dispatch, stocks}) {
 		keyword,
 		loading
 	} = stocks;
+
 	const stockSearch = {
 		field,
 		keyword,
@@ -28,9 +29,10 @@ function genStock({dispatch, stocks}) {
 		loading
 	};
 	return (
-		<div className='stocks'>
-			<h2>仓库明细表</h2>
-			<SearchForm {...stockSearch}/>
+		<div className={styles.stockContainer}>
+			<h2 className={styles.stockTitle}>仓库明细表</h2>
+			<StockSearchForm {...stockSearch}/>
+			<StockList {...stockList} />
 		</div>
 	);
 }
@@ -41,7 +43,7 @@ class Stock extends Component {
 
 	static propTypes = {
 		stocks: PropTypes.object,
-	}
+	};
 
 	componentWillMount() {
 		let {isLogin} = this.props.systemUser;
@@ -51,13 +53,7 @@ class Stock extends Component {
 	}
 
 	render() {
-		return (
-			<div>
-				{
-					genStock(this.props)
-				}
-			</div>
-		);
+		return genStock(this.props);
 	}
 }
 

@@ -28,6 +28,7 @@ export default function ({history}) {
                 <Route path="/funds" component={Funds}/>
 
                 <Route path="/manage" component={Manage}/>
+
                 <Route component={Manage}>
                     <Route path="/customer" component={Customers}/>
                     <Route path="/product" component={Products}/>

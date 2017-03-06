@@ -1,4 +1,4 @@
-import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/orders';
+import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/storage';
 import {parse} from 'qs';
 const defaultProduct = {
     key: '0',
