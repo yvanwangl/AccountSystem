@@ -13,6 +13,7 @@ let users = require('./routes/users');
 let login = require('./routes/login');
 let auth = require('./routes/auth');
 let orders = require('./routes/orders');
+let storage = require('./routes/storage');
 let customers = require('./routes/customers');
 let products = require('./routes/products');
 let uploadProductImg = require('./routes/uploadProductImg');
@@ -73,6 +74,7 @@ app.use(function (req, res, next) {
 /*app.use('/', routes);*/
 app.use('/api/users', users);
 app.use('/api/orders', orders);
+app.use('/api/storage', storage);
 app.use('/api/customers', customers);
 app.use('/api/products', products);
 app.use('/api/suppliers', suppliers);

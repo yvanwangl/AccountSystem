@@ -1,118 +1,64 @@
-import React, {Component,PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
-import {Search} from '../../components/SearchBar/SearchBar';
+import FundsSearchForm from '../../components/Funds/FundsSearchForm/FundsSearchForm';
+import FundsList from '../../components/Funds/FundsList/FundsList';
 import {redirect} from '../../utils/webSessionUtils';
-require('./index.css');
+import styles from './index.css';
 
-/*function genFunds({location, dispatch, orders}){
-    const {
-        list,
-        total,
-        field,
-        keyword,
-        loading,
-        current,
-        currentItem,
-        editorVisible,
-        editorType,
-    } = orders;
-    const orderSearch = {
-        field,
-        keyword,
-        onSearch(fieldValues){
-            dispatch(routerRedux.push({
-                pathname:'/orders',
-                query:{...fieldValues, page:1}
-            }));
-        },
-        onAdd(){
-            dispatch({
-                type:'orders/showEditor',
-                payload: {
-                    editorType:'create'
-                }
-            });
-        }
-    };
-    const orderList ={
-        current,
-        total,
-        dataSource: list,
-        loading,
-        onPageChange(page){
-            dispatch(routerRedux.push({
-                pathname:'/orders',
-                query: {field, keyword, page}
-            }));
-        },
-        onModify(item){
-            dispatch({
-                type:'orders/showEditor',
-                payload:{
-                    editorType:'modify',
-                    currentItem: item
-                }
-            });
-        },
-        onDel(id){
-            dispatch({
-                type:'orders/del',
-                payload: id,
-            });
-        }
-    };
-    const orderEditor = {
-        item: editorType=='create'? {}:currentItem,
-        type: editorType,
-        visible: editorVisible,
-        onConfirm(data){
-            dispatch({
-                type: `orders/${editorType}`,
-                payload: data,
-            });
-        },
-        onCancel(){
-            dispatch({
-                type:'orders/hideEditor'
-            });
-        }
-    };
-    return (
-        <div className='orders'>
-            订单页面
-        </div>
-    );
-}*/
+function genFunds({dispatch, funds}) {
+	const {
+		list,
+		field,
+		keyword,
+		loading
+	} = funds;
 
-class Funds extends Component{
-    constructor(props) {
-        super(props);
-    }
-
-    componentWillMount(){
-        let {isLogin} = this.props.systemUser;
-        if(!isLogin){
-            redirect();
-        }
-    }
-
-    render(){
-        return (
-            <div className='manage' style={{textAlign:'center'}}>
-                funds页面
-            </div>
-        );
-    }
+	const fundsSearch = {
+		field,
+		keyword,
+		onSearch(fieldValues){
+			dispatch(routerRedux.push({
+				pathname: '/funds',
+				query: {...fieldValues, page: 1}
+			}));
+		}
+	};
+	const fundsList = {
+		dataSource: list,
+		loading
+	};
+	return (
+		<div className={styles.fundsContainer}>
+			<h2 className={styles.fundsTitle}>资金明细表</h2>
+			<FundsSearchForm {...fundsSearch}/>
+			<FundsList {...fundsList} />
+		</div>
+	);
 }
+class Funds extends Component {
+	constructor(props) {
+		super(props);
+	}
 
-Funds.propTypes = {
-    orders:PropTypes.object,
-};
+	static propTypes = {
+		funds: PropTypes.object,
+	};
+
+	componentWillMount() {
+		let {isLogin} = this.props.systemUser;
+		if (!isLogin) {
+			redirect();
+		}
+	}
+
+	render() {
+		return genFunds(this.props);
+	}
+}
 
 function mapStateToProps({funds, systemUser}) {
-    return {funds, systemUser};
+	return {funds, systemUser};
 }
-
 
 export default connect(mapStateToProps)(Funds);

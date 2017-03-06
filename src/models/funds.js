@@ -5,7 +5,35 @@ export default {
     namespace: 'funds',
 
     state: {
-        list: [],
+        list: [
+			{
+				_id:'1212132',
+				productCode: '1221',
+				productName: 'afsdfds',
+				productType: 'sfadadf',
+				purchasePrice: 1000,
+				salePrice: 5000,
+				profitPrice: 4000
+			},
+			{
+				_id:'21342432',
+				productCode: '1221',
+				productName: 'afsdfds',
+				productType: 'sfadadf',
+				purchasePrice: 4000,
+				salePrice: 8000,
+				profitPrice: 3000
+			},
+			{
+				_id:'7685867',
+				productCode: 'wewqe',
+				productName: 'asxz',
+				productType: 'safsda',
+				purchasePrice: 8000,
+				salePrice: 9000,
+				profitPrice: 1000
+			}
+		],
         total: null,
         field: '',
         keyword: '',
