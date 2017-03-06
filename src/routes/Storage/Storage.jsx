@@ -1,11 +1,16 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import SearchForm from '../../components/SearchForm/SearchForm';
+import StorageList from '../../components/Storage/StorageList/StorageList';
 import {routerRedux} from 'dva/router';
-import {Search} from '../../components/SearchBar/SearchBar';
+import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
+import AddStorage from '../../components/Storage/AddStorage/AddStorage';
+import ModifyStorage from '../../components/Storage/ModifyStorage/ModifyStorage';
 import {redirect} from '../../utils/webSessionUtils';
-require('./index.css');
+import {storageClass, storageContainer, addStorageContainer, modifyStorageContainer} from './index.css';
 
-/*function genStorage({location, dispatch, orders}){
+function genStorage({dispatch, storage}){
     const {
         list,
         total,
@@ -16,74 +21,110 @@ require('./index.css');
         currentItem,
         editorVisible,
         editorType,
-    } = orders;
-    const orderSearch = {
-        field,
-        keyword,
-        onSearch(fieldValues){
-            dispatch(routerRedux.push({
-                pathname:'/orders',
-                query:{...fieldValues, page:1}
-            }));
-        },
-        onAdd(){
-            dispatch({
-                type:'orders/showEditor',
-                payload: {
-                    editorType:'create'
-                }
-            });
-        }
-    };
-    const orderList ={
-        current,
-        total,
-        dataSource: list,
-        loading,
-        onPageChange(page){
-            dispatch(routerRedux.push({
-                pathname:'/orders',
-                query: {field, keyword, page}
-            }));
-        },
-        onModify(item){
-            dispatch({
-                type:'orders/showEditor',
-                payload:{
-                    editorType:'modify',
-                    currentItem: item
-                }
-            });
-        },
-        onDel(id){
-            dispatch({
-                type:'orders/del',
-                payload: id,
-            });
-        }
-    };
-    const orderEditor = {
-        item: editorType=='create'? {}:currentItem,
-        type: editorType,
-        visible: editorVisible,
-        onConfirm(data){
-            dispatch({
-                type: `orders/${editorType}`,
-                payload: data,
-            });
-        },
-        onCancel(){
-            dispatch({
-                type:'orders/hideEditor'
-            });
-        }
-    };
-    return (
-        <div className='orders'>
-            订单页面
-        </div>
-    );
-}*/
+		breadcrumbItems
+    } = storage;
+
+	const storageListProps ={
+		current,
+		total,
+		dataSource: list,
+		loading,
+		onPageChange(page){
+			dispatch(routerRedux.push({
+				pathname:'/storage',
+				query: {field, keyword, page}
+			}));
+		},
+		onModify(storageId){
+			dispatch({
+				type:'storage/queryStorageById',
+				payload: {
+					storageId: storageId,
+					editorType: 'modify'
+				}
+			});
+		},
+		onReadOnly(storageId){
+			dispatch({
+				type:'storage/queryStorageById',
+				payload: {
+					storageId: storageId,
+					editorType: 'detail'
+				}
+			});
+		},
+		onDel(storageId){
+			dispatch({
+				type:'storage/del',
+				payload: storageId,
+			});
+		}
+	};
+	const storageEditor = {
+		item: editorType=='create'? {}:currentItem,
+		type: editorType,
+		visible: editorVisible,
+		onConfirm(data){
+			dispatch({
+				type: `orders/${editorType}`,
+				payload: data,
+			});
+		},
+		onCancel(){
+			dispatch({
+				type:'orders/hideEditor'
+			});
+		}
+	};
+
+	const onSearch = (fieldValues)=>{
+		dispatch(routerRedux.push({
+			pathname:'/storage',
+			query:{...fieldValues, page:1}
+		}));
+	};
+
+	const onAdd = ()=>{
+		dispatch({
+			type:'storage/addBreadcrumbItem',
+			payload: {
+				editorType: 'create',
+				item: ['/storage/addstorage', '新增入库']
+			}
+		});
+	};
+
+	return (
+		<div className={storageClass}>
+			<BreadcrumbList breadcrumbItems={breadcrumbItems} />
+			{
+				editorVisible?
+					(
+						editorType=='create'?
+							(
+								<div className={addStorageContainer}>
+									<AddStorage />
+								</div>
+							):
+							(
+								<div className={modifyStorageContainer}>
+									<ModifyStorage editorType={editorType}/>
+								</div>
+							)
+					):
+					(
+						<div className={storageContainer}>
+							<SearchBar onAdd={onAdd}>
+								<SearchForm onSearch={onSearch}/>
+							</SearchBar>
+							<StorageList {...storageListProps} />
+						</div>
+					)
+			}
+
+		</div>
+	);
+}
 
 class Storage extends Component {
     constructor(props){
@@ -98,11 +139,7 @@ class Storage extends Component {
     }
 
     render(){
-        return (
-            <div style={{textAlign:'center'}}>
-                storage页面
-            </div>
-        );
+        return genStorage(this.props);
     }
 }
 
@@ -110,8 +147,8 @@ Storage.propTypes = {
     orders:PropTypes.object,
 };
 
-function mapStateToProps({storages, systemUser}) {
-    return {storages, systemUser};
+function mapStateToProps({storage, systemUser}) {
+    return {storage, systemUser};
 }
 
 

@@ -31,7 +31,9 @@ function StockSearchForm({
 			<Form inline onSubmit={onSubmit}>
 				<FormItem>
 					{
-						getFieldDecorator('productType')(
+						getFieldDecorator('productType', {
+							initialValue: '1'
+						})(
 							<Select>
 								<Option value='1'>铝合金</Option>
 								<Option value='2'>铁合金</Option>
@@ -41,7 +43,9 @@ function StockSearchForm({
 				</FormItem>
 				<FormItem>
 					{
-						getFieldDecorator('productName')(
+						getFieldDecorator('productName', {
+							initialValue: '1'
+						})(
 							<Select>
 								<Option value='1'>铝合金门窗</Option>
 								<Option value='2'>铁合金门窗</Option>

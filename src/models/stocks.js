@@ -6,15 +6,33 @@ export default {
     namespace: 'stocks',
 
     state: {
-        list: [],
-        total: null,
+        list: [
+			{
+				_id:'1212132',
+				productCode: '1221',
+				productName: 'afsdfds',
+				productType: 'sfadadf',
+				inAmount: 100,
+				outAmount: 50,
+				amount: 50,
+				averagePrice: 30,
+				stockFunds: 1500
+			},
+			{
+				_id:'546456456',
+				productCode: '2321',
+				productName: 'dsfaxc',
+				productType: 'afeawf',
+				inAmount: 300,
+				outAmount: 200,
+				amount: 100,
+				averagePrice: 50,
+				stockFunds: 5000
+			}
+		],
         field: '',
         keyword: '',
-        loading: false,
-        current: null,
-        currentItem: {},
-        editorVisible: false,
-        editorType: 'create'
+        loading: false
     },
 
     subscriptions: {
