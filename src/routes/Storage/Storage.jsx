@@ -66,13 +66,13 @@ function genStorage({dispatch, storage}){
 		visible: editorVisible,
 		onConfirm(data){
 			dispatch({
-				type: `orders/${editorType}`,
+				type: `storage/${editorType}`,
 				payload: data,
 			});
 		},
 		onCancel(){
 			dispatch({
-				type:'orders/hideEditor'
+				type:'storage/hideEditor'
 			});
 		}
 	};
@@ -86,11 +86,7 @@ function genStorage({dispatch, storage}){
 
 	const onAdd = ()=>{
 		dispatch({
-			type:'storage/addBreadcrumbItem',
-			payload: {
-				editorType: 'create',
-				item: ['/storage/addstorage', '新增入库']
-			}
+			type:'storage/getNoteNumber'
 		});
 	};
 

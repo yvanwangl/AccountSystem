@@ -23,20 +23,20 @@ const StorageList = ({
             render: (text, record, index)=><span>{index + 1}</span>
         },
         {
-            title: '下单日期',
+            title: '进货日期',
             dataIndex: 'createInstance',
             key: 'createInstance',
             render: (text)=><span>{dateFormat(text)}</span>
         },
         {
             title: '单据编号',
-            dataIndex: 'storageNumber',
-            key: 'storageNumber'
+            dataIndex: 'noteNumber',
+            key: 'noteNumber'
         },
         {
-            title: '客户名称',
-            dataIndex: 'customerName',
-            key: 'customerName'
+            title: '供应商名称',
+            dataIndex: 'supplierName',
+            key: 'supplierName'
         },
         {
             title: '应付金额',
@@ -48,11 +48,11 @@ const StorageList = ({
             dataIndex: 'paymentAmount',
             key: 'paymentAmount',
         },
-        {
-            title: '订单信息',
-            dataIndex: 'storageInfo',
-            key: 'storageInfo',
-        },
+		{
+			title: '备注',
+			dataIndex: 'mem',
+			key: 'mem',
+		},
         {
             title: '操作',
             key: 'operation',

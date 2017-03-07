@@ -6,8 +6,8 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 const StorageForm = ({
-    customers,
-    customerId,
+	suppliers,
+	supplierId,
     onSelect,
     disabled,
     form: {
@@ -15,7 +15,6 @@ const StorageForm = ({
     }
 }) => {
     const handleChange = (value)=> {
-        console.log('modify' + value);
         onSelect(value);
     };
 
@@ -24,20 +23,20 @@ const StorageForm = ({
             <Form inline>
                 <FormItem label="客户名称：">
                     {
-                        getFieldDecorator('customerId', {
-                            initialValue: customerId
+                        getFieldDecorator('supplierId', {
+                            initialValue: supplierId
                         })(
                             <Select
                                 showSearch
                                 style={{width: 340}}
-                                placeholder="选择一个客户"
+                                placeholder="选择一个供应商"
                                 onChange={handleChange}
                                 onSelect={handleChange}
                                 disabled={disabled || false}
                             >
                                 {
-                                    customers.map((customer, index)=>
-                                        <Option key={index} value={customer['_id']}>{customer['name']}</Option>
+									suppliers.map((supplier, index)=>
+                                        <Option key={index} value={supplier['_id']}>{supplier['supplierName']}</Option>
                                     )
                                 }
 

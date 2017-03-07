@@ -20,6 +20,15 @@ function getOrderNumber(number) {
     return prefix + year + month + day + (prefixOOO(number));
 }
 
+function getNoteNumber(number) {
+	let prefix = 'MDS';
+	let date = new Date();
+	let year = date.getFullYear();
+	let month = prefixO(date.getMonth() + 1);
+	let day = prefixO(date.getDate() + 1);
+	return prefix + year + month + day + (prefixOOO(number));
+}
+
 function prefixO(number) {
     return ('0' + number).substr(-2);
 }
@@ -31,5 +40,6 @@ function prefixOOO(number) {
 
 module.exports = {
     getAuthToken: getAuthToken,
-    getOrderNumber: getOrderNumber
+    getOrderNumber: getOrderNumber,
+	getNoteNumber: getNoteNumber
 };
