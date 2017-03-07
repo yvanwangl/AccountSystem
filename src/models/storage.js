@@ -1,4 +1,4 @@
-import {query, create, modify, del, getStorageNumber, queryStorageById} from '../services/storage';
+import {query, create, modify, del, getNoteNumber, queryStorageById} from '../services/storage';
 import {parse} from 'qs';
 const defaultProduct = {
 	key: '0',
@@ -11,10 +11,10 @@ const defaultProduct = {
 };
 
 const defaultStorage = {
-	storageNumber: '',
-	customerId: null,
+	noteNumber: '',
+	supplierId: null,
 	products: [
-		defaultProduct
+		{...defaultProduct}
 	],
 	totalAmount: 0,
 	paymentAmount: 0,
@@ -40,7 +40,8 @@ export default {
 			['/', '首页'],
 			['/storage', '入库'],
 		],
-		storage: defaultStorage
+		storageData: {...defaultStorage},
+		suppliers:[]
 	},
 
 	subscriptions: {
@@ -94,7 +95,7 @@ export default {
 		},
 		*create({payload}, {call, put}){
 			yield put({type: 'showLoading'});
-			const {data} = yield call(create, payload.storage);
+			const {data} = yield call(create, payload.storageData);
 			if (data && data.success) {
 				yield put({
 					type: 'createSuccess',
@@ -111,7 +112,7 @@ export default {
 			yield put({type: 'hideEditor'});
 			yield put({type: 'showLoading'});
 			const id = yield select(({storage})=>storage.currentItem['_id']);
-			const newStorage = {...payload.storage, id};
+			const newStorage = {...payload.storageData, id};
 			const {data} = yield call(modify, newStorage);
 			if (data && data.success) {
 				yield put({
@@ -144,7 +145,8 @@ export default {
 						editorType: payload.editorType,
 						currentItem: data.storage,
 						editorVisible: true,
-						storage: data.storage
+						storageData: data.storage,
+						suppliers: data.suppliers
 					}
 				});
 				yield put({
@@ -154,7 +156,27 @@ export default {
 					}
 				});
 			}
-		}
+		},
+		*getNoteNumber({payload}, {call, put}){
+			const {data} = yield call(getNoteNumber, {});
+			if (data && data.success) {
+				yield put({
+					type: 'getNoteNumberSuccess',
+					payload: {
+						editorType: 'create',
+						noteNumber: data.noteNumber,
+						suppliers: data.suppliers,
+						editorVisible: true
+					}
+				});
+				yield put({
+					type: 'addBreadcrumbItem',
+					payload: {
+						item: ['/storage/addstorage', '新增入库']
+					}
+				});
+			}
+		},
 	},
 
 	reducers: {
@@ -195,13 +217,12 @@ export default {
 		addBreadcrumbItem(state, action){
 			let breadcrumbItems = state['breadcrumbItems'];
 			let newItems = [...breadcrumbItems, action.payload.item];
-			let editorType = action.payload.editorType;
-			return {...state, breadcrumbItems: newItems, editorType, editorVisible: true};
+			return {...state, breadcrumbItems: newItems};
 		},
-		setCustomer(state, action){
-			let storage = state['storage'];
-			let newStorage = {...storage, customerId: action.payload.customerId};
-			return {...state, storage: newStorage};
+		setSupplier(state, action){
+			let storageData = state['storageData'];
+			let newStorage = {...storageData, supplierId: action.payload.supplierId};
+			return {...state, storageData: newStorage};
 		},
 		resetBreadcrumbItem(state, action){
 			let newItems = [
@@ -226,20 +247,26 @@ export default {
 					remarks: ''
 				}]
 			};
-			return {...state, breadcrumbItems: newItems, storage: newStorage, editorVisible: false};
+			return {...state, breadcrumbItems: newItems, storageData: newStorage, editorVisible: false};
 		},
 		setProducts(state, action){
-			let storage = state['storage'];
+			let storageData = state['storageData'];
 			let {products, totalAmount, paymentAmount} = action.payload;
-			let newStorage = {...storage, products, totalAmount, paymentAmount};
+			let newStorage = {...storageData, products, totalAmount, paymentAmount};
 			console.log(newStorage);
-			return {...state, storage: newStorage};
+			return {...state, storageData: newStorage};
 		},
 		setMem(state, action){
-			let storage = state['storage'];
-			let newStorage = {...storage, mem: action.payload.mem};
-			return {...state, storage: newStorage};
-		}
+			let storageData = state['storageData'];
+			let newStorage = {...storageData, mem: action.payload.mem};
+			return {...state, storageData: newStorage};
+		},
+		getNoteNumberSuccess(state, action){
+			let noteNumber = action.payload.noteNumber;
+			let storageData = state['storageData'];
+			let newStorage = {...storageData, noteNumber};
+			return {...state, storageData: newStorage, ...action.payload};
+		},
 	},
 
 }

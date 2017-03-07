@@ -5,13 +5,14 @@ let mongoose =  require('mongoose');
 let Schema = mongoose.Schema;
 
 let storageSchema = new Schema({
-    createInstance: Date,
-    storageNumber: String,
-    customerId: String,
-    totalAmount: Number,
-    paymentAmount: Number,
-    mem: String,
-    products: Array,
+	createInstance: Date,
+	noteNumber: String,
+	supplierId: String,
+	supplierName: String,
+	totalAmount: Number,
+	paymentAmount: Number,
+	mem: String,
+	products: Array
 });
 
 /**
