@@ -10,26 +10,17 @@ import {addStorage, storageWrapper, buttonGroup, confirmButton, cancelButton} fr
 
 const AddStorage = ({
     dispatch,
-    storages
+	storage
 }) => {
-    const {storage} = storages;
+    const {storageData, suppliers} = storage;
     const addStorageFormProps = {
-        customers: [
-            {
-                _id: '111',
-                name: 'wangyafei'
-            },
-            {
-                _id: '222',
-                name: 'lihuan'
-            }
-        ],
+        suppliers,
         disabled: false,
-        onSelect(customerId){
+        onSelect(supplierId){
             dispatch({
-                type: 'storages/setCustomer',
+                type: 'storage/setSupplier',
                 payload: {
-                    customerId
+					supplierId
                 }
             })
         }
@@ -37,7 +28,7 @@ const AddStorage = ({
 
     const onSetMem = (mem)=> {
         dispatch({
-            type: 'storages/setMem',
+            type: 'storage/setMem',
             payload: {
                 mem: mem
             }
@@ -49,9 +40,9 @@ const AddStorage = ({
          * 数据保存前，做数据校验,
          * 用户不允许为空，并且至少需要保存一条商品数据
          */
-        const {customerId, products} = storage;
-        if (customerId == null) {
-            message.error('请选择一个客户！');
+        const {supplierId, products} = storageData;
+        if (supplierId == null) {
+            message.error('请选择一个供应商！');
             return null;
         }
         if (products.length == 0) {
@@ -59,30 +50,30 @@ const AddStorage = ({
             return null;
         }
         dispatch({
-            type: 'storages/create',
+            type: 'storage/create',
             payload: {
-                storage
+				storageData
             }
         });
         dispatch({
-            type: 'storages/query'
+            type: 'storage/query'
         });
     };
 
     const handleCancel = ()=> {
         dispatch({
-            type: 'storages/resetStorage'
+            type: 'storage/resetStorage'
         });
     };
 
     const addStorageGridProps = {
-        products: storage.products,
-        totalAmount: storage.totalAmount,
-        paymentAmount: storage.paymentAmount,
+        products: storageData.products,
+        totalAmount: storageData.totalAmount,
+        paymentAmount: storageData.paymentAmount,
         disabled: false,
         editProducts(products, totalAmount, paymentAmount){
             dispatch({
-                type: 'storages/setProducts',
+                type: 'storage/setProducts',
                 payload: {
                     products,
                     totalAmount,
@@ -95,7 +86,7 @@ const AddStorage = ({
     return (
         <div className={addStorage}>
             <div className={storageWrapper}>
-                <AddStorageTitle storageNumber={storage.storageNumber}/>
+                <AddStorageTitle storageNumber={storageData.noteNumber}/>
                 <AddStorageForm {...addStorageFormProps}/>
                 <AddStorageGrid {...addStorageGridProps}/>
                 <AddRemarkForm disabled={false} onSetMem={onSetMem}/>
@@ -118,8 +109,8 @@ AddStorage.propTypes = {
     current: PropTypes.any
 };
 
-function mapStateToProps({storages}) {
-    return {storages};
+function mapStateToProps({storage}) {
+    return {storage};
 }
 
 export default connect(mapStateToProps)(AddStorage);

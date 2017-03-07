@@ -11,28 +11,19 @@ import {modifyStorage, storageWrapper, buttonGroup, confirmButton, cancelButton}
 const ModifyStorage = ({
     dispatch,
     editorType,
-    Storage
+    storage
 }) => {
-    const {storage, currentItem} = Storage;
+    const {storageData, currentItem, suppliers} = storage;
     const disabled = editorType != 'modify';
     const modifyStorageFormProps = {
-        customers: [
-            {
-                _id: '111',
-                name: 'wangyafei'
-            },
-            {
-                _id: '222',
-                name: 'lihuan'
-            }
-        ],
-        customerId: currentItem.customerId,
+		suppliers,
+        supplierId: currentItem.supplierId,
         disabled: disabled,
-        onSelect(customerId){
+        onSelect(supplierId){
             dispatch({
-                type: 'Storage/setCustomer',
+                type: 'storage/setSupplier',
                 payload: {
-                    customerId
+					supplierId
                 }
             })
         }
@@ -40,7 +31,7 @@ const ModifyStorage = ({
 
     const onSetMem = (mem)=> {
         dispatch({
-            type: 'Storage/setMem',
+            type: 'storage/setMem',
             payload: {
                 mem: mem
             }
@@ -52,30 +43,30 @@ const ModifyStorage = ({
          * 数据保存前，做数据校验,
          * 用户不允许为空，并且至少需要保存一条商品数据
          */
-        const {customerId, products} = storage;
-        storage['storageNumber'] = currentItem['storageNumber'];
-        if (customerId == null) {
-            storage['customerId'] = currentItem['customerId'];
+        const {supplierId, products} = storageData;
+		storageData['noteNumber'] = currentItem['noteNumber'];
+        if (supplierId == null) {
+			storageData['supplierId'] = currentItem['supplierId'];
         }
         if (products.length == 0) {
             message.error('请至少添加一个商品条目！');
             return null;
         }
-        console.log(storage);
+        console.log(storageData);
         dispatch({
-            type: 'Storage/modify',
+            type: 'storage/modify',
             payload: {
-                storage
+				storageData
             }
         });
         dispatch({
-            type: 'Storage/query'
+            type: 'storage/query'
         });
     };
 
     const handleCancel = ()=> {
         dispatch({
-            type: 'Storage/resetStorage'
+            type: 'storage/resetStorage'
         });
     };
 
@@ -87,7 +78,7 @@ const ModifyStorage = ({
         editProducts(products, totalAmount, paymentAmount){
             console.log(totalAmount + '--' + paymentAmount);
             dispatch({
-                type: 'Storage/setProducts',
+                type: 'storage/setProducts',
                 payload: {
                     products,
                     totalAmount,
@@ -100,7 +91,7 @@ const ModifyStorage = ({
     return (
         <div className={modifyStorage}>
             <div className={storageWrapper}>
-                <ModifyStorageTitle storageNumber={currentItem.storageNumber}/>
+                <ModifyStorageTitle storageNumber={currentItem.noteNumber}/>
                 <ModifyStorageForm {...modifyStorageFormProps}/>
                 <AddStorageGrid {...modifyStorageGridProps}/>
                 <StorageRemarkForm disabled={disabled} mem={currentItem.mem} onSetMem={onSetMem}/>

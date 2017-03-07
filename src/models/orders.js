@@ -1,4 +1,4 @@
-import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/storage';
+import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/orders';
 import {parse} from 'qs';
 const defaultProduct = {
     key: '0',
@@ -14,7 +14,7 @@ const defaultOrder = {
     orderNumber: '',
     customerId: null,
     products: [
-        defaultProduct
+		{...defaultProduct}
     ],
     totalAmount: 0,
     paymentAmount: 0,
@@ -40,7 +40,7 @@ export default {
             ['/', '首页'],
             ['/orders', '订单'],
         ],
-        order: defaultOrder
+        order: {...defaultOrder}
     },
 
     subscriptions: {

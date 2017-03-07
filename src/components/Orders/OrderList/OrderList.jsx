@@ -50,8 +50,8 @@ const OrderList = ({
         },
         {
             title: '订单信息',
-            dataIndex: 'orderInfo',
-            key: 'orderInfo',
+            dataIndex: 'mem',
+            key: 'mem',
         },
         {
             title: '操作',
