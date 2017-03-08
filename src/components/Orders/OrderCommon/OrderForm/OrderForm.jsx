@@ -37,7 +37,7 @@ const OrderForm = ({
                             >
                                 {
                                     customers.map((customer, index)=>
-                                        <Option key={index} value={customer['_id']}>{customer['name']}</Option>
+                                        <Option key={index} value={customer['_id']}>{customer['customerName']}</Option>
                                     )
                                 }
 

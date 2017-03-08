@@ -1,0 +1,56 @@
+.editCell,
+.editLine {
+    position: relative;
+}
+.editLine {
+    display: inline-block;
+}
+
+.inputWrapper,
+.textWrapper {
+    padding-right: 24px;
+}
+
+.textWrapper {
+    padding: 5px 24px 5px 5px;
+}
+
+.editLine .inputWrapper {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+.editLine .textWrapper {
+    padding: 5px 20px 5px 5px;
+    min-width: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.editIcon,
+.checkIcon {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    cursor: pointer;
+}
+
+.editIcon {
+    line-height: 18px;
+    /*display: none;*/
+}
+
+.checkIcon {
+    line-height: 28px;
+}
+
+.editableCell:hover .editIcon {
+    display: inline-block;
+}
+
+.editIcon:hover,
+.checkIcon:hover {
+    color:#2db7f5;
+}
+.hiddenIcon {
+    display: none;
+}

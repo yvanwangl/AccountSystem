@@ -3,7 +3,7 @@ import {Button} from 'antd';
 import {message} from 'antd';
 import ModifyOrderTitle from '../OrderCommon/OrderTitle/OrderTitle';
 import ModifyOrderForm from '../OrderCommon/OrderForm/OrderForm';
-import AddOrderGrid from '../OrderCommon/AddOrderGrid/AddOrderGrid';
+import ModifyOrderGrid from '../OrderCommon/AddOrderGrid/AddOrderGrid';
 import OrderRemarkForm from '../OrderCommon/OrderRemarkForm/OrderRemarkForm';
 import {connect} from 'dva';
 import {modifyOrder, orderWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
@@ -13,19 +13,10 @@ const ModifyOrder = ({
     editorType,
     orders
 }) => {
-    const {order, currentItem} = orders;
+    const {order, currentItem, customers, productList} = orders;
     const disabled = editorType != 'modify';
     const modifyOrderFormProps = {
-        customers: [
-            {
-                _id: '111',
-                name: 'wangyafei'
-            },
-            {
-                _id: '222',
-                name: 'lihuan'
-            }
-        ],
+        customers ,
         customerId: currentItem.customerId,
         disabled: disabled,
         onSelect(customerId){
@@ -81,6 +72,7 @@ const ModifyOrder = ({
 
     const modifyOrderGridProps = {
         products: currentItem.products,
+		productList,
         totalAmount: currentItem.totalAmount,
         paymentAmount: currentItem.paymentAmount,
         disabled: disabled,
@@ -102,7 +94,7 @@ const ModifyOrder = ({
             <div className={orderWrapper}>
                 <ModifyOrderTitle orderNumber={currentItem.orderNumber}/>
                 <ModifyOrderForm {...modifyOrderFormProps}/>
-                <AddOrderGrid {...modifyOrderGridProps}/>
+                <ModifyOrderGrid {...modifyOrderGridProps}/>
                 <OrderRemarkForm disabled={disabled} mem={currentItem.mem} onSetMem={onSetMem}/>
             </div>
             <div className={buttonGroup}>

@@ -3,7 +3,7 @@ import {Button} from 'antd';
 import {message} from 'antd';
 import ModifyStorageTitle from '../StorageCommon/StorageTitle/StorageTitle';
 import ModifyStorageForm from '../StorageCommon/StorageForm/StorageForm';
-import AddStorageGrid from '../StorageCommon/AddStorageGrid/AddStorageGrid';
+import ModifyStorageGrid from '../StorageCommon/AddStorageGrid/AddStorageGrid';
 import StorageRemarkForm from '../StorageCommon/StorageRemarkForm/StorageRemarkForm';
 import {connect} from 'dva';
 import {modifyStorage, storageWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
@@ -13,7 +13,7 @@ const ModifyStorage = ({
     editorType,
     storage
 }) => {
-    const {storageData, currentItem, suppliers} = storage;
+    const {storageData, currentItem, suppliers, productList} = storage;
     const disabled = editorType != 'modify';
     const modifyStorageFormProps = {
 		suppliers,
@@ -72,6 +72,7 @@ const ModifyStorage = ({
 
     const modifyStorageGridProps = {
         products: currentItem.products,
+		productList,
         totalAmount: currentItem.totalAmount,
         paymentAmount: currentItem.paymentAmount,
         disabled: disabled,
@@ -93,7 +94,7 @@ const ModifyStorage = ({
             <div className={storageWrapper}>
                 <ModifyStorageTitle storageNumber={currentItem.noteNumber}/>
                 <ModifyStorageForm {...modifyStorageFormProps}/>
-                <AddStorageGrid {...modifyStorageGridProps}/>
+                <ModifyStorageGrid {...modifyStorageGridProps}/>
                 <StorageRemarkForm disabled={disabled} mem={currentItem.mem} onSetMem={onSetMem}/>
             </div>
             <div className={buttonGroup}>
