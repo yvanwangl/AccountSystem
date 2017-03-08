@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Input, Icon} from 'antd';
-import {editCell, editLine, inputWrapper, textWrapper, checkIcon, editIcon} from './index.css';
+import {editCell, editLine, inputWrapper, textWrapper, checkIcon, editIcon, hiddenIcon} from './index.css';
 
 class EditableCell extends Component {
     constructor(props) {
@@ -66,7 +66,7 @@ class EditableCell extends Component {
                                 {value}
                                 <Icon
                                     type="edit"
-                                    className={editIcon}
+                                    className={!disabled ? editIcon:hiddenIcon}
                                     onClick={this.edit}
                                 />
                             </div>

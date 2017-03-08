@@ -12,18 +12,9 @@ const AddOrder = ({
     dispatch,
     orders
 }) => {
-    const {order} = orders;
+    const {order, customers, productList} = orders;
     const addOrderFormProps = {
-        customers: [
-            {
-                _id: '111',
-                name: 'wangyafei'
-            },
-            {
-                _id: '222',
-                name: 'lihuan'
-            }
-        ],
+        customers ,
         disabled: false,
         onSelect(customerId){
             dispatch({
@@ -77,6 +68,7 @@ const AddOrder = ({
 
     const addOrderGridProps = {
         products: order.products,
+		productList,
         totalAmount: order.totalAmount,
         paymentAmount: order.paymentAmount,
         disabled: false,

@@ -12,7 +12,7 @@ const AddStorage = ({
     dispatch,
 	storage
 }) => {
-    const {storageData, suppliers} = storage;
+    const {storageData, suppliers, productList} = storage;
     const addStorageFormProps = {
         suppliers,
         disabled: false,
@@ -68,6 +68,7 @@ const AddStorage = ({
 
     const addStorageGridProps = {
         products: storageData.products,
+		productList,
         totalAmount: storageData.totalAmount,
         paymentAmount: storageData.paymentAmount,
         disabled: false,

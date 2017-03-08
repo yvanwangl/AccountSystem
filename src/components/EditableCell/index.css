@@ -21,7 +21,7 @@
     border-left: none;
 }
 .editLine .textWrapper {
-    padding: 5px;
+    padding: 5px 20px 5px 5px;
     min-width: 20px;
     border-bottom: 1px solid #ccc;
 }
@@ -36,7 +36,7 @@
 
 .editIcon {
     line-height: 18px;
-    display: none;
+    /*display: none;*/
 }
 
 .checkIcon {
@@ -50,4 +50,8 @@
 .editIcon:hover,
 .checkIcon:hover {
     color:#2db7f5;
+}
+
+.hiddenIcon{
+    display: none;
 }

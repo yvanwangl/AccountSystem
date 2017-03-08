@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Table, Popconfirm, Icon} from 'antd';
 import EditableCell from '../../../EditableCell/EditableCell';
+import ListEditableCell from '../../../ListEditableCell/ListEditableCell';
 import Spliter from '../../../Spliter/Spliter';
 import {addOrderGrid, rowClassName, totalAmountClass, remarkClass, paymentAmountClass} from './index.css';
 
@@ -9,26 +10,6 @@ class AddOrderGrid extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            /*dataSource:[
-             {
-             key:'0',
-             productName:'铝合金',
-             quantity:10,
-             unit:'吨',
-             price:10,
-             amount:100,
-             remarks:''
-             },
-             {
-             key:'1',
-             productName:'铝合金',
-             quantity:10,
-             unit:'吨',
-             price:10,
-             amount:100,
-             remarks:''
-             }
-             ],*/
             dataSource: this.props.products,
             count: 1,
             totalAmount: this.props.totalAmount,
@@ -36,6 +17,7 @@ class AddOrderGrid extends Component {
             remarks: ''
         };
         let disabled = this.props.disabled || false;
+        const {productList} = this.props;
         this.columns = [
             {
                 title: '序号',
@@ -63,11 +45,13 @@ class AddOrderGrid extends Component {
                 dataIndex: 'productName',
                 key: 'productName',
                 render: (text, record, index)=>(
-                    <EditableCell
+                    <ListEditableCell
                         disabled={disabled}
                         editType='editCell'
-                        value={text}
-                        onChange={this.onCellChange(index, 'productName')}
+						componentType='combo'
+						productList={productList}
+                        value={{key: record['productId'], label:text}}
+                        onChange={this.onListCellChange(index, 'productName')}
                     />
                 )
             },
@@ -142,6 +126,20 @@ class AddOrderGrid extends Component {
         }
     }
 
+    onListCellChange(index, key){
+		const {editProducts} = this.props;
+		const {totalAmount, paymentAmount} = this.state;
+		return ({key, label})=> {
+			const dataSource = [...this.state.dataSource];
+			const arr = label.match(/([\u4e00-\u9fa5\w]+)/g);
+			dataSource[index]['productId'] = key;
+			dataSource[index]['productName'] = arr[0];
+			dataSource[index]['unit'] = arr[1];
+			this.setState({dataSource});
+			editProducts(dataSource, totalAmount, paymentAmount);
+		}
+	}
+
     onLinkCellChange(index, key) {
         const {editProducts} = this.props;
         const {paymentAmount} = this.state;
@@ -177,7 +175,7 @@ class AddOrderGrid extends Component {
     onDelete(index) {
         const {editProducts} = this.props;
         const {totalAmount, paymentAmount} = this.state;
-        return ()=> {
+        return () => {
             const dataSource = [...this.state.dataSource];
             dataSource.splice(index, 1);
             this.setState({dataSource});
@@ -189,9 +187,10 @@ class AddOrderGrid extends Component {
         let {dataSource, count} = this.state;
         let newData = {
             key: count,
-            productName: '铝合金',
+            productId: '',
+            productName: '',
             quantity: 0,
-            unit: '吨',
+            unit: '',
             price: 0,
             amount: 0,
             remarks: ''
