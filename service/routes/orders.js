@@ -1,6 +1,8 @@
 let express = require('express');
 let router = express.Router();
 let Order = require('../models/orders');
+let Customer = require('../models/customers');
+let Product = require('../models/products');
 let utils = require('../utils/utils');
 let constants = require('../constants/constants');
 
@@ -30,14 +32,34 @@ router.route('/')
                             error: err
                         });
                     } else {
-                        res.send({
-                            success: true,
-                            orders: orders,
-                            page: {
-                                total: count,
-                                current: page
-                            }
-                        });
+                    	if(count>0){
+                    		const customerMap = {};
+                    		Customer.find({}, function (err, customers) {
+								customers.map((customer)=>
+									customerMap[customer['_id']] = customer['customerName']
+								);
+								orders.map((order) =>
+									order['customerName'] = customerMap[order['customerId']]
+								);
+								res.send({
+									success: true,
+									orders: orders,
+									page: {
+										total: count,
+										current: page
+									}
+								});
+							});
+						}else {
+							res.send({
+								success: true,
+								orders: orders,
+								page: {
+									total: count,
+									current: page
+								}
+							});
+						}
                     }
                 });
         });
@@ -69,10 +91,31 @@ router.route('/getOrderNumber')
                     error: error
                 });
             } else {
-                res.send({
-                    success: true,
-                    orderNumber: utils.getOrderNumber(orders.length + 1)
-                });
+				Customer.find({},function(err, customers){
+					if (error) {
+						res.send({
+							success: false,
+							error: error
+						});
+					}else {
+						Product.find({},function (err, products) {
+							if(err){
+								res.send({
+									success: false,
+									error: error
+								});
+							}else {
+								res.send({
+									success: true,
+									orderNumber: utils.getOrderNumber(orders.length + 1),
+									customers: customers,
+									productList: products
+								});
+							}
+						});
+
+					}
+				});
             }
         });
     });
@@ -86,11 +129,32 @@ router.route('/:orderId')
                     success: false,
                     error: err
                 });
-            }
-            res.send({
-                success: true,
-                order: order
-            });
+            }else {
+            	Customer.find({}, function (err, customers) {
+            		if(err){
+						res.send({
+							success: false,
+							error: err
+						});
+					}else {
+						Product.find({}, function (err, products) {
+							if(err){
+								res.send({
+									success: false,
+									error: err
+								});
+							}else {
+								res.send({
+									success: true,
+									order: order,
+									customers: customers,
+									productList: products
+								});
+							}
+						});
+					}
+				});
+			}
         })
     })
     .put(function (req, res, next) {

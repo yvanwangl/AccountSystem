@@ -2,9 +2,10 @@ import {query, create, modify, del, getOrderNumber, queryOrderById} from '../ser
 import {parse} from 'qs';
 const defaultProduct = {
     key: '0',
-    productName: '铝合金',
+	productId: '',
+    productName: '',
     quantity: 0,
-    unit: '吨',
+    unit: '',
     price: 0,
     amount: 0,
     remarks: ''
@@ -40,7 +41,9 @@ export default {
             ['/', '首页'],
             ['/orders', '订单'],
         ],
-        order: {...defaultOrder}
+        order: {...defaultOrder},
+		customers:[],
+		productList:[]
     },
 
     subscriptions: {
@@ -144,7 +147,9 @@ export default {
                         editorType: payload.editorType,
                         currentItem: data.order,
                         editorVisible: true,
-                        order: data.order
+                        order: data.order,
+						customers: data.customers,
+						productList: data.productList
                     }
                 });
                 yield put({
@@ -163,6 +168,8 @@ export default {
                     payload: {
                         editorType: 'create',
                         orderNumber: data.orderNumber,
+						customers: data.customers,
+						productList: data.productList,
                         editorVisible: true
                     }
                 });
@@ -239,18 +246,7 @@ export default {
                 ['/', '首页'],
                 ['/orders', '订单'],
             ];
-            let newOrder = {
-                ...defaultOrder, products: [{
-                    key: '0',
-                    productName: '铝合金',
-                    quantity: 0,
-                    unit: '吨',
-                    price: 0,
-                    amount: 0,
-                    remarks: ''
-                }]
-            };
-            return {...state, breadcrumbItems: newItems, order: newOrder, editorVisible: false};
+            return {...state, breadcrumbItems: newItems, order: {...defaultOrder}, editorVisible: false};
         },
         setProducts(state, action){
             let order = state['order'];

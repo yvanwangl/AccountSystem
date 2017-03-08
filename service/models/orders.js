@@ -8,6 +8,7 @@ let orderSchema = new Schema({
     createInstance: Date,
     orderNumber: String,
     customerId: String,
+    customerName: String,
     totalAmount: Number,
     paymentAmount: Number,
     mem: String,
