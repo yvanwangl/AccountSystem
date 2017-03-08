@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 let Storage = require('../models/storage');
 let Supplier = require('../models/suppliers');
+let Product = require('../models/products');
 let utils = require('../utils/utils');
 let constants = require('../constants/constants');
 
@@ -32,19 +33,30 @@ router.route('/')
 						});
 					} else {
 						if(count>0){
-							storage.map((item)=>
-								Supplier.findById(item['supplierId'], (err, supplier)=>{
-									if(err){
-										res.send({
-											success: false,
-											error: err
-										});
-									}else {
-										item['supplierName'] = supplier[0]['supplierName'];
-										console.log(item);
+							const supplierMap = {};
+							Supplier.find({}, function(err, suppliers){
+								if(err){
+									res.send({
+										success: false,
+										error: err
+									});
+								}
+								suppliers.map((supplier)=>
+									supplierMap[supplier['_id']] = supplier['supplierName']
+								);
+								storage.map((item)=>
+									item['supplierName'] = supplierMap[item['supplierId']]
+								);
+								res.send({
+									success: true,
+									storage: storage,
+									page: {
+										total: count,
+										current: page
 									}
-								})
-							);
+								});
+							});
+						}else {
 							res.send({
 								success: true,
 								storage: storage,
@@ -54,7 +66,6 @@ router.route('/')
 								}
 							});
 						}
-
 					}
 				});
 		});
@@ -93,11 +104,22 @@ router.route('/getNoteNumber')
 							error: error
 						});
 					} else {
-						res.send({
-							success: true,
-							noteNumber: utils.getNoteNumber(storages.length + 1),
-							suppliers: suppliers
+						Product.find({}, function (err, products) {
+							if (error) {
+								res.send({
+									success: false,
+									error: error
+								});
+							}else {
+								res.send({
+									success: true,
+									noteNumber: utils.getNoteNumber(storages.length + 1),
+									suppliers: suppliers,
+									productList: products
+								});
+							}
 						});
+
 					}
 				});
 			}
@@ -121,10 +143,20 @@ router.route('/:storageId')
 							error: error
 						});
 					} else {
-						res.send({
-							success: true,
-							storage: storage,
-							suppliers: suppliers
+						Product.find({}, function (err, products) {
+							if (error) {
+								res.send({
+									success: false,
+									error: error
+								});
+							} else{
+								res.send({
+									success: true,
+									storage: storage,
+									suppliers: suppliers,
+									productList: products
+								});
+							}
 						});
 					}
 				});

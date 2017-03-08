@@ -2,9 +2,10 @@ import {query, create, modify, del, getNoteNumber, queryStorageById} from '../se
 import {parse} from 'qs';
 const defaultProduct = {
 	key: '0',
-	productName: '铝合金',
+	productId: '',
+	productName: '',
 	quantity: 0,
-	unit: '吨',
+	unit: '',
 	price: 0,
 	amount: 0,
 	remarks: ''
@@ -41,7 +42,8 @@ export default {
 			['/storage', '入库'],
 		],
 		storageData: {...defaultStorage},
-		suppliers:[]
+		suppliers:[],
+		productList:[]
 	},
 
 	subscriptions: {
@@ -146,7 +148,8 @@ export default {
 						currentItem: data.storage,
 						editorVisible: true,
 						storageData: data.storage,
-						suppliers: data.suppliers
+						suppliers: data.suppliers,
+						productList: data.productList
 					}
 				});
 				yield put({
@@ -166,6 +169,7 @@ export default {
 						editorType: 'create',
 						noteNumber: data.noteNumber,
 						suppliers: data.suppliers,
+						productList: data.productList,
 						editorVisible: true
 					}
 				});
@@ -236,18 +240,7 @@ export default {
 				['/', '首页'],
 				['/storage', '入库'],
 			];
-			let newStorage = {
-				...defaultStorage, products: [{
-					key: '0',
-					productName: '铝合金',
-					quantity: 0,
-					unit: '吨',
-					price: 0,
-					amount: 0,
-					remarks: ''
-				}]
-			};
-			return {...state, breadcrumbItems: newItems, storageData: newStorage, editorVisible: false};
+			return {...state, breadcrumbItems: newItems, storageData: {...defaultStorage}, editorVisible: false};
 		},
 		setProducts(state, action){
 			let storageData = state['storageData'];
