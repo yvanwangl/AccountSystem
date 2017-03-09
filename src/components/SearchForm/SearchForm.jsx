@@ -9,6 +9,7 @@ const Option = Select.Option;
 
 const SearchForm = ({
     onSearch,
+	customers,
     form: {
         getFieldDecorator,
         getFieldsValue,
@@ -35,23 +36,22 @@ const SearchForm = ({
                         )
                     }
                 </FormItem>
-                <FormItem>
+                <FormItem label="客户名称：">
                     {
-                        getFieldDecorator('field', {
-                            initialValue: 'customer'
-                        })(
-                            <Select>
-                                <Option value='customer'>客户名称</Option>
-                                <Option value='ordernumber'>单据编号</Option>
+                        getFieldDecorator('customerId')(
+                            <Select style={{minWidth: 150}}>
+								{
+									customers.map(({_id, customerName})=>(
+										<Option key={_id}>{customerName}</Option>
+									))
+								}
                             </Select>
                         )
                     }
                 </FormItem>
-                <FormItem>
+                <FormItem label="订单编号：">
                     {
-                        getFieldDecorator('keyword', {
-                            initialValue: ''
-                        })(
+                        getFieldDecorator('orderNumber')(
                             <Input type="text"/>
                         )
                     }
@@ -64,7 +64,8 @@ const SearchForm = ({
 
 SearchForm.propTypes = {
     form: PropTypes.object.isRequired,
-    onSearch: PropTypes.func
+    onSearch: PropTypes.func,
+	customers: PropTypes.array
 };
 
 export default Form.create()(SearchForm);

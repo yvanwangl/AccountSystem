@@ -60,7 +60,9 @@ export default {
         *create({payload}, {call, put}){
             yield put({type: 'hideEditor'});
             yield put({type: 'showLoading'});
-            const {data} = yield call(create, payload);
+            let product = payload;
+            product['productImg'] = product['productImg']?product['productImg'][0]['response']:'';
+            const {data} = yield call(create, product);
             if (data && data.success) {
                 yield put({
                     type: 'query',

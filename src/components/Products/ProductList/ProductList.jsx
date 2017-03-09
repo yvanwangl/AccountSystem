@@ -28,9 +28,9 @@ const ProductList = ({
 			key: 'productImg',
 			render: (text, record, index)=>{
 				if(text){
-					return <img style={{width:100}} src={text[0].response} alt="商品图片"/>
+					return <img style={{width:100}} src={text} alt="商品图片"/>
 				}else {
-					return null;
+					return <span>暂无图片</span>;
 				}
 			}
 		},
