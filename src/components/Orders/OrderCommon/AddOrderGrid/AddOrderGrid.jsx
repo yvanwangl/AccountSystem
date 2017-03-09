@@ -72,14 +72,14 @@ class AddOrderGrid extends Component {
                 title: '单位',
                 dataIndex: 'unit',
                 key: 'unit',
-                render: (text, record, index)=>(
+                /*render: (text, record, index)=>(
                     <EditableCell
                         disabled={disabled}
                         editType='editCell'
                         value={text}
                         onChange={this.onCellChange(index, 'unit')}
                     />
-                )
+                )*/
             },
             {
                 title: '单价',
@@ -135,7 +135,7 @@ class AddOrderGrid extends Component {
 			dataSource[index]['productId'] = key;
 			dataSource[index]['productName'] = arr[0];
 			dataSource[index]['unit'] = arr[1];
-			this.setState({dataSource});
+			this.setState({dataSource:[...dataSource]});
 			editProducts(dataSource, totalAmount, paymentAmount);
 		}
 	}

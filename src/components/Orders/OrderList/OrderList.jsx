@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Table, Pagination, Popconfirm, Button} from 'antd';
 import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
+import * as moment from 'moment';
 import Spliter from '../../Spliter/Spliter';
 import {orderList} from './index.css';
 
@@ -26,7 +27,7 @@ const OrderList = ({
             title: '下单日期',
             dataIndex: 'createInstance',
             key: 'createInstance',
-            render: (text)=><span>{dateFormat(text)}</span>
+            render: (text)=><span>{moment.parseZone(text).local().format('YYYY-MM-DD HH:mm')}</span>
         },
         {
             title: '单据编号',

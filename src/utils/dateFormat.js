@@ -6,7 +6,7 @@ export default function dateFormat(text, formatType) {
     let date = new Date(text);
     let year = date.getFullYear();
     let month = preFixO(date.getMonth() + 1);
-    let day = preFixO(date.getDate() + 1);
+    let day = preFixO(date.getDate());
     let dateStr = `${year}-${month}-${day}`;
     switch (formatType) {
         case 1:

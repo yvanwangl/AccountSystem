@@ -72,14 +72,14 @@ class AddOrderGrid extends Component {
                 title: '单位',
                 dataIndex: 'unit',
                 key: 'unit',
-                render: (text, record, index)=>(
+                /*render: (text, record, index)=>(
                     <EditableCell
                         disabled={disabled}
                         editType='editCell'
                         value={text}
                         onChange={this.onCellChange(index, 'unit')}
                     />
-                )
+                )*/
             },
             {
                 title: '单价',

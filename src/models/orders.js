@@ -1,4 +1,5 @@
 import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/orders';
+import * as cutomers from '../services/customers';
 import {parse} from 'qs';
 const defaultProduct = {
     key: '0',
@@ -30,8 +31,8 @@ export default {
         list: [],
         total: null,
         timeRange: [],
-        field: '',
-        keyword: '',
+        customerId: '',
+        orderNumber: '',
         loading: false,
         current: null,
         currentItem: {},
@@ -50,6 +51,9 @@ export default {
         setup({dispatch, history}) {
             history.listen(location=> {
                 if (location.pathname == '/orders') {
+                	dispatch({
+                		type:'getCustomers'
+					});
                     dispatch({
                         type: 'query',
                         payload: location.query
@@ -77,13 +81,13 @@ export default {
                 payload: {
                     page: 1,
                     timeRange: [],
-                    field: '',
-                    keyword: '',
+                    customerId: '',
+                    orderNumber: '',
                     ...payload
                 }
             });
-            const {page, timeRange, field, keyword} = yield select(state=>state.orders);
-            const {data} = yield call(query, parse({page, timeRange, field, keyword}));
+            const {page, timeRange, customerId, orderNumber} = yield select(state=>state.orders);
+            const {data} = yield call(query, parse({page, timeRange, customerId, orderNumber}));
             if (data) {
                 yield put({
                     type: 'querySuccess',
@@ -97,7 +101,10 @@ export default {
         },
         *create({payload}, {call, put}){
             yield put({type: 'showLoading'});
-            const {data} = yield call(create, payload.order);
+            let order = payload.order;
+            order['createInstance'] = new Date();
+            console.log(new Date());
+            const {data} = yield call(create, order);
             if (data && data.success) {
                 yield put({
                     type: 'createSuccess',
@@ -181,6 +188,15 @@ export default {
                 });
             }
         },
+		*getCustomers({payload}, {call, put}){
+        	const {data} = yield call(cutomers.query, {});
+        	if(data && data.success){
+        		yield put({
+        			type:'getCustomersSuccess',
+					customers: data.customers
+				});
+			}
+		}
     },
 
     reducers: {
@@ -229,6 +245,10 @@ export default {
             let newOrder = {...order, orderNumber};
             return {...state, order: newOrder, ...action.payload};
         },
+		getCustomersSuccess(state, action){
+        	let customers = action.customers;
+        	return {...state, customers};
+		},
         setCustomer(state, action){
             let order = state['order'];
             let newOrder = {...order, customerId: action.payload.customerId};

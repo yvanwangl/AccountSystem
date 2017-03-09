@@ -1,37 +1,43 @@
 
 :global {
-    html, body, #root {
-        height: 100%;
-        font-size: 16px;
-        font-family: "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", SimSun, sans-serif;
-        background: #ececec;
-    }
-    .ant-table-thead > tr > th,
-    .ant-table-tbody > tr > td,
-    .ant-form-item-label label {
-        font-size: 14px;
-    }
-    .ant-table-bordered.ant-table-small .ant-table-footer {
-        background: #fff;
-        border-right: 1px solid #e9e9e9 !important;
-        border-top: 2px solid #e9e9e9 !important;
-        text-align: right;
-    }
-    #root .ant-menu-vertical > .ant-menu-item,
-    #root .ant-menu-inline > .ant-menu-item,
-    #root .ant-menu-item-group-list > .ant-menu-item,
-    #root .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title,
-    #root .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
-    #root .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title {
-        padding: 0px 16px 0 50px !important;
-        font-size: 18px;
-        line-height: 80px;
-        height: 80px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: left;
-    }
-    #root .ant-menu-inline.ant-menu-sub > .ant-menu-item {
-        padding-left: 70px !important;
-    }
+  html, body, #root {
+    height: 100%;
+    font-size: 16px;
+    font-family: "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", SimSun, sans-serif;
+    background: #ececec;
+  }
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td,
+  .ant-form-item-label label {
+    font-size: 14px;
+  }
+  .ant-table-bordered.ant-table-small .ant-table-footer {
+    background: #fff;
+    border-right: 1px solid #e9e9e9 !important;
+    border-top: 2px solid #e9e9e9 !important;
+    text-align: right;
+  }
+  #root .ant-menu-vertical > .ant-menu-item,
+  #root .ant-menu-inline > .ant-menu-item,
+  #root .ant-menu-item-group-list > .ant-menu-item,
+  #root .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title,
+  #root .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
+  #root .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title {
+    padding: 0px 16px 0 50px !important;
+    font-size: 18px;
+    line-height: 80px;
+    height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+  #root .ant-menu-inline.ant-menu-sub > .ant-menu-item {
+    padding-left: 70px !important;
+  }
+  #root .ant-input[disabled],
+  #root .ant-select-disabled,
+  #root .ant-select-disabled .ant-select-selection {
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.65);
+  }
 }
