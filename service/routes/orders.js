@@ -3,6 +3,7 @@ let router = express.Router();
 let Order = require('../models/orders');
 let Customer = require('../models/customers');
 let Product = require('../models/products');
+let moment = require('moment');
 let utils = require('../utils/utils');
 let constants = require('../constants/constants');
 
@@ -11,16 +12,29 @@ router.route('/')
     .get(function (req, res, next) {
         let queryData = req.query;
         let page = queryData['page'];
-        let timeRange = queryData['timeRange'];
+        let {timeRange, customerId, orderNumber} = queryData;
+        console.log(queryData);
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
-        console.log(queryData);
+		let queryCondition = {};
         if (timeRange) {
-            let startTime = new Date(timeRange[0]);
-            let endTime = new Date(timeRange[1]);
+            let startTime = new Date(timeRange[1]);
+            let endTime = new Date(timeRange[0]);
+            console.log(startTime);
+			queryCondition['createInstance'] = {
+				"$gte" : startTime,
+				"$lte": endTime
+			};
         }
-        let queryCondition = {};
-        Order.count(queryCondition, function (err, count) {
+        if(customerId){
+			queryCondition['customerId'] = customerId;
+		}
+
+		if(orderNumber){
+			queryCondition['orderNumber'] = orderNumber;
+		}
+
+        Order.count({}, function (err, count) {
             Order.find(queryCondition)
                 .sort('-createInstance')
                 .limit(limit)
@@ -66,7 +80,9 @@ router.route('/')
     })
     .post(function (req, res, next) {
         let order = req.body;
-        let newOrder = new Order(Object.assign({}, order, {createInstance: new Date()}));
+        console.log(moment.parseZone(new Date()));
+        console.log(moment().local());
+        let newOrder = new Order(Object.assign({}, order, {createInstance: moment().local()}));
         newOrder.save(function (err, order) {
             if (err) {
                 res.send({

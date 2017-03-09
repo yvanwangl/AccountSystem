@@ -33,6 +33,10 @@ export async function getOrderNumber() {
     return request(`${ORDER_API}/getOrderNumber`);
 }
 
+export async function getCustomers() {
+	return request(`${ORDER_API}/getCustomers`);
+}
+
 export async function queryOrderById(orderId) {
     console.log(orderId);
     return request(`${ORDER_API}/${orderId}`);

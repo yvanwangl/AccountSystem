@@ -89,7 +89,7 @@ const ProductForm = ({
 							valuePropName: 'fileList',
 							getValueFromEvent: normFile
 						})(
-							<Upload name="logo" action="http://localhost:3000/api/uploadProductImg" listType="picture">
+							<Upload name="logo" action="http://localhost:3000/api/uploadProductImg" listType="picture" disabled={disabled}>
 								<Button>
 									<Icon type="upload" /> Click to upload
 								</Button>

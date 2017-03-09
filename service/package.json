@@ -13,6 +13,7 @@
     "express": "~4.13.4",
     "formidable": "^1.1.1",
     "jade": "~1.11.0",
+    "moment": "^2.17.1",
     "mongoose": "^4.7.6",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"

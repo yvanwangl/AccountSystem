@@ -21,7 +21,8 @@ function genOrders({dispatch, orders}){
         currentItem,
         editorVisible,
         editorType,
-        breadcrumbItems
+        breadcrumbItems,
+		customers
     } = orders;
 
     const orderListProps ={
@@ -111,7 +112,7 @@ function genOrders({dispatch, orders}){
                     (
                         <div className={orderContainer}>
                             <SearchBar onAdd={onAdd}>
-                                <SearchForm onSearch={onSearch}/>
+                                <SearchForm onSearch={onSearch} customers={customers}/>
                             </SearchBar>
                             <OrderList {...orderListProps} />
                         </div>
