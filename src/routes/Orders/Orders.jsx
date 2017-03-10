@@ -1,7 +1,7 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import SearchForm from '../../components/SearchForm/SearchForm';
+import OrderSearchForm from '../../components/Orders/OrderSearchForm/OrderSearchForm';
 import OrderList from '../../components/Orders/OrderList/OrderList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
@@ -14,8 +14,9 @@ function genOrders({dispatch, orders}){
     const {
         list,
         total,
-        field,
-        keyword,
+		timeRange,
+        customerId,
+        orderNumber,
         loading,
         current,
         currentItem,
@@ -31,10 +32,10 @@ function genOrders({dispatch, orders}){
         dataSource: list,
         loading,
         onPageChange(page){
-            dispatch(routerRedux.push({
-                pathname:'/orders',
-                query: {field, keyword, page}
-            }));
+			dispatch({
+				type:'orders/query',
+				payload: {timeRange, customerId, orderNumber, page}
+			});
         },
         onModify(orderId){
             dispatch({
@@ -79,10 +80,10 @@ function genOrders({dispatch, orders}){
     };
 
     const onSearch = (fieldValues)=>{
-        dispatch(routerRedux.push({
-            pathname:'/orders',
-            query:{...fieldValues, page:1}
-        }));
+        dispatch({
+        	type:'orders/query',
+			payload: {...fieldValues, page:1}
+		});
     };
 
     const onAdd = ()=>{
@@ -112,13 +113,12 @@ function genOrders({dispatch, orders}){
                     (
                         <div className={orderContainer}>
                             <SearchBar onAdd={onAdd}>
-                                <SearchForm onSearch={onSearch} customers={customers}/>
+                                <OrderSearchForm onSearch={onSearch} customers={customers}/>
                             </SearchBar>
                             <OrderList {...orderListProps} />
                         </div>
                     )
             }
-
         </div>
     );
 }

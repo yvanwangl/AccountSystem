@@ -10,16 +10,13 @@ let constants = require('../constants/constants');
 /* GET orders listing. */
 router.route('/')
     .get(function (req, res, next) {
-        let queryData = req.query;
-        let page = queryData['page'];
-        let {timeRange, customerId, orderNumber} = queryData;
-        console.log(queryData);
+        let {page, timeRange, customerId, orderNumber} = req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
 		let queryCondition = {};
         if (timeRange) {
-            let startTime = new Date(timeRange[1]);
-            let endTime = new Date(timeRange[0]);
+            let startTime = new Date(timeRange[0]);
+            let endTime = new Date(timeRange[1]);
             console.log(startTime);
 			queryCondition['createInstance'] = {
 				"$gte" : startTime,
@@ -29,12 +26,10 @@ router.route('/')
         if(customerId){
 			queryCondition['customerId'] = customerId;
 		}
-
 		if(orderNumber){
-			queryCondition['orderNumber'] = orderNumber;
+			queryCondition['orderNumber'] = new RegExp(orderNumber);
 		}
-
-        Order.count({}, function (err, count) {
+        Order.count(queryCondition, function (err, count) {
             Order.find(queryCondition)
                 .sort('-createInstance')
                 .limit(limit)
@@ -82,7 +77,7 @@ router.route('/')
         let order = req.body;
         console.log(moment.parseZone(new Date()));
         console.log(moment().local());
-        let newOrder = new Order(Object.assign({}, order, {createInstance: moment().local()}));
+        let newOrder = new Order(Object.assign({}, order, {createInstance: new Date()}));
         newOrder.save(function (err, order) {
             if (err) {
                 res.send({
@@ -107,30 +102,9 @@ router.route('/getOrderNumber')
                     error: error
                 });
             } else {
-				Customer.find({},function(err, customers){
-					if (error) {
-						res.send({
-							success: false,
-							error: error
-						});
-					}else {
-						Product.find({},function (err, products) {
-							if(err){
-								res.send({
-									success: false,
-									error: error
-								});
-							}else {
-								res.send({
-									success: true,
-									orderNumber: utils.getOrderNumber(orders.length + 1),
-									customers: customers,
-									productList: products
-								});
-							}
-						});
-
-					}
+				res.send({
+					success: true,
+					orderNumber: utils.getOrderNumber(orders.length + 1)
 				});
             }
         });
@@ -146,29 +120,9 @@ router.route('/:orderId')
                     error: err
                 });
             }else {
-            	Customer.find({}, function (err, customers) {
-            		if(err){
-						res.send({
-							success: false,
-							error: err
-						});
-					}else {
-						Product.find({}, function (err, products) {
-							if(err){
-								res.send({
-									success: false,
-									error: err
-								});
-							}else {
-								res.send({
-									success: true,
-									order: order,
-									customers: customers,
-									productList: products
-								});
-							}
-						});
-					}
+				res.send({
+					success: true,
+					order: order
 				});
 			}
         })

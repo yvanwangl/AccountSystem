@@ -1,0 +1,8 @@
+.orderSearchForm {
+    display: inline-block;
+    text-align: left;
+}
+
+.orderSearchForm button {
+    margin-top: 4px;
+}

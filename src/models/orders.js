@@ -1,5 +1,6 @@
 import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/orders';
-import * as cutomers from '../services/customers';
+import * as customers from '../services/customers';
+import * as products from '../services/products';
 import {parse} from 'qs';
 const defaultProduct = {
     key: '0',
@@ -30,7 +31,7 @@ export default {
     state: {
         list: [],
         total: null,
-        timeRange: [],
+		timeRange: [],
         customerId: '',
         orderNumber: '',
         loading: false,
@@ -53,6 +54,9 @@ export default {
                 if (location.pathname == '/orders') {
                 	dispatch({
                 		type:'getCustomers'
+					});
+					dispatch({
+						type:'getProducts'
 					});
                     dispatch({
                         type: 'query',
@@ -86,7 +90,8 @@ export default {
                     ...payload
                 }
             });
-            const {page, timeRange, customerId, orderNumber} = yield select(state=>state.orders);
+            let {page, timeRange, customerId, orderNumber} = yield select(state=>state.orders);
+			customerId = customerId=='00000'?'':customerId;
             const {data} = yield call(query, parse({page, timeRange, customerId, orderNumber}));
             if (data) {
                 yield put({
@@ -101,10 +106,7 @@ export default {
         },
         *create({payload}, {call, put}){
             yield put({type: 'showLoading'});
-            let order = payload.order;
-            order['createInstance'] = new Date();
-            console.log(new Date());
-            const {data} = yield call(create, order);
+            const {data} = yield call(create, payload.order);
             if (data && data.success) {
                 yield put({
                     type: 'createSuccess',
@@ -154,9 +156,7 @@ export default {
                         editorType: payload.editorType,
                         currentItem: data.order,
                         editorVisible: true,
-                        order: data.order,
-						customers: data.customers,
-						productList: data.productList
+                        order: data.order
                     }
                 });
                 yield put({
@@ -175,8 +175,6 @@ export default {
                     payload: {
                         editorType: 'create',
                         orderNumber: data.orderNumber,
-						customers: data.customers,
-						productList: data.productList,
                         editorVisible: true
                     }
                 });
@@ -189,11 +187,20 @@ export default {
             }
         },
 		*getCustomers({payload}, {call, put}){
-        	const {data} = yield call(cutomers.query, {});
-        	if(data && data.success){
-        		yield put({
-        			type:'getCustomersSuccess',
+			const {data} = yield call(customers.query, {});
+			if(data && data.success){
+				yield put({
+					type:'getCustomersSuccess',
 					customers: data.customers
+				});
+			}
+		},
+		*getProducts({payload}, {call, put}){
+			const {data} = yield call(products.query, {});
+			if(data && data.success){
+				yield put({
+					type:'getProductsSuccess',
+					productList: data.products
 				});
 			}
 		}
@@ -247,7 +254,11 @@ export default {
         },
 		getCustomersSuccess(state, action){
         	let customers = action.customers;
+        	customers.unshift({_id:'00000', customerName:'--'});
         	return {...state, customers};
+		},
+		getProductsSuccess(state, action){
+			return {...state, productList: action.productList};
 		},
         setCustomer(state, action){
             let order = state['order'];
