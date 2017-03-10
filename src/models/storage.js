@@ -1,4 +1,6 @@
 import {query, create, modify, del, getNoteNumber, queryStorageById} from '../services/storage';
+import * as suppliers from '../services/suppliers';
+import * as products from '../services/products';
 import {parse} from 'qs';
 const defaultProduct = {
 	key: '0',
@@ -30,8 +32,8 @@ export default {
 		list: [],
 		total: null,
 		timeRange: [],
-		field: '',
-		keyword: '',
+		supplierId: '',
+		noteNumber: '',
 		loading: false,
 		current: null,
 		currentItem: {},
@@ -50,6 +52,12 @@ export default {
 		setup({dispatch, history}) {
 			history.listen(location=> {
 				if (location.pathname == '/storage') {
+					dispatch({
+						type:'getSuppliers'
+					});
+					dispatch({
+						type:'getProducts'
+					});
 					dispatch({
 						type: 'query',
 						payload: location.query
@@ -77,13 +85,14 @@ export default {
 				payload: {
 					page: 1,
 					timeRange: [],
-					field: '',
-					keyword: '',
+					supplierId: '',
+					noteNumber: '',
 					...payload
 				}
 			});
-			const {page, timeRange, field, keyword} = yield select(state=>state.storage);
-			const {data} = yield call(query, parse({page, timeRange, field, keyword}));
+			let {page, timeRange, supplierId, noteNumber} = yield select(state=>state.storage);
+			supplierId = supplierId=='00000'?'':supplierId;
+			const {data} = yield call(query, parse({page, timeRange, supplierId, noteNumber}));
 			if (data) {
 				yield put({
 					type: 'querySuccess',
@@ -147,9 +156,7 @@ export default {
 						editorType: payload.editorType,
 						currentItem: data.storage,
 						editorVisible: true,
-						storageData: data.storage,
-						suppliers: data.suppliers,
-						productList: data.productList
+						storageData: data.storage
 					}
 				});
 				yield put({
@@ -168,8 +175,6 @@ export default {
 					payload: {
 						editorType: 'create',
 						noteNumber: data.noteNumber,
-						suppliers: data.suppliers,
-						productList: data.productList,
 						editorVisible: true
 					}
 				});
@@ -178,6 +183,24 @@ export default {
 					payload: {
 						item: ['/storage/addstorage', '新增入库']
 					}
+				});
+			}
+		},
+		*getSuppliers({payload}, {call, put}){
+			const {data} = yield call(suppliers.query, {});
+			if(data&&data.success){
+				yield put({
+					type:'getSuppliersSuccess',
+					suppliers:data.suppliers
+				});
+			}
+		},
+		*getProducts({payload}, {call, put}){
+			const {data} = yield call(products.query, {});
+			if(data&&data.success){
+				yield put({
+					type:'getProductsSuccess',
+					productList:data.products
 				});
 			}
 		},
@@ -260,6 +283,15 @@ export default {
 			let newStorage = {...storageData, noteNumber};
 			return {...state, storageData: newStorage, ...action.payload};
 		},
+		getSuppliersSuccess(state, action){
+			let suppliers = action.suppliers;
+			suppliers.unshift({_id:'00000', supplierName:'--'});
+			return {...state, suppliers};
+		},
+		getProductsSuccess(state, action){
+			let productList = action.productList;
+			return {...state, productList};
+		}
 	},
 
 }

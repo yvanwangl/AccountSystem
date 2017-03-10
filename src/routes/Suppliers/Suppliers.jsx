@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import SearchForm from '../../components/SearchForm/SearchForm';
+import SearchForm from '../../components/Orders/OrderSearchForm/OrderSearchForm';
 import SupplierList from '../../components/Suppliers/SupplierList/SupplierList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';

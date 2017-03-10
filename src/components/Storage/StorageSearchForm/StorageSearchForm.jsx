@@ -1,15 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import {Form, Input, Select, Button, DatePicker} from 'antd';
-import moment from 'moment';
-import {searchForm} from './index.css';
+import {storageSearchForm} from './index.css';
 
 const FormItem = Form.Item;
 const RangePicker = DatePicker.RangePicker;
 const Option = Select.Option;
 
-const SearchForm = ({
+const StorageSearchForm = ({
     onSearch,
-	customers,
+	suppliers,
     form: {
         getFieldDecorator,
         getFieldsValue,
@@ -18,16 +17,19 @@ const SearchForm = ({
 }) => {
     const onSubmit = (e)=> {
         e.preventDefault();
-        validateFields((errors)=> {
+        validateFields((errors, values)=> {
             if (!!errors) {
                 return false;
             }
-            onSearch(getFieldsValue());
+            if(values['timeRange']){
+            	values['timeRange'] = values['timeRange'].map((time)=> time.toLocaleString());
+			}
+            onSearch(values);
         })
     };
 
     return (
-        <div className={searchForm}>
+        <div className={storageSearchForm}>
             <Form inline onSubmit={onSubmit}>
                 <FormItem>
                     {
@@ -36,13 +38,13 @@ const SearchForm = ({
                         )
                     }
                 </FormItem>
-                <FormItem label="客户名称：">
+                <FormItem label="供应商名称：">
                     {
-                        getFieldDecorator('customerId')(
+                        getFieldDecorator('supplierId')(
                             <Select style={{minWidth: 150}}>
 								{
-									customers.map(({_id, customerName})=>(
-										<Option key={_id}>{customerName}</Option>
+									suppliers.map(({_id, supplierName})=>(
+										<Option key={_id}>{supplierName}</Option>
 									))
 								}
                             </Select>
@@ -51,7 +53,7 @@ const SearchForm = ({
                 </FormItem>
                 <FormItem label="订单编号：">
                     {
-                        getFieldDecorator('orderNumber')(
+                        getFieldDecorator('noteNumber')(
                             <Input type="text"/>
                         )
                     }
@@ -62,10 +64,10 @@ const SearchForm = ({
     );
 };
 
-SearchForm.propTypes = {
-    form: PropTypes.object.isRequired,
+StorageSearchForm.propTypes = {
+    form: PropTypes.object,
     onSearch: PropTypes.func,
 	customers: PropTypes.array
 };
 
-export default Form.create()(SearchForm);
+export default Form.create()(StorageSearchForm);

@@ -1,7 +1,7 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import SearchForm from '../../components/SearchForm/SearchForm';
+import StorageSearchForm from '../../components/Storage/StorageSearchForm/StorageSearchForm';
 import StorageList from '../../components/Storage/StorageList/StorageList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
@@ -14,14 +14,16 @@ function genStorage({dispatch, storage}){
     const {
         list,
         total,
-        field,
-        keyword,
+		timeRange,
+        supplierId,
+        noteNumber,
         loading,
         current,
         currentItem,
         editorVisible,
         editorType,
-		breadcrumbItems
+		breadcrumbItems,
+		suppliers
     } = storage;
 
 	const storageListProps ={
@@ -30,10 +32,10 @@ function genStorage({dispatch, storage}){
 		dataSource: list,
 		loading,
 		onPageChange(page){
-			dispatch(routerRedux.push({
-				pathname:'/storage',
-				query: {field, keyword, page}
-			}));
+			dispatch({
+				type:'storage/query',
+				payload: {timeRange, supplierId, noteNumber, page}
+			});
 		},
 		onModify(storageId){
 			dispatch({
@@ -78,10 +80,10 @@ function genStorage({dispatch, storage}){
 	};
 
 	const onSearch = (fieldValues)=>{
-		dispatch(routerRedux.push({
-			pathname:'/storage',
-			query:{...fieldValues, page:1}
-		}));
+		dispatch({
+			type:'storage/query',
+			payload:{...fieldValues, page:1}
+		});
 	};
 
 	const onAdd = ()=>{
@@ -111,7 +113,7 @@ function genStorage({dispatch, storage}){
 					(
 						<div className={storageContainer}>
 							<SearchBar onAdd={onAdd}>
-								<SearchForm onSearch={onSearch}/>
+								<StorageSearchForm onSearch={onSearch} suppliers={suppliers}/>
 							</SearchBar>
 							<StorageList {...storageListProps} />
 						</div>

@@ -3,6 +3,7 @@ import {Table, Pagination, Popconfirm, Button} from 'antd';
 import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
 import Spliter from '../../Spliter/Spliter';
+import * as moment from 'moment';
 import {storageList} from './index.css';
 
 const StorageList = ({
@@ -26,7 +27,7 @@ const StorageList = ({
             title: '进货日期',
             dataIndex: 'createInstance',
             key: 'createInstance',
-            render: (text)=><span>{dateFormat(text)}</span>
+            render: (text)=><span>{moment.parseZone(text).local().format('YYYY-MM-DD HH:mm')}</span>
         },
         {
             title: '单据编号',

@@ -10,16 +10,24 @@ let constants = require('../constants/constants');
 router.route('/')
 	.get(function (req, res, next) {
 		let queryData = req.query;
-		let page = queryData['page'];
-		let timeRange = queryData['timeRange'];
+		let {page, timeRange, supplierId, noteNumber} = queryData;
 		let limit = constants.PAGE_SIZE;
 		let skip = (page - 1) * limit;
-		console.log(queryData);
+		let queryCondition = {};
 		if (timeRange) {
 			let startTime = new Date(timeRange[0]);
 			let endTime = new Date(timeRange[1]);
+			queryCondition['createInstance'] = {
+				"$gte": startTime,
+				"$lte": endTime
+			};
 		}
-		let queryCondition = {};
+		if(supplierId){
+			queryCondition['supplierId'] = supplierId;
+		}
+		if(noteNumber){
+			queryCondition['noteNumber'] = new RegExp(noteNumber);
+		}
 		Storage.count(queryCondition, function (err, count) {
 			Storage.find(queryCondition)
 				.sort('-createInstance')
@@ -97,30 +105,9 @@ router.route('/getNoteNumber')
 					error: error
 				});
 			} else {
-				Supplier.find(function (error, suppliers) {
-					if (error) {
-						res.send({
-							success: false,
-							error: error
-						});
-					} else {
-						Product.find({}, function (err, products) {
-							if (error) {
-								res.send({
-									success: false,
-									error: error
-								});
-							}else {
-								res.send({
-									success: true,
-									noteNumber: utils.getNoteNumber(storages.length + 1),
-									suppliers: suppliers,
-									productList: products
-								});
-							}
-						});
-
-					}
+				res.send({
+					success: true,
+					noteNumber: utils.getNoteNumber(storages.length + 1)
 				});
 			}
 		});
@@ -136,29 +123,9 @@ router.route('/:storageId')
 					error: err
 				});
 			}else {
-				Supplier.find(function (error, suppliers) {
-					if (error) {
-						res.send({
-							success: false,
-							error: error
-						});
-					} else {
-						Product.find({}, function (err, products) {
-							if (error) {
-								res.send({
-									success: false,
-									error: error
-								});
-							} else{
-								res.send({
-									success: true,
-									storage: storage,
-									suppliers: suppliers,
-									productList: products
-								});
-							}
-						});
-					}
+				res.send({
+					success: true,
+					storage: storage
 				});
 			}
 		})
