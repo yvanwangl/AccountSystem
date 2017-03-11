@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import SearchForm from '../../components/Orders/OrderSearchForm/OrderSearchForm';
+import SearchForm from '../../components/SearchForm/SearchForm';
 import SupplierList from '../../components/Suppliers/SupplierList/SupplierList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
@@ -13,8 +13,7 @@ function genSuppliers({dispatch, suppliers}) {
     const {
         list,
         total,
-        field,
-        keyword,
+        supplierName,
         loading,
         current,
         currentItem,
@@ -29,10 +28,10 @@ function genSuppliers({dispatch, suppliers}) {
         dataSource: list,
         loading,
         onPageChange(page){
-            dispatch(routerRedux.push({
-                pathname: '/suppliers',
-                query: {field, keyword, page}
-            }));
+			dispatch({
+				type:'suppliers/query',
+				payload: {supplierName, page}
+			});
         },
         onModify(supplier){
             dispatch({
@@ -77,12 +76,16 @@ function genSuppliers({dispatch, suppliers}) {
         }
     };
 
-    const onSearch = (fieldValues)=> {
-        dispatch(routerRedux.push({
-            pathname: '/supplier',
-            query: {...fieldValues, page: 1}
-        }));
-    };
+	const supplierSearchProps = {
+		fieldName: 'supplierName',
+		labelName: '供应商名称：',
+		onSearch(fieldValues){
+			dispatch({
+				type:'suppliers/query',
+				payload: {...fieldValues, page:1}
+			});
+		}
+	};
 
     const onAdd = ()=> {
         dispatch({
@@ -103,6 +106,7 @@ function genSuppliers({dispatch, suppliers}) {
                     (
                         <div className={supplierContainer}>
                             <SearchBar onAdd={onAdd}>
+								<SearchForm {...supplierSearchProps}/>
                             </SearchBar>
                             <SupplierList {...supplierListProps} />
                         </div>
@@ -118,15 +122,9 @@ class Suppliers extends Component {
         super(props);
     }
 
-    componentWillMount() {
-        let {isLogin} = this.props.systemUser;
-        if (!isLogin) {
-            redirect();
-        }
-    }
-
     render() {
-        return genSuppliers(this.props);
+		let {isLogin} = this.props.systemUser;
+		return isLogin?genSuppliers(this.props):redirect();
     }
 }
 

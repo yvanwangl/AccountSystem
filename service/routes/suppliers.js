@@ -8,11 +8,13 @@ let constants = require('../constants/constants');
 
 router.route('/')
     .get((req, res, next)=>{
-        let queryData = req.query;
-        let page = queryData['page'];
+        let {page, supplierName} = req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
         let queryCondition = {};
+        if(supplierName){
+        	queryCondition['supplierName'] = new RegExp(supplierName);
+		}
 		Supplier.count(queryCondition, (err, count)=>{
 			Supplier.find(queryCondition)
                 .limit(limit)
