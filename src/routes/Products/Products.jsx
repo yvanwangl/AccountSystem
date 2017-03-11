@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import SearchForm from '../../components/Orders/OrderSearchForm/OrderSearchForm';
+import SearchForm from '../../components/SearchForm/SearchForm';
 import ProductList from '../../components/products/ProductList/ProductList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
@@ -13,8 +13,7 @@ function genProducts({dispatch, products}) {
     const {
         list,
         total,
-        field,
-        keyword,
+        productName,
         loading,
         current,
         currentItem,
@@ -29,10 +28,10 @@ function genProducts({dispatch, products}) {
         dataSource: list,
         loading,
         onPageChange(page){
-            dispatch(routerRedux.push({
-                pathname: '/products',
-                query: {field, keyword, page}
-            }));
+            dispatch({
+            	type:'products/query',
+				payload:{productName, page}
+			});
         },
         onModify(product){
             dispatch({
@@ -77,12 +76,16 @@ function genProducts({dispatch, products}) {
         }
     };
 
-    const onSearch = (fieldValues)=> {
-        dispatch(routerRedux.push({
-            pathname: '/product',
-            query: {...fieldValues, page: 1}
-        }));
-    };
+	const productSearchProps = {
+		fieldName: 'productName',
+		labelName: '商品名称：',
+		onSearch(fieldValues){
+			dispatch({
+				type:'products/query',
+				payload: {...fieldValues, page:1}
+			});
+		}
+	};
 
     const onAdd = ()=> {
         dispatch({
@@ -103,6 +106,7 @@ function genProducts({dispatch, products}) {
                     (
                         <div className={productContainer}>
                             <SearchBar onAdd={onAdd}>
+								<SearchForm {...productSearchProps}/>
                             </SearchBar>
                             <ProductList {...productListProps} />
                         </div>
@@ -118,15 +122,9 @@ class Products extends Component {
         super(props);
     }
 
-    componentWillMount() {
-        let {isLogin} = this.props.systemUser;
-        if (!isLogin) {
-            redirect();
-        }
-    }
-
     render() {
-        return genProducts(this.props);
+		let {isLogin} = this.props.systemUser;
+		return isLogin? genProducts(this.props):redirect();
     }
 }
 

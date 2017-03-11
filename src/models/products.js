@@ -7,8 +7,7 @@ export default {
     state: {
         list: [],
         total: null,
-        field: '',
-        keyword: '',
+        productName: '',
         loading: false,
         current: null,
         currentItem: {},
@@ -40,8 +39,7 @@ export default {
                 type: 'updateQueryKey',
                 payload: {
                     page: 1,
-                    field: '',
-                    keyword: '',
+					productName: '',
                     ...payload
                 }
             });
