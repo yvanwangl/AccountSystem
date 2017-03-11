@@ -98,7 +98,9 @@ const ModifyOrder = ({
                 <OrderRemarkForm disabled={disabled} mem={currentItem.mem} onSetMem={onSetMem}/>
             </div>
             <div className={buttonGroup}>
-                <Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
+				{
+					editorType=='modify' && <Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
+				}
                 <Button type="ghost" className={cancelButton} onClick={handleCancel}>取消</Button>
             </div>
         </div>
