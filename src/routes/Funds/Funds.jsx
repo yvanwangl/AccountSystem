@@ -53,7 +53,8 @@ class Funds extends Component {
 	}
 
 	render() {
-		return genFunds(this.props);
+		let {isLogin} = this.props.systemUser;
+		return isLogin? genFunds(this.props):redirect();
 	}
 }
 

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import SearchForm from '../../components/Orders/OrderSearchForm/OrderSearchForm';
+import SearchForm from '../../components/SearchForm/SearchForm';
 import CustomerList from '../../components/Customers/CustomerList/CustomerList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
@@ -13,8 +13,7 @@ function genCustomers({dispatch, customers}) {
     const {
         list,
         total,
-        field,
-        keyword,
+        customerName,
         loading,
         current,
         currentItem,
@@ -29,10 +28,10 @@ function genCustomers({dispatch, customers}) {
         dataSource: list,
         loading,
         onPageChange(page){
-            dispatch(routerRedux.push({
-                pathname: '/customer',
-                query: {field, keyword, page}
-            }));
+            dispatch({
+            	type:'customers/query',
+				payload: {customerName, page}
+			});
         },
         onModify(customer){
             dispatch({
@@ -78,12 +77,16 @@ function genCustomers({dispatch, customers}) {
         }
     };
 
-    const onSearch = (fieldValues)=> {
-        dispatch(routerRedux.push({
-            pathname: '/customer',
-            query: {...fieldValues, page: 1}
-        }));
-    };
+    const customerSearchProps = {
+    	fieldName: 'customerName',
+		labelName: '客户名称：',
+		onSearch(fieldValues){
+			dispatch({
+				type:'customers/query',
+				payload: {...fieldValues, page:1}
+			});
+		}
+	};
 
     const onAdd = ()=> {
         dispatch({
@@ -106,6 +109,7 @@ function genCustomers({dispatch, customers}) {
                     (
                         <div className={customerContainer}>
                             <SearchBar onAdd={onAdd}>
+								<SearchForm {...customerSearchProps}/>
                             </SearchBar>
                             <CustomerList {...customerListProps} />
                         </div>
@@ -129,7 +133,8 @@ class Customers extends Component {
     }
 
     render() {
-        return genCustomers(this.props);
+		let {isLogin} = this.props.systemUser;
+		return isLogin? genCustomers(this.props):redirect();
     }
 }
 
