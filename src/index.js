@@ -20,6 +20,7 @@ app.model(require('./models/systemUser'));
 app.model(require('./models/customers'));
 app.model(require('./models/products'));
 app.model(require('./models/suppliers'));
+app.model(require('./models/settlement'));
 
 // 4. Router
 app.router(require('./router'));
