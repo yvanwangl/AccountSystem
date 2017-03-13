@@ -1,0 +1,8 @@
+.storageSearchForm {
+    display: inline-block;
+    text-align: left;
+}
+
+.storageSearchForm button {
+    margin-top: 4px;
+}
