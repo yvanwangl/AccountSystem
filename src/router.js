@@ -6,6 +6,7 @@ import Orders from './routes/Orders/Orders';
 import Storage from './routes/Storage/Storage';
 import Stock from './routes/Stock/Stock';
 import Funds from './routes/Funds/Funds';
+import Settlement from './routes/Settlement/Settlement';
 import Manage from './routes/Manage/Manage';
 import Customers from './routes/Customers/Customers';
 import Products from './routes/Products/Products';
@@ -26,6 +27,8 @@ export default function ({history}) {
                 <Route path="/stock" component={Stock}/>
 
                 <Route path="/funds" component={Funds}/>
+
+				<Route path="/settlement" component={Settlement}/>
 
                 <Route path="/manage" component={Manage}/>
 

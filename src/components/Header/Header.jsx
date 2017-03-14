@@ -12,6 +12,7 @@ const menus = [
     ['storage', '/storage', '入库','upload'],
     ['stock', '/stock', '仓库', 'folder'],
     ['funds', '/funds', '资金', 'pay-circle-o'],
+    ['settlement', '/settlement', '结算', 'pushpin-o'],
     ['manage', '/manage', '管理', 'setting'],
 ];
 

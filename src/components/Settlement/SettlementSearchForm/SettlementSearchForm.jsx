@@ -4,14 +4,11 @@ import {settlementSearchForm} from './index.css';
 
 const FormItem = Form.Item;
 const RangePicker = DatePicker.RangePicker;
-const Option = Select.Option;
 
 const SettlementSearchForm = ({
     onSearch,
-	suppliers,
     form: {
         getFieldDecorator,
-        getFieldsValue,
         validateFields
     }
 }) => {
@@ -35,26 +32,6 @@ const SettlementSearchForm = ({
                     {
                         getFieldDecorator('timeRange')(
                             <RangePicker size='large'/>
-                        )
-                    }
-                </FormItem>
-                <FormItem label="供应商名称：">
-                    {
-                        getFieldDecorator('supplierId')(
-                            <Select style={{minWidth: 150}}>
-								{
-									suppliers.map(({_id, supplierName})=>(
-										<Option key={_id}>{supplierName}</Option>
-									))
-								}
-                            </Select>
-                        )
-                    }
-                </FormItem>
-                <FormItem label="订单编号：">
-                    {
-                        getFieldDecorator('noteNumber')(
-                            <Input type="text"/>
                         )
                     }
                 </FormItem>

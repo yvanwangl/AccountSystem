@@ -11,10 +11,7 @@ const SettlementList = ({
     current,
     loading,
     dataSource,
-    onPageChange,
-    onModify,
-    onReadOnly,
-    onDel
+    onPageChange
 }) => {
     const columns = [
         {
@@ -24,51 +21,22 @@ const SettlementList = ({
             render: (text, record, index)=><span>{index + 1}</span>
         },
         {
-            title: '进货日期',
+            title: '结算日期',
             dataIndex: 'createInstance',
             key: 'createInstance',
             render: (text)=><span>{moment.parseZone(text).local().format('YYYY-MM-DD HH:mm')}</span>
         },
+		{
+			title: '结算金额',
+			dataIndex: 'supplierName',
+			key: 'supplierName'
+		},
         {
-            title: '单据编号',
+            title: '结算操作员',
             dataIndex: 'noteNumber',
             key: 'noteNumber'
         },
-        {
-            title: '供应商名称',
-            dataIndex: 'supplierName',
-            key: 'supplierName'
-        },
-        {
-            title: '应付金额',
-            dataIndex: 'totalAmount',
-            key: 'totalAmount',
-        },
-        {
-            title: '已付金额',
-            dataIndex: 'paymentAmount',
-            key: 'paymentAmount',
-        },
-		{
-			title: '备注',
-			dataIndex: 'mem',
-			key: 'mem',
-		},
-        {
-            title: '操作',
-            key: 'operation',
-            render: (text, record)=>(
-                <p>
-                    <a onClick={()=> onModify(record['_id'])}>编辑</a>
-                    <Spliter spliterText="|"/>
-                    <Popconfirm title="确定删除该条记录？" onConfirm={()=> onDel(record['_id'])}>
-                        <a type='ghost'>删除</a>
-                    </Popconfirm>
-                    <Spliter spliterText="|"/>
-                    <a onClick={()=> onReadOnly(record['_id'])}>详情</a>
-                </p>
-            )
-        }
+
     ];
 
     const rowSelection = {
@@ -109,8 +77,6 @@ const SettlementList = ({
 
 SettlementList.propTypes = {
     onPageChange: PropTypes.func,
-    onModify: PropTypes.func,
-    onDel: PropTypes.func,
     dataSource: PropTypes.array,
     loading: PropTypes.any,
     total: PropTypes.any,

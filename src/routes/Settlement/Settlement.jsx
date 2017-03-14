@@ -5,8 +5,6 @@ import SettlementSearchForm from '../../components/Settlement/SettlementSearchFo
 import SettlementList from '../../components/Settlement/SettlementList/SettlementList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
-import AddSettlement from '../../components/Settlement/AddSettlement/AddSettlement';
-import ModifySettlement from '../../components/Settlement/ModifySettlement/ModifySettlement';
 import {redirect} from '../../utils/webSessionUtils';
 import {settlementClass, settlementContainer, addSettlementContainer, modifySettlementContainer} from './index.css';
 
@@ -19,11 +17,7 @@ function genSettlement({dispatch, settlement}){
         noteNumber,
         loading,
         current,
-        currentItem,
-        editorVisible,
-        editorType,
 		breadcrumbItems,
-		suppliers
     } = settlement;
 
 	const settlementListProps ={
@@ -36,46 +30,6 @@ function genSettlement({dispatch, settlement}){
 				type:'settlement/query',
 				payload: {timeRange, supplierId, noteNumber, page}
 			});
-		},
-		onModify(settlementId){
-			dispatch({
-				type:'settlement/querySettlementById',
-				payload: {
-					settlementId: settlementId,
-					editorType: 'modify'
-				}
-			});
-		},
-		onReadOnly(settlementId){
-			dispatch({
-				type:'settlement/querySettlementById',
-				payload: {
-					settlementId: settlementId,
-					editorType: 'detail'
-				}
-			});
-		},
-		onDel(settlementId){
-			dispatch({
-				type:'settlement/del',
-				payload: settlementId,
-			});
-		}
-	};
-	const settlementEditor = {
-		item: editorType=='create'? {}:currentItem,
-		type: editorType,
-		visible: editorVisible,
-		onConfirm(data){
-			dispatch({
-				type: `settlement/${editorType}`,
-				payload: data,
-			});
-		},
-		onCancel(){
-			dispatch({
-				type:'settlement/hideEditor'
-			});
 		}
 	};
 
@@ -86,40 +40,15 @@ function genSettlement({dispatch, settlement}){
 		});
 	};
 
-	const onAdd = ()=>{
-		dispatch({
-			type:'settlement/getNoteNumber'
-		});
-	};
-
 	return (
 		<div className={settlementClass}>
 			<BreadcrumbList breadcrumbItems={breadcrumbItems} />
-			{
-				editorVisible?
-					(
-						editorType=='create'?
-							(
-								<div className={addSettlementContainer}>
-									<AddSettlement />
-								</div>
-							):
-							(
-								<div className={modifySettlementContainer}>
-									<ModifySettlement editorType={editorType}/>
-								</div>
-							)
-					):
-					(
-						<div className={settlementContainer}>
-							<SearchBar onAdd={onAdd}>
-								<SettlementSearchForm onSearch={onSearch} suppliers={suppliers}/>
-							</SearchBar>
-							<SettlementList {...settlementListProps} />
-						</div>
-					)
-			}
-
+			<div className={settlementContainer}>
+				<SearchBar>
+					<SettlementSearchForm onSearch={onSearch} users={[]}/>
+				</SearchBar>
+				<SettlementList {...settlementListProps} />
+			</div>
 		</div>
 	);
 }
@@ -129,9 +58,14 @@ class Settlement extends Component {
         super(props);
     }
 
+	componentWillMount(){
+		let {isLogin} = this.props.systemUser;
+		return !isLogin && redirect();
+	}
+
     render(){
 		let {isLogin} = this.props.systemUser;
-		return isLogin? genSettlement(this.props): redirect();
+		return isLogin && genSettlement(this.props);
     }
 }
 
