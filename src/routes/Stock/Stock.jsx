@@ -45,9 +45,14 @@ class Stock extends Component {
 		stocks: PropTypes.object,
 	};
 
+	componentWillMount(){
+		let {isLogin} = this.props.systemUser;
+		return !isLogin && redirect();
+	}
+
 	render() {
 		let {isLogin} = this.props.systemUser;
-		return isLogin? genStock(this.props):redirect();
+		return isLogin && genStock(this.props);
 	}
 }
 

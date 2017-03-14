@@ -125,16 +125,14 @@ class Customers extends Component {
         super(props);
     }
 
-    componentWillMount() {
-        let {isLogin} = this.props.systemUser;
-        if (!isLogin) {
-            redirect();
-        }
-    }
+	componentWillMount(){
+		let {isLogin} = this.props.systemUser;
+		return !isLogin && redirect();
+	}
 
     render() {
 		let {isLogin} = this.props.systemUser;
-		return isLogin? genCustomers(this.props):redirect();
+		return isLogin && genCustomers(this.props);
     }
 }
 

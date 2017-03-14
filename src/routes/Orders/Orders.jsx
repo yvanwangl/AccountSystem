@@ -128,9 +128,14 @@ class Orders extends Component{
         super(props);
     }
 
+	componentWillMount(){
+		let {isLogin} = this.props.systemUser;
+		return !isLogin && redirect();
+	}
+
     render(){
 		let {isLogin} = this.props.systemUser;
-		return isLogin? genOrders(this.props):redirect();
+		return isLogin && genOrders(this.props);
     }
 }
 

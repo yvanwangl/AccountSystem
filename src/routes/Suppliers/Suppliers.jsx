@@ -122,9 +122,14 @@ class Suppliers extends Component {
         super(props);
     }
 
+	componentWillMount(){
+		let {isLogin} = this.props.systemUser;
+		return !isLogin && redirect();
+	}
+
     render() {
 		let {isLogin} = this.props.systemUser;
-		return isLogin?genSuppliers(this.props):redirect();
+		return isLogin && genSuppliers(this.props);
     }
 }
 

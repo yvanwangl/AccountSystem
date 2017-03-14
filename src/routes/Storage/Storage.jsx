@@ -129,9 +129,14 @@ class Storage extends Component {
         super(props);
     }
 
+	componentWillMount(){
+		let {isLogin} = this.props.systemUser;
+		return !isLogin && redirect();
+	}
+
     render(){
 		let {isLogin} = this.props.systemUser;
-		return isLogin? genStorage(this.props): redirect();
+		return isLogin && genStorage(this.props);
     }
 }
 

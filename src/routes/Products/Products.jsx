@@ -122,9 +122,14 @@ class Products extends Component {
         super(props);
     }
 
+	componentWillMount(){
+		let {isLogin} = this.props.systemUser;
+		return !isLogin && redirect();
+	}
+
     render() {
 		let {isLogin} = this.props.systemUser;
-		return isLogin? genProducts(this.props):redirect();
+		return isLogin && genProducts(this.props);
     }
 }
 

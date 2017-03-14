@@ -45,16 +45,14 @@ class Funds extends Component {
 		funds: PropTypes.object,
 	};
 
-	componentWillMount() {
+	componentWillMount(){
 		let {isLogin} = this.props.systemUser;
-		if (!isLogin) {
-			redirect();
-		}
+		return !isLogin && redirect();
 	}
 
 	render() {
 		let {isLogin} = this.props.systemUser;
-		return isLogin? genFunds(this.props):redirect();
+		return isLogin && genFunds(this.props);
 	}
 }
 
