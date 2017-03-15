@@ -45,16 +45,16 @@ export default {
     },
 
     subscriptions: {
-        /*setup({dispatch, history}) {
-         history.listen(location=>{
-         if(location.pathname == '/orders'){
-         dispatch({
-         type:'query',
-         payload: location.query
-         });
-         }
-         });
-         },*/
+		setup({dispatch, history}) {
+			history.listen(location => {
+				if (location.pathname == '/resource') {
+					dispatch({
+						type: 'query',
+						payload: location.query
+					});
+				}
+			});
+		},
     },
 
     effects: {

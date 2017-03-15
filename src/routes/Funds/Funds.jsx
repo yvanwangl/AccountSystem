@@ -6,8 +6,8 @@ import FundsList from '../../components/Funds/FundsList/FundsList';
 import {redirect} from '../../utils/webSessionUtils';
 import styles from './index.css';
 
-function genFunds({dispatch, funds}) {
-	const {
+function genFunds({dispatch, funds, loading}) {
+	/*const {
 		list,
 		field,
 		keyword,
@@ -23,15 +23,15 @@ function genFunds({dispatch, funds}) {
 				query: {...fieldValues, page: 1}
 			}));
 		}
-	};
+	};*/
 	const fundsList = {
-		dataSource: list,
+		dataSource: funds,
 		loading
 	};
 	return (
 		<div className={styles.fundsContainer}>
 			<h2 className={styles.fundsTitle}>资金明细表</h2>
-			<FundsSearchForm {...fundsSearch}/>
+			{/*<FundsSearchForm {...fundsSearch}/>*/}
 			<FundsList {...fundsList} />
 		</div>
 	);
@@ -41,23 +41,9 @@ class Funds extends Component {
 		super(props);
 	}
 
-	static propTypes = {
-		funds: PropTypes.object,
-	};
-
-	componentWillMount(){
-		let {isLogin} = this.props.systemUser;
-		return !isLogin && redirect();
-	}
-
 	render() {
-		let {isLogin} = this.props.systemUser;
-		return isLogin && genFunds(this.props);
+		return genFunds(this.props);
 	}
 }
 
-function mapStateToProps({funds, systemUser}) {
-	return {funds, systemUser};
-}
-
-export default connect(mapStateToProps)(Funds);
+export default Funds;

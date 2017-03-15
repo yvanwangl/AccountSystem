@@ -18,6 +18,7 @@ let customers = require('./routes/customers');
 let products = require('./routes/products');
 let uploadProductImg = require('./routes/uploadProductImg');
 let suppliers = require('./routes/suppliers');
+let resource = require('./routes/resource');
 
 let app = express();
 
@@ -77,6 +78,7 @@ app.use('/api/orders', orders);
 app.use('/api/storage', storage);
 app.use('/api/customers', customers);
 app.use('/api/products', products);
+app.use('/api/resource', resource);
 app.use('/api/suppliers', suppliers);
 app.use('/api/uploadProductImg', uploadProductImg);
 app.use('/api/login', login);

@@ -89,7 +89,7 @@ const FundsList = ({
         <div className={fundsList}>
             <Table
                 columns={columns}
-                dataSource={getTotalData(dataSource)}
+                dataSource={dataSource && getTotalData(dataSource)}
                 loading={loading}
                 rowKey={record=>record._id}
                 pagination={false}
