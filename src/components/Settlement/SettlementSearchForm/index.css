@@ -1,8 +1,8 @@
-.storageSearchForm {
-    display: inline-block;
+.settlementSearchForm {
+    display: block;
     text-align: left;
 }
 
-.storageSearchForm button {
-    margin-top: 4px;
+.settlementSearchForm button {
+    margin-top: 2px;
 }

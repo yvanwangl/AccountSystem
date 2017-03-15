@@ -3,3 +3,7 @@
     text-align: left;
     margin: 30px 0 20px 0;
 }
+
+.fundsSearchForm button {
+    margin-top: 2px;
+}

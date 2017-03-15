@@ -1,9 +1,9 @@
-.stockSearchForm {
+.resourceSearchForm {
     display: block;
     text-align: left;
     margin: 30px 0 20px 0;
 }
 
-.stockSearchForm button {
+.resourceSearchForm button {
     margin-top: 2px;
 }
