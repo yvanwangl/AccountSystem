@@ -6,8 +6,8 @@ import StockList from '../../components/Stocks/StockList/StockList';
 import {redirect} from '../../utils/webSessionUtils';
 import styles from './index.css';
 
-function genStock({dispatch, stocks}) {
-	const {
+function genStock({dispatch, stocks, loading}) {
+	/*const {
 		list,
 		field,
 		keyword,
@@ -23,15 +23,15 @@ function genStock({dispatch, stocks}) {
 				query: {...fieldValues, page: 1}
 			}));
 		}
-	};
+	};*/
 	const stockList = {
-		dataSource: list,
+		dataSource: stocks,
 		loading
 	};
 	return (
 		<div className={styles.stockContainer}>
 			<h2 className={styles.stockTitle}>仓库明细表</h2>
-			<StockSearchForm {...stockSearch}/>
+			{/*<StockSearchForm {...stockSearch}/>*/}
 			<StockList {...stockList} />
 		</div>
 	);
@@ -45,19 +45,9 @@ class Stock extends Component {
 		stocks: PropTypes.object,
 	};
 
-	componentWillMount(){
-		let {isLogin} = this.props.systemUser;
-		return !isLogin && redirect();
-	}
-
 	render() {
-		let {isLogin} = this.props.systemUser;
-		return isLogin && genStock(this.props);
+		return genStock(this.props);
 	}
 }
 
-function mapStateToProps({stocks, systemUser}) {
-	return {stocks, systemUser};
-}
-
-export default connect(mapStateToProps)(Stock);
+export default Stock;

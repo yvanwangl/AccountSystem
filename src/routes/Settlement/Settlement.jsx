@@ -3,18 +3,17 @@ import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SettlementSearchForm from '../../components/Settlement/SettlementSearchForm/SettlementSearchForm';
 import SettlementList from '../../components/Settlement/SettlementList/SettlementList';
+import ProductList from '../../components/Stocks/StockList/StockList';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import {redirect} from '../../utils/webSessionUtils';
-import {settlementClass, settlementContainer, addSettlementContainer, modifySettlementContainer} from './index.css';
+import {search, settlementClass, settlementContainer, addSettlementContainer, modifySettlementContainer, productList, productListTitle} from './index.css';
 
 function genSettlement({dispatch, settlement}){
     const {
         list,
         total,
 		timeRange,
-        supplierId,
-        noteNumber,
         loading,
         current,
 		breadcrumbItems,
@@ -28,7 +27,7 @@ function genSettlement({dispatch, settlement}){
 		onPageChange(page){
 			dispatch({
 				type:'settlement/query',
-				payload: {timeRange, supplierId, noteNumber, page}
+				payload: {timeRange, page}
 			});
 		}
 	};
@@ -44,10 +43,14 @@ function genSettlement({dispatch, settlement}){
 		<div className={settlementClass}>
 			<BreadcrumbList breadcrumbItems={breadcrumbItems} />
 			<div className={settlementContainer}>
-				<SearchBar>
+				<div className={search}>
 					<SettlementSearchForm onSearch={onSearch} users={[]}/>
-				</SearchBar>
+				</div>
 				<SettlementList {...settlementListProps} />
+			</div>
+			<div className={productList}>
+				<h2 className={productListTitle}>结算商品明细</h2>
+				<ProductList dataSource={[]}/>
 			</div>
 		</div>
 	);
