@@ -23,6 +23,9 @@ export default {
 					dispatch({
 						type: 'queryProducts'
 					});
+					dispatch({
+						type: 'query'
+					});
 				}
             });
         },
@@ -33,12 +36,13 @@ export default {
     		yield put({
     			type: 'showLoading'
 			});
-			const {data} = yield call(query, payload);
+			let productId = payload && payload.productId!='00000'?payload.productId:'';
+			const {data} = yield call(query, {productId});
 			if(data && data.success) {
 				yield put({
 					type: 'querySuccess',
-					stocks: data.stocks,
-					funds: data.funds
+					stocks: [...data.products],
+					funds: [...data.products]
 				});
 			}
 		},
@@ -61,7 +65,9 @@ export default {
 			return {...state, stocks: action.stocks, funds: action.funds, loading: false};
 		},
 		queryProductsSuccess(state, action){
-			return {...state, products: action.products};
+			const products = action.products;
+			products.unshift({'_id':'00000', productName:'--'});
+			return {...state, products};
 		},
         settlementSuccess(state, action){
             return {...state, ...action.payload};

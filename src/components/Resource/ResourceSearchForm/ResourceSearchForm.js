@@ -32,7 +32,7 @@ function ResourceSearchForm({
 			<Form inline onSubmit={onSubmit}>
 				<FormItem label="商品名称：">
 					{
-						getFieldDecorator('productName')(
+						getFieldDecorator('productId')(
 							<Select style={{minWidth: 150}}>
 								{
 									products.map(({_id, productName})=>(

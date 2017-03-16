@@ -44,17 +44,24 @@ const StockList = ({
         {
             title: '库存量',
             dataIndex: 'amount',
-            key: 'amount'
+            key: 'amount',
+			render: (text)=> <span style={{color: 'red'}}>{text}</span>
         },
-		{
+		/*{
 			title: '成本均价',
+			dataIndex: 'averagePrice',
+			key: 'averagePrice'
+		},*/
+		{
+			title: '销售均价',
 			dataIndex: 'averagePrice',
 			key: 'averagePrice'
 		},
 		{
 			title: '库存资金',
 			dataIndex: 'stockFunds',
-			key: 'stockFunds'
+			key: 'stockFunds',
+			render: (text)=> <span style={{color: 'red'}}>{text}</span>
 		}
     ];
 

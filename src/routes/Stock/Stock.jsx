@@ -42,7 +42,7 @@ class Stock extends Component {
 	}
 
 	static propTypes = {
-		stocks: PropTypes.object,
+		stocks: PropTypes.array,
 	};
 
 	render() {

@@ -25,7 +25,7 @@ function getNoteNumber(number) {
 	let date = new Date();
 	let year = date.getFullYear();
 	let month = prefixO(date.getMonth() + 1);
-	let day = prefixO(date.getDate() + 1);
+	let day = prefixO(date.getDate());
 	return prefix + year + month + day + (prefixOOO(number));
 }
 
