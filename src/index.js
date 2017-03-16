@@ -12,9 +12,9 @@ const app = dva();
 // 3. Model
 app.model(require('./models/home'));
 app.model(require('./models/orders'));
-app.model(require('./models/stocks'));
+/*app.model(require('./models/stocks'));*/
 app.model(require('./models/storage'));
-app.model(require('./models/funds'));
+/*app.model(require('./models/funds'));*/
 app.model(require('./models/manage'));
 app.model(require('./models/systemUser'));
 app.model(require('./models/customers'));

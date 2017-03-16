@@ -41,6 +41,10 @@ class Funds extends Component {
 		super(props);
 	}
 
+	static propTypes = {
+		stocks: PropTypes.array,
+	};
+
 	render() {
 		return genFunds(this.props);
 	}

@@ -44,7 +44,8 @@ const FundsList = ({
         {
             title: '利润额',
             dataIndex: 'profitPrice',
-            key: 'profitPrice'
+            key: 'profitPrice',
+			render: (text)=> <span style={{color:'red'}}>{text}</span>
         }
     ];
 

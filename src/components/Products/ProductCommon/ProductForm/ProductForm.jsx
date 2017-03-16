@@ -18,7 +18,7 @@ const ProductForm = ({
     form
 }) => {
 
-    let {productNumber, productName, productType, productUnit, productImg} = product;
+    let {productCode, productName, productType, productUnit, productImg} = product;
     let {getFieldDecorator} = form;
 
 	const normFile = (e) => {
@@ -41,8 +41,8 @@ const ProductForm = ({
                     <h2 className={formTitle}>基础资料</h2>
                     <FormItem label="商品编号：" hasFeedback={!disabled} {...formItemLayout}>
                         {
-                            getFieldDecorator('productNumber', {
-                                initialValue: productNumber
+                            getFieldDecorator('productCode', {
+                                initialValue: productCode
                             })(
                                 <Input type='text' disabled={disabled}/>
                             )
