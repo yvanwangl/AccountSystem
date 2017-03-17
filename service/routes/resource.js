@@ -11,7 +11,6 @@ function compute(dataSource, computeKey) {
 	return dataSource
 		.map(data => data[computeKey])
 		.reduce((total, item) => {
-			console.log(item+'--u');
 			if(item){
 				return total += parseInt(item);
 			}else {
@@ -90,7 +89,7 @@ router.route('/')
 					computedObj['_id'] = key;
 					computedObj['inAmount'] = compute(productGroupItem, 'quantity');
 					computedObj['purchasePrice'] = compute(productGroupItem, 'amount');
-					/*computedObj['averagePrice'] = compute(productGroupItem, 'price') / productGroupItem.length;*/
+					computedObj['storageAveragePrice'] = compute(productGroupItem, 'price') / productGroupItem.length;
 					return computedObj;
 				});
 
@@ -126,9 +125,16 @@ router.route('/')
 							product['productName'] = productNameMap[product['_id']];
 							product['productCode'] = productCodeMap[product['_id']];
 							product['productType'] = productTypeMap[product['_id']];
+
+							product['outAmount'] = product['outAmount'] ? product['outAmount']:0;
 							product['amount'] = product['inAmount'] - product['outAmount'];
+
+							product['averagePrice'] = product['averagePrice']?product['averagePrice']:product['storageAveragePrice'];
 							product['stockFunds'] = product['amount'] * product['averagePrice'];
+
+							product['salePrice'] = product['salePrice'] ? product['salePrice']:0;
 							product['profitPrice'] = product['salePrice'] - product['purchasePrice'];
+
 							return product;
 						});
 
