@@ -1,4 +1,4 @@
-import {query} from '../services/resource';
+import {query, onSettlement} from '../services/resource';
 import * as products from '../services/products';
 import {parse} from 'qs';
 export default {
@@ -56,7 +56,17 @@ export default {
 			}
 		},
         *onSettlement({payload}, {select, call, put}){
-
+			const {data} = yield call(onSettlement);
+			if(data && data.success){
+				const {data} = yield call(query, {});
+				if(data && data.success) {
+					yield put({
+						type: 'querySuccess',
+						stocks: [...data.products],
+						funds: [...data.products]
+					});
+				}
+			}
         }
     },
 

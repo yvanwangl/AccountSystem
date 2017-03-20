@@ -21,7 +21,7 @@ const StorageForm = ({
     return (
         <div className={storageForm}>
             <Form inline>
-                <FormItem label="客户名称：">
+                <FormItem label="供应商名称：">
                     {
                         getFieldDecorator('supplierId', {
                             initialValue: supplierId
