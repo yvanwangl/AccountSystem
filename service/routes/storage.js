@@ -3,6 +3,7 @@ let router = express.Router();
 let Storage = require('../models/storage');
 let Supplier = require('../models/suppliers');
 let Product = require('../models/products');
+let ProductStocks = require('../models/productStocks');
 let utils = require('../utils/utils');
 let constants = require('../constants/constants');
 
@@ -81,6 +82,13 @@ router.route('/')
 	.post(function (req, res, next) {
 		let storage = req.body;
 		let newStorage = new Storage(Object.assign({}, storage, {createInstance: new Date()}));
+		let products = storage['products'];
+		let productStocks = products
+			.filter(product=> product.productId!='')
+			.map(product=> {
+				product['type'] = 'in';
+				return new ProductStocks(product);
+			});
 		newStorage.save(function (err, storage) {
 			if (err) {
 				res.send({
@@ -88,9 +96,18 @@ router.route('/')
 					error: err
 				});
 			} else {
-				res.send({
-					success: true,
-					storage: storage
+				ProductStocks.insertMany(productStocks,(err)=>{
+					if(err){
+						res.send({
+							success: false,
+							error: err
+						});
+					}else {
+						res.send({
+							success: true,
+							storage: storage
+						});
+					}
 				});
 			}
 		});

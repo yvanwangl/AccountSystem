@@ -90,6 +90,7 @@ router.route('/')
 					computedObj['inAmount'] = compute(productGroupItem, 'quantity');
 					computedObj['purchasePrice'] = compute(productGroupItem, 'amount');
 					computedObj['storageAveragePrice'] = compute(productGroupItem, 'price') / productGroupItem.length;
+					computedObj['unit'] = productGroupItem[0]['unit'];
 					return computedObj;
 				});
 

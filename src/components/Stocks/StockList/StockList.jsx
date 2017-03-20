@@ -31,6 +31,11 @@ const StockList = ({
             dataIndex: 'productType',
             key: 'productType'
         },
+		{
+			title: '商品单位',
+			dataIndex: 'unit',
+			key: 'unit'
+		},
         {
             title: '入库量',
             dataIndex: 'inAmount',
@@ -47,11 +52,6 @@ const StockList = ({
             key: 'amount',
 			render: (text)=> <span style={{color: 'red'}}>{text}</span>
         },
-		/*{
-			title: '成本均价',
-			dataIndex: 'averagePrice',
-			key: 'averagePrice'
-		},*/
 		{
 			title: '销售均价',
 			dataIndex: 'averagePrice',
