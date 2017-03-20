@@ -3,6 +3,7 @@ let router = express.Router();
 let Order = require('../models/orders');
 let Customer = require('../models/customers');
 let Product = require('../models/products');
+let ProductStocks = require('../models/productStocks');
 let moment = require('moment');
 let utils = require('../utils/utils');
 let constants = require('../constants/constants');
@@ -75,9 +76,14 @@ router.route('/')
     })
     .post(function (req, res, next) {
         let order = req.body;
-        console.log(moment.parseZone(new Date()));
-        console.log(moment().local());
         let newOrder = new Order(Object.assign({}, order, {createInstance: new Date()}));
+		let products = order['products'];
+		let productStocks = products
+			.filter(product=> product.productId!='')
+			.map(product=> {
+				product['type'] = 'out';
+				return new ProductStocks(product);
+			});
         newOrder.save(function (err, order) {
             if (err) {
                 res.send({
@@ -85,10 +91,19 @@ router.route('/')
                     error: err
                 });
             } else {
-                res.send({
-                    success: true,
-                    orders: order
-                });
+				ProductStocks.insertMany(productStocks, (err)=>{
+					if(err){
+						res.send({
+							success: false,
+							error: err
+						});
+					}else {
+						res.send({
+							success: true,
+							orders: order
+						});
+					}
+				});
             }
         });
     });

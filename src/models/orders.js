@@ -1,6 +1,6 @@
 import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/orders';
 import * as customers from '../services/customers';
-import * as products from '../services/products';
+import * as productStocks from '../services/productStocks';
 import {parse} from 'qs';
 const defaultProduct = {
     key: '0',
@@ -196,7 +196,7 @@ export default {
 			}
 		},
 		*getProducts({payload}, {call, put}){
-			const {data} = yield call(products.query, {});
+			const {data} = yield call(productStocks.query, {});
 			if(data && data.success){
 				yield put({
 					type:'getProductsSuccess',
@@ -277,7 +277,8 @@ export default {
                 ['/', '首页'],
                 ['/orders', '订单'],
             ];
-            return {...state, breadcrumbItems: newItems, order: {...defaultOrder}, editorVisible: false};
+			let order = Object.assign({}, defaultOrder, {products: [{...defaultProduct}]});
+            return {...state, breadcrumbItems: newItems, order, editorVisible: false};
         },
         setProducts(state, action){
             let order = state['order'];

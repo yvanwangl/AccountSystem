@@ -177,9 +177,14 @@ class AddOrderGrid extends Component {
         const {totalAmount, paymentAmount} = this.state;
         return ()=> {
             const dataSource = [...this.state.dataSource];
-            dataSource.splice(index, 1);
-            this.setState({dataSource});
-            editProducts(dataSource, totalAmount, paymentAmount);
+            if(dataSource.length>1){
+				dataSource.splice(index, 1);
+				this.setState({dataSource});
+				editProducts(dataSource, totalAmount, paymentAmount);
+			}else {
+            	return false;
+			}
+
         }
     }
 

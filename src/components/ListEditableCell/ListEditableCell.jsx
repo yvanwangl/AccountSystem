@@ -55,8 +55,8 @@ class ListEditableCell extends Component {
 									labelInValue
 								>
 									{
-										productList.map(({_id, productName, productUnit})=>
-											<Option key={_id}>{`${productName} (${productUnit})`}</Option>
+										productList.map(({_id, productName, unit})=>
+											<Option key={_id}>{`${productName} (${unit})`}</Option>
 										)
 									}
 								</Select>
