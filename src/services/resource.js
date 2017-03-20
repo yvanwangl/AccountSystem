@@ -8,7 +8,7 @@ export async function query(params) {
 }
 
 export async function onSettlement() {
-	return request(`${RESOURCE_API}}`,{
+	return request(RESOURCE_API,{
 		method: 'post',
 		body: JSON.stringify({})
 	});
