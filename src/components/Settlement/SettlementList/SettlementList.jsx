@@ -28,13 +28,13 @@ const SettlementList = ({
         },
 		{
 			title: '结算金额',
-			dataIndex: 'supplierName',
-			key: 'supplierName'
+			dataIndex: 'settlementAmount',
+			key: 'settlementAmount'
 		},
         {
             title: '结算操作员',
-            dataIndex: 'noteNumber',
-            key: 'noteNumber'
+            dataIndex: 'userName',
+            key: 'userName'
         },
 
     ];
