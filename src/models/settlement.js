@@ -1,4 +1,4 @@
-import {query, create, modify, del} from '../services/products';
+import {query, create, modify, del} from '../services/settlement';
 import {parse} from 'qs';
 export default {
 

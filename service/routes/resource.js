@@ -137,7 +137,9 @@ function getResource(queryCondition, callback) {
 						return product;
 					});
 
-				callback && callback(productMapResult);
+				if(callback){
+					callback(productMapResult);
+				}
 				return productMapResult;
 			});
 		});
@@ -198,137 +200,138 @@ router.route('/')
 							"$gte" : settlements[0]['createInstance']
 						}
 					}
-					const productMapResult = getResource(queryCondition);
-					Order.find(function (error, orders) {
-						if (error) {
-							res.send({
-								success: false,
-								error: error
-							});
-						} else {
-							/*生成订单*/
-							let products = productMapResult.map((product, index)=> {
-								return {
-									remarks: '结算商品',
-									amount: 0,
-									price: 0,
-									unit: product['unit'],
-									quantity: product['amount'],
-									productName: product['productName'],
-									productId: product['productId'],
-									key: index
-								};
-							});
-							const order = new Order({
-								orderNumber: utils.getOrderNumber(orders.length + 1),
-								customerId: '',
-								totalAmount: 0,
-								paymentAmount: 0,
-								mem: '结算生成的出货单，所以出货单金额及付款金额均为0元',
-								createInstance: new Date(),
-								products: products
-							});
-							let productStocks = products
-								.filter(product=> product.productId!='')
-								.map(product=> {
-									product['type'] = 'out';
-									return new ProductStocks(product);
+					getResource(queryCondition, (productMapResult)=> {
+						Order.find(function (error, orders) {
+							if (error) {
+								res.send({
+									success: false,
+									error: error
 								});
-							order.save((err, order)=>{
-								if(err){
-									res.send({
-										success: false,
-										error: error
+							} else {
+								/*生成订单*/
+								let products = productMapResult.map((product, index)=> {
+									return {
+										remarks: '结算商品',
+										amount: 0,
+										price: 0,
+										unit: product['unit'],
+										quantity: product['amount'],
+										productName: product['productName'],
+										productId: product['productId'],
+										key: index
+									};
+								});
+								const order = new Order({
+									orderNumber: utils.getOrderNumber(orders.length + 1),
+									customerId: '',
+									totalAmount: 0,
+									paymentAmount: 0,
+									mem: '结算生成的出货单，所以出货单金额及付款金额均为0元',
+									createInstance: new Date(),
+									products: products
+								});
+								let productStocks = products
+									.filter(product=> product.productId!='')
+									.map(product=> {
+										product['type'] = 'out';
+										return new ProductStocks(product);
 									});
-								}else {
-									/*先保存库存商品记录*/
-									ProductStocks.insertMany(productStocks, (err)=>{
-										if(err){
-											res.send({
-												success: false,
-												error: err
-											});
-										}else {
-											/*第二步，生成结算单*/
-											const settlementAmount = productMapResult.reduce((total, product)=> total += product['profitPrice'], 0);
-											const settlement = new Settlement({
-												createInstance: new Date(),
-												userId: '',
-												userName: 'lihuan',
-												settlementAmount: settlementAmount
-											});
-											settlement.save((err, settlement)=>{
-												if(err){
-													res.send({
-														success: false,
-														error: error
-													});
-												}else {
-													/*第三步，生成入库单*/
-													Storage.find(function (error, storages) {
-														if (error) {
-															res.send({
-																success: false,
-																error: error
-															});
-														} else {
-															let products = productMapResult.map((product, index)=> {
-																return {
-																	remarks: '结算商品',
-																	amount: 0,
-																	price: 0,
-																	unit: product['unit'],
-																	quantity: product['amount'],
-																	productName: product['productName'],
-																	productId: product['productId'],
-																	key: index
-																};
-															});
-															const storage = new Storage({
-																noteNumber: utils.getNoteNumber(storages.length + 1),
-																supplierId: '',
-																totalAmount: 0,
-																paymentAmount: 0,
-																mem: '结算生成的入库单，所以出货单金额及付款金额均为0元',
-																createInstance: new Date(),
-																products: products
-															});
-															let productStocks = products
-																.filter(product=> product.productId!='')
-																.map(product=> {
-																	product['type'] = 'in';
-																	return new ProductStocks(product);
+								order.save((err, order)=>{
+									if(err){
+										res.send({
+											success: false,
+											error: error
+										});
+									}else {
+										/*先保存库存商品记录*/
+										ProductStocks.insertMany(productStocks, (err)=>{
+											if(err){
+												res.send({
+													success: false,
+													error: err
+												});
+											}else {
+												/*第二步，生成结算单*/
+												const settlementAmount = productMapResult.reduce((total, product)=> total += product['profitPrice'], 0);
+												const settlement = new Settlement({
+													createInstance: new Date(),
+													userId: '',
+													userName: 'lihuan',
+													settlementAmount: settlementAmount
+												});
+												settlement.save((err, settlement)=>{
+													if(err){
+														res.send({
+															success: false,
+															error: error
+														});
+													}else {
+														/*第三步，生成入库单*/
+														Storage.find(function (error, storages) {
+															if (error) {
+																res.send({
+																	success: false,
+																	error: error
 																});
-															storage.save((err, storage)=>{
-																if(err){
-																	res.send({
-																		success: false,
-																		error: error
+															} else {
+																let products = productMapResult.map((product, index)=> {
+																	return {
+																		remarks: '结算商品',
+																		amount: 0,
+																		price: 0,
+																		unit: product['unit'],
+																		quantity: product['amount'],
+																		productName: product['productName'],
+																		productId: product['productId'],
+																		key: index
+																	};
+																});
+																const storage = new Storage({
+																	noteNumber: utils.getNoteNumber(storages.length + 1),
+																	supplierId: '',
+																	totalAmount: 0,
+																	paymentAmount: 0,
+																	mem: '结算生成的入库单，所以出货单金额及付款金额均为0元',
+																	createInstance: new Date(),
+																	products: products
+																});
+																let productStocks = products
+																	.filter(product=> product.productId!='')
+																	.map(product=> {
+																		product['type'] = 'in';
+																		return new ProductStocks(product);
 																	});
-																}else {
-																	ProductStocks.insertMany(productStocks,(err)=> {
-																		if (err) {
-																			res.send({
-																				success: false,
-																				error: err
-																			});
-																		} else {
-																			res.send({
-																				success: true
-																			});
-																		}
-																	});
-																}
-															});
-														}
-													});
-												}
-											});
-										}
-									});
-								}
-							});
-						}
+																storage.save((err, storage)=>{
+																	if(err){
+																		res.send({
+																			success: false,
+																			error: error
+																		});
+																	}else {
+																		ProductStocks.insertMany(productStocks,(err)=> {
+																			if (err) {
+																				res.send({
+																					success: false,
+																					error: err
+																				});
+																			} else {
+																				res.send({
+																					success: true
+																				});
+																			}
+																		});
+																	}
+																});
+															}
+														});
+													}
+												});
+											}
+										});
+									}
+								});
+							}
+						});
 					});
 				}
 			});

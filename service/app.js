@@ -20,6 +20,7 @@ let productStocks = require('./routes/productStocks');
 let uploadProductImg = require('./routes/uploadProductImg');
 let suppliers = require('./routes/suppliers');
 let resource = require('./routes/resource');
+let settlement = require('./routes/settlement');
 
 let app = express();
 
@@ -81,6 +82,7 @@ app.use('/api/customers', customers);
 app.use('/api/products', products);
 app.use('/api/productStocks', productStocks);
 app.use('/api/resource', resource);
+app.use('/api/settlement', settlement);
 app.use('/api/suppliers', suppliers);
 app.use('/api/uploadProductImg', uploadProductImg);
 app.use('/api/login', login);
