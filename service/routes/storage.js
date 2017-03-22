@@ -14,7 +14,10 @@ router.route('/')
 		let {page, timeRange, supplierId, noteNumber} = queryData;
 		let limit = constants.PAGE_SIZE;
 		let skip = (page - 1) * limit;
-		let queryCondition = {};
+		let currentUser = global[Symbol.for('currentUser')];
+		let queryCondition = {
+			userId: currentUser['_id']
+		};
 		if (timeRange) {
 			let startTime = new Date(timeRange[0]);
 			let endTime = new Date(timeRange[1]);
@@ -81,11 +84,13 @@ router.route('/')
 	})
 	.post(function (req, res, next) {
 		let storage = req.body;
-		let newStorage = new Storage(Object.assign({}, storage, {createInstance: new Date()}));
+		let currentUser = global[Symbol.for('currentUser')];
+		let newStorage = new Storage(Object.assign({}, storage, {userId: currentUser['_id'], createInstance: new Date()}));
 		let products = storage['products'];
 		let productStocks = products
 			.filter(product=> product.productId!='')
 			.map(product=> {
+				product['userId'] = currentUser['_id'];
 				product['type'] = 'in';
 				return new ProductStocks(product);
 			});
@@ -115,7 +120,8 @@ router.route('/')
 
 router.route('/getNoteNumber')
 	.get(function (req, res, next) {
-		Storage.find(function (error, storages) {
+		let currentUser = global[Symbol.for('currentUser')];
+		Storage.find({userId: currentUser['_id']},function (error, storages) {
 			if (error) {
 				res.send({
 					success: false,

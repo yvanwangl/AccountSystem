@@ -7,7 +7,7 @@ import {orderList} from './index.css';
 
 const StockList = ({
     loading,
-    dataSource
+    dataSource,
 }) => {
     const columns = [
         {
