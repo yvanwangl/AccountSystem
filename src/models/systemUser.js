@@ -1,4 +1,4 @@
-import {doLogin} from '../services/systemUser';
+import {doLogin, doLogup} from '../services/systemUser';
 import {getCurrentUser, fetchIsAuth} from '../utils/webSessionUtils';
 export default {
 
@@ -10,6 +10,7 @@ export default {
         modalVisible: false,
         authToken: '',
         pathname: '/',
+		logupModalVisible: false
     },
 
     subscriptions: {
@@ -41,7 +42,18 @@ export default {
                     payload: data.userInfo
                 });
             }
-        }
+        },
+		*doLogup({payload}, {call, put}){
+			yield put({type: 'showLoading'});
+			const {data} = yield call(doLogup, payload);
+			if (data && data.success) {
+				//注册成功
+				yield put({
+					type: 'logupSuccess',
+					payload: data.userInfo
+				});
+			}
+		}
     },
 
     reducers: {
@@ -50,18 +62,30 @@ export default {
             localStorage.setItem('userInfo', JSON.stringify({}));
             return {...state, user: null, isLogin: false};
         },
-        login(state, action){
-            return {...state, ...action.payload, modalVisible: true};
+		login(state, action){
+            return {...state, modalVisible: true};
         },
+		logup(state, action){
+			return {...state, logupModalVisible: true};
+		},
         loginSuccess(state, action){
             let userInfo = action.payload;
             let localStorage = window.localStorage;
             localStorage.setItem('userInfo', JSON.stringify(userInfo));
             return {...state, ...userInfo, isLogin: true, modalVisible: false};
         },
+		logupSuccess(state, action){
+			let userInfo = action.payload;
+			let localStorage = window.localStorage;
+			localStorage.setItem('userInfo', JSON.stringify(userInfo));
+			return {...state, ...userInfo, isLogin: true, logupModalVisible: false};
+		},
         hideModal(state){
             return {...state, modalVisible: false};
-        }
+        },
+		hideLogupModal(state){
+			return {...state, logupModalVisible: false};
+		}
     },
 
 }

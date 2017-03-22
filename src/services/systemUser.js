@@ -9,3 +9,10 @@ export async function doLogin(params) {
         body: JSON.stringify(params)
     });
 }
+
+export async function doLogup(params) {
+	return request( `${LOGIN_API}/logup`,{
+		method: 'POST',
+		body: JSON.stringify(params)
+	});
+}

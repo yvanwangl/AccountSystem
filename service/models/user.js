@@ -8,7 +8,7 @@ let userSchema = new Schema({
     username: String,
     password: String,
     salt: String,
-    admin: Boolean
+	admin: Boolean
 });
 
 /**

@@ -34,6 +34,10 @@ export default {
 
     effects: {
         *query({payload}, {call, put}){
+			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
+			if(!isLogin){
+				return;
+			}
             yield put({type: 'showLoading'});
             yield put({
                 type: 'updateQueryKey',

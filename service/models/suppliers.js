@@ -13,7 +13,8 @@ let supplierSchema = new Schema({
     mem: String,
     accountName: String,
     accountBank: String,
-    accountNo: String
+    accountNo: String,
+	userId: String
 });
 
 /**

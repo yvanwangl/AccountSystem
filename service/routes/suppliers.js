@@ -11,7 +11,10 @@ router.route('/')
         let {page, supplierName} = req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
-        let queryCondition = {};
+		let currentUser = global[Symbol.for('currentUser')];
+        let queryCondition = {
+        	userId: currentUser['_id']
+		};
         if(supplierName){
         	queryCondition['supplierName'] = new RegExp(supplierName);
 		}
@@ -40,7 +43,8 @@ router.route('/')
     })
     .post((req, res, next)=>{
         let supplier = req.body;
-        let newSupplier = new Supplier(Object.assign({}, supplier));
+		let currentUser = global[Symbol.for('currentUser')];
+        let newSupplier = new Supplier(Object.assign({}, supplier, {userId: currentUser['_id']}));
 		newSupplier.save((err, supplier)=>{
             if(err){
                 res.send({
