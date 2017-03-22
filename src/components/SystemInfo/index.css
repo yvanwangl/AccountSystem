@@ -20,6 +20,8 @@
 .userName {
     margin-right: 10px;
 }
-.loginButton {
+.loginButton,
+.logupButton {
     cursor: pointer;
+    margin-right: 10px;
 }

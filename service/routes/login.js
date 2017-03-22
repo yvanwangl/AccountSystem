@@ -7,17 +7,6 @@ let utils = require('../utils/utils');
 // router.route('/')
 router.post('/',function (req, res, next) {
         let userInfo = req.body;
-        /*let user = new User({
-            username:'lihuan',
-            password:'lihuan0215',
-        });
-        user.save(function (err) {
-            if (err){
-                res.send({
-                    error: err
-                });
-            }
-        });*/
         User.findByUserName(userInfo['username'], function(err, userList){
             if(err){
                 res.send({
@@ -41,7 +30,14 @@ router.post('/',function (req, res, next) {
                             authToken:authToken,
                         }
                     });
-                    global[Symbol.for('authToken')] = authToken;
+					global[Symbol.for('currentUser')] = userList[0];
+					if(global[Symbol.for('authObject')]){
+						global[Symbol.for('authObject')][authToken] = userList[0]['_id'];
+					}else {
+						global[Symbol.for('authObject')] = {
+							authToken: [userList[0]['_id']]
+						}
+					}
                 }else {
                     //密码错误
                     res.send({
@@ -52,5 +48,51 @@ router.post('/',function (req, res, next) {
             }
         });
     });
+
+router.post('/logup',function (req, res, next) {
+	let userInfo = req.body;
+	User.findByUserName(userInfo['username'], (err, userList)=>{
+		if(err){
+			res.send({
+				success: false,
+				error: err
+			});
+		}else {
+			if(userList.length>0){
+				//该用户名已经存在
+				res.send({
+					success: false,
+					code: 3
+				});
+			}else {
+				let user = new User(userInfo);
+				user.save(function (err, user) {
+					if (err) {
+						res.send({
+							error: err
+						});
+					}else {
+						let authToken = utils.getAuthToken(10);
+						res.send({
+							success: true,
+							userInfo:{
+								username: userInfo['username'],
+								authToken: authToken,
+							}
+						});
+						global[Symbol.for('currentUser')] = user;
+						if(global[Symbol.for('authObject')]){
+							global[Symbol.for('authObject')][authToken] = [user['_id']];
+						}else {
+							global[Symbol.for('authObject')] = {
+								authToken: [user['_id']]
+							}
+						}
+					}
+				});
+			}
+		}
+	});
+});
 
 module.exports = router;
