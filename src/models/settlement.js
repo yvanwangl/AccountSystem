@@ -1,4 +1,4 @@
-import {query, create, modify, del} from '../services/settlement';
+import {query, querySettlementItem} from '../services/settlement';
 import {parse} from 'qs';
 export default {
 
@@ -8,15 +8,14 @@ export default {
         list: [],
         total: null,
 		timeRange: [],
-        products: [],
+		settlementItems: [],
         loading: false,
         current: null,
         breadcrumbItems: [
             ['/settlement', '首页'],
             ['/settlement', '结算管理'],
         ],
-        editorVisible: false,
-        editorType: 'create'
+		settlementId:''
     },
 
     subscriptions: {
@@ -34,6 +33,10 @@ export default {
 
     effects: {
         *query({payload}, {call, put}){
+			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
+			if(!isLogin){
+				return;
+			}
             yield put({type: 'showLoading'});
             yield put({
                 type: 'updateQueryKey',
@@ -55,20 +58,14 @@ export default {
                 });
             }
         },
-        *settlementSelect({payload}, {select, call, put}){
-            yield put({type: 'hideEditor'});
-            yield put({type: 'showLoading'});
-            const id = yield select(({products}) => products.currentItem['_id']);
-            const newProduct = {...payload, id};
-            const {data} = yield call(modify, newProduct);
+        *settlementSelect({payload}, {call, put}){
+            const {data} = yield call(querySettlementItem, {settlementId: payload.settlementId});
             if (data && data.success) {
                 yield put({
-                    type: 'modifySuccess',
-                    payload: newProduct
+                    type: 'querySettlementItemSuccess',
+					settlementItems: data.settlementItems,
+					settlementId: payload.settlementId
                 });
-                yield put({
-                	type: 'resetProduct'
-				});
             }
         }
     },
@@ -78,10 +75,11 @@ export default {
             return {...state, loading: true};
         },
         querySuccess(state, action){
-            return {...state, ...action.payload, loading: false};
+        	const settlementId = action.payload.list.length>0 ? action.payload.list[0]._id:'';
+            return {...state, ...action.payload, settlementId, loading: false};
         },
-        updateQueryKey(state, action){
-            return {...state, ...action.payload};
+		querySettlementItemSuccess(state, action){
+            return {...state, settlementItems:action.settlementItems, settlementId:action.settlementId, loading: false};
         }
     },
 

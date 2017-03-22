@@ -33,6 +33,10 @@ export default {
 
     effects: {
     	*query({payload}, {select, call, put}){
+			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
+			if(!isLogin){
+				return;
+			}
     		yield put({
     			type: 'showLoading'
 			});
@@ -47,6 +51,10 @@ export default {
 			}
 		},
     	*queryProducts({payload}, {select, call, put}){
+			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
+			if(!isLogin){
+				return;
+			}
 			const {data} = yield call(products.query, {});
 			if(data && data.success){
 				yield put({

@@ -8,7 +8,9 @@ let settlementSchema = new Schema({
     createInstance: Date,
     userId: String,
     userName: String,
-    settlementAmount: Number
+    settlementAmount: Number,
+	products: Array,
+	userId: String
 });
 
 /**

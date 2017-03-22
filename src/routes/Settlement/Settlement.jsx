@@ -17,13 +17,24 @@ function genSettlement({dispatch, settlement}){
         loading,
         current,
 		breadcrumbItems,
+		settlementItems,
+		settlementId
     } = settlement;
 
 	const settlementListProps ={
 		current,
 		total,
 		dataSource: list,
+		settlementId,
 		loading,
+		onSettlementSelect(settlementId){
+			dispatch({
+				type: 'settlement/settlementSelect',
+				payload: {
+					settlementId
+				}
+			});
+		},
 		onPageChange(page){
 			dispatch({
 				type:'settlement/query',
@@ -50,7 +61,7 @@ function genSettlement({dispatch, settlement}){
 			</div>
 			<div className={productList}>
 				<h2 className={productListTitle}>结算商品明细</h2>
-				<ProductList dataSource={[]}/>
+				<ProductList dataSource={settlementItems}/>
 			</div>
 		</div>
 	);

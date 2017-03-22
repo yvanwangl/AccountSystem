@@ -149,8 +149,9 @@ function getResource(queryCondition, callback) {
 /* GET orders listing. */
 router.route('/')
 	.get(function (req, res, next) {
+		let currentUser = global[Symbol.for('currentUser')];
 		let {productId} = req.query;
-		Settlement.find({})
+		Settlement.find({userId: currentUser['_id']})
 			.sort('-createInstance')
 			.exec(function (err, settlements) {
 				if (err) {
@@ -159,7 +160,9 @@ router.route('/')
 						error: err
 					});
 				}else {
-					let queryCondition = {};
+					let queryCondition = {
+						userId: currentUser['_id']
+					};
 					if(settlements.length>0){
 						queryCondition['createInstance'] = {
 							"$gte" : settlements[0]['createInstance']
@@ -185,7 +188,8 @@ router.route('/')
 		*第一步，生成出货单，
 		*获取系统中当前资源信息，包括库存商品数量及销售利润额
 		* */
-		Settlement.find({})
+		let currentUser = global[Symbol.for('currentUser')];
+		Settlement.find({userId: currentUser['_id']})
 			.sort('-createInstance')
 			.exec(function (err, settlements) {
 				if (err) {
@@ -194,14 +198,16 @@ router.route('/')
 						error: err
 					});
 				}else {
-					let queryCondition = {};
+					let queryCondition = {
+						userId: currentUser['_id']
+					};
 					if(settlements.length>0){
 						queryCondition['createInstance'] = {
 							"$gte" : settlements[0]['createInstance']
 						}
 					}
 					getResource(queryCondition, (productMapResult)=> {
-						Order.find(function (error, orders) {
+						Order.find({userId: currentUser['_id']},function (error, orders) {
 							if (error) {
 								res.send({
 									success: false,
@@ -217,7 +223,7 @@ router.route('/')
 										unit: product['unit'],
 										quantity: product['amount'],
 										productName: product['productName'],
-										productId: product['productId'],
+										productId: product['_id'],
 										key: index
 									};
 								});
@@ -228,11 +234,13 @@ router.route('/')
 									paymentAmount: 0,
 									mem: '结算生成的出货单，所以出货单金额及付款金额均为0元',
 									createInstance: new Date(),
-									products: products
+									products: products,
+									userId: currentUser['_id']
 								});
 								let productStocks = products
 									.filter(product=> product.productId!='')
 									.map(product=> {
+										product['userId'] = currentUser['_id'];
 										product['type'] = 'out';
 										return new ProductStocks(product);
 									});
@@ -255,9 +263,10 @@ router.route('/')
 												const settlementAmount = productMapResult.reduce((total, product)=> total += product['profitPrice'], 0);
 												const settlement = new Settlement({
 													createInstance: new Date(),
-													userId: '',
-													userName: 'lihuan',
-													settlementAmount: settlementAmount
+													userName: currentUser['username'],
+													settlementAmount: settlementAmount,
+													products: productMapResult,
+													userId: currentUser['_id']
 												});
 												settlement.save((err, settlement)=>{
 													if(err){
@@ -267,14 +276,14 @@ router.route('/')
 														});
 													}else {
 														/*第三步，生成入库单*/
-														Storage.find(function (error, storages) {
+														Storage.find({userId: currentUser['_id']},function (error, storages) {
 															if (error) {
 																res.send({
 																	success: false,
 																	error: error
 																});
 															} else {
-																let products = productMapResult.map((product, index)=> {
+																/*let products = productMapResult.map((product, index)=> {
 																	return {
 																		remarks: '结算商品',
 																		amount: 0,
@@ -282,10 +291,10 @@ router.route('/')
 																		unit: product['unit'],
 																		quantity: product['amount'],
 																		productName: product['productName'],
-																		productId: product['productId'],
+																		productId: product['_id'],
 																		key: index
 																	};
-																});
+																});*/
 																const storage = new Storage({
 																	noteNumber: utils.getNoteNumber(storages.length + 1),
 																	supplierId: '',
@@ -293,11 +302,13 @@ router.route('/')
 																	paymentAmount: 0,
 																	mem: '结算生成的入库单，所以出货单金额及付款金额均为0元',
 																	createInstance: new Date(),
-																	products: products
+																	products: products,
+																	userId: currentUser['_id']
 																});
 																let productStocks = products
 																	.filter(product=> product.productId!='')
 																	.map(product=> {
+																		product['userId'] = currentUser['_id'];
 																		product['type'] = 'in';
 																		return new ProductStocks(product);
 																	});

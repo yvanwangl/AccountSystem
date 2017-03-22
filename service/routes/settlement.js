@@ -11,7 +11,10 @@ router.route('/')
         let {page, productName}=req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
-        let queryCondition = {};
+		let currentUser = global[Symbol.for('currentUser')];
+        let queryCondition = {
+        	userId: currentUser['_id']
+		};
         if(productName){
 			queryCondition['productName'] = new RegExp(productName);
 		}
@@ -40,38 +43,22 @@ router.route('/')
     });
 
 router.route('/:settlementId')
-    .put((req, res, next)=>{
-        let productId = req.params.productId;
-        let product = req.body;
-        let newProduct = Object.assign({},product);
-		Settlement.findOneAndUpdate({_id:productId}, newProduct, {new: true}, (err, product)=>{
-            if(err){
-                res.send({
-                    success: false,
-                    error: err
-                });
-            }else {
-                res.send({
-                    success: true,
-					product: product
-                });
-            }
-        });
-    })
-    .delete((req, res, next)=>{
-        let productId = req.params.productId;
-		Settlement.remove({_id: productId}, (err)=>{
-            if (err) {
-                res.send({
-                    success: false,
-                    error: err
-                });
-            } else {
-                res.send({
-                    success: true
-                });
-            }
-        });
+    .get((req, res, next)=>{
+        let settlementId = req.params.settlementId;
+		Settlement.find({_id:settlementId},(err, settlement)=>{
+			if(err) {
+				res.send({
+					success: false,
+					error: err
+				});
+			}else {
+				console
+				res.send({
+					success: true,
+					settlementItems: settlement[0].products
+				});
+			}
+		});
     });
 
 module.exports = router;
