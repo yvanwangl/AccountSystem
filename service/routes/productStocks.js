@@ -7,7 +7,12 @@ let ProductStocks = require('../models/productStocks');
 
 router.route('/')
     .get((req, res, next)=>{
-		ProductStocks.find({type:'in'},(err, productStocks)=>{
+		let currentUser = global[Symbol.for('currentUser')];
+		let queryCondition = {
+			userId: currentUser['_id'],
+			type:'in'
+		};
+		ProductStocks.find(queryCondition,(err, productStocks)=>{
 			if(err){
 				res.send({
 					success: false,

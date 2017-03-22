@@ -11,7 +11,8 @@ let productStocksSchema = new Schema({
 	price: Number,
 	amount: Number,
 	unit: String,
-	type: String
+	type: String,
+	userId: String
 });
 
 /**

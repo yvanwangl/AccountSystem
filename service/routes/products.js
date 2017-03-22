@@ -11,7 +11,10 @@ router.route('/')
         let {page, productName}=req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
-        let queryCondition = {};
+		let currentUser = global[Symbol.for('currentUser')];
+		let queryCondition = {
+			userId: currentUser['_id']
+		};
         if(productName){
 			queryCondition['productName'] = new RegExp(productName);
 		}
@@ -40,7 +43,8 @@ router.route('/')
     })
     .post((req, res, next)=>{
         let product = req.body;
-        let newProduct = new Product(Object.assign({}, product));
+		let currentUser = global[Symbol.for('currentUser')];
+        let newProduct = new Product(Object.assign({}, product, {userId: currentUser['_id']}));
 		newProduct.save((err, product)=>{
             if(err){
                 res.send({
@@ -60,7 +64,7 @@ router.route('/:productId')
     .put((req, res, next)=>{
         let productId = req.params.productId;
         let product = req.body;
-        let newProduct = Object.assign({},product);
+        let newProduct = Object.assign({}, product);
 		Product.findOneAndUpdate({_id:productId}, newProduct, {new: true}, (err, product)=>{
             if(err){
                 res.send({

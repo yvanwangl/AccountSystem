@@ -9,7 +9,8 @@ let productSchema = new Schema({
 	productName: String,
 	productType: String,
 	productUnit: String,
-	productImg: String
+	productImg: String,
+	userId: String
 });
 
 /**
