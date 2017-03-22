@@ -13,6 +13,7 @@ let orderSchema = new Schema({
     paymentAmount: Number,
     mem: String,
     products: Array,
+	userId: String
 });
 
 /**

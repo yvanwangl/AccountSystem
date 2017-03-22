@@ -79,6 +79,10 @@ export default {
 
     effects: {
         *query({payload}, {call, put, select}){
+			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
+			if(!isLogin){
+				return;
+			}
             yield put({type: 'showLoading'});
             yield put({
                 type: 'updateQueryKey',
@@ -187,6 +191,10 @@ export default {
             }
         },
 		*getCustomers({payload}, {call, put}){
+			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
+			if(!isLogin){
+				return;
+			}
 			const {data} = yield call(customers.query, {});
 			if(data && data.success){
 				yield put({
@@ -196,6 +204,10 @@ export default {
 			}
 		},
 		*getProducts({payload}, {call, put}){
+			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
+			if(!isLogin){
+				return;
+			}
 			const {data} = yield call(productStocks.query, {});
 			if(data && data.success){
 				yield put({
