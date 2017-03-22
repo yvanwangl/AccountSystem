@@ -11,7 +11,10 @@ router.route('/')
         let {page, customerName} = req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
-        let queryCondition = {};
+		let currentUser = global[Symbol.for('currentUser')];
+        let queryCondition = {
+        	userId: currentUser['_id']
+		};
         if(customerName){
 			queryCondition['customerName'] = new RegExp(customerName);
 		}
@@ -40,8 +43,8 @@ router.route('/')
     })
     .post((req, res, next)=>{
         let customer = req.body;
-        console.log(customer);
-        let newCustomer = new Customer(Object.assign({}, customer));
+		let currentUser = global[Symbol.for('currentUser')];
+        let newCustomer = new Customer(Object.assign({}, customer, {userId: currentUser['_id']}));
         newCustomer.save((err, customer)=>{
             if(err){
                 res.send({
