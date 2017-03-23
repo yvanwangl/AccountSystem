@@ -28,6 +28,7 @@
   },
   "scripts": {
     "start": "dora --plugins \"proxy?watchDirs=./mock,webpack,webpack-hmr\"",
+    "start:prod": "NODE_ENV=production pm2 start ./server/bin/www",
     "build": "atool-build",
     "test": "atool-test-mocha ./src/**/*-test.js"
   },
