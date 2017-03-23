@@ -1,16 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {Form, Input, Button, Upload, Icon} from 'antd';
+import {formItemLayout} from '../../../../constants/constants';
 import {productForm, formColumn, formTitle} from './index.css';
 
 const FormItem = Form.Item;
-const formItemLayout = {
-    labelCol: {
-        span: 3
-    },
-    wrapperCol: {
-        span: 17
-    }
-};
 
 const ProductForm = ({
     product,
@@ -38,7 +31,7 @@ const ProductForm = ({
         <div className={productForm}>
             <Form>
                 <span className={formColumn}>
-                    <h2 className={formTitle}>基础资料</h2>
+                    <h2 className='formTitle'>基础资料</h2>
                     <FormItem label="商品编号：" hasFeedback={!disabled} {...formItemLayout}>
                         {
                             getFieldDecorator('productCode', {
@@ -91,7 +84,7 @@ const ProductForm = ({
 						})(
 							<Upload name="logo" action="http://localhost:3000/api/uploadProductImg" listType="picture" disabled={disabled}>
 								<Button>
-									<Icon type="upload" /> Click to upload
+									<Icon type="upload" /> 上传
 								</Button>
 							</Upload>
 						)}

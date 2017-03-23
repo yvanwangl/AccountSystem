@@ -88,7 +88,7 @@ router.route('/')
 		let newStorage = new Storage(Object.assign({}, storage, {userId: currentUser['_id'], createInstance: new Date()}));
 		let products = storage['products'];
 		let productStocks = products
-			.filter(product=> product.productId!='')
+			.filter(product=> product.productId && product.productId!='')
 			.map(product=> {
 				product['userId'] = currentUser['_id'];
 				product['type'] = 'in';
@@ -101,19 +101,26 @@ router.route('/')
 					error: err
 				});
 			} else {
-				ProductStocks.insertMany(productStocks,(err)=>{
-					if(err){
-						res.send({
-							success: false,
-							error: err
-						});
-					}else {
-						res.send({
-							success: true,
-							storage: storage
-						});
-					}
-				});
+				if(productStocks.length){
+					ProductStocks.insertMany(productStocks,(err)=>{
+						if(err){
+							res.send({
+								success: false,
+								error: err
+							});
+						}else {
+							res.send({
+								success: true,
+								storage: storage
+							});
+						}
+					});
+				}else {
+					res.send({
+						success: true,
+						storage: storage
+					});
+				}
 			}
 		});
 	});

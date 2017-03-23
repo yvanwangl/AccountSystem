@@ -33,8 +33,8 @@ const StockList = ({
         },
 		{
 			title: '商品单位',
-			dataIndex: 'unit',
-			key: 'unit'
+			dataIndex: 'productUnit',
+			key: 'productUnit'
 		},
         {
             title: '入库量',

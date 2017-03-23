@@ -1,16 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {Form, Input} from 'antd';
+import {formItemLayout} from '../../../../constants/constants';
 import {supplierForm, formColumn, formTitle} from './index.css';
 
 const FormItem = Form.Item;
-const formItemLayout = {
-    labelCol: {
-        span: 3
-    },
-    wrapperCol: {
-        span: 17
-    }
-};
 
 const SupplierForm = ({
     supplier,
@@ -26,7 +19,7 @@ const SupplierForm = ({
         <div className={supplierForm}>
             <Form>
                 <span className={formColumn}>
-                    <h2 className={formTitle}>基础资料</h2>
+                    <h2 className='formTitle'>基础资料</h2>
                     <FormItem label="供应商名称：" hasFeedback={!disabled} {...formItemLayout}>
                         {
                             getFieldDecorator('supplierName', {
@@ -75,7 +68,7 @@ const SupplierForm = ({
                             )
                         }
                     </FormItem>
-					<FormItem label="应付金额：" hasFeedback={!disabled} {...formItemLayout}>
+					{/*<FormItem label="应付金额：" hasFeedback={!disabled} {...formItemLayout}>
                         {
 							getFieldDecorator('payment', {
 								initialValue: payment,
@@ -86,7 +79,7 @@ const SupplierForm = ({
 								<Input type='text' disabled={disabled}/>
 							)
 						}
-                    </FormItem>
+                    </FormItem>*/}
                     <FormItem label="备注：" hasFeedback={!disabled} {...formItemLayout}>
                         {
                             getFieldDecorator('mem', {
@@ -104,7 +97,7 @@ const SupplierForm = ({
                     </FormItem>
                 </span>
                 <span className={formColumn}>
-                    <h2 className={formTitle}>财务信息</h2>
+                    <h2 className='formTitle'>财务信息</h2>
                     <FormItem label="开户名称：" hasFeedback={!disabled} {...formItemLayout}>
                         {
                             getFieldDecorator('accountName', {

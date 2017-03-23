@@ -22,8 +22,13 @@ router.route('/')
 				let productDuplicates = [];
 				let products = productStocks.map(product=> {
 					if(productDuplicates.indexOf(product['productId'])==-1){
+						let newProduct = {
+							_id: product['productId'],
+							productName: product['productName'],
+							productUnit: product['productUnit'],
+						};
 						productDuplicates.push(product['productId']);
-						return product;
+						return newProduct;
 					}
 				});
 				res.send({

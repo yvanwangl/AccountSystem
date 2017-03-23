@@ -10,7 +10,7 @@ let productStocksSchema = new Schema({
 	quantity: String,
 	price: Number,
 	amount: Number,
-	unit: String,
+	productUnit: String,
 	type: String,
 	userId: String
 });

@@ -83,7 +83,7 @@ router.route('/')
         let newOrder = new Order(Object.assign({}, order, {userId: currentUser['_id'], createInstance: new Date()}));
 		let products = order['products'];
 		let productStocks = products
-			.filter(product=> product.productId!='')
+			.filter(product=> product.productId && product.productId!='')
 			.map(product=> {
 				product['userId'] = currentUser['_id'];
 				product['type'] = 'out';
@@ -96,19 +96,26 @@ router.route('/')
                     error: err
                 });
             } else {
-				ProductStocks.insertMany(productStocks, (err)=>{
-					if(err){
-						res.send({
-							success: false,
-							error: err
-						});
-					}else {
-						res.send({
-							success: true,
-							orders: order
-						});
-					}
-				});
+            	if(productStocks.length>0){
+					ProductStocks.insertMany(productStocks, (err)=>{
+						if(err){
+							res.send({
+								success: false,
+								error: err
+							});
+						}else {
+							res.send({
+								success: true,
+								order: order
+							});
+						}
+					});
+				}else {
+					res.send({
+						success: true,
+						order: order
+					});
+				}
             }
         });
     });

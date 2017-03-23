@@ -36,8 +36,8 @@ const ProductList = ({
 		},
         {
             title: '商品编号',
-            dataIndex: 'productNumber',
-            key: 'productNumber'
+            dataIndex: 'productCode',
+            key: 'productCode'
         },
         {
             title: '商品名称',

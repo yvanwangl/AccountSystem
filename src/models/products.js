@@ -33,7 +33,7 @@ export default {
     },
 
     effects: {
-        *query({payload}, {call, put}){
+        *query({payload}, {select, call, put}){
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
 			if(!isLogin){
 				return;
@@ -60,6 +60,7 @@ export default {
             }
         },
         *create({payload}, {call, put}){
+        	console.log(payload);
             yield put({type: 'hideEditor'});
             yield put({type: 'showLoading'});
             let product = payload;

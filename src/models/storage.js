@@ -7,7 +7,7 @@ const defaultProduct = {
 	productId: '',
 	productName: '',
 	quantity: 0,
-	unit: '',
+	productUnit: '',
 	price: 0,
 	amount: 0,
 	remarks: ''
@@ -190,7 +190,7 @@ export default {
 				});
 			}
 		},
-		*getSuppliers({payload}, {call, put}){
+		*getSuppliers({payload}, {select, call, put}){
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
 			if(!isLogin){
 				return;
@@ -203,7 +203,7 @@ export default {
 				});
 			}
 		},
-		*getProducts({payload}, {call, put}){
+		*getProducts({payload}, {select, call, put}){
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
 			if(!isLogin){
 				return;

@@ -32,7 +32,7 @@ export default {
     },
 
     effects: {
-        *query({payload}, {call, put}){
+        *query({payload}, {select, call, put}){
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
 			if(!isLogin){
 				return;

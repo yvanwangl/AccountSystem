@@ -70,14 +70,14 @@ class AddOrderGrid extends Component {
             },
             {
                 title: '单位',
-                dataIndex: 'unit',
-                key: 'unit',
+                dataIndex: 'productUnit',
+                key: 'productUnit',
                 /*render: (text, record, index)=>(
                     <EditableCell
                         disabled={disabled}
                         editType='editCell'
                         value={text}
-                        onChange={this.onCellChange(index, 'unit')}
+                        onChange={this.onCellChange(index, 'productUnit')}
                     />
                 )*/
             },
@@ -134,7 +134,7 @@ class AddOrderGrid extends Component {
 			const arr = label.match(/([\u4e00-\u9fa5\w]+)/g);
 			dataSource[index]['productId'] = key;
 			dataSource[index]['productName'] = arr[0];
-			dataSource[index]['unit'] = arr[1];
+			dataSource[index]['productUnit'] = arr[1];
 			this.setState({dataSource:[...dataSource]});
 			editProducts(dataSource, totalAmount, paymentAmount);
 		}
@@ -195,7 +195,7 @@ class AddOrderGrid extends Component {
             productId: '',
             productName: '',
             quantity: 0,
-            unit: '',
+            productUnit: '',
             price: 0,
             amount: 0,
             remarks: ''

@@ -88,7 +88,7 @@ function getResource(queryCondition, callback) {
 				computedObj['inAmount'] = compute(productGroupItem, 'quantity');
 				computedObj['purchasePrice'] = compute(productGroupItem, 'amount');
 				computedObj['storageAveragePrice'] = compute(productGroupItem, 'price') / productGroupItem.length;
-				computedObj['unit'] = productGroupItem[0]['unit'];
+				computedObj['productUnit'] = productGroupItem[0]['productUnit'];
 				return computedObj;
 			});
 
@@ -116,6 +116,7 @@ function getResource(queryCondition, callback) {
 					}
 				});
 
+				console.log(concatProductGroup);
 				const productMapResult = Object.keys(concatProductGroup)
 					.map(key => {
 						return concatProductGroup[key].reduce((assignObj, product) => Object.assign({}, assignObj, product), {});
@@ -220,7 +221,7 @@ router.route('/')
 										remarks: '结算商品',
 										amount: 0,
 										price: 0,
-										unit: product['unit'],
+										productUnit: product['productUnit'],
 										quantity: product['amount'],
 										productName: product['productName'],
 										productId: product['_id'],
@@ -288,7 +289,7 @@ router.route('/')
 																		remarks: '结算商品',
 																		amount: 0,
 																		price: 0,
-																		unit: product['unit'],
+																		productUnit: product['productUnit'],
 																		quantity: product['amount'],
 																		productName: product['productName'],
 																		productId: product['_id'],
