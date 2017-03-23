@@ -2,10 +2,9 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SearchForm from '../../components/SearchForm/SearchForm';
-import ProductList from '../../components/products/ProductList/ProductList';
-import {routerRedux} from 'dva/router';
+import ProductList from '../../components/Products/ProductList/ProductList';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
-import Product from '../../components/products/AddProduct/AddProduct';
+import Product from '../../components/Products/AddProduct/AddProduct';
 import {redirect} from '../../utils/webSessionUtils';
 import {productClass, productContainer, addProductContainer, modifyProductContainer} from './index.css';
 
