@@ -6,7 +6,8 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/accountSystem");
+mongoose.connect("mongodb://lihuan:lihuan0215@localhost:29019/accountSystem");
+//mongoose.connect("mongodb://localhost:27017/accountSystem");
 
 let routes = require('./routes/index');
 let users = require('./routes/users');
