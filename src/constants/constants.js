@@ -3,7 +3,8 @@
  */
 
 const PAGE_SIZE = 10;
-const HTTP_SERVER = 'http://localhost:3000';
+//const HTTP_SERVER = 'http://localhost:3000';
+const HTTP_SERVER = '';
 
 export default {
     PAGE_SIZE,
