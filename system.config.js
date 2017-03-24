@@ -9,7 +9,7 @@ const httpServer = '';
 //const mongooseConnect = "mongodb://localhost:27017/accountSystem";
 const mongooseConnect = "mongodb://lihuan:lihuan0215@localhost:29019/accountSystem";
 
-export default {
+module.exports = {
 	httpServer,
 	mongooseConnect
 };
