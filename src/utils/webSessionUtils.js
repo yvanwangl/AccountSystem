@@ -10,7 +10,7 @@ const AUTH_API = `/api/auth`;
 export function getCurrentUser() {
     let sessionStorage = window.sessionStorage;
     if (sessionStorage['userInfo']) {
-        return JSON.parse(localStorage['userInfo']);
+        return JSON.parse(sessionStorage['userInfo']);
     }
     return {};
 }

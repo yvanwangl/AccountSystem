@@ -30,12 +30,15 @@ router.post('/',function (req, res, next) {
                             authToken:authToken,
                         }
                     });
+                    console.log(authToken);
 					global[Symbol.for('currentUser')] = userList[0];
 					if(global[Symbol.for('authObject')]){
-						global[Symbol.for('authObject')][authToken] = userList[0]['_id'];
+						//以token的值作为键
+						global[Symbol.for('authObject')][`${authToken}`] = userList[0]['_id'];
 					}else {
 						global[Symbol.for('authObject')] = {
-							authToken: [userList[0]['_id']]
+							//以token的值作为键
+							[`${authToken}`]: userList[0]['_id']
 						}
 					}
                 }else {
@@ -82,10 +85,12 @@ router.post('/logup',function (req, res, next) {
 						});
 						global[Symbol.for('currentUser')] = user;
 						if(global[Symbol.for('authObject')]){
-							global[Symbol.for('authObject')][authToken] = [user['_id']];
+							//以token的值作为键
+							global[Symbol.for('authObject')][`${authToken}`] = user['_id'];
 						}else {
 							global[Symbol.for('authObject')] = {
-								authToken: [user['_id']]
+								//以token的值作为键
+								[`${authToken}`]: userList[0]['_id']
 							}
 						}
 					}
