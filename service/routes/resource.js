@@ -14,7 +14,7 @@ function compute(dataSource, computeKey) {
 		.map(data => data[computeKey])
 		.reduce((total, item) => {
 			if(item){
-				return total += parseInt(item);
+				return total += item*1;
 			}else {
 				return total += 0;
 			}

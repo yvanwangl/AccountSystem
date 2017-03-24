@@ -6,12 +6,12 @@
 const serverPort = '4000';
 
 //服务器地址
-//const httpServer = 'http://localhost:'+serverPort;
-const httpServer = '';
+const httpServer = 'http://localhost:'+serverPort;
+//const httpServer = '';
 
 //数据库地址
-//const mongooseConnect = "mongodb://localhost:27017/accountSystem";
-const mongooseConnect = "mongodb://lihuan:lihuan0215@localhost:29019/accountSystem";
+const mongooseConnect = "mongodb://localhost:27017/accountSystem";
+//const mongooseConnect = "mongodb://lihuan:lihuan0215@localhost:29019/accountSystem";
 
 //上传图片后返回的服务器地址
 //const uploadImgServer = 'localhost';

@@ -25,7 +25,13 @@ const OrderForm = ({
                 <FormItem label="客户名称：">
                     {
                         getFieldDecorator('customerId', {
-                            initialValue: customerId
+                            initialValue: customerId,
+							rules:[
+								{
+									required: true,
+									message: '客户名称不能为空'
+								}
+							],
                         })(
                             <Select
                                 showSearch
@@ -36,7 +42,7 @@ const OrderForm = ({
                                 disabled={disabled || false}
                             >
                                 {
-                                    customers.map((customer, index)=>
+                                    customers.filter(customer=> customer['_id']!='00000').map((customer, index)=>
                                         <Option key={index} value={customer['_id']}>{customer['customerName']}</Option>
                                     )
                                 }

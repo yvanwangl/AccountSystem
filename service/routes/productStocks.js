@@ -20,7 +20,8 @@ router.route('/')
 				});
 			}else {
 				let productDuplicates = [];
-				let products = productStocks.map(product=> {
+				let products = [];
+				productStocks.map(product=> {
 					if(productDuplicates.indexOf(product['productId'])==-1){
 						let newProduct = {
 							_id: product['productId'],
@@ -28,7 +29,7 @@ router.route('/')
 							productUnit: product['productUnit'],
 						};
 						productDuplicates.push(product['productId']);
-						return newProduct;
+						products.push(newProduct);
 					}
 				});
 				res.send({

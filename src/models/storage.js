@@ -275,7 +275,8 @@ export default {
 				['/', '首页'],
 				['/storage', '入库'],
 			];
-			return {...state, breadcrumbItems: newItems, storageData: {...defaultStorage}, editorVisible: false};
+			let storageData = Object.assign({}, defaultStorage, {products: [{...defaultProduct}]});
+			return {...state, breadcrumbItems: newItems, storageData, editorVisible: false};
 		},
 		setProducts(state, action){
 			let storageData = state['storageData'];

@@ -24,7 +24,13 @@ const StorageForm = ({
                 <FormItem label="供应商名称：">
                     {
                         getFieldDecorator('supplierId', {
-                            initialValue: supplierId
+                            initialValue: supplierId,
+							rules:[
+								{
+									required: true,
+									message: '供应商名称不能为空'
+								}
+							]
                         })(
                             <Select
                                 showSearch
@@ -35,7 +41,7 @@ const StorageForm = ({
                                 disabled={disabled || false}
                             >
                                 {
-									suppliers.map((supplier, index)=>
+									suppliers.filter(supplier=> supplier['_id']!='00000').map((supplier, index)=>
                                         <Option key={index} value={supplier['_id']}>{supplier['supplierName']}</Option>
                                     )
                                 }

@@ -44,6 +44,7 @@ class AddOrderGrid extends Component {
                 title: '商品名称',
                 dataIndex: 'productName',
                 key: 'productName',
+				width: '20%',
                 render: (text, record, index)=>(
 					<ListEditableCell
 						disabled={disabled}
@@ -59,6 +60,7 @@ class AddOrderGrid extends Component {
                 title: '数量',
                 dataIndex: 'quantity',
                 key: 'quantity',
+				width: '10%',
                 render: (text, record, index)=>(
                     <EditableCell
                         disabled={disabled}
@@ -85,6 +87,7 @@ class AddOrderGrid extends Component {
                 title: '单价',
                 dataIndex: 'price',
                 key: 'price',
+				width: '10%',
                 render: (text, record, index)=>(
                     <EditableCell
                         disabled={disabled}
@@ -103,6 +106,7 @@ class AddOrderGrid extends Component {
                 title: '备注',
                 dataIndex: 'remarks',
                 key: 'remarks',
+				width: '20%',
                 render: (text, record, index)=>(
                     <EditableCell
                         disabled={disabled}
@@ -149,12 +153,12 @@ class AddOrderGrid extends Component {
             if (key == 'quantity') {
                 let price = record.price;
                 if (price != null) {
-                    record.amount = parseInt(value) * parseInt(price);
+                    record.amount = (value*price).toFixed(2)*1;
                 }
             } else if (key == 'price') {
                 let quantity = record.quantity;
                 if (quantity != null) {
-                    record.amount = parseInt(value) * parseInt(quantity);
+                    record.amount = (value*quantity).toFixed(2)*1;
                 }
             }
             record[key] = value;
