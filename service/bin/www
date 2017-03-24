@@ -7,12 +7,13 @@
 var app = require('../app');
 var debug = require('debug')('generator:server');
 var http = require('http');
+let systemConfig = require('../../system.config');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '4000');
+var port = normalizePort(process.env.PORT || systemConfig.serverPort);
 app.set('port', port);
 
 /**

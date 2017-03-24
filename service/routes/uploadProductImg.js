@@ -6,10 +6,11 @@ let router = express.Router();
 let formidable = require('formidable');
 let fs = require('fs');
 let path = require('path');
+let systemConfig = require('../../system.config');
 
 //139.224.195.74
-let server = 'localhost';
-let port = 3000;
+let server = systemConfig.uploadImgServer;
+let port = systemConfig.serverPort;
 // 文件将要上传到哪个文件夹下面
 let uploadfoldername = 'uploadfiles';
 let uploadfolderpath = path.join(__dirname, '../../dist', uploadfoldername);
