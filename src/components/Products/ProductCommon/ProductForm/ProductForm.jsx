@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Form, Input, Button, Upload, Icon} from 'antd';
-import {formItemLayout} from '../../../../constants/constants';
+import {formItemLayout, HTTP_SERVER} from '../../../../constants/constants';
 import {productForm, formColumn, formTitle} from './index.css';
 
 const FormItem = Form.Item;
@@ -82,7 +82,7 @@ const ProductForm = ({
 							valuePropName: 'fileList',
 							getValueFromEvent: normFile
 						})(
-							<Upload name="logo" action="http://localhost:3000/api/uploadProductImg" listType="picture" disabled={disabled}>
+							<Upload name="logo" action={`${HTTP_SERVER}/api/uploadProductImg`} listType="picture" disabled={disabled}>
 								<Button>
 									<Icon type="upload" /> 上传
 								</Button>

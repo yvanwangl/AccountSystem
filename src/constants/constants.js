@@ -1,10 +1,10 @@
 /**
  * Created by wyf on 2017/1/18.
  */
+import {httpServer} from '../../system.config';
 
 const PAGE_SIZE = 10;
-//const HTTP_SERVER = 'http://localhost:4000';
-const HTTP_SERVER = '';
+const HTTP_SERVER = httpServer;
 
 const formItemLayout = {
 	labelCol: {
