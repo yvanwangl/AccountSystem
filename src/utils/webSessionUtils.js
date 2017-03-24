@@ -8,8 +8,8 @@ import {browserHistory} from 'dva/router';
 const AUTH_API = `/api/auth`;
 
 export function getCurrentUser() {
-    let localStorage = window.localStorage;
-    if (localStorage['userInfo']) {
+    let sessionStorage = window.sessionStorage;
+    if (sessionStorage['userInfo']) {
         return JSON.parse(localStorage['userInfo']);
     }
     return {};

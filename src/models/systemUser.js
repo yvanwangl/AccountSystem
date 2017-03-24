@@ -58,8 +58,8 @@ export default {
 
     reducers: {
         logout(state, action){
-            let localStorage = window.localStorage;
-            localStorage.setItem('userInfo', JSON.stringify({}));
+            let sessionStorage = window.sessionStorage;
+			sessionStorage.setItem('userInfo', JSON.stringify({}));
             return {...state, user: null, isLogin: false};
         },
 		login(state, action){
@@ -70,14 +70,14 @@ export default {
 		},
         loginSuccess(state, action){
             let userInfo = action.payload;
-            let localStorage = window.localStorage;
-            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            let sessionStorage = window.sessionStorage;
+			sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
             return {...state, ...userInfo, isLogin: true, modalVisible: false};
         },
 		logupSuccess(state, action){
 			let userInfo = action.payload;
-			let localStorage = window.localStorage;
-			localStorage.setItem('userInfo', JSON.stringify(userInfo));
+			let sessionStorage = window.sessionStorage;
+			sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
 			return {...state, ...userInfo, isLogin: true, logupModalVisible: false};
 		},
         hideModal(state){

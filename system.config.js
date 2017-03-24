@@ -6,7 +6,7 @@
 const serverPort = '4000';
 
 //服务器地址
-//const HTTP_SERVER = 'http://localhost:'+serverPort;
+//const httpServer = 'http://localhost:'+serverPort;
 const httpServer = '';
 
 //数据库地址
