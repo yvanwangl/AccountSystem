@@ -30,7 +30,6 @@ router.post('/',function (req, res, next) {
                             authToken:authToken,
                         }
                     });
-                    console.log(authToken);
 					global[Symbol.for('currentUser')] = userList[0];
 					if(global[Symbol.for('authObject')]){
 						//以token的值作为键
