@@ -82,6 +82,7 @@ export default {
             yield put({type: 'showLoading'});
             const id = yield select(({products}) => products.currentItem['_id']);
             const newProduct = {...payload, id};
+			newProduct['productImg'] = newProduct['productImg']?newProduct['productImg'][0]['response']:'';
             const {data} = yield call(modify, newProduct);
             if (data && data.success) {
                 yield put({
