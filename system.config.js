@@ -18,8 +18,8 @@ const mongooseConnect = "mongodb://lihuan:lihuan0215@localhost:29019/accountSyst
 const uploadImgServer = '139.224.195.74';
 
 module.exports = {
-	httpServer,
-	serverPort,
-	mongooseConnect,
-	uploadImgServer
+	httpServer: httpServer,
+	serverPort: serverPort,
+	mongooseConnect: mongooseConnect,
+	uploadImgServer: uploadImgServer
 };
