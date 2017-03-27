@@ -298,7 +298,7 @@ export default {
 		},
 		getSuppliersSuccess(state, action){
 			let suppliers = action.suppliers;
-			suppliers.unshift({_id:'00000', supplierName:'--'});
+			suppliers.unshift({_id:'00000', supplierName:'全部'});
 			return {...state, suppliers};
 		},
 		getProductsSuccess(state, action){

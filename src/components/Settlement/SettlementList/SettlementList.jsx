@@ -3,6 +3,7 @@ import {Table, Pagination, Popconfirm, Button} from 'antd';
 import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
 import Spliter from '../../Spliter/Spliter';
+import numberFormat from '../../../utils/numberFormat';
 import * as moment from 'moment';
 import {settlementList} from './index.css';
 
@@ -28,7 +29,8 @@ class SettlementList extends Component {
 			{
 				title: '结算金额',
 				dataIndex: 'settlementAmount',
-				key: 'settlementAmount'
+				key: 'settlementAmount',
+				render: (text, record, index)=> numberFormat(text)
 			},
 			{
 				title: '结算操作员',

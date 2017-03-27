@@ -20,7 +20,7 @@ const StorageForm = ({
 
     return (
         <div className={storageForm}>
-            <Form inline>
+            <Form layout='inline'>
                 <FormItem label="供应商名称：">
                     {
                         getFieldDecorator('supplierId', {

@@ -3,7 +3,10 @@ import {Table, Pagination, Popconfirm, Button} from 'antd';
 import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
 import Spliter from '../../Spliter/Spliter';
+import numberFormat from '../../../utils/numberFormat';
 import {orderList} from './index.css';
+
+
 
 const StockList = ({
     loading,
@@ -55,13 +58,14 @@ const StockList = ({
 		{
 			title: '销售均价',
 			dataIndex: 'averagePrice',
-			key: 'averagePrice'
+			key: 'averagePrice',
+			render: (text, record, index)=> record._id!='total'?numberFormat(text):null
 		},
 		{
 			title: '库存资金',
 			dataIndex: 'stockFunds',
 			key: 'stockFunds',
-			render: (text)=> <span style={{color: 'red'}}>{text}</span>
+			render: (text)=> <span style={{color: 'red'}}>{numberFormat(text)}</span>
 		}
     ];
 

@@ -28,7 +28,7 @@ function StockSearchForm({
 
 	return (
 		<div className={styles.stockSearchForm}>
-			<Form inline onSubmit={onSubmit}>
+			<Form layout='inline' onSubmit={onSubmit}>
 				<FormItem>
 					{
 						getFieldDecorator('productType', {

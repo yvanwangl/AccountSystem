@@ -22,7 +22,7 @@ const SearchForm = ({
 
     return (
         <div className={searchForm}>
-            <Form inline onSubmit={onSubmit}>
+            <Form layout='inline' onSubmit={onSubmit}>
                 <FormItem label={labelName}>
                     {
                         getFieldDecorator(fieldName)(

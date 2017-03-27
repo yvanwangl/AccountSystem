@@ -30,7 +30,7 @@ const StorageSearchForm = ({
 
     return (
         <div className={storageSearchForm}>
-            <Form inline onSubmit={onSubmit}>
+            <Form layout='inline' onSubmit={onSubmit}>
                 <FormItem>
                     {
                         getFieldDecorator('timeRange')(

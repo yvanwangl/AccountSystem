@@ -18,7 +18,7 @@ const StorageRemarkForm = ({
 
     return (
         <div className={storageRemarkForm}>
-            <Form inline>
+            <Form layout='inline'>
                 <FormItem label="填写备注：">
                     {
                         getFieldDecorator('mem', {
