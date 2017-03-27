@@ -29,7 +29,7 @@ function ResourceSearchForm({
 
 	return (
 		<div className={styles.resourceSearchForm}>
-			<Form inline onSubmit={onSubmit}>
+			<Form layout='inline' onSubmit={onSubmit}>
 				<FormItem label="商品名称：">
 					{
 						getFieldDecorator('productId')(

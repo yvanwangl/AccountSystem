@@ -30,7 +30,7 @@ const OrderSearchForm = ({
 
     return (
         <div className={orderSearchForm}>
-            <Form inline onSubmit={onSubmit}>
+            <Form layout='inline' onSubmit={onSubmit}>
                 <FormItem>
                     {
                         getFieldDecorator('timeRange')(

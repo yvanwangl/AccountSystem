@@ -11,6 +11,7 @@ let orderSchema = new Schema({
     customerName: String,
     totalAmount: Number,
     paymentAmount: Number,
+    debtAmount: Number,
     mem: String,
     products: Array,
 	userId: String

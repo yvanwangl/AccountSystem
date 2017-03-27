@@ -64,7 +64,7 @@ const LogupModal =({
 
     return (
         <Modal {...modalOpts} className={modal}>
-            <Form horizontal>
+            <Form layout='horizontal'>
                 <FormItem label='用户名：' hasFeedback {...formItemLayout}>
                     {
                         getFieldDecorator('username',{

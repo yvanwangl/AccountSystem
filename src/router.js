@@ -8,6 +8,7 @@ import Stock from './routes/Stock/Stock';
 import Funds from './routes/Funds/Funds';
 import Resource from './routes/Resource/Resource';
 import Settlement from './routes/Settlement/Settlement';
+import Bills from './routes/Bills/Bills';
 import Manage from './routes/Manage/Manage';
 import Customers from './routes/Customers/Customers';
 import Products from './routes/Products/Products';
@@ -32,6 +33,8 @@ export default function ({history}) {
                 <Route path="/resource" component={Resource}/>
 
 				<Route path="/settlement" component={Settlement}/>
+
+				<Route path="/bills" component={Bills}/>
 
                 <Route path="/manage" component={Manage}/>
 

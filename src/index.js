@@ -24,6 +24,7 @@ app.model(require('./models/products'));
 app.model(require('./models/suppliers'));
 app.model(require('./models/settlement'));
 app.model(require('./models/resource'));
+app.model(require('./models/bills'));
 
 // 4. Router
 app.router(require('./router'));

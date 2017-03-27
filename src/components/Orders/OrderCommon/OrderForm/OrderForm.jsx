@@ -21,7 +21,7 @@ const OrderForm = ({
 
     return (
         <div className={orderForm}>
-            <Form inline>
+            <Form layout='inline'>
                 <FormItem label="客户名称：">
                     {
                         getFieldDecorator('customerId', {

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Table, Pagination, Popconfirm, Button} from 'antd';
 import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
+import numberFormat from '../../../utils/numberFormat';
 import * as moment from 'moment';
 import Spliter from '../../Spliter/Spliter';
 import {orderList} from './index.css';
@@ -43,11 +44,13 @@ const OrderList = ({
             title: '应付金额',
             dataIndex: 'totalAmount',
             key: 'totalAmount',
+			render: (text, record, index)=> numberFormat(text)
         },
         {
             title: '已付金额',
             dataIndex: 'paymentAmount',
             key: 'paymentAmount',
+			render: (text, record, index)=> numberFormat(text)
         },
         {
             title: '订单信息',

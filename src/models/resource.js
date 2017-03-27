@@ -84,7 +84,7 @@ export default {
 		},
 		queryProductsSuccess(state, action){
 			const products = action.products;
-			products.unshift({'_id':'00000', productName:'--'});
+			products.unshift({'_id':'00000', productName:'全部'});
 			return {...state, products};
 		},
         settlementSuccess(state, action){

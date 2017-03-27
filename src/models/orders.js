@@ -266,7 +266,7 @@ export default {
         },
 		getCustomersSuccess(state, action){
         	let customers = action.customers;
-        	customers.unshift({_id:'00000', customerName:'--'});
+        	customers.unshift({_id:'00000', customerName:'全部'});
         	return {...state, customers};
 		},
 		getProductsSuccess(state, action){

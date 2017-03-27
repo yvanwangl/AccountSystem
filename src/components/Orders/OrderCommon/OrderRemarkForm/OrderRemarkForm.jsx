@@ -18,7 +18,7 @@ const OrderRemarkForm = ({
 
     return (
         <div className={orderRemarkForm}>
-            <Form inline>
+            <Form layout='inline'>
                 <FormItem label="填写备注：">
                     {
                         getFieldDecorator('mem', {
