@@ -1,0 +1,8 @@
+.billsSearchForm {
+    display: block;
+    text-align: left;
+}
+
+.billsSearchForm button {
+    margin-top: 2px;
+}

@@ -3,6 +3,7 @@ import {Table, Pagination, Popconfirm, Button} from 'antd';
 import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
 import Spliter from '../../Spliter/Spliter';
+import numberFormat from '../../../utils/numberFormat';
 import {fundsList} from './index.css';
 
 const FundsList = ({
@@ -34,18 +35,20 @@ const FundsList = ({
         {
             title: '购买金额',
             dataIndex: 'purchasePrice',
-            key: 'purchasePrice'
+            key: 'purchasePrice',
+			render: (text, record, index)=> numberFormat(text)
         },
         {
             title: '销售金额',
             dataIndex: 'salePrice',
-            key: 'salePrice'
+            key: 'salePrice',
+			render: (text, record, index)=> numberFormat(text)
         },
         {
             title: '利润额',
             dataIndex: 'profitPrice',
             key: 'profitPrice',
-			render: (text)=> <span style={{color:'red'}}>{text}</span>
+			render: (text)=> <span style={{color:'red'}}>{numberFormat(text)}</span>
         }
     ];
 

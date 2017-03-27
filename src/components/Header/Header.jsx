@@ -14,6 +14,7 @@ const menus = [
     ['funds', '/funds', '资金', 'pay-circle-o'],*/
 	['resource', '/resource', '物资', 'pay-circle-o'],
     ['settlement', '/settlement', '结算', 'pushpin-o'],
+    ['bills', '/bills', '账单', 'schedule'],
     ['manage', '/manage', '管理', 'setting'],
 ];
 

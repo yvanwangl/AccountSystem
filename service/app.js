@@ -22,6 +22,7 @@ let uploadProductImg = require('./routes/uploadProductImg');
 let suppliers = require('./routes/suppliers');
 let resource = require('./routes/resource');
 let settlement = require('./routes/settlement');
+let bills = require('./routes/bills');
 
 let app = express();
 
@@ -42,7 +43,7 @@ if(app.get('env') === 'development'){
 	app.use(function (req, res, next) {
 
 		// Website you wish to allow to connect
-		res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8989');
+		res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
 
 		// Request methods you wish to allow
 		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -88,6 +89,7 @@ app.use('/api/productStocks', productStocks);
 app.use('/api/resource', resource);
 app.use('/api/settlement', settlement);
 app.use('/api/suppliers', suppliers);
+app.use('/api/bills', bills);
 app.use('/api/uploadProductImg', uploadProductImg);
 app.use('/api/login', login);
 app.use('/api/auth', auth);
