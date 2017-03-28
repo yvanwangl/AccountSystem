@@ -201,7 +201,7 @@ router.route('/doClearBill')
 					});
 					return 'success';
 				});
-				if(modifySuccessItems == orders.length){
+				if(modifySuccessItems.length == orders.length){
 					res.send({
 						success: true
 					});
