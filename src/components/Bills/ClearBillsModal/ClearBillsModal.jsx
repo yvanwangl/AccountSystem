@@ -44,7 +44,7 @@ const ClearBillsModal =({
 		paymentAmount,
 	} = currentItem;
 
-    const clearBillAmount = totalAmount-paymentAmount;
+    const clearBillAmount = (totalAmount-paymentAmount).toFixed(2);
 
     return (
         <Modal {...modalOpts} className={modal}>
