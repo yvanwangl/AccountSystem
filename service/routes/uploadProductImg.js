@@ -13,7 +13,7 @@ let server = systemConfig.uploadImgServer;
 let port = systemConfig.serverPort;
 // 文件将要上传到哪个文件夹下面
 let uploadfoldername = 'uploadfiles';
-let uploadfolderpath = path.join(__dirname, '../../dist', uploadfoldername);
+let uploadfolderpath = path.join(__dirname, '../../', uploadfoldername);
 
 router.route('/')
     .post(function (req, res, next) {
