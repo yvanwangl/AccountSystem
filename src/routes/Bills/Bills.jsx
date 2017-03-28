@@ -4,6 +4,8 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import BillsSearchForm from '../../components/Bills/BillsSearchForm/BillsSearchForm';
 import DebtOrdersList from '../../components/Bills/DebtOrdersList/DebtOrdersList';
 import BillsList from '../../components/Bills/BillsList/BillsList';
+import ClearDebtOrdersModal from '../../components/Bills/ClearDebtOrdersModal/ClearDebtOrdersModal';
+import ClearBillsModal from '../../components/Bills/ClearBillsModal/ClearBillsModal';
 import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import {redirect} from '../../utils/webSessionUtils';
@@ -18,7 +20,9 @@ function genBills({dispatch, billsSpace}){
 		orders,
 		customers,
 		bills,
-		customerId
+		visible,
+		editorType,
+		currentItem
     } = billsSpace;
 
 	const debtOrdersListProps ={
@@ -26,11 +30,11 @@ function genBills({dispatch, billsSpace}){
 		total,
 		dataSource: orders,
 		loading,
-		onClearOrder(orderId){
+		onClearOrder(order){
 			dispatch({
 				type: 'billsSpace/clearOrder',
 				payload: {
-					orderId
+					order
 				}
 			});
 		},
@@ -45,11 +49,11 @@ function genBills({dispatch, billsSpace}){
 	const billsListProps ={
 		dataSource: bills,
 		loading,
-		onClearBill(billId){
+		onClearBill(bill){
 			dispatch({
 				type: 'billsSpace/clearBill',
 				payload: {
-					billId
+					bill
 				}
 			});
 		}
@@ -61,6 +65,28 @@ function genBills({dispatch, billsSpace}){
 			payload:{...fieldValues, page:1}
 		});
 	};
+
+	const clearModalProps = {
+		visible,
+		currentItem,
+		onConfirm(values){
+			dispatch({
+				type: `billsSpace/${editorType=='clearOrder'? 'doClearOrder':'doClearBill'}`,
+				payload: {
+					...values
+				}
+			});
+		},
+		onCancel(){
+			dispatch({
+				type: 'billsSpace/hideEditor'
+			});
+		},
+	};
+
+	const ClearDebtOrdersModalGen = ()=><ClearDebtOrdersModal {...clearModalProps}/>;
+
+	const ClearBillsModalGen = ()=><ClearBillsModal {...clearModalProps}/>;
 
 	return (
 		<div className={billsClass}>
@@ -74,6 +100,11 @@ function genBills({dispatch, billsSpace}){
 			<div className={billsListContainer}>
 				<BillsList {...billsListProps}/>
 			</div>
+			{
+				editorType=='clearOrder'?
+					<ClearDebtOrdersModalGen />:
+					<ClearBillsModalGen />
+			}
 		</div>
 	);
 }

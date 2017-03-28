@@ -13,6 +13,7 @@ class DebtOrdersList extends Component {
 		this.state = {
 			selectId: ''
 		};
+		const {onClearOrder} = this.props;
 		this.columns = [
 			{
 				title: '序号',
@@ -59,7 +60,7 @@ class DebtOrdersList extends Component {
 				key: 'operation',
 				render: (text, record)=>(
 					<p>
-						<a onClick={()=> onClearOrder(record['_id'])}>清单</a>
+						<a onClick={()=> onClearOrder(record)}>清单</a>
 					</p>
 				)
 			}
@@ -89,7 +90,7 @@ class DebtOrdersList extends Component {
 		} = this.props;
 		return (
 			<div className={debtOrdersList}>
-				<h2 className={debtOrdersListTitle}>账单列表</h2>
+				<h2 className={debtOrdersListTitle}>欠账订单列表</h2>
 				<Table
 					columns={this.columns}
 					dataSource={dataSource}

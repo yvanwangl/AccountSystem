@@ -148,72 +148,66 @@ router.route('/')
         });
     });
 
-router.route('/getOrderNumber')
-    .get(function (req, res, next) {
+router.route('/doClearOrder')
+    .post(function (req, res, next) {
 		let currentUser = global[Symbol.for('currentUser')];
-        Order.find({userId: currentUser['_id']},function (error, orders) {
-            if (error) {
-                res.send({
-                    success: false,
-                    error: error
-                });
-            } else {
+		let {orderId, paymentAmount} = req.body;
+		let newOrder = {
+			paymentAmount: paymentAmount,
+			modifyInstance: new Date()
+		};
+		console.log(newOrder);
+		Order.findOneAndUpdate({_id: orderId}, newOrder, {new: true}, function (err, order) {
+			if (err) {
 				res.send({
-					success: true,
-					orderNumber: utils.getOrderNumber(orders.length + 1)
-				});
-            }
-        });
-    });
-
-router.route('/:orderId')
-    .get(function (req, res, next) {
-        let orderId = req.params.orderId;
-        Order.findById(orderId, function (err, order) {
-            if (err) {
-                res.send({
-                    success: false,
-                    error: err
-                });
-            }else {
-				res.send({
-					success: true,
-					order: order
+					success: false,
+					error: err
 				});
 			}
-        })
-    })
-    .put(function (req, res, next) {
-        let orderId = req.params.orderId;
-        let order = req.body;
-        let newOrder = Object.assign({}, order, {modifyInstance: new Date()});
-        Order.findOneAndUpdate({_id: orderId}, newOrder, {new: true}, function (err, order) {
-            if (err) {
-                res.send({
-                    success: false,
-                    error: err
-                });
-            }
-            res.send({
-                success: true,
-                order: order
-            });
-        });
-    })
-    .delete(function (req, res, next) {
-        let orderId = req.params.orderId;
-        Order.remove({_id: orderId}, function (err) {
-            if (err) {
-                res.send({
-                    success: false,
-                    error: err
-                });
-            } else {
-                res.send({
-                    success: true
-                });
-            }
-        });
+			res.send({
+				success: true,
+				order: order
+			});
+		});
     });
+
+router.route('/doClearBill')
+	.post(function (req, res, next) {
+		let currentUser = global[Symbol.for('currentUser')];
+		let {customerId} = req.body;
+		let queryCondition = {
+			userId: currentUser['_id'],
+			customerId: customerId
+		};
+		Order.find(queryCondition, (err, orders)=>{
+			if (err) {
+				res.send({
+					success: false,
+					error: err
+				});
+			}else {
+				const modifySuccessItems = orders.map(order=> {
+					const newOrder = {
+						paymentAmount: order.totalAmount,
+						modifyInstance: new Date()
+					};
+					Order.findOneAndUpdate({_id: order['_id']}, newOrder, {new: true}, function (err, order) {
+						if (err) {
+							res.send({
+								success: false,
+								error: err
+							});
+						}
+					});
+					return 'success';
+				});
+				if(modifySuccessItems == orders.length){
+					res.send({
+						success: true
+					});
+				}
+			}
+		});
+	});
 
 module.exports = router;
