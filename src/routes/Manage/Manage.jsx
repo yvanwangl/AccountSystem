@@ -30,8 +30,8 @@ Manage.propTypes = {
     orders:PropTypes.object,
 };
 
-function mapStateToProps({manage, systemUser}) {
-    return {manage, systemUser};
+function mapStateToProps({systemUser}) {
+    return {systemUser};
 }
 
 export default connect(mapStateToProps)(Manage);

@@ -11,6 +11,7 @@ let storageSchema = new Schema({
 	supplierName: String,
 	totalAmount: Number,
 	paymentAmount: Number,
+	debtAmount: Number,
 	mem: String,
 	products: Array,
 	userId: String

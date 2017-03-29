@@ -80,7 +80,10 @@ export default {
         },
 		querySettlementItemSuccess(state, action){
             return {...state, settlementItems:action.settlementItems, settlementId:action.settlementId, loading: false};
-        }
+        },
+		updateQueryKey(state, action){
+			return {...state, ...action.payload};
+		},
     },
 
 }
