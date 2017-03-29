@@ -11,7 +11,7 @@ const formItemLayout = {
         span: 14
     }
 };
-const ClearBillsModal =({
+const ClearSupplierBillsModal =({
     visible,
     onConfirm,
     onCancel,
@@ -26,7 +26,7 @@ const ClearBillsModal =({
             if(!!errors){
                 return;
             }
-            onConfirm({customerId: values.customerId});
+            onConfirm({supplierId: values.supplierId});
         })
     }
 
@@ -38,8 +38,8 @@ const ClearBillsModal =({
     };
 
     const {
-		customerId,
-		customerName,
+		supplierId,
+		supplierName,
 		totalAmount,
 		paymentAmount,
 	} = currentItem;
@@ -51,8 +51,8 @@ const ClearBillsModal =({
             <Form layout='horizontal'>
 				<FormItem {...formItemLayout} style={{margin: 0}}>
 					{
-						getFieldDecorator('customerId', {
-							initialValue: customerId
+						getFieldDecorator('supplierId', {
+							initialValue: supplierId
 						})(
 							<Input type="hidden"/>
 						)
@@ -60,8 +60,8 @@ const ClearBillsModal =({
 				</FormItem>
                 <FormItem label='客户名称：' hasFeedback {...formItemLayout}>
                     {
-                        getFieldDecorator('customerName', {
-							initialValue: customerName
+                        getFieldDecorator('supplierName', {
+							initialValue: supplierName
 						})(
                             <Input type="text" disabled={true}/>
                         )
@@ -99,11 +99,11 @@ const ClearBillsModal =({
     );
 };
 
-ClearBillsModal.propTypes = {
+ClearSupplierBillsModal.propTypes = {
     visible:PropTypes.any,
     onConfirm:PropTypes.func,
     onCancel:PropTypes.func,
 	currentItem:PropTypes.object,
     form:PropTypes.object.isRequired
 };
-export default Form.create()(ClearBillsModal);
+export default Form.create()(ClearSupplierBillsModal);

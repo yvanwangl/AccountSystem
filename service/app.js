@@ -22,7 +22,8 @@ let uploadProductImg = require('./routes/uploadProductImg');
 let suppliers = require('./routes/suppliers');
 let resource = require('./routes/resource');
 let settlement = require('./routes/settlement');
-let bills = require('./routes/bills');
+let customerBills = require('./routes/customerBills');
+let supplierBills = require('./routes/supplierBills');
 
 let app = express();
 
@@ -90,7 +91,8 @@ app.use('/api/productStocks', productStocks);
 app.use('/api/resource', resource);
 app.use('/api/settlement', settlement);
 app.use('/api/suppliers', suppliers);
-app.use('/api/bills', bills);
+app.use('/api/customerBills', customerBills);
+app.use('/api/supplierBills', supplierBills);
 app.use('/api/uploadProductImg', uploadProductImg);
 app.use('/api/login', login);
 app.use('/api/auth', auth);
