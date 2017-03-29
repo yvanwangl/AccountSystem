@@ -53,7 +53,7 @@ const OrderList = ({
 			render: (text, record, index)=> numberFormat(text)
         },
         {
-            title: '订单信息',
+            title: '备注',
             dataIndex: 'mem',
             key: 'mem',
         },

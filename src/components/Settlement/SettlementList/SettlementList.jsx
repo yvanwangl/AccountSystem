@@ -24,12 +24,14 @@ class SettlementList extends Component {
 				title: '结算日期',
 				dataIndex: 'createInstance',
 				key: 'createInstance',
+				width: '30%',
 				render: (text) => <span>{moment.parseZone(text).local().format('YYYY-MM-DD HH:mm')}</span>
 			},
 			{
 				title: '结算金额',
 				dataIndex: 'settlementAmount',
 				key: 'settlementAmount',
+				width: '30%',
 				render: (text, record, index)=> numberFormat(text)
 			},
 			{
