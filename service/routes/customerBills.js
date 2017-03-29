@@ -82,7 +82,7 @@ router.route('/')
 									success: true,
 									orders: debtOrders,
 									customers: debtCustomers,
-									bills: bills,
+									customerBills: bills,
 									page: {
 										total: debtOrders.length,
 										current: page
@@ -94,7 +94,7 @@ router.route('/')
 								success: true,
 								orders: [],
 								customers: [],
-								bills: [],
+								customerBills: [],
 								page: {
 									total: 0,
 									current: page
@@ -103,48 +103,6 @@ router.route('/')
 						}
                     }
                 });
-        });
-    })
-    .post(function (req, res, next) {
-        let order = req.body;
-		let currentUser = global[Symbol.for('currentUser')];
-        let newOrder = new Order(Object.assign({}, order, {userId: currentUser['_id'], createInstance: new Date()}));
-		let products = order['products'];
-		let productStocks = products
-			.filter(product=> product.productId && product.productId!='')
-			.map(product=> {
-				product['userId'] = currentUser['_id'];
-				product['type'] = 'out';
-				return new ProductStocks(product);
-			});
-        newOrder.save(function (err, order) {
-            if (err) {
-                res.send({
-                    success: false,
-                    error: err
-                });
-            } else {
-            	if(productStocks.length>0){
-					ProductStocks.insertMany(productStocks, (err)=>{
-						if(err){
-							res.send({
-								success: false,
-								error: err
-							});
-						}else {
-							res.send({
-								success: true,
-								order: order
-							});
-						}
-					});
-				}else {
-					res.send({
-						success: true,
-						order: order
-					});
-				}
-            }
         });
     });
 

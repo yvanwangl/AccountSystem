@@ -1,9 +1,9 @@
-import {query, doClearOrder, doClearBill} from '../services/bills';
+import {query, doClearOrder, doClearBill} from '../services/customerBills';
 import {parse} from 'qs';
 import {routerRedux} from 'dva/router';
 export default {
 
-    namespace: 'billsSpace',
+    namespace: 'customerBillsSpace',
 
     state: {
         list: [],
@@ -12,11 +12,11 @@ export default {
         page: 1,
 		customerId: '',
         breadcrumbItems: [
-            ['/settlement', '首页'],
-            ['/settlement', '账单管理'],
+            ['/customerBills', '首页'],
+            ['/customerBills', '账单管理'],
         ],
 		orders: [],
-		bills: [],
+		customerBills: [],
 		customers: [],
 		visible: false,
 		editorType: 'clearOrder',
@@ -26,7 +26,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(location => {
-                if (location.pathname == '/bills') {
+                if (location.pathname == '/customerBills') {
                     dispatch({
                         type: 'query',
                         payload: location.query
@@ -59,7 +59,7 @@ export default {
                     payload: {
                         orders: data.orders,
 						customers: data.customers,
-						bills: data.bills,
+						customerBills: data.customerBills,
                         total: data.page.total,
                         current: data.page.current
                     }
@@ -73,7 +73,7 @@ export default {
 				yield put({
 					type: 'hideEditor'
 				});
-				yield put(routerRedux.push('/bills'));
+				yield put(routerRedux.push('/customerBills'));
 			}
 		},
 		*doClearBill({payload}, {call, put}){
@@ -83,7 +83,7 @@ export default {
 				yield put({
 					type: 'hideEditor'
 				});
-				yield put(routerRedux.push('/bills'));
+				yield put(routerRedux.push('/customerBills'));
 			}
 		},
     },
@@ -110,6 +110,9 @@ export default {
 		},
 		hideEditor(state, action){
 			return {...state, currentItem:{}, editorType:'clearOrder', visible: false};
+		},
+		updateQueryKey(state, action){
+			return {...state, ...action.payload};
 		}
     },
 

@@ -5,6 +5,7 @@
     bottom: 0;
     width:300px;
     background: #404040;
+    overflow: scroll;
 }
 .menuList  {
     margin-top: 60px;
