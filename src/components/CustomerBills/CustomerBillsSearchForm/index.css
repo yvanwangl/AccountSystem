@@ -1,8 +1,8 @@
-.billsSearchForm {
+.customerBillsSearchForm {
     display: block;
     text-align: left;
 }
 
-.billsSearchForm button {
+.customerBillsSearchForm button {
     margin-top: 2px;
 }

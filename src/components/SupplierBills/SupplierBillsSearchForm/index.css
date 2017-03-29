@@ -1,0 +1,8 @@
+.supplierBillsSearchForm {
+    display: block;
+    text-align: left;
+}
+
+.supplierBillsSearchForm button {
+    margin-top: 2px;
+}
