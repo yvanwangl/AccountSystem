@@ -40,7 +40,7 @@ const AddStorage = ({
          * 数据保存前，做数据校验,
          * 用户不允许为空，并且至少需要保存一条商品数据
          */
-        const {supplierId, products} = storageData;
+        const {supplierId, products, totalAmount} = storageData;
         if (supplierId == null) {
             message.error('请选择一个供应商！');
             return null;
@@ -49,6 +49,10 @@ const AddStorage = ({
             message.error('请至少添加一个商品条目！');
             return null;
         }
+		if (totalAmount == 0) {
+			message.error('合计金额应大于0元！');
+			return null;
+		}
         dispatch({
             type: 'storage/create',
             payload: {

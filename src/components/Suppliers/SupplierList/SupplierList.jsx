@@ -42,11 +42,11 @@ const SupplierList = ({
             dataIndex: 'address',
             key: 'address',
         },
-		{
+		/*{
 			title: '应付金额',
 			dataIndex: 'payment',
 			key: 'payment',
-		},
+		},*/
         {
             title: '备注',
             dataIndex: 'mem',

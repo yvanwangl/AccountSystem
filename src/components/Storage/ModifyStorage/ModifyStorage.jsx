@@ -43,7 +43,7 @@ const ModifyStorage = ({
          * 数据保存前，做数据校验,
          * 用户不允许为空，并且至少需要保存一条商品数据
          */
-        const {supplierId, products} = storageData;
+        const {supplierId, products, totalAmount} = storageData;
 		storageData['noteNumber'] = currentItem['noteNumber'];
         if (supplierId == null) {
 			storageData['supplierId'] = currentItem['supplierId'];
@@ -52,7 +52,10 @@ const ModifyStorage = ({
             message.error('请至少添加一个商品条目！');
             return null;
         }
-        console.log(storageData);
+		if (totalAmount == 0) {
+			message.error('合计金额应大于0元！');
+			return null;
+		}
         dispatch({
             type: 'storage/modify',
             payload: {
