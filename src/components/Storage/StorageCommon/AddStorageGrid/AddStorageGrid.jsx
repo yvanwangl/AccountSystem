@@ -51,7 +51,7 @@ class AddOrderGrid extends Component {
 						editType='editCell'
 						componentType='combo'
 						productList={productList}
-						value={{key: record['productId'], label:text}}
+						value={{key: record['productId'], label: text}}
 						onChange={this.onListCellChange(index, 'productName')}
 					/>
                 )
@@ -63,6 +63,7 @@ class AddOrderGrid extends Component {
 				width: '10%',
                 render: (text, record, index)=>(
                     <EditableCell
+						fieldType="number"
                         disabled={disabled}
                         editType='editCell'
                         value={text}
@@ -90,6 +91,7 @@ class AddOrderGrid extends Component {
 				width: '10%',
                 render: (text, record, index)=>(
                     <EditableCell
+						fieldType="number"
                         disabled={disabled}
                         editType='editCell'
                         value={text}
@@ -109,6 +111,7 @@ class AddOrderGrid extends Component {
 				width: '20%',
                 render: (text, record, index)=>(
                     <EditableCell
+						fieldType="text"
                         disabled={disabled}
                         editType='editCell'
                         value={text}
@@ -237,6 +240,7 @@ class AddOrderGrid extends Component {
                         <div className={totalAmountClass}>
                             <div>合计金额：￥{totalAmount}</div>
                             <div className={paymentAmountClass}>支付金额：￥<EditableCell disabled={disabled}
+																					fieldType="number"
                                                                                     editType='editLine'
                                                                                     onChange={this.handlePaymentAmount()}
                                                                                     value={paymentAmount}/></div>

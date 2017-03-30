@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import {Form, Input, Modal} from 'antd'
+import {Form, Input, Modal} from 'antd';
+import numberFormat from '../../../utils/numberFormat';
 import {modal} from './index.css';
 
 const FormItem = Form.Item;
@@ -61,7 +62,7 @@ const ClearDebtOrdersModal =({
 						)
 					}
 				</FormItem>
-				<FormItem label='单据编号：' hasFeedback {...formItemLayout}>
+				<FormItem label='单据编号：' {...formItemLayout}>
 					{
 						getFieldDecorator('orderNumber', {
 							initialValue: orderNumber
@@ -79,7 +80,7 @@ const ClearDebtOrdersModal =({
 						)
 					}
 				</FormItem>
-                <FormItem label='客户名称：' hasFeedback {...formItemLayout}>
+                <FormItem label='客户名称：' {...formItemLayout}>
                     {
                         getFieldDecorator('customerName', {
 							initialValue: customerName
@@ -88,19 +89,19 @@ const ClearDebtOrdersModal =({
                         )
                     }
                 </FormItem>
-				<FormItem label='应付金额：' hasFeedback {...formItemLayout}>
+				<FormItem label='应付金额：' {...formItemLayout}>
 					{
 						getFieldDecorator('totalAmount', {
-							initialValue: totalAmount
+							initialValue: numberFormat(totalAmount)
 						})(
 							<Input type="text" disabled={true}/>
 						)
 					}
 				</FormItem>
-				<FormItem label='已付金额：' hasFeedback {...formItemLayout}>
+				<FormItem label='已付金额：' {...formItemLayout}>
 					{
 						getFieldDecorator('paymentAmount', {
-							initialValue: paymentAmount
+							initialValue: numberFormat(paymentAmount)
 						})(
 							<Input type="text" disabled={true}/>
 						)

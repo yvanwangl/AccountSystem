@@ -40,7 +40,7 @@ class EditableCell extends Component {
 
     render() {
         let {value, editable} = this.state;
-        let {editType, disabled} = this.props;
+        let {editType, disabled, fieldType} = this.props;
         return (
             <div className={editType == 'editCell' ? editCell : editLine}>
                 {
@@ -48,6 +48,7 @@ class EditableCell extends Component {
                         (
                             <div className={inputWrapper}>
                                 <Input
+									type={fieldType}
                                     value={value}
                                     onChange={this.handleChange}
                                     onPressEnter={this.check}

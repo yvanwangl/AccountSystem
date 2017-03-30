@@ -14,7 +14,7 @@ class ListEditableCell extends Component {
         };
     }
 
-	handleChange = (value) => {
+	handleSelect = (value) => {
         this.setState({value});
     };
 
@@ -48,7 +48,7 @@ class ListEditableCell extends Component {
                             <div className={inputWrapper}>
 								<Select
 									defaultValue={{ key: value.key }}
-									onChange={this.handleChange}
+									onSelect={this.handleSelect}
 									onBlur={this.check}
 									style={{ minWidth: 120, width:'100%' }}
 									disabled={disabled || false}
