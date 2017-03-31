@@ -12,16 +12,14 @@ function getAuthToken(len) {
 }
 
 function getOrderNumber(number) {
-    let prefix = 'MDC';
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = prefixO(date.getMonth() + 1);
-    let day = prefixO(date.getDate() + 1);
-    return prefix + year + month + day + (prefixOOO(number));
+	return getNumber('MDC', number);
 }
 
 function getNoteNumber(number) {
-	let prefix = 'MDS';
+	return getNumber('MDS', number);
+}
+
+function getNumber(prefix, number) {
 	let date = new Date();
 	let year = date.getFullYear();
 	let month = prefixO(date.getMonth() + 1);
