@@ -14,6 +14,7 @@ const defaultProduct = {
 };
 
 const defaultStorage = {
+	sequence: null,
 	noteNumber: '',
 	supplierId: null,
 	products: [
@@ -178,6 +179,7 @@ export default {
 					type: 'getNoteNumberSuccess',
 					payload: {
 						editorType: 'create',
+						sequence: data.sequence,
 						noteNumber: data.noteNumber,
 						editorVisible: true
 					}
@@ -291,9 +293,10 @@ export default {
 			return {...state, storageData: newStorage};
 		},
 		getNoteNumberSuccess(state, action){
+			let sequence = action.payload.sequence;
 			let noteNumber = action.payload.noteNumber;
 			let storageData = state['storageData'];
-			let newStorage = {...storageData, noteNumber};
+			let newStorage = {...storageData, sequence, noteNumber};
 			return {...state, storageData: newStorage, ...action.payload};
 		},
 		getSuppliersSuccess(state, action){

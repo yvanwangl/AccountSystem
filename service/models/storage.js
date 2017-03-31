@@ -6,6 +6,7 @@ let Schema = mongoose.Schema;
 
 let storageSchema = new Schema({
 	createInstance: Date,
+	sequence: Number,
 	noteNumber: String,
 	supplierId: String,
 	supplierName: String,

@@ -135,9 +135,18 @@ router.route('/getNoteNumber')
 					error: error
 				});
 			} else {
+				let sequence;
+				if(storages.length==0){
+					sequence = 1;
+				}else if(storages.length==1) {
+					sequence = storages[0].sequence+1;
+				}else {
+					sequence = storages.sort((s1, s2) => s2.sequence - s1.sequence)[0].sequence+1;
+				}
 				res.send({
 					success: true,
-					noteNumber: utils.getNoteNumber(storages.length + 1)
+					sequence: sequence,
+					noteNumber: utils.getNoteNumber(sequence)
 				});
 			}
 		});
