@@ -6,6 +6,7 @@ let Schema = mongoose.Schema;
 
 let orderSchema = new Schema({
     createInstance: Date,
+	sequence: Number,
     orderNumber: String,
     customerId: String,
     customerName: String,

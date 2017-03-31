@@ -14,6 +14,7 @@ const defaultProduct = {
 };
 
 const defaultOrder = {
+	sequence: null,
     orderNumber: '',
     customerId: null,
     products: [
@@ -178,6 +179,7 @@ export default {
                     type: 'getOrderNumberSuccess',
                     payload: {
                         editorType: 'create',
+						sequence: data.sequence,
                         orderNumber: data.orderNumber,
                         editorVisible: true
                     }
@@ -259,9 +261,10 @@ export default {
             return {...state, breadcrumbItems: newItems};
         },
         getOrderNumberSuccess(state, action){
-            let orderNumber = action.payload.orderNumber;
+			let sequence = action.payload.sequence;
+			let orderNumber = action.payload.orderNumber;
             let order = state['order'];
-            let newOrder = {...order, orderNumber};
+            let newOrder = {...order, sequence, orderNumber};
             return {...state, order: newOrder, ...action.payload};
         },
 		getCustomersSuccess(state, action){

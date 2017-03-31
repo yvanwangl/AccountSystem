@@ -130,9 +130,18 @@ router.route('/getOrderNumber')
                     error: error
                 });
             } else {
+            	let sequence;
+            	if(orders.length==0){
+					sequence = 1;
+				} else if(orders.length==1) {
+					sequence = orders[0].sequence+1;
+				} else {
+					sequence = orders.sort((o1, o2) => o2.sequence - o1.sequence)[0].sequence+1;
+				}
 				res.send({
 					success: true,
-					orderNumber: utils.getOrderNumber(orders.length + 1)
+					sequence: sequence,
+					orderNumber: utils.getOrderNumber(sequence)
 				});
             }
         });
