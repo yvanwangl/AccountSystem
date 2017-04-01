@@ -30,26 +30,26 @@ class CustomerBillsList extends Component {
 				title: '应付金额',
 				dataIndex: 'totalAmount',
 				key: 'totalAmount',
-				render: (text, record, index)=> numberFormat(text)
+				render: (text, record, index) => numberFormat(text)
 			},
 			{
 				title: '已付金额',
 				dataIndex: 'paymentAmount',
 				key: 'paymentAmount',
-				render: (text, record, index)=> numberFormat(text)
+				render: (text, record, index) => numberFormat(text)
 			},
 			{
 				title: '所欠金额',
 				dataIndex: 'debtAmount',
 				key: 'debtAmount',
-				render: (text, record, index)=> <span style={{color:'red'}}>{numberFormat(text)}</span>
+				render: (text, record, index) => <span style={{color: 'red'}}>{numberFormat(text)}</span>
 			},
 			{
 				title: '操作',
 				key: 'operation',
-				render: (text, record)=>(
+				render: (text, record) => (
 					<p>
-						<a onClick={()=> onClearBill(record)}>清账</a>
+						<a onClick={() => onClearBill(record)}>清账</a>
 					</p>
 				)
 			}

@@ -5,51 +5,51 @@ import {modal} from './index.css';
 
 const FormItem = Form.Item;
 const formItemLayout = {
-    labelCol: {
-        span: 6
-    },
-    wrapperCol: {
-        span: 14
-    }
+	labelCol: {
+		span: 6
+	},
+	wrapperCol: {
+		span: 14
+	}
 };
-const ClearCustomerBillsModal =({
-    visible,
-    onConfirm,
-    onCancel,
+const ClearCustomerBillsModal = ({
+	visible,
+	onConfirm,
+	onCancel,
 	currentItem,
-    form: {
-        getFieldDecorator,
-        validateFields
-    }
-})=>{
-    function handleConfirm() {
-        validateFields((errors, values)=>{
-            if(!!errors){
-                return;
-            }
-            onConfirm({customerId: values.customerId});
-        })
-    }
+	form: {
+		getFieldDecorator,
+		validateFields
+	}
+}) => {
+	function handleConfirm() {
+		validateFields((errors, values) => {
+			if (!!errors) {
+				return;
+			}
+			onConfirm({customerId: values.customerId});
+		})
+	}
 
-    const modalOpts = {
-        title: '清账操作',
-        visible,
-        onOk:handleConfirm,
-        onCancel
-    };
+	const modalOpts = {
+		title: '清账操作',
+		visible,
+		onOk: handleConfirm,
+		onCancel
+	};
 
-    const {
+	const {
 		customerId,
 		customerName,
 		totalAmount,
 		paymentAmount,
 	} = currentItem;
 
-    const clearBillAmount = (totalAmount-paymentAmount).toFixed(2);
+	const clearBillAmount = (totalAmount - paymentAmount).toFixed(2);
 
-    return (
-        <Modal {...modalOpts} className={modal}>
-            <Form layout='horizontal'>
+	return (
+		<Modal {...modalOpts} className={modal}>
+			<Form layout='horizontal'>
 				<FormItem {...formItemLayout} style={{margin: 0}}>
 					{
 						getFieldDecorator('customerId', {
@@ -59,15 +59,15 @@ const ClearCustomerBillsModal =({
 						)
 					}
 				</FormItem>
-                <FormItem label='客户名称：' {...formItemLayout}>
-                    {
-                        getFieldDecorator('customerName', {
+				<FormItem label='客户名称：' {...formItemLayout}>
+					{
+						getFieldDecorator('customerName', {
 							initialValue: customerName
 						})(
-                            <Input type="text" disabled={true}/>
-                        )
-                    }
-                </FormItem>
+							<Input type="text" disabled={true}/>
+						)
+					}
+				</FormItem>
 				<FormItem label='应付金额：' {...formItemLayout}>
 					{
 						getFieldDecorator('totalAmount', {
@@ -95,16 +95,16 @@ const ClearCustomerBillsModal =({
 						)
 					}
 				</FormItem>
-            </Form>
-        </Modal>
-    );
+			</Form>
+		</Modal>
+	);
 };
 
 ClearCustomerBillsModal.propTypes = {
-    visible:PropTypes.any,
-    onConfirm:PropTypes.func,
-    onCancel:PropTypes.func,
-	currentItem:PropTypes.object,
-    form:PropTypes.object.isRequired
+	visible: PropTypes.any,
+	onConfirm: PropTypes.func,
+	onCancel: PropTypes.func,
+	currentItem: PropTypes.object,
+	form: PropTypes.object.isRequired
 };
 export default Form.create()(ClearCustomerBillsModal);

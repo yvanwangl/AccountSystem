@@ -7,32 +7,32 @@ const Option = Select.Option;
 const RangePicker = DatePicker.RangePicker;
 
 const CustomerBillsSearchForm = ({
-    onSearch,
+	onSearch,
 	customers,
-    form: {
-        getFieldDecorator,
-        validateFields
-    }
+	form: {
+		getFieldDecorator,
+		validateFields
+	}
 }) => {
-    const onSubmit = (e)=> {
-        e.preventDefault();
-        validateFields((errors, values)=> {
-            if (!!errors) {
-                return false;
-            }
-            onSearch(values);
-        })
-    };
+	const onSubmit = (e) => {
+		e.preventDefault();
+		validateFields((errors, values) => {
+			if (!!errors) {
+				return false;
+			}
+			onSearch(values);
+		})
+	};
 
-    return (
-        <div className={customerBillsSearchForm}>
-            <Form layout='inline' onSubmit={onSubmit}>
+	return (
+		<div className={customerBillsSearchForm}>
+			<Form layout='inline' onSubmit={onSubmit}>
 				<FormItem label="客户名称：">
 					{
 						getFieldDecorator('customerId')(
 							<Select style={{minWidth: 150}}>
 								{
-									customers.map(({_id, customerName})=>(
+									customers.map(({_id, customerName}) => (
 										<Option key={_id}>{customerName}</Option>
 									))
 								}
@@ -40,15 +40,15 @@ const CustomerBillsSearchForm = ({
 						)
 					}
 				</FormItem>
-                <Button type='primary' htmlType='submit'>搜索</Button>
-            </Form>
-        </div>
-    );
+				<Button type='primary' htmlType='submit'>搜索</Button>
+			</Form>
+		</div>
+	);
 };
 
 CustomerBillsSearchForm.propTypes = {
-    form: PropTypes.object,
-    onSearch: PropTypes.func,
+	form: PropTypes.object,
+	onSearch: PropTypes.func,
 	customers: PropTypes.array
 };
 
