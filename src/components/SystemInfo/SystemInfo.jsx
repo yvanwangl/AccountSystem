@@ -61,7 +61,7 @@ const SystemInfo = ({systemUser, dispatch}) => {
 			<span>
                 <span className={userName}>{isLogin ? `欢迎您，${username}` : ''}</span>
                 <span className={loginButton} onClick={loginClick}>{isLogin ? "退出" : "登录"}</span>
-				{/*<span className={logupButton} onClick={logupClick}>{isLogin ? '' : '注册'}</span>*/}
+				<span className={logupButton} onClick={logupClick}>{isLogin ? '' : '注册'}</span>
             </span>
 			<LoginModalGen />
 			<LogupModalGen />
