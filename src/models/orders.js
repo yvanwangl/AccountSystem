@@ -1,6 +1,6 @@
 import {query, create, modify, del, getOrderNumber, queryOrderById} from '../services/orders';
 import * as customers from '../services/customers';
-import * as productStocks from '../services/productStocks';
+import * as resource from '../services/resource';
 import {parse} from 'qs';
 const defaultProduct = {
     key: '0',
@@ -210,7 +210,7 @@ export default {
 			if(!isLogin){
 				return;
 			}
-			const {data} = yield call(productStocks.query, {});
+			const {data} = yield call(resource.query, {});
 			if(data && data.success){
 				yield put({
 					type:'getProductsSuccess',

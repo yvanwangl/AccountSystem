@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Table, Popconfirm, Icon} from 'antd';
+import {Table, Popconfirm, Icon, message} from 'antd';
 import EditableCell from '../../../EditableCell/EditableCell';
 import ListEditableCell from '../../../ListEditableCell/ListEditableCell';
 import Spliter from '../../../Spliter/Spliter';
@@ -148,13 +148,19 @@ class AddOrderGrid extends Component {
 	}
 
     onLinkCellChange(index, key) {
-        const {editProducts} = this.props;
+        const {editProducts, productList} = this.props;
         const {paymentAmount} = this.state;
         return (value)=> {
             let dataSource = [...this.state.dataSource];
             let record = dataSource[index];
             if (key == 'quantity') {
                 let price = record.price;
+				let selectProduct = productList.filter(record.productId)[0];
+				/*如果输入的产品数量大于库存量，则给出提示*/
+                if(value>selectProduct.amount){
+					message.error('商品数量不能大于当前库存量！');
+					return null;
+				}
                 if (price != null) {
                     record.amount = (value*price).toFixed(2)*1;
                 }
