@@ -62,13 +62,14 @@ class AddOrderGrid extends Component {
                 key: 'quantity',
 				width: '10%',
                 render: (text, record, index)=>(
+					record.productId!=undefined && record.productId!=''?
                     <EditableCell
 						fieldType="number"
                         disabled={disabled}
                         editType='editCell'
                         value={text}
                         onChange={this.onLinkCellChange(index, 'quantity')}
-                    />
+					/>:<span>{text}</span>
                 )
             },
             {
@@ -155,11 +156,11 @@ class AddOrderGrid extends Component {
             let record = dataSource[index];
             if (key == 'quantity') {
                 let price = record.price;
-				let selectProduct = productList.filter(record.productId)[0];
+				let selectProduct = productList.filter(product=> product._id==record.productId)[0];
 				/*如果输入的产品数量大于库存量，则给出提示*/
                 if(value>selectProduct.amount){
 					message.error('商品数量不能大于当前库存量！');
-					return null;
+					value=0;
 				}
                 if (price != null) {
                     record.amount = (value*price).toFixed(2)*1;

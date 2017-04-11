@@ -14,6 +14,12 @@ class EditableCell extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    componentWillReceiveProps(nextProps){
+    	this.setState({
+			value: nextProps.value
+		});
+	}
+
     handleChange(e) {
         let value = e.target.value;
         this.setState({value});
