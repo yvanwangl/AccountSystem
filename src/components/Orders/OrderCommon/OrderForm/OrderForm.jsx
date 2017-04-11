@@ -15,7 +15,6 @@ const OrderForm = ({
     }
 }) => {
     const handleChange = (value)=> {
-        console.log('modify' + value);
         onSelect(value);
     };
 
