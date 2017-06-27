@@ -1,0 +1,1386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9f387877-344d-4ec4-8e1a-be8b5893722a" name="Default" comment="" />
+    <ignored path="AccountSystem.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="F:\Project\AccountSystem" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="AccountSystem" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="orders.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/models/orders.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8946">
+              <caret line="216" column="31" lean-forward="false" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resource.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/models/resource.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resource.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/services/resource.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resource.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/service/routes/resource.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5418">
+              <caret line="129" column="39" lean-forward="false" selection-start-line="129" selection-start-column="33" selection-end-line="129" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddOrderGrid.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Orders/OrderCommon/AddOrderGrid/AddOrderGrid.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2520">
+              <caret line="65" column="33" lean-forward="false" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditableCell.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/EditableCell/EditableCell.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="672">
+              <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddOrder.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Orders/AddOrder/AddOrder.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3612">
+              <caret line="94" column="28" lean-forward="false" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderForm.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Orders/OrderCommon/OrderForm/OrderForm.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="system.config.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/system.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/service/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="588">
+              <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="React JSX" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>entry</find>
+      <find>ico</find>
+      <find>minimatch</find>
+      <find>Settlement</find>
+      <find>settlement</find>
+      <find>Form</find>
+      <find>&lt;Form inline</find>
+      <find>&lt;Form horizontal</find>
+      <find>LoginModal</find>
+      <find>ClearBillsModal</find>
+      <find>billsList</find>
+      <find>billsSearchForm</find>
+      <find>clearBillsModal</find>
+      <find>customerBillsSpace</find>
+      <find>customerBillsListContainer</find>
+      <find>debtOrdersListContainer</find>
+      <find>customerBillsClass</find>
+      <find>search</find>
+      <find>Manage</find>
+      <find>Customer</find>
+      <find>Orders</find>
+      <find>orders</find>
+      <find>clearStorage</find>
+      <find>order</find>
+      <find>doClearStorage</find>
+      <find>bills</find>
+      <find>customer</find>
+      <find>Order</find>
+      <find>EditableCell</find>
+      <find>storageData</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>PRODUCT_API</replace>
+      <replace>product</replace>
+      <replace>STORAGE_API</replace>
+      <replace>OrderSearchForm</replace>
+      <replace>StorageSearchForm</replace>
+      <replace>SearchForm</replace>
+      <replace>Settlement</replace>
+      <replace>settlement</replace>
+      <replace>resource</replace>
+      <replace>ResourceSearchForm</replace>
+      <replace>let</replace>
+      <replace>LogupModal</replace>
+      <replace>productCode</replace>
+      <replace>productUnit</replace>
+      <replace>bills</replace>
+      <replace>&lt;Form layout='inline'</replace>
+      <replace>&lt;Form layout='horizontal'</replace>
+      <replace>debtOrders</replace>
+      <replace>ClearBillsModal</replace>
+      <replace>ClearDebtOrdersModal</replace>
+      <replace>customerBillsList</replace>
+      <replace>CustomerBillsSearchForm</replace>
+      <replace>customerBillsSearchForm</replace>
+      <replace>clearCustomerBillsModal</replace>
+      <replace>customerBills</replace>
+      <replace>Bills</replace>
+      <replace>Supplier</replace>
+      <replace>storage</replace>
+      <replace>Storage</replace>
+      <replace>supplier</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>F:\Project\AccountSystem\src</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/routes/Bills/Bills.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Header/Header.jsx" />
+        <option value="$PROJECT_DIR$/src/components/SupplierBills/SupplierBillsList/index.css" />
+        <option value="$PROJECT_DIR$/src/components/SupplierBills/DebtStorageList/index.css" />
+        <option value="$PROJECT_DIR$/src/routes/SupplierBills/index.css" />
+        <option value="$PROJECT_DIR$/src/router.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/components/SupplierBills/SupplierBillsSearchForm/index.css" />
+        <option value="$PROJECT_DIR$/src/services/customerBills.js" />
+        <option value="$PROJECT_DIR$/service/app.js" />
+        <option value="$PROJECT_DIR$/src/routes/SupplierBills/SupplierBills.jsx" />
+        <option value="$PROJECT_DIR$/src/services/supplierBills.js" />
+        <option value="$PROJECT_DIR$/src/models/settlement.js" />
+        <option value="$PROJECT_DIR$/src/models/supplierBills.js" />
+        <option value="$PROJECT_DIR$/service/routes/customerBills.js" />
+        <option value="$PROJECT_DIR$/src/models/customerBills.js" />
+        <option value="$PROJECT_DIR$/src/routes/CustomerBills/CustomerBills.jsx" />
+        <option value="$PROJECT_DIR$/src/components/SupplierBills/SupplierBillsList/SupplierBillsList.jsx" />
+        <option value="$PROJECT_DIR$/service/routes/supplierBills.js" />
+        <option value="$PROJECT_DIR$/src/components/SupplierBills/DebtStorageList/DebtStorageList.jsx" />
+        <option value="$PROJECT_DIR$/src/components/SupplierBills/SupplierBillsSearchForm/SupplierBillsSearchForm.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Settlement/SettlementList/SettlementList.jsx" />
+        <option value="$PROJECT_DIR$/src/index.less" />
+        <option value="$PROJECT_DIR$/src/components/SupplierBills/ClearDebtStorageModal/ClearDebtStorageModal.jsx" />
+        <option value="$PROJECT_DIR$/src/components/SupplierBills/ClearSupplierBillsModal/ClearSupplierBillsModal.jsx" />
+        <option value="$PROJECT_DIR$/src/components/ListEditableCell/ListEditableCell.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Storage/StorageCommon/AddStorageGrid/AddStorageGrid.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Storage/AddStorage/AddStorage.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Storage/ModifyStorage/ModifyStorage.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Suppliers/SupplierList/SupplierList.jsx" />
+        <option value="$PROJECT_DIR$/service/models/orders.js" />
+        <option value="$PROJECT_DIR$/service/models/storage.js" />
+        <option value="$PROJECT_DIR$/src/models/storage.js" />
+        <option value="$PROJECT_DIR$/service/utils/utils.js" />
+        <option value="$PROJECT_DIR$/service/routes/orders.js" />
+        <option value="$PROJECT_DIR$/service/routes/storage.js" />
+        <option value="$PROJECT_DIR$/src/components/CustomerBills/ClearDebtOrdersModal/ClearDebtOrdersModal.jsx" />
+        <option value="$PROJECT_DIR$/src/components/CustomerBills/CustomerBillsList/CustomerBillsList.jsx" />
+        <option value="$PROJECT_DIR$/src/components/CustomerBills/CustomerBillsSearchForm/CustomerBillsSearchForm.jsx" />
+        <option value="$PROJECT_DIR$/src/components/CustomerBills/DebtOrdersList/DebtOrdersList.jsx" />
+        <option value="$PROJECT_DIR$/src/components/CustomerBills/ClearCustomerBillsModal/ClearCustomerBillsModal.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Orders/AddOrder/AddOrder.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Orders/ModifyOrder/ModifyOrder.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Orders/OrderList/OrderList.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Orders/OrderSearchForm/OrderSearchForm.jsx" />
+        <option value="$PROJECT_DIR$/src/components/SystemInfo/SystemInfo.jsx" />
+        <option value="$PROJECT_DIR$/src/models/orders.js" />
+        <option value="$PROJECT_DIR$/src/components/EditableCell/EditableCell.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Orders/OrderCommon/AddOrderGrid/AddOrderGrid.jsx" />
+        <option value="$PROJECT_DIR$/system.config.js" />
+        <option value="$PROJECT_DIR$/src/components/Orders/OrderCommon/OrderForm/OrderForm.jsx" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>false</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>false</other-services-enabled>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+    <handled-path value="$PROJECT_DIR$/service/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1" />
+    <option name="y" value="1" />
+    <option name="width" value="1918" />
+    <option name="height" value="1038" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource ProjectPane="true" />
+      <autoscrollFromSource ProjectPane="true" />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AccountSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AccountSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="nodejs_interpreter_path" value="D:/Program Files/nodejs/node" />
+    <property name="javascript.nodejs.core.library.configured.version" value="6.8.1" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../UniversalBlog" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="F:\Project\AccountSystem\node_modules\mocha" />
+    <property name="js-jscs-nodeInterpreter" value="D:\Program Files\nodejs\node.exe" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="SearchEverywhereHistoryKey" value="ResourceSe&#9;FILE&#9;file://F:/Project/AccountSystem/src/components/Resource/ResourceSearchForm/ResourceSearchForm.js&#10;StorageSe&#9;FILE&#9;file://F:/Project/AccountSystem/src/components/Storage/StorageSearchForm/StorageSearchForm.jsx&#10;OrderSearchForm&#9;FILE&#9;file://F:/Project/AccountSystem/src/components/Orders/OrderSearchForm/OrderSearchForm.jsx" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="editor.config.accepted" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Project\AccountSystem\service\routes" />
+      <recent name="F:\Project\AccountSystem\src\services" />
+      <recent name="F:\Project\AccountSystem\src\models" />
+      <recent name="F:\Project\AccountSystem\src\routes" />
+      <recent name="F:\Project\AccountSystem\src\components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Project\AccountSystem\src\components\Orders" />
+      <recent name="F:\Project\AccountSystem\dist" />
+      <recent name="F:\Project\AccountSystem\service\public" />
+      <recent name="F:\Project\AccountSystem" />
+      <recent name="F:\Project\AccountSystem\src\components\OrderCommon" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.AccountSystem">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+    <configuration default="false" name="AccountSystem" type="js.build_tools.npm" factoryName="npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="npm.AccountSystem" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f387877-344d-4ec4-8e1a-be8b5893722a" name="Default" comment="" />
+      <created>1484054387423</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1484054387423</updated>
+      <workItem from="1484054389137" duration="3939000" />
+      <workItem from="1484133026865" duration="12129000" />
+      <workItem from="1484219871074" duration="11717000" />
+      <workItem from="1484269163827" duration="14799000" />
+      <workItem from="1484489451800" duration="2485000" />
+      <workItem from="1484539412006" duration="575000" />
+      <workItem from="1484559517560" duration="10152000" />
+      <workItem from="1484653192701" duration="9719000" />
+      <workItem from="1484733493476" duration="15537000" />
+      <workItem from="1484818864411" duration="17722000" />
+      <workItem from="1484911737423" duration="9772000" />
+      <workItem from="1484959837636" duration="9308000" />
+      <workItem from="1485082967964" duration="835000" />
+      <workItem from="1485088268264" duration="6465000" />
+      <workItem from="1485232867605" duration="7360000" />
+      <workItem from="1486206307825" duration="9763000" />
+      <workItem from="1486297411972" duration="3363000" />
+      <workItem from="1486389783444" duration="237000" />
+      <workItem from="1486476313314" duration="294000" />
+      <workItem from="1486561925721" duration="147000" />
+      <workItem from="1486640771364" duration="758000" />
+      <workItem from="1486726656725" duration="134000" />
+      <workItem from="1486907372261" duration="730000" />
+      <workItem from="1486995629153" duration="810000" />
+      <workItem from="1487082190484" duration="138000" />
+      <workItem from="1487167617836" duration="116000" />
+      <workItem from="1487254912565" duration="150000" />
+      <workItem from="1487327718769" duration="1503000" />
+      <workItem from="1487666728107" duration="2281000" />
+      <workItem from="1488202191556" duration="3194000" />
+      <workItem from="1488254450246" duration="12601000" />
+      <workItem from="1488364213762" duration="2535000" />
+      <workItem from="1488366815764" duration="1511000" />
+      <workItem from="1488368575141" duration="160000" />
+      <workItem from="1488368754446" duration="431000" />
+      <workItem from="1488369201838" duration="8370000" />
+      <workItem from="1488415817585" duration="8025000" />
+      <workItem from="1488524575903" duration="15022000" />
+      <workItem from="1488721045806" duration="2068000" />
+      <workItem from="1488800160024" duration="8916000" />
+      <workItem from="1488881306893" duration="12513000" />
+      <workItem from="1488966946870" duration="13848000" />
+      <workItem from="1489055901505" duration="10831000" />
+      <workItem from="1489139983585" duration="13654000" />
+      <workItem from="1489213883479" duration="3384000" />
+      <workItem from="1489399384221" duration="2751000" />
+      <workItem from="1489498667519" duration="2928000" />
+      <workItem from="1489574665938" duration="10627000" />
+      <workItem from="1489660489210" duration="8498000" />
+      <workItem from="1489756446078" duration="1486000" />
+      <workItem from="1490008203685" duration="8898000" />
+      <workItem from="1490093541788" duration="4783000" />
+      <workItem from="1490181549223" duration="11081000" />
+      <workItem from="1490250439346" duration="12570000" />
+      <workItem from="1490316681735" duration="4633000" />
+      <workItem from="1490352919080" duration="8487000" />
+      <workItem from="1490366336466" duration="624000" />
+      <workItem from="1490410069806" duration="4671000" />
+      <workItem from="1490499829113" duration="9360000" />
+      <workItem from="1490616082394" duration="9329000" />
+      <workItem from="1490626330699" duration="59000" />
+      <workItem from="1490682535092" duration="12471000" />
+      <workItem from="1490788676634" duration="9759000" />
+      <workItem from="1490875633322" duration="5573000" />
+      <workItem from="1490967793504" duration="4230000" />
+      <workItem from="1491053510444" duration="177000" />
+      <workItem from="1491306633645" duration="870000" />
+      <workItem from="1491732972219" duration="327000" />
+      <workItem from="1491818667532" duration="1577000" />
+      <workItem from="1491907101985" duration="2228000" />
+      <workItem from="1492597684082" duration="357000" />
+      <workItem from="1492659375371" duration="737000" />
+    </task>
+    <task id="LOCAL-00121" summary="modify systemUser">
+      <created>1490192615041</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1490192615041</updated>
+    </task>
+    <task id="LOCAL-00122" summary="modify products">
+      <created>1490250495614</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1490250495614</updated>
+    </task>
+    <task id="LOCAL-00123" summary="modify mongoose connect">
+      <created>1490253957762</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1490253957762</updated>
+    </task>
+    <task id="LOCAL-00124" summary="modify mongoose connect">
+      <created>1490254081614</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1490254081614</updated>
+    </task>
+    <task id="LOCAL-00125" summary="modify package.json">
+      <created>1490267220466</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1490267220466</updated>
+    </task>
+    <task id="LOCAL-00126" summary="modify package.json">
+      <created>1490269201176</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1490269201176</updated>
+    </task>
+    <task id="LOCAL-00127" summary="modify constants">
+      <created>1490270652213</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1490270652213</updated>
+    </task>
+    <task id="LOCAL-00128" summary="modify constants">
+      <created>1490271409991</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1490271409991</updated>
+    </task>
+    <task id="LOCAL-00129" summary="modify constants">
+      <created>1490271520136</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1490271520136</updated>
+    </task>
+    <task id="LOCAL-00130" summary="modify constants">
+      <created>1490277884355</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1490277884355</updated>
+    </task>
+    <task id="LOCAL-00131" summary="add system config">
+      <created>1490317384740</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1490317384742</updated>
+    </task>
+    <task id="LOCAL-00132" summary="add system config">
+      <created>1490318183334</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1490318183334</updated>
+    </task>
+    <task id="LOCAL-00133" summary="modify system config">
+      <created>1490318805838</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1490318805838</updated>
+    </task>
+    <task id="LOCAL-00134" summary="modify product">
+      <created>1490319811132</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1490319811133</updated>
+    </task>
+    <task id="LOCAL-00135" summary="modify sessionStorage">
+      <created>1490353283594</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1490353283595</updated>
+    </task>
+    <task id="LOCAL-00136" summary="modify auth by sessionStorage">
+      <created>1490354462153</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1490354462153</updated>
+    </task>
+    <task id="LOCAL-00137" summary="modify auth by sessionStorage">
+      <created>1490354473932</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1490354473933</updated>
+    </task>
+    <task id="LOCAL-00138" summary="modify system.config">
+      <created>1490354630590</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1490354630590</updated>
+    </task>
+    <task id="LOCAL-00139" summary="modify system.config">
+      <created>1490363036105</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1490363036105</updated>
+    </task>
+    <task id="LOCAL-00140" summary="modify system.config">
+      <created>1490366358281</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1490366358281</updated>
+    </task>
+    <task id="LOCAL-00141" summary="remove dora and add roadhog">
+      <created>1490521638953</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1490521638954</updated>
+    </task>
+    <task id="LOCAL-00142" summary="add bills">
+      <created>1490626138427</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1490626138428</updated>
+    </task>
+    <task id="LOCAL-00143" summary="modify form layout">
+      <created>1490626186189</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1490626186189</updated>
+    </task>
+    <task id="LOCAL-00144" summary="modify storage list">
+      <created>1490626217476</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1490626217476</updated>
+    </task>
+    <task id="LOCAL-00145" summary="modify storage list">
+      <created>1490682827314</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1490682827315</updated>
+    </task>
+    <task id="LOCAL-00146" summary="modify upload files">
+      <created>1490684212130</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1490684212130</updated>
+    </task>
+    <task id="LOCAL-00147" summary="modify upload files">
+      <created>1490684393819</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1490684393819</updated>
+    </task>
+    <task id="LOCAL-00148" summary="modify upload files">
+      <created>1490705640117</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1490705640118</updated>
+    </task>
+    <task id="LOCAL-00149" summary="modify clear bills">
+      <created>1490707965248</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1490707965248</updated>
+    </task>
+    <task id="LOCAL-00150" summary="modify clear bills">
+      <created>1490708200313</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1490708200313</updated>
+    </task>
+    <task id="LOCAL-00151" summary="modify customerBills">
+      <created>1490796469366</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1490796469367</updated>
+    </task>
+    <task id="LOCAL-00152" summary="modify customerBills">
+      <created>1490796517349</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1490796517349</updated>
+    </task>
+    <task id="LOCAL-00153" summary="add supplier bills">
+      <created>1490796543052</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1490796543052</updated>
+    </task>
+    <task id="LOCAL-00154" summary="modify supplier bills">
+      <created>1490796572952</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1490796572952</updated>
+    </task>
+    <task id="LOCAL-00155" summary="modify orderlist mem">
+      <created>1490798191428</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1490798191428</updated>
+    </task>
+    <task id="LOCAL-00156" summary="modify system.config">
+      <created>1490798377402</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1490798377402</updated>
+    </task>
+    <task id="LOCAL-00157" summary="modify listEditableCell">
+      <created>1490880055833</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1490880055833</updated>
+    </task>
+    <task id="LOCAL-00158" summary="modify numberfield">
+      <created>1490881242786</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1490881242786</updated>
+    </task>
+    <task id="LOCAL-00159" summary="modify system.config.js">
+      <created>1490881338903</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1490881338903</updated>
+    </task>
+    <task id="LOCAL-00160" summary="add orders sequence">
+      <created>1490971782168</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1490971782169</updated>
+    </task>
+    <task id="LOCAL-00161" summary="add storage sequence">
+      <created>1490971808732</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1490971808732</updated>
+    </task>
+    <task id="LOCAL-00162" summary="modify util getNumber">
+      <created>1490971868418</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1490971868418</updated>
+    </task>
+    <task id="LOCAL-00163" summary="format customerBills code">
+      <created>1491053608352</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1491053608353</updated>
+    </task>
+    <task id="LOCAL-00164" summary="format  orders code">
+      <created>1491053641486</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1491053641486</updated>
+    </task>
+    <task id="LOCAL-00165" summary="format  orders code">
+      <created>1491733017454</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1491733017454</updated>
+    </task>
+    <task id="LOCAL-00166" summary="format  orders code">
+      <created>1491733248427</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1491733248427</updated>
+    </task>
+    <task id="LOCAL-00167" summary="modify add order">
+      <created>1491822221540</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1491822221541</updated>
+    </task>
+    <task id="LOCAL-00168" summary="modify addOrderGrid and editableCell">
+      <created>1491908877206</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1491908877207</updated>
+    </task>
+    <task id="LOCAL-00169" summary="modify orderForm">
+      <created>1491909073830</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1491909073830</updated>
+    </task>
+    <option name="localTasksCounter" value="170" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="409092000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1" y="1" width="1918" height="1038" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23692636" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3272727" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8062361" sideWeight="0.12632136" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68295455" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8" sideWeight="0.8736786" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6670455" sideWeight="0.49788582" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.014772727" sideWeight="0.49682876" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39933628" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="modify product" />
+    <MESSAGE value="modify sessionStorage" />
+    <MESSAGE value="modify auth by sessionStorage" />
+    <MESSAGE value="remove dora and add roadhog" />
+    <MESSAGE value="add bills" />
+    <MESSAGE value="modify form layout" />
+    <MESSAGE value="modify storage list" />
+    <MESSAGE value="modify upload files" />
+    <MESSAGE value="modify clear bills" />
+    <MESSAGE value="modify customerBills" />
+    <MESSAGE value="add supplier bills" />
+    <MESSAGE value="modify supplier bills" />
+    <MESSAGE value="modify orderlist mem" />
+    <MESSAGE value="modify system.config" />
+    <MESSAGE value="modify listEditableCell" />
+    <MESSAGE value="modify numberfield" />
+    <MESSAGE value="modify system.config.js" />
+    <MESSAGE value="add orders sequence" />
+    <MESSAGE value="add storage sequence" />
+    <MESSAGE value="modify util getNumber" />
+    <MESSAGE value="format customerBills code" />
+    <MESSAGE value="format  orders code" />
+    <MESSAGE value="modify add order" />
+    <MESSAGE value="modify addOrderGrid and editableCell" />
+    <MESSAGE value="modify orderForm" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify orderForm" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="10" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="AccountSystem" />
+        <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="AccountSystem" />
+        <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/service/routes/customerBills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="96" column="45" lean-forward="false" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/customerBills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="18" column="21" lean-forward="false" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/CustomerBills/CustomerBills.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="19" column="15" lean-forward="true" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/supplierBills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="65" column="19" lean-forward="true" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/routes/supplierBills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SupplierBills/DebtStorageList/DebtStorageList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2520">
+          <caret line="67" column="5" lean-forward="false" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SupplierBills/SupplierBillsList/SupplierBillsList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/SupplierBills/SupplierBills.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="966">
+          <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SupplierBills/SupplierBillsSearchForm/SupplierBillsSearchForm.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Storage/StorageList/StorageList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="58" column="10" lean-forward="false" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Settlement/SettlementList/SettlementList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="55" column="27" lean-forward="false" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/numberFormat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SupplierBills/ClearDebtStorageModal/ClearDebtStorageModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4200">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SupplierBills/ClearSupplierBillsModal/ClearSupplierBillsModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Storage/StorageCommon/AddStorageGrid/AddStorageGrid.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="53" column="69" lean-forward="false" selection-start-line="53" selection-start-column="65" selection-end-line="53" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ListEditableCell/ListEditableCell.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Storage/AddStorage/AddStorage.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1848">
+          <caret line="52" column="31" lean-forward="false" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Storage/ModifyStorage/ModifyStorage.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1932">
+          <caret line="54" column="16" lean-forward="false" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Orders/OrderCommon/OrderRemarkForm/OrderRemarkForm.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Suppliers/SupplierList/SupplierList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="50" column="1" lean-forward="false" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/models/products.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/storage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12306">
+          <caret line="296" column="55" lean-forward="true" selection-start-line="296" selection-start-column="55" selection-end-line="296" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/models/orders.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/models/storage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/utils/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1470">
+          <caret line="35" column="1" lean-forward="false" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/routes/storage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5880">
+          <caret line="140" column="46" lean-forward="false" selection-start-line="140" selection-start-column="46" selection-end-line="140" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/routes/orders.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="137" column="24" lean-forward="false" selection-start-line="137" selection-start-column="24" selection-end-line="137" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Orders/ModifyOrder/ModifyOrder.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="48" column="60" lean-forward="false" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Orders/OrderList/OrderList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2268">
+          <caret line="61" column="29" lean-forward="false" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Orders/OrderSearchForm/OrderSearchForm.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerBills/ClearCustomerBillsModal/ClearCustomerBillsModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerBills/DebtOrdersList/DebtOrdersList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerBills/CustomerBillsSearchForm/CustomerBillsSearchForm.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerBills/CustomerBillsList/CustomerBillsList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Header/Header.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="30" column="49" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SystemInfo/SystemInfo.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1974">
+          <caret line="52" column="6" lean-forward="true" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proxy.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerBills/ClearDebtOrdersModal/ClearDebtOrdersModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/resource.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/resource.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/orders.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8946">
+          <caret line="216" column="31" lean-forward="false" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/routes/resource.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5418">
+          <caret line="129" column="39" lean-forward="false" selection-start-line="129" selection-start-column="33" selection-end-line="129" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/EditableCell/EditableCell.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Orders/OrderCommon/AddOrderGrid/AddOrderGrid.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2520">
+          <caret line="65" column="33" lean-forward="false" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Orders/AddOrder/AddOrder.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3612">
+          <caret line="94" column="28" lean-forward="false" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Orders/OrderCommon/OrderForm/OrderForm.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

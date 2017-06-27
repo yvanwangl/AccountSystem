@@ -6,6 +6,24 @@ let router = express.Router();
 let Customer = require('../models/customers');
 let constants = require('../constants/constants');
 
+//查询所有客户
+router.route('/all')
+    .get((req, res, next)=>{
+        Customer.find({}, (err, customers)=> {
+            if(err){
+                res.send({
+                    success: false,
+                    error: err
+                });
+            }else {
+                res.send({
+                    success: true,
+                    customers: customers
+                });
+            }
+        })
+    });
+
 router.route('/')
     .get((req, res, next)=>{
         let {page, customerName} = req.query;

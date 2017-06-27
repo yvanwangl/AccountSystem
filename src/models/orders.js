@@ -197,7 +197,7 @@ export default {
 			if(!isLogin){
 				return;
 			}
-			const {data} = yield call(customers.query, {});
+			const {data} = yield call(customers.queryAll, {});
 			if(data && data.success){
 				yield put({
 					type:'getCustomersSuccess',

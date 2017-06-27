@@ -7,6 +7,10 @@ export async function query(params) {
     return request(`${CUSTOMER_API}?${qs.stringify(params)}`);
 }
 
+export async function queryAll() {
+    return request(`${CUSTOMER_API}/all`);
+}
+
 export async function create(params) {
     return request(CUSTOMER_API, {
         method: 'post',
