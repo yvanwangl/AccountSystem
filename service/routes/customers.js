@@ -9,7 +9,11 @@ let constants = require('../constants/constants');
 //查询所有客户
 router.route('/all')
     .get((req, res, next)=>{
-        Customer.find({}, (err, customers)=> {
+        let currentUser = global[Symbol.for('currentUser')];
+        let queryCondition = {
+        	userId: currentUser['_id']
+		};
+        Customer.find(queryCondition, (err, customers)=> {
             if(err){
                 res.send({
                     success: false,
