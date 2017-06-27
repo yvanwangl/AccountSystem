@@ -6,6 +6,28 @@ let router = express.Router();
 let Supplier = require('../models/suppliers');
 let constants = require('../constants/constants');
 
+//查询所有供应商
+router.route('/all')
+    .get((req, res, next)=>{
+        let currentUser = global[Symbol.for('currentUser')];
+        let queryCondition = {
+        	userId: currentUser['_id']
+		};
+        Supplier.find(queryCondition, (err, suppliers)=> {
+            if(err){
+                res.send({
+                    success: false,
+                    error: err
+                });
+            }else {
+                res.send({
+                    success: true,
+                    suppliers: suppliers
+                });
+            }
+        })
+    });
+
 router.route('/')
     .get((req, res, next)=>{
         let {page, supplierName} = req.query;

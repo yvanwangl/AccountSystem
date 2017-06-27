@@ -197,7 +197,7 @@ export default {
 			if(!isLogin){
 				return;
 			}
-			const {data} = yield call(suppliers.query, {});
+			const {data} = yield call(suppliers.queryAll, {});
 			if(data&&data.success){
 				yield put({
 					type:'getSuppliersSuccess',

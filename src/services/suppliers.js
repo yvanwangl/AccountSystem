@@ -7,6 +7,10 @@ export async function query(params) {
     return request(`${SUPPLIER_API}?${qs.stringify(params)}`);
 }
 
+export async function queryAll() {
+    return request(`${SUPPLIER_API}/all`);
+}
+
 export async function create(params) {
     return request(SUPPLIER_API, {
         method: 'post',
