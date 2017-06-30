@@ -140,11 +140,13 @@ class AddOrderGrid extends Component {
 		return ({key, label})=> {
 			const dataSource = [...this.state.dataSource];
 			const arr = label.match(/([\u4e00-\u9fa5\w]+)/g);
-			dataSource[index]['productId'] = key;
-			dataSource[index]['productName'] = arr[0];
-			dataSource[index]['productUnit'] = arr[1];
-			this.setState({dataSource:[...dataSource]});
-			editProducts(dataSource, totalAmount, paymentAmount);
+            if(key!=''&&arr!=null){
+                dataSource[index]['productId'] = key;
+                dataSource[index]['productName'] = arr[0];
+                dataSource[index]['productUnit'] = arr[1];
+                this.setState({dataSource:[...dataSource]});
+                editProducts(dataSource, totalAmount, paymentAmount);   
+            }
 		}
 	}
 
@@ -159,7 +161,7 @@ class AddOrderGrid extends Component {
 				let selectProduct = productList.filter(product=> product._id==record.productId)[0];
 				/*如果输入的产品数量大于库存量，则给出提示*/
                 if(value>selectProduct.amount){
-					message.error('商品数量不能大于当前库存量！');
+					message.error(`商品数量不能大于当前库存量: ${selectProduct.amount}！`);
 					value=0;
 				}
                 if (price != null) {
