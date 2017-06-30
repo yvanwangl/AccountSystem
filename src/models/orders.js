@@ -111,7 +111,12 @@ export default {
         },
         *create({payload}, {call, put}){
             yield put({type: 'showLoading'});
-            const {data} = yield call(create, payload.order);
+            //保存之前清洗数据，对商品条目为空的商品记录进行删除
+            const order = payload.order;
+            const {products} = order;
+            const validProducts = products.filter(product=> product.productId!='');
+            order['products'] = validProducts;
+            const {data} = yield call(create, order);
             if (data && data.success) {
                 yield put({
                     type: 'createSuccess',
@@ -129,6 +134,10 @@ export default {
             yield put({type: 'showLoading'});
             const id = yield select(({orders})=>orders.currentItem['_id']);
             const newOrder = {...payload.order, id};
+            //保存之前清洗数据，对商品条目为空的商品记录进行删除
+            const {products} = newOrder;
+            const validProducts = products.filter(product=> product.productId!='');
+            newOrder['products'] = validProducts;
             const {data} = yield call(modify, newOrder);
             if (data && data.success) {
                 yield put({
