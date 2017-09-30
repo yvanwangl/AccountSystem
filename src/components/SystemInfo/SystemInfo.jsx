@@ -3,6 +3,7 @@ import {browserHistory} from 'dva/router';
 import {connect} from 'dva';
 import LoginModal from '../LoginModal/LoginModal';
 import LogupModal from '../LogupModal/LogupModal';
+import {register} from '../../../system.config.js';
 import {systemInfo, systemName, userName, loginButton, logupButton} from './index.css';
 
 const SystemInfo = ({systemUser, dispatch}) => {
@@ -61,7 +62,11 @@ const SystemInfo = ({systemUser, dispatch}) => {
 			<span>
                 <span className={userName}>{isLogin ? `欢迎您，${username}` : ''}</span>
                 <span className={loginButton} onClick={loginClick}>{isLogin ? "退出" : "登录"}</span>
-				{/*<span className={logupButton} onClick={logupClick}>{isLogin ? '' : '注册'}</span>*/}
+				{
+					register ?
+						<span className={logupButton} onClick={logupClick}>{isLogin ? '' : '注册'}</span>:
+						null
+				}	
             </span>
 			<LoginModalGen />
 			<LogupModalGen />

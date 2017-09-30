@@ -1,25 +1,31 @@
 /**
  * Created by hanlu on 2017/3/24.
  */
-
+const debug = process.env.NODE_ENV == 'development';
 //服务器端口
 const serverPort = '4000';
 
 //服务器地址
-//const httpServer = 'http://localhost:'+serverPort;
-const httpServer = '';
+//开发模式，服务器地址
+const httpServerDev = 'http://localhost:'+serverPort;
+//部署模式，服务器地址
+const httpServerPro = '';
 
 //数据库地址
-//const mongooseConnect = "mongodb://localhost:27017/accountSystem";
-const mongooseConnect = "mongodb://lihuan:lihuan0215@localhost:29019/accountSystem";
+//开发模式数据库地址
+const mongooseConnectDev = "mongodb://localhost:27017/accountSystem";
+//部署模式数据库地址
+const mongooseConnectPro = "mongodb://username:password@localhost:27017/accountSystem";
 
 //上传图片后返回的服务器地址
-//const uploadImgServer = 'localhost';
-const uploadImgServer = '139.224.195.74';
+const uploadImgServerDev = 'localhost';
+const uploadImgServerPro = '192.168.195.74';
 
 module.exports = {
-	httpServer: httpServer,
+	httpServer: debug ? httpServerDev:httpServerPro,
 	serverPort: serverPort,
-	mongooseConnect: mongooseConnect,
-	uploadImgServer: uploadImgServer
+	mongooseConnect: debug ? mongooseConnectDev:mongooseConnectPro,
+	uploadImgServer: debug ? uploadImgServerDev:uploadImgServerPro,
+	//是否支持注册功能
+	register: debug
 };
