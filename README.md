@@ -21,7 +21,9 @@
 
 ## 项目技术栈
 前端技术：React + React-Router + Redux + React-Redux + Redux-Saga + Webpack<br>
-后端技术：Node + Mongo + Mongoose<br>
+前端脚手架：[dva](https://github.com/dvajs/dva)
+UI组件库：[ant-design](https://github.com/ant-design/ant-design)
+后端技术：Express + Mongoose<br>
 
 ## 实现功能
 1. 登录注册功能
@@ -38,5 +40,8 @@
 ## 入库管理
 入库管理包括增加、修改、删除及查看入库单详情的功能，可根据入库单生成日期、供应商名称及入库单编号进行查询，入库单编号支持模糊查询<br>
 ![](./docs/images/bill.png)<br>
+
+## 项目结构
+![](./docs/images/project.png)
 
 
