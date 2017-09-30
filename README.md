@@ -8,16 +8,16 @@
 ![](./docs/images/index.png)<br>
 
 ## 如何安装
-1. 请确保安装MongoDB并正确启动(mongodb相关资料请移步[这里](https://docs.mongodb.com/manual/installation/))
+1. 请确保安装MongoDB并正确启动( mongodb相关资料请移步[这里](https://docs.mongodb.com/manual/installation/) )
 2. 请确保全局安装pm2 `npm install -g pm2`
 3. Clone 该项目到本地 `git clone https://github.com/yvanwangl/AccountSystem.git`
 4. 安装依赖包 `npm install`
-5. 该项目采用前后端分离模式开发，如果要在开发模式运行则执行以下命令：
-    * 启动node server开发服务 `npm run start:dev`
-    * 启动前端dev server `npm start`
-6. 如果以发布模式运行则执行以下命令：
-    * 前端资源打包 `npm run build`
-    * 启动node server部署服务 `npm run start:prod`
+5. 该项目采用前后端分离模式开发，如果要在开发模式运行则执行以下命令：<br>
+    * 启动node server开发服务 `npm run start:dev`<br>
+    * 启动前端dev server `npm start`<br>
+6. 如果以发布模式运行则执行以下命令：<br>
+    * 前端资源打包 `npm run build`<br>
+    * 启动node server部署服务 `npm run start:prod`<br>
 
 ## 项目技术栈
 前端技术：React + React-Router + Redux + React-Redux + Redux-Saga + Webpack<br>
