@@ -8,8 +8,8 @@
 ![](./docs/images/index.png)<br>
 
 ## 如何安装
-1`.` 请确保安装MongoDB并正确启动( mongodb相关资料请移步[这里](https://docs.mongodb.com/manual/installation/) )
-2`.` 请确保全局安装pm2 `npm install -g pm2`
+1. 请确保安装MongoDB并正确启动( mongodb相关资料请移步[这里](https://docs.mongodb.com/manual/installation/) )
+2. 请确保全局安装pm2 `npm install -g pm2`
 3. Clone 该项目到本地 `git clone https://github.com/yvanwangl/AccountSystem.git`
 4. 安装依赖包 `npm install`
 5. 该项目采用前后端分离模式开发，如果要在开发模式运行则执行以下命令：<br>
