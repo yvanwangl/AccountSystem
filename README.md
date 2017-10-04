@@ -8,14 +8,14 @@
 ![](./docs/images/index.png)<br>
 
 ## 如何安装
-1. 请确保安装MongoDB并正确启动( mongodb相关资料请移步[这里](https://docs.mongodb.com/manual/installation/) )
-2. 请确保全局安装pm2 `npm install -g pm2`
-3. Clone 该项目到本地 `git clone https://github.com/yvanwangl/AccountSystem.git`
-4. 安装依赖包 `npm install`
-5. 该项目采用前后端分离模式开发，如果要在开发模式运行则执行以下命令：<br>
+1`.` 请确保安装MongoDB并正确启动( mongodb相关资料请移步[这里](https://docs.mongodb.com/manual/installation/) )
+2`.` 请确保全局安装pm2 `npm install -g pm2`
+3`.` Clone 该项目到本地 `git clone https://github.com/yvanwangl/AccountSystem.git`
+4`.` 安装依赖包 `npm install`
+5`.` 该项目采用前后端分离模式开发，如果要在开发模式运行则执行以下命令：<br>
     * 启动node server开发服务 `npm run start:dev`<br>
     * 启动前端dev server `npm start`<br>
-6. 如果以发布模式运行则执行以下命令：<br>
+6`.` 如果以发布模式运行则执行以下命令：<br>
     * 前端资源打包 `npm run build`<br>
     * 启动node server部署服务 `npm run start:prod`<br>
 
@@ -28,12 +28,12 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design)<br>
 该项目采用前后端分离技术，前端使用React全家桶，项目整体框架使用dva，dva是一个将redux、redux-saga 和 react-router 等进行封装的前端框架，方便项目配置及代码管理；后端使用express + mongoose 进行后端业务处理及数据库操作。<br>
 
 ## 实现功能
-1. 登录注册功能
-2. 基础数据管理功能，包括：客户管理、商品管理、供应商管理
-3. 订单及进货单管理功能，包括：订单管理、入库管理
-4. 物资管理功能
-5. 结算管理功能
-6. 账单管理功能，包括：客户对账管理、供应商对账管理
+1`.` 登录注册功能
+2`.` 基础数据管理功能，包括：客户管理、商品管理、供应商管理
+3`.` 订单及进货单管理功能，包括：订单管理、入库管理
+4`.` 物资管理功能
+5`.` 结算管理功能
+6`.` 账单管理功能，包括：客户对账管理、供应商对账管理
 
 ## 订单管理
 订单管理包括增加、修改、删除及查看订单详情，可以根据订单生成日期、客户名称及订单编号进行查询，订单编号支持模糊查询<br>
