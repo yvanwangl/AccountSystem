@@ -21,13 +21,15 @@
 
 ## 项目技术栈
 前端技术：React + React-Router + Redux + React-Redux + Redux-Saga + Webpack<br>
-前端脚手架：[dva](https://github.com/dvajs/dva)
-UI组件库：[ant-design](https://github.com/ant-design/ant-design)
+前端脚手架：[dva](https://github.com/dvajs/dva)<br>
+UI组件库：[ant-design](https://github.com/ant-design/ant-design)<br>
 后端技术：Express + Mongoose<br>
+
+该项目采用前后端分离技术，前端使用React全家桶，项目整体框架使用dva，dva是一个将redux、redux-saga 和 react-router 等进行封装的前端框架，方便项目配置及代码管理；后端使用express + mongoose 进行后端业务处理及数据库操作。<br>
 
 ## 实现功能
 1. 登录注册功能
-2. 基本管理功能，包括：客户管理、商品管理、供应商管理
+2. 基础数据管理功能，包括：客户管理、商品管理、供应商管理
 3. 订单及进货单管理功能，包括：订单管理、入库管理
 4. 物资管理功能
 5. 结算管理功能
@@ -42,6 +44,10 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design)
 ![](./docs/images/bill.png)<br>
 
 ## 项目结构
-![](./docs/images/project.png)
+![](./docs/images/project.png)<br>
+
+
+
+
 
 
