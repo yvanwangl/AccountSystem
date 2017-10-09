@@ -1,6 +1,5 @@
 ## AccountSystem 一个小型库存管理系统
 
-![](https://travis-ci.org/yvanwangl/EventHelper.svg?branch=master)
 ![](https://camo.githubusercontent.com/4c82c2bade9204481be86bfdbc0b773be2c823dd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c616e67756167652d4a6176617363726970742d79656c6c6f772e7376673f7374796c653d666c6174)
 ![](https://camo.githubusercontent.com/3a5d997143423893d291af21f6a10bddf6716fd1/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c616e67756167652d4e6f64652d677265656e2e7376673f7374796c653d666c6174)
 ![](https://camo.githubusercontent.com/c55a47ce085cee081ab8038d88db04e3638fee48/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f44617461626173652d4d6f6e676f44422d677265656e2e7376673f7374796c653d666c6174)<br>
@@ -40,18 +39,22 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design)<br>
 
 ## 订单管理
 订单管理包括增加、修改、删除及查看订单详情，可以根据订单生成日期、客户名称及订单编号进行查询，订单编号支持模糊查询<br>
+
 ![](./docs/images/order.png)<br>
 
 ## 入库管理
 入库管理包括增加、修改、删除及查看入库单详情的功能，可根据入库单生成日期、供应商名称及入库单编号进行查询，入库单编号支持模糊查询<br>
+
 ![](./docs/images/bill.png)<br>
 
 ## 物资管理
 物资管理将仓库库存的物资和资金进行分类统计，可以查看仓库中当前剩余的商品的种类和数量；资金管理从商品分类的角度对系统流出资金和流入资金进行统计汇总，方便查看不同商品对应的资金情况。<br>
+
 ![](./docs/images/resource.png)<br>
 
 ## 对账管理——供应商对账
 供应商对账管理从负债入库单和负债供应商两个角度对负债账务进行分类，同时可以根据供应商的名称对负债入库账单和负债供应商进行过滤。从两个角度进行分类统计是为了方便能够按照入库单进行分批清账，或直接向供应商清账，方便账务分类管理<br>
+
 ![](./docs/images/supplierBill.png)<br>
 
 其他一些界面的功能就不再一一介绍，感兴趣的话自己clone一份代码，运行一下便知:)<br>
