@@ -6,6 +6,10 @@
 
 ![](./docs/images/index.png)<br>
 
+## [在线预览](http://mingdi.yvanwang.com/)
+用户名：guest<br>
+密码：123456
+
 ## 如何安装
 1`.` 请确保安装MongoDB并正确启动( mongodb相关资料请移步[这里](https://docs.mongodb.com/manual/installation/) )<br>
 2`.` 请确保全局安装pm2 `npm install -g pm2`<br>
