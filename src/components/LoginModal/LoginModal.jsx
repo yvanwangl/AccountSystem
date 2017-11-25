@@ -64,7 +64,11 @@ const LoginModal =({
                                 }
                             ]
                         })(
-                            <Input type="password"/>
+                            <Input type="password" onKeyDown={(e)=> {
+                                if(e.keyCode == 13) {
+                                    handleConfirm();
+                                }
+                            }}/>
                         )
                     }
                 </FormItem>

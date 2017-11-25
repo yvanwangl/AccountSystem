@@ -227,9 +227,18 @@ router.route('/')
 										productId: product['_id'],
 										key: index
 									};
-								});
+                                });
+                                let sequence;
+                                if(orders.length==0){
+                                    sequence = 1;
+                                } else if(orders.length==1) {
+                                    sequence = orders[0].sequence+1;
+                                } else {
+                                    sequence = orders.sort((o1, o2) => o2.sequence - o1.sequence)[0].sequence+1;
+                                }
 								const order = new Order({
-									orderNumber: utils.getOrderNumber(orders.length + 1),
+                                    sequence: sequence,
+									orderNumber: utils.getOrderNumber(sequence),
 									customerId: '',
 									totalAmount: 0,
 									paymentAmount: 0,
@@ -295,9 +304,18 @@ router.route('/')
 																		productId: product['_id'],
 																		key: index
 																	};
-																});*/
+                                                                });*/
+                                                                let sequence;
+                                                                if(storages.length==0){
+                                                                    sequence = 1;
+                                                                }else if(storages.length==1) {
+                                                                    sequence = storages[0].sequence+1;
+                                                                }else {
+                                                                    sequence = storages.sort((s1, s2) => s2.sequence - s1.sequence)[0].sequence+1;
+                                                                }
 																const storage = new Storage({
-																	noteNumber: utils.getNoteNumber(storages.length + 1),
+                                                                    sequence: sequence,
+																	noteNumber: utils.getNoteNumber(sequence),
 																	supplierId: '',
 																	totalAmount: 0,
 																	paymentAmount: 0,
