@@ -7,7 +7,7 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let systemConfig = require('../system.config');
-mongoose.connect(systemConfig.mongooseConnect);
+mongoose.connect(systemConfig.mongooseConnect, {useMongoClient: true});
 
 let routes = require('./routes/index');
 let users = require('./routes/users');
