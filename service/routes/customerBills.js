@@ -38,11 +38,14 @@ router.route('/')
 							const customerObj = {};
 							//按照客户对订单进行归类
 							debtOrdersClone.map(order=> {
-								if(customerObj[order['customerId']]){
-									customerObj[order['customerId']].push(order);
-								}else {
-									customerObj[order['customerId']] = [order];
-								}
+                                //只有订单上客户存在的才是正常的出库订单，客户为空的结算生成的订单
+                                if(order['customerId']){
+                                    if(customerObj[order['customerId']]){
+                                        customerObj[order['customerId']].push(order);
+                                    }else {
+                                        customerObj[order['customerId']] = [order];
+                                    }
+                                }
 							});
 
 							//欠债的客户列表
