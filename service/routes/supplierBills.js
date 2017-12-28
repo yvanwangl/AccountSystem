@@ -38,11 +38,14 @@ router.route('/')
 							const supplierObj = {};
 							//按照客户对订单进行归类
 							debtStoragesClone.map(storage=> {
-								if(supplierObj[storage['supplierId']]){
-									supplierObj[storage['supplierId']].push(storage);
-								}else {
-									supplierObj[storage['supplierId']] = [storage];
-								}
+                                //只有供应商标识不为空才是正常的入库单，为空的入库单为结算生成的
+                                if(storage['supplierId']){
+                                    if(supplierObj[storage['supplierId']]){
+                                        supplierObj[storage['supplierId']].push(storage);
+                                    }else {
+                                        supplierObj[storage['supplierId']] = [storage];
+                                    }
+                                }
 							});
 
 							//负债的供应商列表
