@@ -2,7 +2,6 @@ import fetch from 'dva/fetch';
 import {HTTP_SERVER} from '../constants/constants';
 
 function parseJSON(response) {
-    console.log(response);
     return response.json();
 }
 
