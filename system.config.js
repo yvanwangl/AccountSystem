@@ -18,8 +18,9 @@ const mongooseConnectDev = "mongodb://localhost:27017/accountSystem";
 const mongooseConnectPro = "mongodb://username:password@localhost:27017/accountSystem";
 
 //上传图片后返回的服务器地址
+//可以在 ./service/routes/uploadProductImg.js 中对返回图片的路径进行拼接修改
 const uploadImgServerDev = 'localhost';
-const uploadImgServerPro = '192.168.195.74';
+const uploadImgServerPro = '192.168.195.74'; 
 
 module.exports = {
 	httpServer: debug ? httpServerDev:httpServerPro,
