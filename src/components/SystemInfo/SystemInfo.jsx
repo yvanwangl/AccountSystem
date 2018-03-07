@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import { Button, Avatar } from 'antd';
 import {browserHistory} from 'dva/router';
 import {connect} from 'dva';
 import LoginModal from '../LoginModal/LoginModal';
 import LogupModal from '../LogupModal/LogupModal';
 import {register} from '../../../system.config.js';
-import {systemInfo, systemName, userName, loginButton, logupButton} from './index.css';
+import {systemInfo, systemName, userInfo, userName, loginButton, logupButton} from './index.css';
 
 const SystemInfo = ({systemUser, dispatch}) => {
 	const {isLogin, username, modalVisible, logupModalVisible} = systemUser;
@@ -59,12 +60,17 @@ const SystemInfo = ({systemUser, dispatch}) => {
 	return (
 		<div className={systemInfo}>
 			<span className={systemName}>铭帝系统门窗管理系统</span>
-			<span>
-                <span className={userName}>{isLogin ? `欢迎您，${username}` : ''}</span>
-                <span className={loginButton} onClick={loginClick}>{isLogin ? "退出" : "登录"}</span>
+			<span className={userInfo}>
+                <span className={userName}>
+                    {
+                        isLogin ? 
+                        <span><Avatar style={{marginRight: '4px'}} size="small" icon="user" /> {username} </span> : null
+                    }
+                </span>
+                <Button type="primary" className={loginButton} onClick={loginClick}>{isLogin ? "退出" : "登录"}</Button>
 				{
-					register ?
-						<span className={logupButton} onClick={logupClick}>{isLogin ? '' : '注册'}</span>:
+					register && !isLogin ?
+						<Button className={logupButton} onClick={logupClick}>{isLogin ? '' : '注册'}</Button>:
 						null
 				}	
             </span>

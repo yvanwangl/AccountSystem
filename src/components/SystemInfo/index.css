@@ -17,6 +17,11 @@
     color: #4a4a4a;
     font-size: 18px;
 }
+.userInfo,
+.userName>span {
+    display: flex;
+    align-items: center;
+}
 .userName {
     margin-right: 10px;
 }
