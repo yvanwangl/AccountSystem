@@ -1,3 +1,13 @@
 .supplierList {
     font-size: 16px;
 }
+.productImg {
+    cursor: -webkit-zoom-in;
+    cursor: -ms-zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: zoom-in;
+}
+.productImgPreview {
+    max-width: 450px;
+    max-height: 450px;
+}

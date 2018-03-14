@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
+import {Table, Pagination, Popconfirm, Button, Modal} from 'antd';
 import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
 import Spliter from '../../Spliter/Spliter';
-import {productList} from './index.css';
+import {productList, productImg, productImgPreview} from './index.css';
 
 const ProductList = ({
     total,
@@ -15,6 +15,15 @@ const ProductList = ({
     onDel,
 	onDetail
 }) => {
+    const productImgClick = ({productName, productImg}) => {
+        Modal.info({
+            title: `预览商品：${productName}`,
+            content: <img className={productImgPreview} src={productImg}/>,
+            width: 600,
+            maskClosable: true
+        })
+    };
+
     const columns = [
         {
             title: '序号',
@@ -28,7 +37,7 @@ const ProductList = ({
 			key: 'productImg',
 			render: (text, record, index)=>{
 				if(text){
-					return <img style={{width:100}} src={text} alt="商品图片"/>
+					return <img className={productImg} onClick={() => productImgClick(record)} style={{width:100}} src={text} alt="商品图片"/>
 				}else {
 					return <span>暂无图片</span>;
 				}

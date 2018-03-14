@@ -11,3 +11,7 @@
     margin-top: 60px;
     border: none;
 }
+
+.header ::-webkit-scrollbar { 
+    display: none; 
+}

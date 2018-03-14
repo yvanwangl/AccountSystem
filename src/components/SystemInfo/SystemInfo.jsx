@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Avatar } from 'antd';
+import { Button, Avatar, Modal } from 'antd';
 import {browserHistory} from 'dva/router';
 import {connect} from 'dva';
 import LoginModal from '../LoginModal/LoginModal';
@@ -27,9 +27,20 @@ const SystemInfo = ({systemUser, dispatch}) => {
 	const loginModalProps = {
 		visible: modalVisible,
 		onConfirm(userData){
-			dispatch({
-				type: 'systemUser/doLogin',
-				payload: userData
+			new Promise(function(resolve, reject){
+				dispatch({
+					type: 'systemUser/doLogin',
+					payload: {
+						userData,
+						resolve,
+						reject
+					}
+				});
+			}).then(null, (data)=>{
+				Modal.error({
+					title: '错误提示',
+					content: <p style={{fontSize: 14}}>用户名 或 密码 错误！</p>
+				});
 			});
 		},
 		onCancel(){

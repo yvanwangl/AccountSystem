@@ -33,14 +33,22 @@ export default {
 
     effects: {
         *doLogin({payload}, {call, put}){
+            let {
+                userData,
+                resolve,
+                reject
+            } = payload;
             yield put({type: 'showLoading'});
-            const {data} = yield call(doLogin, payload);
+            const {data} = yield call(doLogin, userData);
             if (data && data.success) {
                 //登录成功
                 yield put({
                     type: 'loginSuccess',
                     payload: data.userInfo
                 });
+                resolve();
+            }else {
+                reject(data);
             }
         },
 		*doLogup({payload}, {call, put}){
