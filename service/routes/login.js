@@ -22,24 +22,32 @@ router.post('/',function (req, res, next) {
                 });
             }else {
                 if(userInfo['password']==userList[0]['password']){
-                    let authToken = utils.getAuthToken(10);
+					let {_id, username, admin} = userList[0];
+					let authToken = utils.getAuthToken(10);
+					//登录成功将用户信息写入 session
+					req.session.userInfo = {
+						_id,
+						username,
+						admin
+					};
+					console.log(JSON.stringify(req.session));
                     res.send({
                         success: true,
                         userInfo:{
                             username: userInfo['username'],
                             authToken:authToken,
                         }
-                    });
-					global[Symbol.for('currentUser')] = userList[0];
-					if(global[Symbol.for('authObject')]){
-						//以token的值作为键
-						global[Symbol.for('authObject')][`${authToken}`] = userList[0]['_id'];
-					}else {
-						global[Symbol.for('authObject')] = {
-							//以token的值作为键
-							[`${authToken}`]: userList[0]['_id']
-						}
-					}
+					});
+					// global[Symbol.for('currentUser')] = userList[0];
+					// if(global[Symbol.for('authObject')]){
+					// 	//以token的值作为键
+					// 	global[Symbol.for('authObject')][`${authToken}`] = userList[0]['_id'];
+					// }else {
+					// 	global[Symbol.for('authObject')] = {
+					// 		//以token的值作为键
+					// 		[`${authToken}`]: userList[0]['_id']
+					// 	}
+					// }
                 }else {
                     //密码错误
                     res.send({

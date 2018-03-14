@@ -14,10 +14,12 @@ router.route('/')
         let {page, timeRange, customerId, orderNumber} = req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
-        let currentUser = global[Symbol.for('currentUser')];
+        let currentUser = req.session.userInfo;
+        console.log(JSON.stringify(req.session));
 		let queryCondition = {
 			userId: currentUser['_id']
-		};
+        };
+        console.log(JSON.stringify(currentUser));
         if (timeRange) {
             let startTime = new Date(timeRange[0]);
             let endTime = new Date(timeRange[1]);

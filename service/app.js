@@ -6,8 +6,9 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
+let session = require('express-session');
 let systemConfig = require('../system.config');
-mongoose.connect(systemConfig.mongooseConnect, {useMongoClient: true});
+mongoose.connect(systemConfig.mongooseConnect, { useMongoClient: true });
 
 let routes = require('./routes/index');
 let users = require('./routes/users');
@@ -27,6 +28,17 @@ let supplierBills = require('./routes/supplierBills');
 
 let app = express();
 
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}));
+app.use(function (req, res, next) {
+    if (!req.session.userInfo) {
+      req.session.userInfo = {}
+    }
+    next();
+  })
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.static(path.join(__dirname, '../public')));
@@ -39,28 +51,28 @@ app.set('view engine', 'jade');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-if(app.get('env') === 'development'){
-	app.use(function (req, res, next) {
+if (app.get('env') === 'development') {
+    app.use(function (req, res, next) {
 
-		// Website you wish to allow to connect
-		res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
+        // Website you wish to allow to connect
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
 
-		// Request methods you wish to allow
-		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        // Request methods you wish to allow
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-		// Request headers you wish to allow
-		res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+        // Request headers you wish to allow
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-		// Set to true if you need the website to include cookies in the requests sent
-		// to the API (e.g. in case you use sessions)
-		res.setHeader('Access-Control-Allow-Credentials', true);
+        // Set to true if you need the website to include cookies in the requests sent
+        // to the API (e.g. in case you use sessions)
+        res.setHeader('Access-Control-Allow-Credentials', true);
 
-		// Pass to next layer of middleware
-		next();
-	});
+        // Pass to next layer of middleware
+        next();
+    });
 }
 
 
