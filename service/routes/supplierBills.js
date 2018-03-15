@@ -12,7 +12,7 @@ router.route('/')
     	let {page, supplierId} = req.query;
     	let limit = constants.PAGE_SIZE;
     	let skip = (page-1)*limit;
-        let currentUser = global[Symbol.for('currentUser')];
+        let currentUser = req.session.userInfo;
 		let queryCondition = {
 			userId: currentUser['_id']
 		};
@@ -111,7 +111,7 @@ router.route('/')
 
 router.route('/doClearStorage')
     .post(function (req, res, next) {
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
 		let {storageId, paymentAmount} = req.body;
 		let newStorage = {
 			paymentAmount: paymentAmount,
@@ -133,7 +133,7 @@ router.route('/doClearStorage')
 
 router.route('/doClearBill')
 	.post(function (req, res, next) {
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
 		let {supplierId} = req.body;
 		let queryCondition = {
 			userId: currentUser['_id'],

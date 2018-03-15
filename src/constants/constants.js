@@ -1,10 +1,11 @@
 /**
  * Created by wyf on 2017/1/18.
  */
-import {httpServer} from '../../system.config';
+import {httpServer, defaultOptions} from '../../system.config';
 
 const PAGE_SIZE = 10;
 const HTTP_SERVER = httpServer;
+const DEFAULT_OPTIONS = defaultOptions;
 
 const formItemLayout = {
 	labelCol: {
@@ -18,6 +19,7 @@ const formItemLayout = {
 
 export default {
     PAGE_SIZE,
-    HTTP_SERVER,
+	HTTP_SERVER,
+	DEFAULT_OPTIONS,
 	formItemLayout
 };

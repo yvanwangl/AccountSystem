@@ -9,7 +9,7 @@ let constants = require('../constants/constants');
 //查询所有客户
 router.route('/all')
     .get((req, res, next)=>{
-        let currentUser = global[Symbol.for('currentUser')];
+        let currentUser = req.session.userInfo;
         let queryCondition = {
         	userId: currentUser['_id']
 		};
@@ -33,7 +33,7 @@ router.route('/')
         let {page, customerName} = req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
         let queryCondition = {
         	userId: currentUser['_id']
 		};
@@ -65,7 +65,7 @@ router.route('/')
     })
     .post((req, res, next)=>{
         let customer = req.body;
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
         let newCustomer = new Customer(Object.assign({}, customer, {userId: currentUser['_id']}));
         newCustomer.save((err, customer)=>{
             if(err){

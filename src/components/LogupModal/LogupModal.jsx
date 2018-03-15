@@ -34,6 +34,12 @@ const LogupModal =({
         })
     }
 
+    function handleKeyDown(e){
+        if(e.keyCode == 13) {
+            handleConfirm();
+        }
+    }
+
     const modalOpts = {
         title: '系统用户注册',
         visible,
@@ -75,7 +81,7 @@ const LogupModal =({
                                 }
                             ]
                         })(
-                            <Input type="text"/>
+                            <Input type="text" onKeyDown={handleKeyDown}/>
                         )
                     }
                 </FormItem>
@@ -92,7 +98,7 @@ const LogupModal =({
 								}
                             ]
                         })(
-                            <Input type="password"/>
+                            <Input type="password" onKeyDown={handleKeyDown}/>
                         )
                     }
                 </FormItem>
@@ -109,7 +115,7 @@ const LogupModal =({
 								}
 							]
 						})(
-							<Input type="password"/>
+							<Input type="password" onKeyDown={handleKeyDown}/>
 						)
 					}
 				</FormItem>

@@ -31,6 +31,12 @@ const LoginModal =({
         })
     }
 
+    function handleKeyDown(e){
+        if(e.keyCode == 13) {
+            handleConfirm();
+        }
+    }
+
     const modalOpts = {
         title: '系统用户登录',
         visible,
@@ -50,7 +56,7 @@ const LoginModal =({
                                 }
                             ]
                         })(
-                            <Input type="text"/>
+                            <Input type="text" onKeyDown={handleKeyDown}/>
                         )
                     }
                 </FormItem>
@@ -64,11 +70,7 @@ const LoginModal =({
                                 }
                             ]
                         })(
-                            <Input type="password" onKeyDown={(e)=> {
-                                if(e.keyCode == 13) {
-                                    handleConfirm();
-                                }
-                            }}/>
+                            <Input type="password" onKeyDown={handleKeyDown} />
                         )
                     }
                 </FormItem>

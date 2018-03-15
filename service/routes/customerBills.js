@@ -12,7 +12,7 @@ router.route('/')
     	let {page, customerId} = req.query;
     	let limit = constants.PAGE_SIZE;
     	let skip = (page-1)*limit;
-        let currentUser = global[Symbol.for('currentUser')];
+        let currentUser = req.session.userInfo;
 		let queryCondition = {
 			userId: currentUser['_id']
 		};
@@ -111,7 +111,7 @@ router.route('/')
 
 router.route('/doClearOrder')
     .post(function (req, res, next) {
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
 		let {orderId, paymentAmount} = req.body;
 		let newOrder = {
 			paymentAmount: paymentAmount,
@@ -134,7 +134,7 @@ router.route('/doClearOrder')
 
 router.route('/doClearBill')
 	.post(function (req, res, next) {
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
 		let {customerId} = req.body;
 		let queryCondition = {
 			userId: currentUser['_id'],

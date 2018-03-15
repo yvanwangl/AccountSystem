@@ -23,6 +23,16 @@ export async function fetchIsAuth(callback) {
 
 export function redirect() {
     message.error('请登录！');
+    //browserHistory.push 可能会导致路由丢失，推荐使用 reduxRouter
     browserHistory.push('/');
     return null;
+}
+
+/*授权验证*/
+export function requireAuth(nextState, replace) {
+    const userInfo = sessionStorage.getItem('userInfo');
+    if(!userInfo || userInfo=='null'){
+        message.error('请登录！');
+        replace('/');
+    }
 }

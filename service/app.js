@@ -3,16 +3,16 @@ let compression = require('compression');
 let path = require('path');
 let favicon = require('serve-favicon');
 let logger = require('morgan');
-let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let session = require('express-session');
+let MongoStore = require('connect-mongo')(session);
 let systemConfig = require('../system.config');
 mongoose.connect(systemConfig.mongooseConnect, { useMongoClient: true });
 
-let routes = require('./routes/index');
+let routesAuth = require('./routes/index');
 let users = require('./routes/users');
-let login = require('./routes/login');
+let system = require('./routes/system');
 let auth = require('./routes/auth');
 let orders = require('./routes/orders');
 let storage = require('./routes/storage');
@@ -28,17 +28,15 @@ let supplierBills = require('./routes/supplierBills');
 
 let app = express();
 
-app.use(session({
-    secret: 'keyboard cat',
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({ 
+    name: 'accountSession',
+    secret: 'account system', 
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false,
+    cookie: { secure: false, maxAge: 600000, httpOnly:false, secure:false },
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
-app.use(function (req, res, next) {
-    if (!req.session.userInfo) {
-      req.session.userInfo = {}
-    }
-    next();
-  })
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.static(path.join(__dirname, '../public')));
@@ -52,7 +50,6 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 if (app.get('env') === 'development') {
     app.use(function (req, res, next) {
@@ -94,7 +91,8 @@ if (app.get('env') === 'development') {
  }));
  })();*/
 
-/*app.use('/', routes);*/
+ //统一权限拦截
+app.use(routesAuth);
 app.use('/api/users', users);
 app.use('/api/orders', orders);
 app.use('/api/storage', storage);
@@ -107,7 +105,7 @@ app.use('/api/suppliers', suppliers);
 app.use('/api/customerBills', customerBills);
 app.use('/api/supplierBills', supplierBills);
 app.use('/api/uploadProductImg', uploadProductImg);
-app.use('/api/login', login);
+app.use('/system', system);
 app.use('/api/auth', auth);
 //确保react-router刷新正确路由
 app.get('*', function (request, response) {

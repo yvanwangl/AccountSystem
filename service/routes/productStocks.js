@@ -7,7 +7,7 @@ let ProductStocks = require('../models/productStocks');
 
 router.route('/')
     .get((req, res, next)=>{
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
 		let queryCondition = {
 			userId: currentUser['_id'],
 			type:'in'

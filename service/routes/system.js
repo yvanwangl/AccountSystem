@@ -5,7 +5,7 @@ let utils = require('../utils/utils');
 
 /* GET users listing. */
 // router.route('/')
-router.post('/',function (req, res, next) {
+router.post('/login',function (req, res, next) {
         let userInfo = req.body;
         User.findByUserName(userInfo['username'], function(err, userList){
             if(err){
@@ -30,7 +30,6 @@ router.post('/',function (req, res, next) {
 						username,
 						admin
 					};
-					console.log(JSON.stringify(req.session));
                     res.send({
                         success: true,
                         userInfo:{
@@ -82,7 +81,14 @@ router.post('/logup',function (req, res, next) {
 							error: err
 						});
 					}else {
+						let {_id, username, admin} = user;
 						let authToken = utils.getAuthToken(10);
+						//注册成功将用户信息写入 session
+						req.session.userInfo = {
+							_id,
+							username,
+							admin
+						};
 						res.send({
 							success: true,
 							userInfo:{
@@ -90,21 +96,42 @@ router.post('/logup',function (req, res, next) {
 								authToken: authToken,
 							}
 						});
-						global[Symbol.for('currentUser')] = user;
-						if(global[Symbol.for('authObject')]){
-							//以token的值作为键
-							global[Symbol.for('authObject')][`${authToken}`] = user['_id'];
-						}else {
-							global[Symbol.for('authObject')] = {
-								//以token的值作为键
-								[`${authToken}`]: userList[0]['_id']
-							}
-						}
+						// global[Symbol.for('currentUser')] = user;
+						// if(global[Symbol.for('authObject')]){
+						// 	//以token的值作为键
+						// 	global[Symbol.for('authObject')][`${authToken}`] = user['_id'];
+						// }else {
+						// 	global[Symbol.for('authObject')] = {
+						// 		//以token的值作为键
+						// 		[`${authToken}`]: userList[0]['_id']
+						// 	}
+						// }
 					}
 				});
 			}
 		}
 	});
+});
+
+//退出登录
+router.post('/logout',function (req, res, next) {
+	let currentUser = req.session.userInfo;
+	console.log('logout'+JSON.stringify(currentUser));
+	if(currentUser && currentUser._id){
+		//销毁session
+		req.session.destroy(function(err) {
+			res.send({
+				success: true,
+				userInfo:{
+					username: currentUser['username']
+				}
+			});
+		});
+	}else {
+		res.send({
+			isAuth: false
+		})
+	}
 });
 
 module.exports = router;

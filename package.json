@@ -26,7 +26,7 @@
   },
   "scripts": {
     "start": "roadhog server",
-    "start:prod": "cross-env NODE_ENV=production pm2 start ./service/bin/www --name 'accountSystem'",
+    "start:prod": "cross-env NODE_ENV=production pm2 start ./service/bin/www --name accountSystem",
     "start:dev": "cross-env NODE_ENV=development pm2 start ./service/bin/www",
     "build": "cross-env NODE_ENV=production roadhog build",
     "test": "atool-test-mocha ./src/**/*-test.js"

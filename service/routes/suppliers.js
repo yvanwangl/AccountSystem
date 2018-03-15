@@ -9,7 +9,7 @@ let constants = require('../constants/constants');
 //查询所有供应商
 router.route('/all')
     .get((req, res, next)=>{
-        let currentUser = global[Symbol.for('currentUser')];
+        let currentUser = req.session.userInfo;
         let queryCondition = {
         	userId: currentUser['_id']
 		};
@@ -33,7 +33,7 @@ router.route('/')
         let {page, supplierName} = req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
         let queryCondition = {
         	userId: currentUser['_id']
 		};
@@ -65,7 +65,7 @@ router.route('/')
     })
     .post((req, res, next)=>{
         let supplier = req.body;
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
         let newSupplier = new Supplier(Object.assign({}, supplier, {userId: currentUser['_id']}));
 		newSupplier.save((err, supplier)=>{
             if(err){

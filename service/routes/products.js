@@ -11,7 +11,7 @@ router.route('/')
         let {page, productName}=req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
 		let queryCondition = {
 			userId: currentUser['_id']
 		};
@@ -43,7 +43,7 @@ router.route('/')
     })
     .post((req, res, next)=>{
         let product = req.body;
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
         let newProduct = new Product(Object.assign({}, product, {userId: currentUser['_id']}));
 		newProduct.save((err, product)=>{
             if(err){

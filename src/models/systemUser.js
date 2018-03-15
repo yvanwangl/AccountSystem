@@ -1,5 +1,5 @@
-import {doLogin, doLogup} from '../services/systemUser';
-import {getCurrentUser, fetchIsAuth} from '../utils/webSessionUtils';
+import { doLogin, doLogup, doLogout } from '../services/systemUser';
+import { getCurrentUser, fetchIsAuth, redirect } from '../utils/webSessionUtils';
 export default {
 
     namespace: 'systemUser',
@@ -10,90 +10,105 @@ export default {
         modalVisible: false,
         authToken: '',
         pathname: '/',
-		logupModalVisible: false
+        logupModalVisible: false
     },
 
     subscriptions: {
-        setup({dispatch, history}) {
+        setup({ dispatch, history }) {
             history.listen(location => {
                 if (location.pathname == '/') {
                     //权限验证通过
-                    fetchIsAuth(function (isAuth) {
-                        if (isAuth) {
-                            dispatch({
-                                type: 'loginSuccess',
-                                payload: getCurrentUser()
-                            });
-                        }
-                    });
+                    if(sessionStorage.getItem('userInfo')){
+                        dispatch({
+                            type: 'loginSuccess',
+                            payload: JSON.parse(sessionStorage.getItem('userInfo')) || {}
+                        });
+                    }
                 }
             });
         },
     },
 
     effects: {
-        *doLogin({payload}, {call, put}){
+        *doLogin({ payload }, { call, put }) {
             let {
                 userData,
                 resolve,
                 reject
             } = payload;
-            yield put({type: 'showLoading'});
-            const {data} = yield call(doLogin, userData);
+            yield put({ type: 'showLoading' });
+            const { data } = yield call(doLogin, userData);
             if (data && data.success) {
+                let userInfo = data.userInfo;
+                yield sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
                 //登录成功
                 yield put({
                     type: 'loginSuccess',
-                    payload: data.userInfo
+                    payload: userInfo
                 });
                 resolve();
-            }else {
+            } else {
                 reject(data);
             }
         },
-		*doLogup({payload}, {call, put}){
-			yield put({type: 'showLoading'});
-			const {data} = yield call(doLogup, payload);
-			if (data && data.success) {
-				//注册成功
-				yield put({
-					type: 'logupSuccess',
-					payload: data.userInfo
-				});
-			}
-		}
+        *doLogup({ payload }, { call, put }) {
+            let {
+                userData,
+                resolve,
+                reject
+            } = payload;
+            yield put({ type: 'showLoading' });
+            const { data } = yield call(doLogup, userData);
+            if (data && data.success) {
+                let userInfo = data.userInfo;
+                yield sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+                //注册成功
+                yield put({
+                    type: 'logupSuccess',
+                    payload: userInfo
+                });
+                resolve();
+            } else {
+                reject(data);
+            }
+        },
+        *doLogout({ payload }, { call, put }) {
+            const { data } = yield call(doLogout);
+            if (data && data.success) {
+                yield sessionStorage.removeItem('userInfo')
+                //退出登录成功
+                yield put({
+                    type: 'logoutSuccess',
+                    payload: data.userInfo
+                });
+            }
+        }
     },
 
     reducers: {
-        logout(state, action){
-            let sessionStorage = window.sessionStorage;
-			sessionStorage.setItem('userInfo', JSON.stringify({}));
-            return {...state, user: null, isLogin: false};
+        login(state, action) {
+            return { ...state, modalVisible: true };
         },
-		login(state, action){
-            return {...state, modalVisible: true};
+        logup(state, action) {
+            return { ...state, logupModalVisible: true };
         },
-		logup(state, action){
-			return {...state, logupModalVisible: true};
-		},
-        loginSuccess(state, action){
+        loginSuccess(state, action) {
             let userInfo = action.payload;
-            let sessionStorage = window.sessionStorage;
-			sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
-            return {...state, ...userInfo, isLogin: true, modalVisible: false};
+            return { ...state, ...userInfo, isLogin: true, modalVisible: false };
         },
-		logupSuccess(state, action){
-			let userInfo = action.payload;
-			let sessionStorage = window.sessionStorage;
-			sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
-			return {...state, ...userInfo, isLogin: true, logupModalVisible: false};
-		},
-        hideModal(state){
-            return {...state, modalVisible: false};
+        logupSuccess(state, action) {
+            let userInfo = action.payload;
+            return { ...state, ...userInfo, isLogin: true, logupModalVisible: false };
         },
-		hideLogupModal(state){
-			return {...state, logupModalVisible: false};
-		}
+        logoutSuccess(state, action) {
+            return { ...state, username: '', authToken: '', isLogin: false };
+        },
+        hideModal(state) {
+            return { ...state, modalVisible: false };
+        },
+        hideLogupModal(state) {
+            return { ...state, logupModalVisible: false };
+        }
     },
 
 }

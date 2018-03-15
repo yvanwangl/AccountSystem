@@ -15,11 +15,9 @@ router.route('/')
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
         let currentUser = req.session.userInfo;
-        console.log(JSON.stringify(req.session));
 		let queryCondition = {
 			userId: currentUser['_id']
         };
-        console.log(JSON.stringify(currentUser));
         if (timeRange) {
             let startTime = new Date(timeRange[0]);
             let endTime = new Date(timeRange[1]);
@@ -81,7 +79,7 @@ router.route('/')
     })
     .post(function (req, res, next) {
         let order = req.body;
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
         let newOrder = new Order(Object.assign({}, order, {userId: currentUser['_id'], createInstance: new Date()}));
 		let products = order['products'];
 		let productStocks = products
@@ -124,7 +122,7 @@ router.route('/')
 
 router.route('/getOrderNumber')
     .get(function (req, res, next) {
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
         Order.find({userId: currentUser['_id']},function (error, orders) {
             if (error) {
                 res.send({

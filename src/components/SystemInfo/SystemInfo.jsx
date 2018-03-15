@@ -12,7 +12,7 @@ const SystemInfo = ({systemUser, dispatch}) => {
 
 	const loginClick = () => {
 		dispatch({
-			type: isLogin ? 'systemUser/logout' : 'systemUser/login'
+			type: isLogin ? 'systemUser/doLogout' : 'systemUser/login'
 		});
 		browserHistory.push('/');
 	};
@@ -53,9 +53,23 @@ const SystemInfo = ({systemUser, dispatch}) => {
 	const logupModalProps = {
 		visible: logupModalVisible,
 		onConfirm(userData){
-			dispatch({
-				type: 'systemUser/doLogup',
-				payload: userData
+			new Promise(function(resolve, reject){
+				dispatch({
+					type: 'systemUser/doLogup',
+					payload: {
+						userData,
+						resolve,
+						reject
+					}
+				});
+			}).then(null, (data)=> {
+				//code 为 3 表示用户名已被注册
+				if(!data.success && data.code == 3){
+					Modal.error({
+						title: '错误提示',
+						content: <p style={{fontSize: 14}}>该用户名已被注册！</p>
+					});
+				}
 			});
 		},
 		onCancel(){

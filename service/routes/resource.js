@@ -150,7 +150,7 @@ function getResource(queryCondition, callback) {
 /* GET orders listing. */
 router.route('/')
 	.get(function (req, res, next) {
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
 		let {productId} = req.query;
 		Settlement.find({userId: currentUser['_id']})
 			.sort('-createInstance')
@@ -189,7 +189,7 @@ router.route('/')
 		*第一步，生成出货单，
 		*获取系统中当前资源信息，包括库存商品数量及销售利润额
 		* */
-		let currentUser = global[Symbol.for('currentUser')];
+		let currentUser = req.session.userInfo;
 		Settlement.find({userId: currentUser['_id']})
 			.sort('-createInstance')
 			.exec(function (err, settlements) {

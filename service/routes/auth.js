@@ -6,9 +6,8 @@ let router = express.Router();
 
 router.route('/')
     .get(function (req, res, next) {
-        let authObject = global[Symbol.for('authObject')];
-        let requestAuthToken = req.query.authToken;
-        if (authObject && requestAuthToken && authObject.hasOwnProperty(requestAuthToken)) {
+        let currentUser = req.session.userInfo;
+        if (currentUser && currentUser._id && currentUser.username) {
             res.send({
                 isAuth: true
             });
