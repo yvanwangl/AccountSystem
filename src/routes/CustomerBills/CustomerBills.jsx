@@ -22,7 +22,8 @@ function genCustomerBills({dispatch, customerBillsSpace}){
 		customerBills,
 		visible,
 		editorType,
-		currentItem
+		currentItem,
+		customerId
     } = customerBillsSpace;
 
 	const debtOrdersListProps ={

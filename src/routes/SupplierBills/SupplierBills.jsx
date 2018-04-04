@@ -22,7 +22,8 @@ function genSupplierBills({dispatch, supplierBillsSpace}){
 		supplierBills,
 		visible,
 		editorType,
-		currentItem
+		currentItem,
+		supplierId
     } = supplierBillsSpace;
 
 	const debtStorageListProps ={
