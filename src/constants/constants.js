@@ -3,23 +3,15 @@
  */
 import {httpServer, defaultOptions} from '../../system.config';
 
-const PAGE_SIZE = 10;
-const HTTP_SERVER = httpServer;
-const DEFAULT_OPTIONS = defaultOptions;
+export const PAGE_SIZE = 10;
+export const HTTP_SERVER = httpServer;
+export const DEFAULT_OPTIONS = defaultOptions;
 
-const formItemLayout = {
+export const formItemLayout = {
 	labelCol: {
 		span: 4
 	},
 	wrapperCol: {
 		span: 16
 	}
-};
-
-
-export default {
-    PAGE_SIZE,
-	HTTP_SERVER,
-	DEFAULT_OPTIONS,
-	formItemLayout
 };

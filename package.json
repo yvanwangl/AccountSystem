@@ -18,15 +18,14 @@
   "devDependencies": {
     "atool-test-mocha": "^0.1.5",
     "babel-plugin-dev-expression": "^0.2.1",
-    "babel-plugin-dva-hmr": "^0.2.0",
-    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-plugin-dva-hmr": "^0.4.0",
     "babel-runtime": "^6.9.2",
     "cross-env": "^5.0.5",
     "expect": "^1.20.2",
     "redbox-react": "^1.3.2"
   },
   "scripts": {
-    "start": "roadhog server",
+    "start": "roadhog dev",
     "start:prod": "cross-env NODE_ENV=production pm2 start ./service/bin/www --name accountSystem",
     "start:dev": "cross-env NODE_ENV=development pm2 start ./service/bin/www",
     "build": "cross-env NODE_ENV=production roadhog build",

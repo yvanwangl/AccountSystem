@@ -14,13 +14,11 @@
   "env": {
     "development": {
       "extraBabelPlugins": [
-        "dva-hmr",
-        "transform-runtime"
+        "dva-hmr"
       ]
     },
     "production": {
       "extraBabelPlugins": [
-        "transform-runtime"
       ]
     }
   }

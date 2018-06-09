@@ -1,19 +1,19 @@
-import React, {Component, PropTypes} from 'react';
-import {Form, Input} from 'antd';
-import {formItemLayout} from '../../../../constants/constants';
-import {customerForm, formColumn, formTitle} from './index.css';
+import React, { Component, PropTypes } from 'react';
+import { Form, Input } from 'antd';
+import { formItemLayout } from '../../../../constants/constants';
+import { customerForm, formColumn, formTitle } from './index.css';
 
 const FormItem = Form.Item;
 
 const CustomerForm = ({
     customer,
-	disabled,
+    disabled,
     form: {
         getFieldDecorator,
     }
 }) => {
 
-    let {customerName, contactPeople, contactPhone, address, mem, accountName, accountBank, accountNo} = customer;
+    let { customerName, contactPeople, contactPhone, address, mem, accountName, accountBank, accountNo } = customer;
 
     return (
         <div className={customerForm}>
@@ -25,10 +25,10 @@ const CustomerForm = ({
                             getFieldDecorator('customerName', {
                                 initialValue: customerName,
                                 rules: [
-                                    {required: true, message: '客户名称不能为空'}
+                                    { required: true, message: '客户名称不能为空' }
                                 ]
                             })(
-                                <Input type='text' disabled={disabled}/>
+                                <Input type='text' disabled={disabled} />
                             )
                         }
                     </FormItem>
@@ -37,10 +37,10 @@ const CustomerForm = ({
                             getFieldDecorator('contactPeople', {
                                 initialValue: contactPeople,
                                 rules: [
-                                    {required: true, message: '联系人不能为空'}
+                                    { required: true, message: '联系人不能为空' }
                                 ]
                             })(
-                                <Input type='text' disabled={disabled}/>
+                                <Input type='text' disabled={disabled} />
                             )
                         }
                     </FormItem>
@@ -49,10 +49,10 @@ const CustomerForm = ({
                             getFieldDecorator('contactPhone', {
                                 initialValue: contactPhone,
                                 rules: [
-                                    {required: true, message: '联系方式不能为空'}
+                                    { required: true, message: '联系方式不能为空' }
                                 ]
                             })(
-                                <Input type='text' disabled={disabled}/>
+                                <Input type='text' disabled={disabled} />
                             )
                         }
                     </FormItem>
@@ -61,10 +61,10 @@ const CustomerForm = ({
                             getFieldDecorator('address', {
                                 initialValue: address,
                                 rules: [
-                                    {required: true, message: '地址不能为空'}
+                                    { required: true, message: '地址不能为空' }
                                 ]
                             })(
-                                <Input type='text' disabled={disabled}/>
+                                <Input type='text' disabled={disabled} />
                             )
                         }
                     </FormItem>
@@ -75,9 +75,9 @@ const CustomerForm = ({
                             })(
                                 <Input
                                     type='textarea'
-									disabled={disabled}
+                                    disabled={disabled}
                                     rows={4}
-                                    style={{fontSize: 14}}
+                                    style={{ fontSize: 14 }}
                                     placeholder="在此填写备注..."
                                 />
                             )
@@ -91,7 +91,7 @@ const CustomerForm = ({
                             getFieldDecorator('accountName', {
                                 initialValue: accountName
                             })(
-                                <Input type='text' disabled={disabled}/>
+                                <Input type='text' disabled={disabled} />
                             )
                         }
                     </FormItem>
@@ -100,7 +100,7 @@ const CustomerForm = ({
                             getFieldDecorator('accountBank', {
                                 initialValue: accountBank
                             })(
-                                <Input type='text' disabled={disabled}/>
+                                <Input type='text' disabled={disabled} />
                             )
                         }
                     </FormItem>
@@ -109,7 +109,7 @@ const CustomerForm = ({
                             getFieldDecorator('accountNo', {
                                 initialValue: accountNo
                             })(
-                                <Input type='text' disabled={disabled}/>
+                                <Input type='text' disabled={disabled} />
                             )
                         }
                     </FormItem>
