@@ -1,7 +1,7 @@
 let express = require('express');
 let compression = require('compression');
 let path = require('path');
-let favicon = require('serve-favicon');
+// let favicon = require('serve-favicon');
 let logger = require('morgan');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
@@ -29,9 +29,9 @@ let supplierBills = require('./routes/supplierBills');
 let app = express();
 
 app.set('trust proxy', 1) // trust first proxy
-app.use(session({ 
+app.use(session({
     name: 'accountSession',
-    secret: 'account system', 
+    secret: 'account system',
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false, maxAge: 600000, httpOnly:false, secure:false },
@@ -46,7 +46,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
